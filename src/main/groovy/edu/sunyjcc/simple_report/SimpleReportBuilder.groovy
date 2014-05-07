@@ -24,32 +24,31 @@ public class SimpleReportBuilder extends BuilderSupport {
     },
     param: {
       String name, Map attributes, def value ->
-        println ("in param.createNode($name, $attributes, $value)") 
+        println ("in nodeFactory.param($name, $attributes, $value)") 
         assert name == 'param'
         assert attributes.name
-        def param = [name: name,
-                     param_name: attributes.name,
-                     type: attributes.type?:String,
-                     details: []]
-        if (attributes.default) {
+        def param = new SimpleReportParam(attributes.name,
+                                          attributes.type?:String,
+                                          attributes.description?:attributes.name,
+                                          attributes.label?:attributes.name)
+        /* if (attributes.default) {
           param.default = attributes.default
-        }
-        if (value) {
+          }*/
+        if (value && !attributes?.desc) {
           attributes.desc = value.toString()
         }
-        param.addChild = [
-          doc: {
-            parent, child ->
-              println "In param.addChild()"
-              parent.params.add(child)
-          }
-        ];
         return param;
     },
-                         doc: [],
   ];
 
-
+  def addChildFarm = [
+    (SimpleReport): [
+      (SimpleReportParam): {
+        parent, child ->
+          parent.addParam(child)
+      }
+    ]
+  ]
 
 
   Object createNode(Object name) {
@@ -76,10 +75,10 @@ public class SimpleReportBuilder extends BuilderSupport {
   void setParent(Object parent, Object child) {
     println "in setParent(${parent.name}, ${child.name})"
     println "parent=$parent"
-    println "parent.addChild = ${parent.addChild}"
-    println "parent.addChild.keySet()=${parent.addChild.keySet()}"
-    assert  parent.addChild.keySet().contains(child.name)
-    parent.addChild[child.name](parent, child)
+    //println "parent.addChild = ${parent.addChild}"
+    //println "parent.addChild.keySet()=${parent.addChild.keySet()}"
+    //assert  parent.addChild.keySet().contains(child.name)
+    addChildFarm[parent.getClass()][child.getClass()](parent, child)
   }
 
   void nodeCompleted(Object parent, Object node) {}

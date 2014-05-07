@@ -23,10 +23,14 @@ public class SimpleReport {
 
   /** The active parameters for the report
    */
-  private ArrayList reportParams = []
+  private ArrayList<SimpleReportParam> params = []
 
   public void setReportParams(ArrayList l) {
-    // Don't let outsiders mess with reportParams.
+    // Don't let outsiders mess with params.
+  }
+
+  public void addParam(SimpleReportParam p) {
+    params << p
   }
 
   /** Copies values from arguments into hashmap
