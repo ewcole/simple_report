@@ -14,11 +14,23 @@ public class SimpleReportBuilderTest extends GroovyTestCase {
 
   void testCreateReport() {
     def a = new SimpleReportBuilder()
-    def r = a.report(name: "ghostHunt") {
+    def r = a.report(name: "ghostHunt", title: "Ghost Hunt") //{
+      //     param(name: 'scoobydoo', default: 'scared')
+    //}
+    println "r=$r"
+    assert r
+    assert r.name == "ghostHunt"
+    assert r.title == "Ghost Hunt"
+  }
+
+  void testReportWithParameters() {
+    def a = new SimpleReportBuilder()
+    def r = a.report(name: "ghostHunt", title: "Ghost Hunt") {
       param(name: 'scoobydoo', default: 'scared')
     }
     println "r=$r"
     assert r
-    assert r.report.name == "ghostHunt"
+    assert r.name == "ghostHunt"
+    assert r.title == "Ghost Hunt"
   }
 }

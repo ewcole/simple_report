@@ -13,91 +13,64 @@ public class SimpleReportBuilder extends BuilderSupport {
   private def reports = [:];
 
   private nodeFactory = [
-    report: [
-      createNode: {
-        String name, Map attributes, def value ->
-          def report = new SimpleReport(attributes)
-          assert report
-          if (value) {
-            report.description = value
+    report: {
+      String name, Map attributes, def value ->
+        def report = new SimpleReport(attributes)
+        assert report
+        if (value) {
+          report.description = value
+        }
+        return report
+    },
+    param: {
+      String name, Map attributes, def value ->
+        println ("in param.createNode($name, $attributes, $value)") 
+        assert name == 'param'
+        assert attributes.name
+        def param = [name: name,
+                     param_name: attributes.name,
+                     type: attributes.type?:String,
+                     details: []]
+        if (attributes.default) {
+          param.default = attributes.default
+        }
+        if (value) {
+          attributes.desc = value.toString()
+        }
+        param.addChild = [
+          doc: {
+            parent, child ->
+              println "In param.addChild()"
+              parent.params.add(child)
           }
-          /*
-          report.addChild = [
-            param: {
-              parent, child ->
-                println "(param)child=$child"
-                parent.details.add(child)
-            }
-            ];*/
-          return report
-      }
-    ],
-    param: [      
-      createNode: {
-        String name, Map attributes, def value ->
-          println ("in param.createNode($name, $attributes, $value)") 
-          assert name == 'param'
-          assert attributes.name
-          def param = [name: name,
-                       param_name: attributes.name,
-                       type: attributes.type?:String,
-                       details: []]
-          if (attributes.default) {
-            param.default = attributes.default
-          }
-          if (value) {
-            attributes.desc = value.toString()
-          }
-          param.addChild = [
-            doc: {
-              parent, child ->
-                println "In param.addChild()"
-                parent.params.add(child)
-            }
-          ];
-          return param;
-      }],
-    doc: [],
+        ];
+        return param;
+    },
+                         doc: [],
   ];
 
 
 
 
   Object createNode(Object name) {
-    println "createNode($name)"
-    if (!nodeFactory[name]) {
-      println "Invalid object: $name"
-    }
-    assert name in nodeFactory.keySet()
-    println "After assert; nodeFactory[$name]=${nodeFactory[name]}"
-    nodeFactory[name].createNode(name, [:], null)
+    createNode(name, [:], null)
   }
   Object createNode(Object name, Object value) {
-    println "createNode($name)"
-    if (!nodeFactory[name]) {
-      println "Invalid object: $name"
-    }
-    assert name in nodeFactory.keySet()
-    println "After assert; nodeFactory[$name]=${nodeFactory[name]}"
-    nodeFactory[name].createNode(name, [:], value)
+    createNode(name, [:], value)
   }
+
   Object createNode(Object name, Map attributes) {
-    println "createNode($name)"
-    if (!nodeFactory[name]) {
-      println "Invalid object: $name"
-    }
-    assert name in nodeFactory.keySet()
-    println "After assert; nodeFactory[$name]=${nodeFactory[name]}"
-    nodeFactory[name].createNode(name, attributes, null)
+    createNode(name, attributes, null)
   }
+
   Object createNode(Object name, Map attributes, Object value) {
     println "createNode($name)"
     if (!nodeFactory[name]) {
       println "Invalid object: $name"
     }
     assert name in nodeFactory.keySet()
-    println "After assert; nodeFactory[$name]=${nodeFactory[name]}"
-    nodeFactory[name].createNode(name, attributes, value)
+    println "After assert; call nodeFactory[$name]($name, $attributes, $value)}"
+    nodeFactory[name](name, attributes, value)
   }
 
   void setParent(Object parent, Object child) {
