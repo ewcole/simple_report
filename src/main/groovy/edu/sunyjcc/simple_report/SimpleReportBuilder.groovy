@@ -117,14 +117,4 @@ public class SimpleReportBuilder extends BuilderSupport {
     super()
   }
   
-  public static void main(String[] args) {
-    def a = new SimpleReportBuilder()
-    def r = a.report(name: "ghostHunt") {
-      param(name: 'scoobydoo', default: 'scared')
-    }
-    println r
-    def j = new groovy.json.JsonOutput()
-    //println j.prettyPrint(j.toJson(r))
-  }
-
 }
