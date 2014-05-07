@@ -7,9 +7,19 @@ public class SimpleReport {
 
   /* Report-level properties *************/
   /** The report name */
-  String name    = ""
+  String name    = "";
+
+  /** The report's title */
+  String title   = "";
+
   /** The report version */
-  String version = ""
+  String version = "";
+
+  /** A description of the report */
+  String description;
+
+  /* End of report-level properties *************/
+
 
   /** The active parameters for the report
    */
@@ -29,6 +39,9 @@ public class SimpleReport {
     }
     if (params.version) {
       this.version = params.version
+    }
+    if (params.title) {
+      this.title = params.title
     }
   }
 
