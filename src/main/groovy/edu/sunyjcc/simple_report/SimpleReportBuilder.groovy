@@ -12,7 +12,7 @@ public class SimpleReportBuilder extends BuilderSupport {
 
   private def reports = [:];
 
-  private reportSchema = [
+  private nodeFactory = [
     report: [
       createNode: {
         String name, Map attributes, def value ->
@@ -65,39 +65,39 @@ public class SimpleReportBuilder extends BuilderSupport {
 
   Object createNode(Object name) {
     println "createNode($name)"
-    if (!reportSchema[name]) {
+    if (!nodeFactory[name]) {
       println "Invalid object: $name"
     }
-    assert name in reportSchema.keySet()
-    println "After assert; reportSchema[$name]=${reportSchema[name]}"
-    reportSchema[name].createNode(name, [:], null)
+    assert name in nodeFactory.keySet()
+    println "After assert; nodeFactory[$name]=${nodeFactory[name]}"
+    nodeFactory[name].createNode(name, [:], null)
   }
   Object createNode(Object name, Object value) {
     println "createNode($name)"
-    if (!reportSchema[name]) {
+    if (!nodeFactory[name]) {
       println "Invalid object: $name"
     }
-    assert name in reportSchema.keySet()
-    println "After assert; reportSchema[$name]=${reportSchema[name]}"
-    reportSchema[name].createNode(name, [:], value)
+    assert name in nodeFactory.keySet()
+    println "After assert; nodeFactory[$name]=${nodeFactory[name]}"
+    nodeFactory[name].createNode(name, [:], value)
   }
   Object createNode(Object name, Map attributes) {
     println "createNode($name)"
-    if (!reportSchema[name]) {
+    if (!nodeFactory[name]) {
       println "Invalid object: $name"
     }
-    assert name in reportSchema.keySet()
-    println "After assert; reportSchema[$name]=${reportSchema[name]}"
-    reportSchema[name].createNode(name, attributes, null)
+    assert name in nodeFactory.keySet()
+    println "After assert; nodeFactory[$name]=${nodeFactory[name]}"
+    nodeFactory[name].createNode(name, attributes, null)
   }
   Object createNode(Object name, Map attributes, Object value) {
     println "createNode($name)"
-    if (!reportSchema[name]) {
+    if (!nodeFactory[name]) {
       println "Invalid object: $name"
     }
-    assert name in reportSchema.keySet()
-    println "After assert; reportSchema[$name]=${reportSchema[name]}"
-    reportSchema[name].createNode(name, attributes, value)
+    assert name in nodeFactory.keySet()
+    println "After assert; nodeFactory[$name]=${nodeFactory[name]}"
+    nodeFactory[name].createNode(name, attributes, value)
   }
 
   void setParent(Object parent, Object child) {
