@@ -16,21 +16,19 @@ public class SimpleReportBuilder extends BuilderSupport {
     report: [
       createNode: {
         String name, Map attributes, def value ->
-          def report = [name: name,
-                        report: new SimpleReport(attributes),
-                        details: []
-                       ]
-          assert name == 'report'
+          def report = new SimpleReport(attributes)
+          assert report
           if (value) {
-            report.details.add(value)
+            report.description = value
           }
+          /*
           report.addChild = [
             param: {
               parent, child ->
                 println "(param)child=$child"
                 parent.details.add(child)
             }
-          ];
+            ];*/
           return report
       }
     ],
