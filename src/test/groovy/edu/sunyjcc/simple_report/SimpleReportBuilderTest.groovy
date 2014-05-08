@@ -59,6 +59,7 @@ public class SimpleReportBuilderTest extends GroovyTestCase {
       param(name: 'shaggy', label: "Shaggy", default: "hungry")
     }
     assert p
+    // Show that we built the right thing.
     assert p.getClass() == ParamList
     def pe = p.export()
     println pe
