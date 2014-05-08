@@ -13,32 +13,36 @@ public class SimpleReportBuilder extends BuilderSupport {
   private def reports = [:];
 
   private nodeFactory = [
-    report: {
-      String name, Map attributes, def value ->
-        def report = new SimpleReport(attributes)
-        assert report
-        if (value) {
-          report.description = value
-        }
-        return report
-    },
-    param: {
-      String name, Map attributes, def value ->
-        println ("in nodeFactory.param($name, $attributes, $value)") 
-        assert name == 'param'
-        assert attributes.name
-        def param = new Param(attributes.name,
-                              attributes.type?:String,
-                              attributes.description?:attributes.name,
-                              attributes.label?:attributes.name)
-        /* if (attributes.default) {
-           param.default = attributes.default
-           }*/
-        if (value && !attributes?.desc) {
-          attributes.desc = value.toString()
-        }
-        return param;
-    },
+    report: [
+      create: {
+        String name, Map attributes, def value ->
+          def report = new SimpleReport(attributes)
+          assert report
+          if (value) {
+            report.description = value
+          }
+          return report
+      },
+    ],
+    param: [
+      create: {
+        String name, Map attributes, def value ->
+          println ("in nodeFactory.param($name, $attributes, $value)") 
+          assert name == 'param'
+          assert attributes.name
+          def param = new Param(attributes.name,
+                                attributes.type?:String,
+                                attributes.description?:attributes.name,
+                                attributes.label?:attributes.name)
+          /* if (attributes.default) {
+             param.default = attributes.default
+             }*/
+          if (value && !attributes?.desc) {
+            attributes.desc = value.toString()
+          }
+          return param;
+      },
+    ],
   ];
 
   def addChildFarm = [
@@ -69,7 +73,7 @@ public class SimpleReportBuilder extends BuilderSupport {
     }
     assert name in nodeFactory.keySet()
     println "After assert; call nodeFactory[$name]($name, $attributes, $value)}"
-    nodeFactory[name](name, attributes, value)
+    nodeFactory[name].create(name, attributes, value)
   }
 
   void setParent(Object parent, Object child) {
