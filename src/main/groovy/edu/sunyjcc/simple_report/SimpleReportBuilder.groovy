@@ -27,13 +27,13 @@ public class SimpleReportBuilder extends BuilderSupport {
         println ("in nodeFactory.param($name, $attributes, $value)") 
         assert name == 'param'
         assert attributes.name
-        def param = new SimpleReportParam(attributes.name,
-                                          attributes.type?:String,
-                                          attributes.description?:attributes.name,
-                                          attributes.label?:attributes.name)
+        def param = new Param(attributes.name,
+                              attributes.type?:String,
+                              attributes.description?:attributes.name,
+                              attributes.label?:attributes.name)
         /* if (attributes.default) {
-          param.default = attributes.default
-          }*/
+           param.default = attributes.default
+           }*/
         if (value && !attributes?.desc) {
           attributes.desc = value.toString()
         }
@@ -43,7 +43,7 @@ public class SimpleReportBuilder extends BuilderSupport {
 
   def addChildFarm = [
     (SimpleReport): [
-      (SimpleReportParam): {
+      (Param): {
         parent, child ->
           parent.addParam(child)
       }

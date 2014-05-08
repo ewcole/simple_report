@@ -2,7 +2,7 @@ package edu.sunyjcc.simple_report;
 
 /** A parameter definition to be used in a report or application invocation.
  */
-public class SimpleReportParam {
+public class Param {
   /** The parameter name */
   String name;
 
@@ -16,10 +16,10 @@ public class SimpleReportParam {
   String label;
 
   /** Explicit-argument constructor */
-  public SimpleReportParam(String name, 
-                           Class type, 
-                           String description, 
-                           String label) {
+  public Param(String name, 
+               Class type, 
+               String description, 
+               String label) {
     this.name = name;
     this.type = type;
     this.description = description;
