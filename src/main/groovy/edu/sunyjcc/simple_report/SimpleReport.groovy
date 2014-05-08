@@ -3,7 +3,7 @@ package edu.sunyjcc.simple_report;
 /** A report that can be defined in a small Groovy script, producing an 
  *  output
  */
-public class SimpleReport {
+public class SimpleReport implements Exportable{
 
   /* Report-level properties *************/
   /** The report name */
@@ -29,6 +29,19 @@ public class SimpleReport {
     // Don't let outsiders mess with params.
   }
 
+  /** Return a HashMap representing this report object. */
+  def export() {
+    [name: this.name,
+     title: this.title,
+     version: this.version,
+     description: this.description,
+     params: this.params.export(),
+    ]
+  }
+
+  /** Add a parameter to the report 
+   *  @param p This parameter will be added to the end of the list.
+   */
   public void addParam(Param p) {
     params << p
   }

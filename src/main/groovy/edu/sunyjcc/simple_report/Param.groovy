@@ -2,7 +2,7 @@ package edu.sunyjcc.simple_report;
 
 /** A parameter definition to be used in a report or application invocation.
  */
-public class Param {
+public class Param implements Exportable {
   /** The parameter name */
   String name;
 
@@ -14,6 +14,14 @@ public class Param {
   
   /** A label to be displayed when prompting for the parameter*/
   String label;
+
+  /** Return the values as a HashMap. */
+  def export() {
+    [name:        this.name,
+     type:        this.type.name,
+     description: this.description,
+     label:       this.label]
+  }
 
   /** Explicit-argument constructor */
   public Param(String name, 

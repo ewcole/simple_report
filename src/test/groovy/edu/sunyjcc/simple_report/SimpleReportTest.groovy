@@ -1,17 +1,9 @@
 package edu.sunyjcc.simple_report
 
-// http://www.javaworld.com/article/2078576/scripting-jvm-languages/groovy-recipes-for-sweeter-ant-builds.html
-
 import groovy.util.BuilderSupport
 
-/** Test the SimpleReportBuilder class. */
-public class SimpleReportBuilderTest extends GroovyTestCase {
-
-  void testCreateBuilder() {
-    println "******** testCreateBuilder ********************"
-    def a = new SimpleReportBuilder()
-      assert a 
-  }
+/** Test the SimpleReport class. */
+public class SimpleReportTest extends GroovyTestCase {
 
   void testCreateReport() {
     println "******** testCreateReport ********************"
@@ -23,9 +15,16 @@ public class SimpleReportBuilderTest extends GroovyTestCase {
     assert r
     assert r.name == "ghostHunt"
     assert r.title == "Ghost Hunt"
+    def r2 = r.export()
+    println "r2=$r2"
+    assert r2== [name: "ghostHunt", 
+                 title: "Ghost Hunt", 
+                 version: "", 
+                 description: null, 
+                 params:[]]
   }
 
-  void testReportWithParameters() {
+ void testReportWithParameters() {
     println "******** testReportWithParameters ********************"
     def a = new SimpleReportBuilder()
     def r = a.report(name: "ghostHunt", title: "Ghost Hunt") {
@@ -38,6 +37,7 @@ public class SimpleReportBuilderTest extends GroovyTestCase {
     assert r.params.size() == 1
     def p = r.params[0]
     assert p.name == 'scoobydoo'
+    println "${r.export()}"
   }
 
   /** Try inserting an (unnecessary) params call and see if this works. */
@@ -46,32 +46,17 @@ public class SimpleReportBuilderTest extends GroovyTestCase {
     def a = new SimpleReportBuilder()
     def r = a.report(name: "ghostHunt", title: "Ghost Hunt") {
       params {
-        param(name: 'scoobydoo', default: 'scared')
+        param(name: 'scoobydoo', label: "Scooby Doo", default: 'scared')
       }
     }
+    println r.export()
+    assert r.export() == [name: "ghostHunt", 
+                          title: "Ghost Hunt", 
+                          version: "", 
+                          description: null,
+                          params:[[name:    "scoobydoo", 
+                                   type:    "java.lang.String", 
+                                   description:    "scoobydoo", 
+                                   label:   "Scooby Doo"]]]
   }
-
-  void testCreateParamList() {
-    println "******** testCreateParamList ********************"
-    def a = new SimpleReportBuilder()
-    def p = a.params {
-      param(name: 'scoobydoo', default: 'scared')
-      param(name: 'shaggy', label: "Shaggy", default: "hungry")
-    }
-    assert p
-    assert p.getClass() == ParamList
-    def pe = p.export()
-    println pe
-    assert pe == [
-      [name:        "scoobydoo", 
-       type:        "java.lang.String", 
-       description: "scoobydoo", 
-       label:       "scoobydoo"], 
-      [name:        "shaggy", 
-       type:        "java.lang.String", 
-       description: "shaggy", 
-       label:       "Shaggy"]]
-
-  }
-
 }
