@@ -8,11 +8,13 @@ import groovy.util.BuilderSupport
 public class SimpleReportBuilderTest extends GroovyTestCase {
 
   void testCreateBuilder() {
+    println "******** testCreateBuilder ********************"
     def a = new SimpleReportBuilder()
       assert a 
   }
 
   void testCreateReport() {
+    println "******** testCreateReport ********************"
     def a = new SimpleReportBuilder()
     def r = a.report(name: "ghostHunt", title: "Ghost Hunt") //{
       //     param(name: 'scoobydoo', default: 'scared')
@@ -24,6 +26,7 @@ public class SimpleReportBuilderTest extends GroovyTestCase {
   }
 
   void testReportWithParameters() {
+    println "******** testReportWithParameters ********************"
     def a = new SimpleReportBuilder()
     def r = a.report(name: "ghostHunt", title: "Ghost Hunt") {
       param(name: 'scoobydoo', default: 'scared')
@@ -35,5 +38,16 @@ public class SimpleReportBuilderTest extends GroovyTestCase {
     assert r.params.size() == 1
     def p = r.params[0]
     assert p.name == 'scoobydoo'
+  }
+
+  /** Try inserting an (unnecessary) params call and see if this works. */
+  void testReportWithParamList() {
+    println "******** testReportWithParamList ********************"
+    def a = new SimpleReportBuilder()
+    def r = a.report(name: "ghostHunt", title: "Ghost Hunt") {
+      params {
+        param(name: 'scoobydoo', default: 'scared')
+      }
+    }
   }
 }

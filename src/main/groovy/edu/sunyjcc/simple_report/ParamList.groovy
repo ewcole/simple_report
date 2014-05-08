@@ -5,6 +5,6 @@ import java.util.*
 /** An ordered list of parameters that can be used with the SimpleReports 
  *  system.
  */
-public class ParamList extends ArrayList {
+public class ParamList extends ArrayList<Param> {
   
 }

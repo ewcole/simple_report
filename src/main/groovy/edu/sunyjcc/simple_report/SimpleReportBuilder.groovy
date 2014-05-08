@@ -24,6 +24,11 @@ public class SimpleReportBuilder extends BuilderSupport {
           return report
       },
     ],
+    params: [
+      create: {
+        String name, Map attributes, def value ->
+          new ParamList()
+      }],
     param: [
       create: {
         String name, Map attributes, def value ->
@@ -45,13 +50,31 @@ public class SimpleReportBuilder extends BuilderSupport {
     ],
   ];
 
+  /** Each entry in this table is a closure that attaches the child to the 
+   *  parent.  The keys for the map are a subset of the cross-product of the 
+   *  classes that can go into a SimpleReport.
+   *
+   *  Note that the keys of the map are actual Java classes, not their names.
+   *  It is very important that they be wrapped in parentheses.
+   */
   def addChildFarm = [
     (SimpleReport): [
       (Param): {
         parent, child ->
           parent.addParam(child)
+      },
+      (ParamList): {
+        parent, child ->
+          assert !parent.params
+          parent.params = (child)
       }
-    ]
+    ],
+    (ParamList):[
+      (Param): {
+        parent, child ->
+          parent << child
+      },
+    ],
   ]
 
 

@@ -23,7 +23,7 @@ public class SimpleReport {
 
   /** The active parameters for the report
    */
-  private ArrayList<Param> params = []
+  private ParamList params = []
 
   public void setReportParams(ArrayList l) {
     // Don't let outsiders mess with params.
