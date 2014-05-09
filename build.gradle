@@ -3,6 +3,7 @@ def version = "0.0.0"
 apply plugin: 'groovy'
 
 repositories {
+  // Where do we look for dependencies?
   mavenCentral()
 }
 
@@ -15,9 +16,11 @@ groovydoc.groovyClasspath = configurations.compile
 
 groovydoc {
   // These are needed so that objects (from other packages) referenced in the groovydoc will 
-  //    be linked to their definitions in the foreign documentation
+  //    be linked to their definitions in the external documentation
   link("http://docs.oracle.com/javase/6/docs/api", "java.,org.xml.,javax.,org.xml.")
   link("http://www.dpml.net/api/ant/1.7.0", "org.apache.ant.,org.apache.tools.ant.")
   link("http://junit.sourceforge.net/junit3.8.1/javadoc/", "org.junit.,junit.framework.")
   link("http://groovy.codehaus.org/api/", "groovy.,org.codehaus.groovy.")
 }
+
+build.dependsOn groovydoc
