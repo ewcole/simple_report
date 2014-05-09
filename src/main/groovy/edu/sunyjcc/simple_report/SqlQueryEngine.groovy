@@ -2,8 +2,7 @@ package edu.sunyjcc.simple_report
 
 import groovy.sql.Sql
 
-/** This class provides functions that generate the data for the report.
- *  You build an instance of this class into a report.
+/** A query based on an SQL statement
  */
 public class SqlQueryEngine extends QueryEngine {
 
@@ -18,7 +17,9 @@ public class SqlQueryEngine extends QueryEngine {
   }
 
   def export() {
-    return [:]
+    return [type: 'sql',
+            class: this.getClass().name as String,
+            sql: this.sql]
   }
 
   /** List the columns that this report produces. */
