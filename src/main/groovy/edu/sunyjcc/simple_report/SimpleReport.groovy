@@ -18,6 +18,7 @@ public class SimpleReport implements Exportable{
   /** A description of the report */
   String description;
 
+  
   /* End of report-level properties *************/
 
 
@@ -25,8 +26,17 @@ public class SimpleReport implements Exportable{
    */
   private ParamList params = []
 
+  private QueryEngine queryEngine
+
   public void setReportParams(ArrayList l) {
     // Don't let outsiders mess with params.
+  }
+
+  def init(HashMap args) {
+    assert queryEngine
+    if (queryEngine) {
+      queryEngine.init(args)
+    } 
   }
 
   /** Return a HashMap representing this report object. */
