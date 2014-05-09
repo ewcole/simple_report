@@ -4,6 +4,7 @@ import groovy.util.BuilderSupport
 
 /** Test the SimpleReport class. */
 public class CsvQueryEngineTest extends GroovyTestCase {
+
   void testCreate() {
     def c = new CsvQueryEngine()
     assert c
@@ -14,6 +15,7 @@ public class CsvQueryEngineTest extends GroovyTestCase {
     assert c.file == new File('junk.csv')
     println "file constructor with string value OK"
   }
+
   void testCreateWithFileObject() {
     def c = new CsvQueryEngine(file: new File('junk.csv'))
     assert c
@@ -42,5 +44,12 @@ public class CsvQueryEngineTest extends GroovyTestCase {
     println "text constructor OK"
   }
 
-  
+  void testExportWhenNoTextOrFile() {
+    def c = new CsvQueryEngine()
+    assert c
+    println c
+    def e = c.export()
+    println "c.export() == $e"
+    assert e
+  }
 }

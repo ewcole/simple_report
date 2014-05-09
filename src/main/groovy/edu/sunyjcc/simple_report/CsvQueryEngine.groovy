@@ -30,9 +30,10 @@ public class CsvQueryEngine extends QueryEngine {
               class: this.getClass().name as String]
     if (file) {
       ex += [file: f.getCanonicalFile().toString()]
-    } else if (text.size()) {
+    } else if (text?.size()) {
       ex += [text: text]
     }
+    return ex
   }
 
   /** List the columns that this report produces. */

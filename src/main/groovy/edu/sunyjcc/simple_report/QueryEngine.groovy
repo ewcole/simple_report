@@ -6,7 +6,8 @@ package edu.sunyjcc.simple_report
 public class QueryEngine implements Exportable {
 
   def export() {
-    return [:]
+    return [type: "queryEngine", 
+            class: this.getClass() as String]
   }
 
   /** Initialize the query engine so that it will be able to get its data.
