@@ -19,12 +19,15 @@ public class CsvQueryEngine extends QueryEngine {
           args.file
           // Otherwise try to create a file object from it.
           :new File(args.file)
+    } else if (args?.text) {
+      this.text = args.text
     }
     return true;
   }
 
   def export() {
-    def ex = [queryEngineType: this.getClass().name as String]
+    def ex = [queryEngineType: 'csv',
+              class: this.getClass().name as String]
     if (file) {
       ex += [file: f.getCanonicalFile().toString()]
     } else if (text.size()) {
