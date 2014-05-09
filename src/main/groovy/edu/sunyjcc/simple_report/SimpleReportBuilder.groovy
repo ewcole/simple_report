@@ -48,6 +48,17 @@ public class SimpleReportBuilder extends BuilderSupport {
           return param;
       },
     ],
+    csv: [
+      create: {
+        String name, Map attributes, def value ->
+          println ("in nodeFactory.csv($name, $attributes, $value)") 
+          assert name == 'csv'
+          def eng = new CsvQueryEngine(attributes)
+          println "nodeFactory.csv => $eng"
+          assert eng
+          return eng
+      }
+    ],
   ];
 
   /** Each entry in this table is a closure that attaches the child to the 
@@ -67,6 +78,14 @@ public class SimpleReportBuilder extends BuilderSupport {
         parent, child ->
           assert !parent.params
           parent.params = (child)
+      },
+      (SqlQueryEngine): {
+        parent, child ->
+          parent.setQueryEngine(child)
+      },
+      (CsvQueryEngine): {
+        parent, child ->
+          parent.setQueryEngine(child)
       }
     ],
     (ParamList):[
@@ -96,11 +115,13 @@ public class SimpleReportBuilder extends BuilderSupport {
     }
     assert name in nodeFactory.keySet()
     println "After assert; call nodeFactory[$name]($name, $attributes, $value)}"
-    nodeFactory[name].create(name, attributes, value)
+    def n = nodeFactory[name].create(name, attributes, value)
+    println "createNode => $n"
+    return n
   }
 
   void setParent(Object parent, Object child) {
-    println "in setParent(${parent.name}, ${child.name})"
+    println "in setParent(${parent.getClass()}, ${child.getClass()})"
     println "parent=$parent"
     //println "parent.addChild = ${parent.addChild}"
     //println "parent.addChild.keySet()=${parent.addChild.keySet()}"

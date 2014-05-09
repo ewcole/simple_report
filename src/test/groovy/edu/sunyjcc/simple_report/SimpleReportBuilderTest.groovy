@@ -75,4 +75,30 @@ public class SimpleReportBuilderTest extends GroovyTestCase {
 
   }
 
+  void testCreateCsvQueryEngine() {
+    println "******** testCreateCsvQueryEngine ********************"
+    def a = new SimpleReportBuilder()
+    def e = a.csv()
+    println "e = $e"
+    assert e
+    def exp = e.export()
+    println "new csv query engine=${exp}"
+    assert exp == [queryEngineType: 'csv', 
+                   class: 'edu.sunyjcc.simple_report.CsvQueryEngine']
+    println ("*" * 70)
+    println()
+  }
+  void testCreateCsvQueryEngineWithText() {
+    println "******** testCreateCsvQueryEngineWithText ********************"
+    def a = new SimpleReportBuilder()
+    def e = a.csv(text: "A, B, C\n1,2,3")
+    assert e
+    def exp = e.export()
+    println "new csv query engine=${exp}"
+    assert exp == [queryEngineType: 'csv', 
+                   class: 'edu.sunyjcc.simple_report.CsvQueryEngine',
+                   text: "A, B, C\n1,2,3"]
+    println ("*" * 70)
+    println()
+  }
 }
