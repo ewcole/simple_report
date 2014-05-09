@@ -8,7 +8,15 @@ import groovy.sql.Sql
 public class SqlQueryEngine extends QueryEngine {
 
   Sql sql
-  
+
+  boolean init(HashMap args) {
+    if (args.sql) {
+      this.sql = args.sql
+      assert this.sql
+    }
+    return true;
+  }
+
   def export() {
     return [:]
   }
