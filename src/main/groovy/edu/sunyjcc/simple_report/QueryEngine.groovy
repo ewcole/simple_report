@@ -5,9 +5,11 @@ package edu.sunyjcc.simple_report
  */
 public class QueryEngine implements Exportable {
 
+  String queryEngineType = "queryEngine"
+
   def export() {
-    return [type: "queryEngine", 
-            class: this.getClass() as String]
+    return [queryEngineType: this.queryEngineType, 
+            class: this.getClass().name as String]
   }
 
   /** Initialize the query engine so that it will be able to get its data.

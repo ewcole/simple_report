@@ -51,6 +51,7 @@ public class SimpleReport implements Exportable{
      description: this.description,
      params: this.params?.export(),
      columns: this.columns?.export(),
+     queryEngine: this.queryEngine?.export(),
     ]
   }
 

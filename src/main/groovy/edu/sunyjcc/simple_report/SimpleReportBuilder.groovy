@@ -59,6 +59,17 @@ public class SimpleReportBuilder extends BuilderSupport {
           return eng
       }
     ],
+    sql: [
+      create: {
+        String name, Map attributes, def value ->
+          println ("in nodeFactory.sql($name, $attributes, $value)") 
+          assert name == 'sql'
+          def eng = new SqlQueryEngine(attributes)
+          println "nodeFactory.sql => $eng"
+          assert eng
+          return eng
+      }
+    ],
   ];
 
   /** Each entry in this table is a closure that attaches the child to the 

@@ -22,7 +22,8 @@ public class SimpleReportTest extends GroovyTestCase {
                  version: "", 
                  description: null, 
                  params:null,
-                 columns: null]
+                 columns: null,
+                 queryEngine: null]
   }
 
  void testReportWithParameters() {
@@ -59,6 +60,7 @@ public class SimpleReportTest extends GroovyTestCase {
                                    type:    "java.lang.String", 
                                    description:    "scoobydoo", 
                                    label:   "Scooby Doo"]],
-                          columns: null,]
+                          columns: null,
+                          queryEngine: null,]
   }
 }
