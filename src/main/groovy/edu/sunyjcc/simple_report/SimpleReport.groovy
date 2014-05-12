@@ -19,14 +19,14 @@ public class SimpleReport implements Exportable{
   String description;
 
   
-  /* End of report-level properties *************/
-
-
   /** The active parameters for the report
    */
-  private ParamList params = []
+  private ParamList params
 
   private QueryEngine queryEngine
+
+  /* End of report-level properties *************/
+
 
   public void setReportParams(ArrayList l) {
     // Don't let outsiders mess with params.
@@ -45,7 +45,7 @@ public class SimpleReport implements Exportable{
      title: this.title,
      version: this.version,
      description: this.description,
-     params: this.params.export(),
+     params: this.params?.export(),
     ]
   }
 
@@ -53,6 +53,9 @@ public class SimpleReport implements Exportable{
    *  @param p This parameter will be added to the end of the list.
    */
   public void addParam(Param p) {
+    if (!params) {
+      this.params = new ParamList()
+    }
     params << p
   }
 
