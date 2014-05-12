@@ -21,7 +21,8 @@ public class SimpleReportTest extends GroovyTestCase {
                  title: "Ghost Hunt", 
                  version: "", 
                  description: null, 
-                 params: null]
+                 params:null,
+                 columns: null]
   }
 
  void testReportWithParameters() {
@@ -57,6 +58,7 @@ public class SimpleReportTest extends GroovyTestCase {
                           params:[[name:    "scoobydoo", 
                                    type:    "java.lang.String", 
                                    description:    "scoobydoo", 
-                                   label:   "Scooby Doo"]]]
+                                   label:   "Scooby Doo"]],
+                          columns: null,]
   }
 }

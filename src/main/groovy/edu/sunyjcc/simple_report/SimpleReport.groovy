@@ -23,6 +23,9 @@ public class SimpleReport implements Exportable{
    */
   private ParamList params
 
+  /** The columns that this report will produce */
+  private ColumnList columns
+
   private QueryEngine queryEngine
 
   /* End of report-level properties *************/
@@ -46,6 +49,7 @@ public class SimpleReport implements Exportable{
      version: this.version,
      description: this.description,
      params: this.params?.export(),
+     columns: this.columns?.export(),
     ]
   }
 
