@@ -26,6 +26,7 @@ public class SimpleReport implements Exportable{
   /** The columns that this report will produce */
   private ColumnList columns
 
+  /** The engine that will power the report */
   private QueryEngine queryEngine
 
   /* End of report-level properties *************/

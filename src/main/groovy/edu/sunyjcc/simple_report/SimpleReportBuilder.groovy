@@ -77,15 +77,15 @@ public class SimpleReportBuilder extends BuilderSupport {
       (ParamList): {
         parent, child ->
           assert !parent.params
-          parent.params = (child)
+          parent.params = child
       },
       (SqlQueryEngine): {
         parent, child ->
-          parent.setQueryEngine(child)
+          parent.queryEngine = child
       },
       (CsvQueryEngine): {
         parent, child ->
-          parent.setQueryEngine(child)
+          parent.queryEngine = child
       }
     ],
     (ParamList):[
@@ -126,7 +126,9 @@ public class SimpleReportBuilder extends BuilderSupport {
     //println "parent.addChild = ${parent.addChild}"
     //println "parent.addChild.keySet()=${parent.addChild.keySet()}"
     //assert  parent.addChild.keySet().contains(child.name)
-    addChildFarm[parent.getClass()][child.getClass()](parent, child)
+    def z = addChildFarm[parent.getClass()][child.getClass()](parent, child)
+    println "z=$z"
+    z
   }
 
   void nodeCompleted(Object parent, Object node) {}
