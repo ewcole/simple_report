@@ -16,7 +16,9 @@ public class SimpleReportBuilderSqlTest extends GroovyTestCase {
     println "new sql query engine=${exp}"
     assert exp == [queryEngineType: 'sql', 
                    class: 'edu.sunyjcc.simple_report.SqlQueryEngine',
-                   query: null]
+                   query:       null,
+                   parsedQuery: null,
+                   paramRefs:   null,]
     println ("*" * 70)
     println()
   }
@@ -32,7 +34,9 @@ public class SimpleReportBuilderSqlTest extends GroovyTestCase {
     println()
     assert exp == [queryEngineType: 'sql', 
                    class: 'edu.sunyjcc.simple_report.SqlQueryEngine',
-                   query: "select user from dual"]
+                   query: "select user from dual",
+                   parsedQuery: "select user from dual",
+                   paramRefs:   [],]
     println ("*" * 70)
     println()
   }
@@ -57,6 +61,8 @@ public class SimpleReportBuilderSqlTest extends GroovyTestCase {
                    columns:null,
                    queryEngine: [queryEngineType: 'sql', 
                                  class: 'edu.sunyjcc.simple_report.SqlQueryEngine',
-                                 query: "select user from dual"]]
+                                 query: "select user from dual",
+                                 parsedQuery: "select user from dual", 
+                                 paramRefs:[],]]
   }
 }
