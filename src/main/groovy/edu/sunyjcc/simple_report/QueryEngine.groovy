@@ -26,4 +26,8 @@ public class QueryEngine implements Exportable {
     []
   }
 
+  ResultSet execute(ParamList params) {
+    // This returns an empty result set.
+    return new ResultSet(columns: new ColumnList(), rows: [])
+  }
 }
