@@ -19,6 +19,11 @@ public class SqlQueryEngine extends QueryEngine {
   /** A list of the parameters in the order they appear in the query */
   private ArrayList paramRefs
 
+  /** The columns that this query will return.  It can be used to customize
+   *  them if need be.
+   */
+  private ColumnList columns
+
   /** Read the SQL query string, extract the parameters, and return the 
    *  lists by name and place in the string.  Parameters are identified by 
    *  a colon followed by 1 or more alphabetic characters, underscores, or 
@@ -64,12 +69,20 @@ public class SqlQueryEngine extends QueryEngine {
   ColumnList getColumns() {
     (ColumnList)[]
   }
+  
+  Closure getColumns = {
+    meta ->
+      println meta
+      
+  }
+
 
   ResultSet execute(ParamList params) {
     // This returns an empty result set.
     return new ResultSet(columns: new ColumnList(), rows: [])
     assert this.sql instanceof groovy.sql.Sql
     assert this.parsedQuery.size() > 0
+    
   }
 
   /** Public hash-map constructor */

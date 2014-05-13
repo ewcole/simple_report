@@ -37,7 +37,7 @@ public class CsvQueryEngine extends QueryEngine {
   }
 
   /** List the columns that this report produces. */
-  ArrayList getColumns() {
+  ColumnList getColumns() {
     []
   }
   

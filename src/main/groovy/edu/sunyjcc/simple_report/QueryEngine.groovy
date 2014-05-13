@@ -22,8 +22,8 @@ public class QueryEngine implements Exportable {
   boolean init(HashMap args) {}
 
   /** List the columns that this report produces. */
-  ArrayList getColumns() {
-    []
+  ColumnList getColumns() {
+    (ColumnList)[]
   }
 
   ResultSet execute(ParamList params) {
