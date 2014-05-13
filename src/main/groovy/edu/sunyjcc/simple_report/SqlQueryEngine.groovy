@@ -70,12 +70,18 @@ public class SqlQueryEngine extends QueryEngine {
     (ColumnList)[]
   }
   
+  /** Get the column information from the query execution. */
   Closure getColumns = {
-    meta ->
-      println meta
-      
+    java.sql.ResultSetMetaData meta ->
+      columns += meta.collect {
+        new Column(name:        it.columnName,
+                   label:       it.columnLabel,
+                   displaySize: it.columnDisplaySize,
+                   columnClassName:   it.columnClassName,
+                   precision:   it.precision,
+                   scale:       it.scale)
+      }
   }
-
 
   ResultSet execute(ParamList params) {
     // This returns an empty result set.
