@@ -2,8 +2,6 @@ package edu.sunyjcc.simple_report
 
 // http://www.javaworld.com/article/2078576/scripting-jvm-languages/groovy-recipes-for-sweeter-ant-builds.html
 
-import groovy.util.BuilderSupport
-
 /** Test the SimpleReportBuilder class. */
 public class SimpleReportBuilderCsvTest extends GroovyTestCase {
   void testCreateCsvQueryEngine() {
