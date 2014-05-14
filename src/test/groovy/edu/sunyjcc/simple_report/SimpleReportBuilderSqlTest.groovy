@@ -2,6 +2,7 @@ package edu.sunyjcc.simple_report
 
 /** Test the SimpleReportBuilder class. */
 public class SimpleReportBuilderSqlTest extends GroovyTestCase {
+
   void testCreateSqlQueryEngine() {
     println "******** testCreateSqlQueryEngine ********************"
     def a = new SimpleReportBuilder()
@@ -61,4 +62,6 @@ public class SimpleReportBuilderSqlTest extends GroovyTestCase {
                                  parsedQuery: "select user from dual", 
                                  paramRefs:[],]]
   }
+
+  
 }
