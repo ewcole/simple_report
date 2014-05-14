@@ -12,15 +12,37 @@ dependencies {
   testCompile 'junit:junit:4.11'
 }
 
+/***********************************************************************/
+/* jar file options                                                    */
+/***********************************************************************/
+
+// Include the project version number in the jar file name.
+jar.version  = version
+
+// Include the current branch into the jar file name, unless we're in the
+//     production branch.
+def currentGitBranch = "git branch".execute().text.readLines()
+    .grep {it =~ /^\*/}.first().replaceAll(/^\* /,'')
+if (!(currentGitBranch == 'prod')) {
+  jar.classifier = "~${currentGitBranch}~"
+}
+
+/***********************************************************************/
+/* groovydoc options                                                   */
+/***********************************************************************/
 groovydoc.groovyClasspath = configurations.compile
 
 groovydoc {
-  // These are needed so that objects (from other packages) referenced in the groovydoc will 
-  //    be linked to their definitions in the external documentation
-  link("http://docs.oracle.com/javase/6/docs/api", "java.,org.xml.,javax.,org.xml.")
-  link("http://www.dpml.net/api/ant/1.7.0", "org.apache.ant.,org.apache.tools.ant.")
-  link("http://junit.sourceforge.net/junit3.8.1/javadoc/", "org.junit.,junit.framework.")
+  // These are needed so that objects (from other packages) referenced in the 
+  //    groovydoc will be linked to their definitions in the external 
+  //    documentation
+  link("http://docs.oracle.com/javase/6/docs/api", 
+       "java.,org.xml.,javax.,org.xml.")
+  link("http://www.dpml.net/api/ant/1.7.0", 
+       "org.apache.ant.,org.apache.tools.ant.")
+  link("http://junit.sourceforge.net/junit3.8.1/javadoc/", 
+       "org.junit.,junit.framework.")
   link("http://groovy.codehaus.org/api/", "groovy.,org.codehaus.groovy.")
 }
 
-build.dependsOn groovydoc
+build.dependsOn groovydoc, jar
