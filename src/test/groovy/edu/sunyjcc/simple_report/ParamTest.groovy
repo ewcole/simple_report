@@ -13,6 +13,7 @@ public class ParamTest extends GroovyTestCase {
     assert pe == [name:        "scoobydoo", 
                   type:        "java.lang.String", 
                   description: "scoobydoo", 
+                  default:     null,
                   label:       "scoobydoo", 
                   value:null]
   }

@@ -15,16 +15,23 @@ public class Param implements Exportable {
   /** A label to be displayed when prompting for the parameter*/
   String label;
 
-  /** The current value for the parameter */
-  def value
+  /** A default value for the parameter */
+  Object defaultValue;
 
-  /** Set the value of the parameter, making sure it is of the right type. 
-   *  @param value The new value for the parameter
+  /** The current currentValue for the parameter */
+  Object currentValue
+
+  /** Set the currentValue of the parameter, making sure it is of the right type. 
+   *  @param currentValue The new currentValue for the parameter
    */
-  def setValue(def value) {
-    assert this.type
-    //assert value instanceof this.type
-    
+  def setValue(def currentValue) {
+    if (currentValue == null) {
+      this.currentValue = null
+      return null
+    } else {
+      assert this.type
+      //assert currentValue instanceof this.type
+    }
   }
 
   /** Return the values as a HashMap. */
@@ -33,7 +40,8 @@ public class Param implements Exportable {
      type:        this.type.name,
      description: this.description,
      label:       this.label,
-     value:       this.value]
+     'default':   this.defaultValue,
+     value:       this.currentValue]
   }
 
   /** Explicit-argument constructor */

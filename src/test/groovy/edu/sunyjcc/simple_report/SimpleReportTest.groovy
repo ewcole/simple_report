@@ -60,6 +60,7 @@ public class SimpleReportTest extends GroovyTestCase {
                                    type:    "java.lang.String", 
                                    description:    "scoobydoo", 
                                    label:   "Scooby Doo",
+                                  'default':   null,
                                    value:   null]],
                           columns: null,
                           queryEngine: null,]

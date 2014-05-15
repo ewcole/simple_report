@@ -14,7 +14,7 @@ public class ParamList extends ArrayList<Param> implements Exportable {
   def getValues() {
     this.inject([:]) {
       valueMap, val ->
-        valueMap += [(val.name): val.value]
+        valueMap += [(val.name): val.currentValue]
         return valueMap
     }
   }
