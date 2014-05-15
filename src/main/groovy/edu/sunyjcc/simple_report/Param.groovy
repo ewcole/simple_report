@@ -15,12 +15,25 @@ public class Param implements Exportable {
   /** A label to be displayed when prompting for the parameter*/
   String label;
 
+  /** The current value for the parameter */
+  def value
+
+  /** Set the value of the parameter, making sure it is of the right type. 
+   *  @param value The new value for the parameter
+   */
+  def setValue(def value) {
+    assert this.type
+    //assert value instanceof this.type
+    
+  }
+
   /** Return the values as a HashMap. */
   def export() {
     [name:        this.name,
      type:        this.type.name,
      description: this.description,
-     label:       this.label]
+     label:       this.label,
+     value:       this.value]
   }
 
   /** Explicit-argument constructor */

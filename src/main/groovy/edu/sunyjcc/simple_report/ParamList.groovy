@@ -10,4 +10,12 @@ public class ParamList extends ArrayList<Param> implements Exportable {
   def export() {
     this.collect {it.export()}
   }
+
+  def getValues() {
+    this.inject([:]) {
+      valueMap, val ->
+        valueMap += [(val.name): val.value]
+        return valueMap
+    }
+  }
 }

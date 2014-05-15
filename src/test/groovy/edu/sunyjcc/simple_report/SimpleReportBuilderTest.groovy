@@ -67,11 +67,13 @@ public class SimpleReportBuilderTest extends GroovyTestCase {
       [name:        "scoobydoo", 
        type:        "java.lang.String", 
        description: "scoobydoo", 
-       label:       "scoobydoo"], 
+       label:       "scoobydoo",
+       value:       null], 
       [name:        "shaggy", 
        type:        "java.lang.String", 
        description: "shaggy", 
-       label:       "Shaggy"]]
+       label:       "Shaggy",
+       value:       null]]
 
   }
 
