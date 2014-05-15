@@ -56,12 +56,12 @@ public class SimpleReportTest extends GroovyTestCase {
                           title: "Ghost Hunt", 
                           version: "", 
                           description: null,
-                          params:[[name:    "scoobydoo", 
-                                   type:    "java.lang.String", 
-                                   description:    "scoobydoo", 
-                                   label:   "Scooby Doo",
-                                  'default':   null,
-                                   value:   null]],
+                          params:[[name:        "scoobydoo", 
+                                   type:        "java.lang.String", 
+                                   description: "scoobydoo", 
+                                   label:       "Scooby Doo",
+                                  'default':    "scared",
+                                   value:       null]],
                           columns: null,
                           queryEngine: null,]
   }

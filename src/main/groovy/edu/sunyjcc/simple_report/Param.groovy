@@ -48,10 +48,12 @@ public class Param implements Exportable {
   public Param(String name, 
                Class type, 
                String description, 
-               String label) {
+               String label,
+               Object defaultValue = null) {
     this.name = name;
     this.type = type;
     this.description = description;
     this.label = label;
+    this.defaultValue = defaultValue
   }
 }
