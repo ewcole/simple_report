@@ -11,7 +11,7 @@ public class CsvQueryEngine extends QueryEngine {
   /* Inherited methods */
 
 
-  boolean init(HashMap args) {
+  QueryEngine init(HashMap args) {
     if (args?.file) {
       // If we are given a File, just copy it.  
       file = (args.file instanceof File)?
@@ -22,7 +22,7 @@ public class CsvQueryEngine extends QueryEngine {
     } else if (args?.text) {
       this.text = args.text
     }
-    return true;
+    return this;
   }
 
   def export() {

@@ -19,7 +19,9 @@ public class QueryEngine implements Exportable {
    *  @param args A HashMap that will include all of the information you need
    *              to connect to the data source behind the query engine.
    */
-  boolean init(HashMap args) {}
+  QueryEngine init(HashMap args) {
+    return this
+  }
 
   /** List the columns that this report produces. */
   ColumnList getColumns() {

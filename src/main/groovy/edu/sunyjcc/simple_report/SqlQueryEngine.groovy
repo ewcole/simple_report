@@ -41,7 +41,7 @@ public class SqlQueryEngine extends QueryEngine {
      parsedQuery: query.replaceAll(paramRe, "?")]
   }
 
-  boolean init(HashMap args) {
+  QueryEngine init(HashMap args) {
     if (args.sql) {
       this.sql = args.sql
       assert this.sql
@@ -54,7 +54,7 @@ public class SqlQueryEngine extends QueryEngine {
       paramRefs = pq.paramRefs
       parsedQuery = pq.parsedQuery
     }
-    return true;
+    return this;
   }
 
   def export() {
