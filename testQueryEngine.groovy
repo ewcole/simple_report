@@ -23,9 +23,10 @@ println "* Test the query with parameters."
 println "**********************************************************************"
 q = new SqlQueryEngine(query: "select stvterm_code, stvterm_desc from stvterm t where t.stvterm_code = :term_code")
 .init(sql: cm.ora);
-def param = new SimpleReportBuilder().param(name: 'term_code', value: '201312')
-println "param=${param.export()}"
-def params = new ParamList([param])
+def params = new SimpleReportBuilder().params {
+  param(name: 'term_code', value: '201312')
+}
+params.setValues([term_code: '201312'])
 println "params=${params.export()}"
 e = q.execute(params)
 println e.rows
