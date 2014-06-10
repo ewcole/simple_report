@@ -36,11 +36,12 @@ public class SimpleReport implements Exportable{
     // Don't let outsiders mess with params.
   }
 
-  def init(HashMap args) {
+  SimpleReport init(HashMap args) {
     assert queryEngine
     if (queryEngine) {
       queryEngine.init(args)
-    } 
+    }
+    return this
   }
 
   /** Return a HashMap representing this report object. */

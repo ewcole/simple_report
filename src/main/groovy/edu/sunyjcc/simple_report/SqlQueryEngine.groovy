@@ -1,3 +1,4 @@
+
 package edu.sunyjcc.simple_report 
 
 import groovy.sql.Sql
@@ -22,7 +23,7 @@ public class SqlQueryEngine extends QueryEngine {
   /** The columns that this query will return.  It can be used to customize
    *  them if need be.
    */
-  private ColumnList columns
+  private ColumnList columns = (ColumnList)[]
 
   /** Read the SQL query string, extract the parameters, and return the 
    *  lists by name and place in the string.  Parameters are identified by 
@@ -38,7 +39,7 @@ public class SqlQueryEngine extends QueryEngine {
   static HashMap parseSql(String query) {
     def paramRe = ~/:([a-zA-Z_0-9]+)/;
     [paramRefs:   (query =~ paramRe).collect { it[1].toLowerCase() },
-     parsedQuery: query.replaceAll(paramRe, "?")]
+     parsedQuery: query]
   }
 
   QueryEngine init(HashMap args) {
@@ -67,27 +68,70 @@ public class SqlQueryEngine extends QueryEngine {
 
   /** List the columns that this report produces. */
   ColumnList getColumns() {
-    (ColumnList)[]
+    columns
   }
   
   /** Get the column information from the query execution. */
-  Closure getColumns = {
+  Closure getColumnMetadata = {
     java.sql.ResultSetMetaData meta ->
-      columns += meta.collect {
-        new Column(name:        it.columnName,
-                   label:       it.columnLabel,
-                   displaySize: it.columnDisplaySize,
-                   columnClassName:   it.columnClassName,
-                   precision:   it.precision,
-                   scale:       it.scale)
+      def cols = meta.collect {
+        new Column(name:            it.columnName,
+                   label:           it.columnLabel,
+                   displaySize:     it.columnDisplaySize,
+                   columnClassName: it.columnClassName,
+                   precision:       it.precision,
+                   scale:           it.scale)
       }
+      println "cols.class = ${cols.getClass()}"
+      columns = new ColumnList(cols)
   }
 
-  ResultSet execute(ParamList params) {
-    // This returns an empty result set.
-    return new ResultSet(columns: new ColumnList(), rows: [])
+  /** Execute without passing parameters. The query will fail if there are any bind variables in it.
+   */
+  ResultSet execute() {
     assert this.sql instanceof groovy.sql.Sql
     assert this.parsedQuery.size() > 0
+    def rows = sql.rows(parsedQuery, getColumnMetadata)
+    return new ResultSet(columns: columns, rows: rows)
+  }
+
+  /** Execute the query with the given parameter list.
+   *  @param params The parameters we will use in this query.
+   */
+  ResultSet execute(ParamList params) {
+    assert this.sql instanceof groovy.sql.Sql
+    assert this.parsedQuery.size() > 0
+    def rows = []
+    HashMap paramVals = (params?.getValues())?:[:]
+    sql.eachRow(paramVals, parsedQuery) {
+      row ->
+        def rowValues = columnNames.inject([:]) {
+          r, colName ->
+            r += [(colName): row[colName]]
+            return r
+        }
+        rows << rowValues
+    }
+    /*
+    sql.eachRow(paramVals, // Map params
+                this.parsedQuery// ,           // String sql
+                // getColumnMetadata
+               ) {        // Closure metaClosure
+      row ->
+        rows << columns.inject([:]) {
+          rowMap, colName ->
+            if (row[colName]) {
+              rowMap[colName] = row[colName]
+            }
+            return rowMap
+        }
+    }
+    */
+    println "**********************************************************************"
+
+    println "rows=$rows"
+    println "**********************************************************************"
+    return new edu.sunyjcc.simple_report.ResultSet(columns: columns, rows: rows)
     
   }
 
