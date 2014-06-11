@@ -37,7 +37,7 @@ public class SimpleReportTest extends GroovyTestCase {
     assert r.name == "ghostHunt"
     assert r.title == "Ghost Hunt"
     assert r.params.size() == 1
-    def p = r.params[0]
+    def p = r.params['scoobydoo']
     assert p.name == 'scoobydoo'
     println "${r.export()}"
   }
@@ -56,12 +56,12 @@ public class SimpleReportTest extends GroovyTestCase {
                           title: "Ghost Hunt", 
                           version: "", 
                           description: null,
-                          params:[[name:        "scoobydoo", 
-                                   type:        "java.lang.String", 
-                                   description: "scoobydoo", 
-                                   label:       "Scooby Doo",
-                                  'default':    "scared",
-                                   value:       null]],
+                          params:[scoobydoo: [name:        "scoobydoo", 
+                                              type:        "java.lang.String", 
+                                              description: "scoobydoo", 
+                                              label:       "Scooby Doo",
+                                              'default':    "scared",
+                                              value:       null]],
                           columns: null,
                           queryEngine: null,]
   }

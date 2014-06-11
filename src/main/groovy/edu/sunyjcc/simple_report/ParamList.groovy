@@ -5,10 +5,14 @@ import java.util.*
 /** An ordered list of parameters that can be used with the SimpleReports 
  *  system.
  */
-public class ParamList extends ArrayList<Param> implements Exportable {
+public class ParamList extends HashMap<String, Param> implements Exportable {
   /** Return the parameter items as a list */
   def export() {
-    this.collect {it.export()}
+    this.keySet().inject([:]) {
+      map, paramName ->
+        map[paramName] = this[paramName].export()
+        return map
+    }
   }
 
   /** Return a HashMap with the keys being the names of the parameters 
@@ -28,21 +32,16 @@ public class ParamList extends ArrayList<Param> implements Exportable {
     return this
   }
 
-  /** Look for matching parameters in the hash map (case-insensitive) 
+  /** Look for matching parameters in the hash map
    *  and set the matching parameter values if possible. 
    */
   ParamList setValues(HashMap p) {
     // Create a new param map with lower-case keys 
-    def params = p.keySet().inject([:]) {
-      map, val ->
-        map[val.toLowerCase()] = p[val]
-        return map;
-    }
     this.each {
       param ->
-        def key = param.name.toLowerCase()
-        if (params[key]) {
-          param.value = params[key]
+        def key = param.name
+        if (p[key]) {
+          param.value = p[key]
         }
     }
     return this

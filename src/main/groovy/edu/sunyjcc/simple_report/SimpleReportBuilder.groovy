@@ -103,7 +103,7 @@ public class SimpleReportBuilder extends BuilderSupport {
     (ParamList):[
       (Param): {
         parent, child ->
-          parent << child
+          parent[child.name] = child
       },
     ],
   ]

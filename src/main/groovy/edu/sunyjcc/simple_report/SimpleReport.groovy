@@ -63,7 +63,7 @@ public class SimpleReport implements Exportable{
     if (!params) {
       this.params = new ParamList()
     }
-    params << p
+    params[p.name] = p
   }
 
   /** Copies values from arguments into hashmap

@@ -36,8 +36,8 @@ public class SimpleReportBuilderTest extends GroovyTestCase {
     assert r.name == "ghostHunt"
     assert r.title == "Ghost Hunt"
     assert r.params.size() == 1
-    def p = r.params[0]
-    assert p.name == 'scoobydoo'
+    def p = r.params['scoobydoo']
+    assert p?.name == 'scoobydoo'
   }
 
   /** Try inserting an (unnecessary) params call and see if this works. */
@@ -63,19 +63,18 @@ public class SimpleReportBuilderTest extends GroovyTestCase {
     assert p.getClass() == ParamList
     def pe = p.export()
     println pe
-    assert pe == [
-      [name:        "scoobydoo", 
-       type:        "java.lang.String", 
-       description: "scoobydoo", 
-       label:       "scoobydoo",
-       'default':   "scared",
-       value:       null], 
-      [name:        "shaggy", 
-       type:        "java.lang.String", 
-       description: "shaggy", 
-       label:       "Shaggy",
-       'default':   "hungry",
-       value:       null]]
+    assert pe == [scoobydoo: [name:        "scoobydoo", 
+                              type:        "java.lang.String", 
+                              description: "scoobydoo", 
+                              label:       "scoobydoo",
+                              'default':   "scared",
+                              value:       null], 
+                  shaggy: [name:        "shaggy", 
+                           type:        "java.lang.String", 
+                           description: "shaggy", 
+                           label:       "Shaggy",
+                           'default':   "hungry",
+                           value:       null]]
 
   }
 

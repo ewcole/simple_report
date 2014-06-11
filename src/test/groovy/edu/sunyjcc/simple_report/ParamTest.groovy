@@ -31,12 +31,12 @@ public class ParamTest extends GroovyTestCase {
       param(name: 'term_code', value: '201312')
     }
     assert params.export() == [
-      [name:        'term_code', 
-       type:        'java.lang.String', 
-       description: 'term_code', 
-       label:       'term_code', 
-       "default":   null, 
-       value:       null]
+      term_code: [name:        'term_code', 
+                  type:        'java.lang.String', 
+                  description: 'term_code', 
+                  label:       'term_code', 
+                  "default":   null, 
+                  value:       null]
     ]
     println params.export()
   }
@@ -47,22 +47,22 @@ public class ParamTest extends GroovyTestCase {
       param(name: 'term_code', value: '201312')
     }
     assert params.export() == [
-      [name:        'term_code', 
-       type:        'java.lang.String', 
-       description: 'term_code', 
-       label:       'term_code', 
-       "default":   null, 
-       value:       null]
+      term_code: [name:        'term_code', 
+                  type:        'java.lang.String', 
+                  description: 'term_code', 
+                  label:       'term_code', 
+                  "default":   null, 
+                  value:       null]
     ]
     println params.export()
     params.setValues(term_code: '201312')
     assert params.export() == [
-      [name:        'term_code', 
-       type:        'java.lang.String', 
-       description: 'term_code', 
-       label:       'term_code', 
-       "default":   null, 
-       value:       '201312']
+      term_code: [name:        'term_code', 
+                  type:        'java.lang.String', 
+                  description: 'term_code', 
+                  label:       'term_code', 
+                  "default":   null, 
+                  value:       '201312']
     ]
   }
 }
