@@ -103,35 +103,12 @@ public class SqlQueryEngine extends QueryEngine {
     assert this.parsedQuery.size() > 0
     def rows = []
     HashMap paramVals = (params?.getValues())?:[:]
-    sql.eachRow(paramVals, parsedQuery) {
-      row ->
-        def rowValues = columnNames.inject([:]) {
-          r, colName ->
-            r += [(colName): row[colName]]
-            return r
-        }
-        rows << rowValues
+    if (paramVals.keySet().size()) {
+      rows = sql.rows(paramVals, parsedQuery, getColumnMetadata)
+    } else {
+      rows = sql.rows(parsedQuery, getColumnMetadata)
     }
-    /*
-    sql.eachRow(paramVals, // Map params
-                this.parsedQuery// ,           // String sql
-                // getColumnMetadata
-               ) {        // Closure metaClosure
-      row ->
-        rows << columns.inject([:]) {
-          rowMap, colName ->
-            if (row[colName]) {
-              rowMap[colName] = row[colName]
-            }
-            return rowMap
-        }
-    }
-    */
-    println "**********************************************************************"
-
-    println "rows=$rows"
-    println "**********************************************************************"
-    return new edu.sunyjcc.simple_report.ResultSet(columns: columns, rows: rows)
+    return new ResultSet(columns: columns, rows: rows)
     
   }
 

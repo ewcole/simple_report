@@ -21,8 +21,9 @@ e.rows.each {
 println "**********************************************************************"
 println "* Test the query with parameters."
 println "**********************************************************************"
-q = new SqlQueryEngine(query: "select stvterm_code, stvterm_desc from stvterm t where t.stvterm_code = :term_code")
-.init(sql: cm.ora);
+q = new SqlQueryEngine(
+  query: "select stvterm_code, stvterm_desc from stvterm t where t.stvterm_code = :term_code"
+).init(sql: cm.ora);
 def params = new SimpleReportBuilder().params {
   param(name: 'term_code', value: '201312')
 }
