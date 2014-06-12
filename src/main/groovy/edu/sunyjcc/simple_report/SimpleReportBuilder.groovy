@@ -46,6 +46,9 @@ public class SimpleReportBuilder extends BuilderSupport {
           if (value && !attributes?.desc) {
             attributes.desc = value.toString()
           }
+          if (attributes?.value) {
+            param.setValue(attributes.value)
+          }
           return param;
       },
     ],

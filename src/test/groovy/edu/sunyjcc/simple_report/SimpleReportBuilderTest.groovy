@@ -51,6 +51,22 @@ public class SimpleReportBuilderTest extends GroovyTestCase {
     }
   }
 
+
+  void testCreateParam() {
+    println "******** testCreateParam ********************"
+    def a = new SimpleReportBuilder() 
+    def p = a.param(name: 'scoobydoo', default: 'scared',
+                    value: 'hungry');
+    def q = p.export()
+    println "p.export() == $q"
+    assert q == [name:        "scoobydoo", 
+                 type:        "java.lang.String", 
+                 description: "scoobydoo", 
+                 label:       "scoobydoo",
+                 'default':   "scared",
+                 value:       'hungry']
+  }
+
   void testCreateParamList() {
     println "******** testCreateParamList ********************"
     def a = new SimpleReportBuilder()

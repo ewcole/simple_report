@@ -38,7 +38,7 @@ public class ParamTest extends GroovyTestCase {
                   description: 'term_code', 
                   label:       'term_code', 
                   "default":   null, 
-                  value:       null]
+                  value:       '201312']
     ]
     println params.export()
   }
@@ -54,7 +54,7 @@ public class ParamTest extends GroovyTestCase {
                   description: 'term_code', 
                   label:       'term_code', 
                   "default":   null, 
-                  value:       null]
+                  value:       '201312']
     ]
     println params.export()
     params.setValues(term_code: '201312')
@@ -68,5 +68,24 @@ public class ParamTest extends GroovyTestCase {
                   "default":   null, 
                   value:       '201312']
     ]
+  }
+
+  void testGetParamListValues() {
+    println "******** testGetParamListValues ********************"
+    def params = new SimpleReportBuilder().params {
+      param(name: 'term_code', value: '201312')
+    }
+    assert params.export() == [
+      term_code: [name:        'term_code', 
+                  type:        'java.lang.String', 
+                  description: 'term_code', 
+                  label:       'term_code', 
+                  "default":   null, 
+                  value:       '201312']
+    ]
+    println params.export()
+    def gv = params.getValues()
+    println "gv=${params.getValues()}"
+    assert gv == [term_code: '201312']
   }
 }
