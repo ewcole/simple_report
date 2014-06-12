@@ -38,10 +38,11 @@ public class ParamList extends HashMap<String, Param> implements Exportable {
   ParamList setValues(HashMap p) {
     // Create a new param map with lower-case keys 
     this.each {
-      param ->
+      paramName, param ->
         def key = param.name
         if (p[key]) {
           param.value = p[key]
+          this[param.name] = param
         }
     }
     return this

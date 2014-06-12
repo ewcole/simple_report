@@ -29,8 +29,8 @@ public class Param implements Exportable {
       this.currentValue = null
       return null
     } else {
-      assert this.type
-      //assert currentValue instanceof this.type
+
+      this.currentValue = currentValue
     }
   }
 

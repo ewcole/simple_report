@@ -16,8 +16,10 @@ public class ParamTest extends GroovyTestCase {
                   default:     "scared",
                   label:       "scoobydoo", 
                   value:null]
-    pe.value = 'hungry'
-    assert pe == [name:        "scoobydoo", 
+    p.value = 'hungry'
+    println "p.currentValue == ${p.currentValue}"
+    assert p.currentValue == 'hungry'
+    assert p.export() == [name:        "scoobydoo", 
                   type:        "java.lang.String", 
                   description: "scoobydoo", 
                   default:     "scared",
@@ -56,6 +58,8 @@ public class ParamTest extends GroovyTestCase {
     ]
     println params.export()
     params.setValues(term_code: '201312')
+    println (params.export())
+    assert params.term_code.currentValue == '201312'
     assert params.export() == [
       term_code: [name:        'term_code', 
                   type:        'java.lang.String', 
