@@ -21,7 +21,8 @@ public class ParamList extends HashMap<String, Param> implements Exportable {
   HashMap getValues() {
     this.keySet().inject([:]) {
       valueMap, paramName ->
-        valueMap += [(paramName): this[paramName].currentValue]
+        def p = this[paramName]
+        valueMap += [(paramName): (p.hasProperty('currentValue'))?p.currentValue:p]
         return valueMap
     }
   }

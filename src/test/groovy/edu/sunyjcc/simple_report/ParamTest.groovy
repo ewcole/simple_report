@@ -74,8 +74,15 @@ public class ParamTest extends GroovyTestCase {
     println "******** testGetParamListValues ********************"
     def params = new SimpleReportBuilder().params {
       param(name: 'term_code', value: '201312')
+      param(name: 'subject',   value: 'ART')
     }
     assert params.export() == [
+      subject: [name:        'subject', 
+                type:        'java.lang.String', 
+                description: 'subject', 
+                label:       'subject', 
+                "default":   null, 
+                value:       'ART'],
       term_code: [name:        'term_code', 
                   type:        'java.lang.String', 
                   description: 'term_code', 
@@ -86,6 +93,6 @@ public class ParamTest extends GroovyTestCase {
     println params.export()
     def gv = params.getValues()
     println "gv=${params.getValues()}"
-    assert gv == [term_code: '201312']
+    assert gv == [term_code: '201312', subject: 'ART']
   }
 }

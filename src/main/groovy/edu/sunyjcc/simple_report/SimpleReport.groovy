@@ -95,5 +95,11 @@ public class SimpleReport implements Exportable{
   public SimpleReport(HashMap params) {
     newReport(params);
   }
-  
+ 
+  /** Execute the report and return the result. */
+  public ResultSet execute(HashMap params) {
+    this.params.setValues(params)
+    queryEngine.execute(this.params)
+  }
+ 
 }

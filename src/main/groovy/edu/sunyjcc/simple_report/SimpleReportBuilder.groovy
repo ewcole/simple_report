@@ -12,6 +12,10 @@ public class SimpleReportBuilder extends BuilderSupport {
 
   private def reports = [:];
 
+  private def debug(String text) {
+    // println text
+  }
+
   private nodeFactory = [
     report: [
       create: {
@@ -32,7 +36,7 @@ public class SimpleReportBuilder extends BuilderSupport {
     param: [
       create: {
         String name, Map attributes, def value ->
-          println ("in nodeFactory.param($name, $attributes, $value)") 
+          debug ("in nodeFactory.param($name, $attributes, $value)") 
           assert name == 'param'
           assert attributes.name
           def param = new Param(attributes.name,
@@ -55,10 +59,10 @@ public class SimpleReportBuilder extends BuilderSupport {
     csv: [
       create: {
         String name, Map attributes, def value ->
-          println ("in nodeFactory.csv($name, $attributes, $value)") 
+          debug ("in nodeFactory.csv($name, $attributes, $value)") 
           assert name == 'csv'
           def eng = new CsvQueryEngine(attributes)
-          println "nodeFactory.csv => $eng"
+          debug "nodeFactory.csv => $eng"
           assert eng
           return eng
       }
@@ -66,10 +70,10 @@ public class SimpleReportBuilder extends BuilderSupport {
     sql: [
       create: {
         String name, Map attributes, def value ->
-          println ("in nodeFactory.sql($name, $attributes, $value)") 
+          debug ("in nodeFactory.sql($name, $attributes, $value)") 
           assert name == 'sql'
           def eng = new SqlQueryEngine(attributes)
-          println "nodeFactory.sql => $eng"
+          debug "nodeFactory.sql => $eng"
           assert eng
           return eng
       }
@@ -124,25 +128,25 @@ public class SimpleReportBuilder extends BuilderSupport {
   }
 
   Object createNode(Object name, Map attributes, Object value) {
-    println "createNode($name)"
+    debug "createNode($name)"
     if (!nodeFactory[name]) {
-      println "Invalid object: $name"
+      debug "Invalid object: $name"
     }
     assert name in nodeFactory.keySet()
-    println "After assert; call nodeFactory[$name]($name, $attributes, $value)}"
+    debug "After assert; call nodeFactory[$name]($name, $attributes, $value)}"
     def n = nodeFactory[name].create(name, attributes, value)
-    println "createNode => $n"
+    debug "createNode => $n"
     return n
   }
 
   void setParent(Object parent, Object child) {
-    println "in setParent(${parent.getClass()}, ${child.getClass()})"
-    println "parent=$parent"
-    //println "parent.addChild = ${parent.addChild}"
-    //println "parent.addChild.keySet()=${parent.addChild.keySet()}"
+    debug "in setParent(${parent.getClass()}, ${child.getClass()})"
+    debug "parent=$parent"
+    //debug "parent.addChild = ${parent.addChild}"
+    //debug "parent.addChild.keySet()=${parent.addChild.keySet()}"
     //assert  parent.addChild.keySet().contains(child.name)
     def z = addChildFarm[parent.getClass()][child.getClass()](parent, child)
-    println "z=$z"
+    debug "z=$z"
     z
   }
 
@@ -151,5 +155,14 @@ public class SimpleReportBuilder extends BuilderSupport {
   SimpleReportBuilder() {
     super()
   }
-  
+
+  /** Evaluate a string and return the results */
+  def eval(String text) {
+    def shell = new GroovyShell()
+    // wrap the script in a closure before evaluating.
+    Closure c = shell.evaluate("{->$text}")
+    c.setDelegate(this)
+    c()
+  }
+ 
 }

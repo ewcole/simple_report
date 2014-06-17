@@ -48,7 +48,9 @@ public class SqlQueryEngine extends QueryEngine {
       assert this.sql
     }
     (args.keySet() - ["parsedQuery", "sql"]).each {
-      this[it] = args[it];
+      if (this.hasProperty(it)) {
+        this[it] = args[it];
+      }
     }
     if (args.query) {
       def pq = parseSql(args.query)
