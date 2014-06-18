@@ -1,6 +1,11 @@
 def version = "0.0.0"
-
+project.version = version
+project.group = "edu.sunyjcc"
 apply plugin: 'groovy'
+
+// What branch do we have checked out?
+def currentGitBranch = "git branch".execute().text.readLines()
+    .grep {it =~ /^\*/}.first().replaceAll(/^\* /,'')
 
 repositories {
   // Where do we look for dependencies?
@@ -51,8 +56,6 @@ jar.version  = version
 
 // Include the current branch into the jar file name, unless we're in the
 //     production branch.
-def currentGitBranch = "git branch".execute().text.readLines()
-    .grep {it =~ /^\*/}.first().replaceAll(/^\* /,'')
 if (!(currentGitBranch == 'prod')) {
   jar.classifier = "~${currentGitBranch}~"
 }
@@ -78,3 +81,23 @@ groovydoc {
 // Make it so that it will automatically generate the documentation and jar 
 // file when you execute the build target.
 build.dependsOn groovydoc, jar
+
+/**********************************************************************/
+/* Deploy to Maven server                                             */
+/**********************************************************************/
+apply plugin: 'maven'
+
+uploadArchives {
+  repositories {
+    mavenDeployer {
+      if (currentGitBranch =~ /^prod/) {
+        repository(url: "file://x:/source/mvn/prod")
+      } else {
+        repository(url: "file://x:/source/mvn/test")
+      }
+    }
+  }
+}
+
+uploadArchives.dependsOn build, test
+//deploy.dependsOn uploadArchives
