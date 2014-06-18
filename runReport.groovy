@@ -27,7 +27,7 @@ def b = new SimpleReportBuilder()
 def r = b.eval(repScript.text).init(sql: sql)
 assert r instanceof SimpleReport
 //println "r =~ ${r.export()}"
-def p = r.execute(term_code: '201305')
+def p = r.execute(app_type_code: 'GRLS')
 
 //////////////////////////////////////////////////////////////////////////
 // Print out the results
@@ -51,7 +51,7 @@ p.rows.each {
     println p.columns.collect {
       col ->
         def colSize = (col.name.size() > col.displaySize)?col.name.size():col.displaySize
-        rpad(row[col.name], colSize)
+        rpad(row[col.name] as String, colSize)
     }.join(" ")
 }
 

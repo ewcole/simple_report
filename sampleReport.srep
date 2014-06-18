@@ -1,0 +1,10 @@
+//  -*- mode: groovy; -*-
+
+report(name: 'Term Report') {
+  param(name: 'app_type_code', desc: "Application type code", default: 'FORM') 
+  sql(query: """
+    select app_sa, app_title
+        from apps a 
+        where a.app_type_code = :app_type_code
+        order by app_sa""")
+}
