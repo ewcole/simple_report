@@ -1,3 +1,6 @@
+@GrabResolver(name="edu.sunyjcc", root="file://x:/source/mvn/test/")
+@Grab(group="edu.sunyjcc", module="edu.sunyjcc.simple_report", version="0.0.0")
+
 package edu.sunyjcc.simple_report
 
 import edu.sunyjcc.util.*
