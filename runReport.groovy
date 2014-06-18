@@ -1,5 +1,5 @@
-@GrabResolver(name="edu.sunyjcc", root="file://x:/source/mvn/test/")
-@Grab(group="edu.sunyjcc", module="edu.sunyjcc.simple_report", version="0.0.0")
+//rabResolver(name="jccprod", root="file://x:/source/mvn/prod/")
+@Grab(group="edu.sunyjcc", module="edu.sunyjcc.simple_report", version="0.0.1")
 
 package edu.sunyjcc.simple_report
 

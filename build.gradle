@@ -80,6 +80,7 @@ groovydoc {
 
 // Make it so that it will automatically generate the documentation and jar 
 // file when you execute the build target.
+
 build.dependsOn groovydoc, jar
 
 /**********************************************************************/
@@ -100,4 +101,5 @@ uploadArchives {
 }
 
 uploadArchives.dependsOn build, test
-//deploy.dependsOn uploadArchives
+task deploy
+deploy.dependsOn uploadArchives
