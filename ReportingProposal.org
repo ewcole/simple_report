@@ -40,13 +40,13 @@ It is also a text-based format, so it will be easy to use version control for th
 * Some Examples of the DSL
 Here are some examples from the unit tests that show how you might use the domain specific language.
 ** Creating a Parameter
-#+INCLUDE: src\test\groovy\edu\sunyjcc\simple_report\SimpleReportBuilderTest.groovy src groovy -n  :lines "58-60"
+#+INCLUDE: src\test\groovy\edu\sunyjcc\simple_report\SimpleReportBuilderTest.groovy src groovy  :lines "58-60"
 (From [[file:src\test\groovy\edu\sunyjcc\simple_report\SimpleReportBuilderTest.groovy][SimpleReportBuilderTest.groovy]])
 ** Creating a Parameter List
-#+INCLUDE: src\test\groovy\edu\sunyjcc\simple_report\SimpleReportBuilderTest.groovy src groovy -n  :lines "73-77"
+#+INCLUDE: src\test\groovy\edu\sunyjcc\simple_report\SimpleReportBuilderTest.groovy src groovy  :lines "73-77"
 (From [[file:src\test\groovy\edu\sunyjcc\simple_report\SimpleReportBuilderTest.groovy][SimpleReportBuilderTest.groovy]])
 ** Creating a Report with a CSV Data Source
-#+INCLUDE: src\test\groovy\edu\sunyjcc\simple_report\SimpleReportBuilderCsvTest.groovy src groovy -n :lines  "40-43"
+#+INCLUDE: src\test\groovy\edu\sunyjcc\simple_report\SimpleReportBuilderCsvTest.groovy src groovy :lines  "40-43"
 (From [[file:src\test\groovy\edu\sunyjcc\simple_report\SimpleReportBuilderCsvTest.groovy][SimpleReportBuilderCsvTest.groovy]])
 * A Sample Application
 

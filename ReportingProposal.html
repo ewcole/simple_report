@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
 <title>Reporting Proposal</title>
-<!-- 2014-06-19 Thu 16:34 -->
+<!-- 2014-06-19 Thu 16:37 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="generator" content="Org-mode" />
 <meta  name="author" content="Ed Cole" />
@@ -190,8 +190,8 @@ Here are some examples from the unit tests that show how you might use the domai
 <div class="outline-text-3" id="text-2-1">
 <div class="org-src-container">
 
-<pre class="src src-groovy"><span class="linenr">1: </span><span style="color: #a020f0;">def</span> <span style="color: #a0522d;">p</span> = a.param(name: <span style="color: #8b2252;">'scoobydoo'</span>, <span style="color: #a020f0;">default</span>: <span style="color: #8b2252;">'scared'</span>,
-<span class="linenr">2: </span>                value: <span style="color: #8b2252;">'hungry'</span>);
+<pre class="src src-groovy"><span style="color: #a020f0;">def</span> <span style="color: #a0522d;">p</span> = a.param(name: <span style="color: #8b2252;">'scoobydoo'</span>, <span style="color: #a020f0;">default</span>: <span style="color: #8b2252;">'scared'</span>,
+                value: <span style="color: #8b2252;">'hungry'</span>);
 </pre>
 </div>
 <p>
@@ -204,10 +204,10 @@ Here are some examples from the unit tests that show how you might use the domai
 <div class="outline-text-3" id="text-2-2">
 <div class="org-src-container">
 
-<pre class="src src-groovy"><span class="linenr">1: </span><span style="color: #a020f0;">def</span> <span style="color: #a0522d;">p</span> = a.params {
-<span class="linenr">2: </span>  param(name: <span style="color: #8b2252;">'scoobydoo'</span>, <span style="color: #a020f0;">default</span>: <span style="color: #8b2252;">'scared'</span>)
-<span class="linenr">3: </span>  param(name: <span style="color: #8b2252;">'shaggy'</span>, label: <span style="color: #8b2252;">"Shaggy"</span>, <span style="color: #a020f0;">default</span>: <span style="color: #8b2252;">"hungry"</span>)
-<span class="linenr">4: </span>}
+<pre class="src src-groovy"><span style="color: #a020f0;">def</span> <span style="color: #a0522d;">p</span> = a.params {
+  param(name: <span style="color: #8b2252;">'scoobydoo'</span>, <span style="color: #a020f0;">default</span>: <span style="color: #8b2252;">'scared'</span>)
+  param(name: <span style="color: #8b2252;">'shaggy'</span>, label: <span style="color: #8b2252;">"Shaggy"</span>, <span style="color: #a020f0;">default</span>: <span style="color: #8b2252;">"hungry"</span>)
+}
 </pre>
 </div>
 <p>
@@ -220,9 +220,9 @@ Here are some examples from the unit tests that show how you might use the domai
 <div class="outline-text-3" id="text-2-3">
 <div class="org-src-container">
 
-<pre class="src src-groovy"><span class="linenr">1: </span><span style="color: #a020f0;">def</span> <span style="color: #a0522d;">e</span> = a.report() {
-<span class="linenr">2: </span>  csv(text: <span style="color: #8b2252;">"A, B, C\n1,2,3"</span>){}
-<span class="linenr">3: </span>}
+<pre class="src src-groovy"><span style="color: #a020f0;">def</span> <span style="color: #a0522d;">e</span> = a.report() {
+  csv(text: <span style="color: #8b2252;">"A, B, C\n1,2,3"</span>){}
+}
 </pre>
 </div>
 <p>

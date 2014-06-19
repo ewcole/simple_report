@@ -30,25 +30,25 @@ Here are some examples from the unit tests that show how you might use the domai
 
 ## Creating a Parameter
 
-    1  def p = a.param(name: 'scoobydoo', default: 'scared',
-    2                  value: 'hungry');
+    def p = a.param(name: 'scoobydoo', default: 'scared',
+                    value: 'hungry');
 
 (From [SimpleReportBuilderTest.groovy](src\test\groovy\edu\sunyjcc\simple_report\SimpleReportBuilderTest.groovy))
 
 ## Creating a Parameter List
 
-    1  def p = a.params {
-    2    param(name: 'scoobydoo', default: 'scared')
-    3    param(name: 'shaggy', label: "Shaggy", default: "hungry")
-    4  }
+    def p = a.params {
+      param(name: 'scoobydoo', default: 'scared')
+      param(name: 'shaggy', label: "Shaggy", default: "hungry")
+    }
 
 (From [SimpleReportBuilderTest.groovy](src\test\groovy\edu\sunyjcc\simple_report\SimpleReportBuilderTest.groovy))
 
 ## Creating a Report with a CSV Data Source
 
-    1  def e = a.report() {
-    2    csv(text: "A, B, C\n1,2,3"){}
-    3  }
+    def e = a.report() {
+      csv(text: "A, B, C\n1,2,3"){}
+    }
 
 (From [SimpleReportBuilderCsvTest.groovy](src\test\groovy\edu\sunyjcc\simple_report\SimpleReportBuilderCsvTest.groovy))
 
