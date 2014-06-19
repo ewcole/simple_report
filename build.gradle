@@ -81,6 +81,10 @@ groovydoc {
 // Make it so that it will automatically generate the documentation and jar 
 // file when you execute the build target.
 
+task wrapper(type: Wrapper) {
+  gradleVersion = '1.10'
+}
+
 build.dependsOn groovydoc, jar
 
 /**********************************************************************/

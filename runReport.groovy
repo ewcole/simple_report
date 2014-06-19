@@ -1,5 +1,5 @@
 //rabResolver(name="jccprod", root="file://x:/source/mvn/prod/")
-@Grab(group="edu.sunyjcc", module="edu.sunyjcc.simple_report", version="0.0.1")
+//@Grab(group="edu.sunyjcc", module="edu.sunyjcc.simple_report", version="0.0.1")
 
 package edu.sunyjcc.simple_report
 
@@ -19,6 +19,15 @@ if (!opt) {
 def repScript = new File(opt.r)
 assert repScript.exists()
 
+def optParams = opt.arguments().inject([:]) {
+  map, value ->
+    (value =~ /^(.*?)=(.*)/).each {
+      m ->
+        map[m[1] as String] = m[2] as String
+    }
+    return map
+}
+println "optParams = $optParams"
 def sql = new JccConnectionManager(opt.u).ora
 if (!sql) {
   cli.usage()
@@ -26,11 +35,14 @@ if (!sql) {
   println "Invalid database credentials!"
   return
 }
+
+//////////////////////////////////////////////////////////////////////////
+// Run the report
+//////////////////////////////////////////////////////////////////////////
 def b = new SimpleReportBuilder()
 def r = b.eval(repScript.text).init(sql: sql)
 assert r instanceof SimpleReport
-//println "r =~ ${r.export()}"
-def p = r.execute(app_type_code: 'GRLS')
+def p = r.execute(optParams)
 
 //////////////////////////////////////////////////////////////////////////
 // Print out the results
