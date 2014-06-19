@@ -34,20 +34,32 @@ I am suggesting a solution to several problems we are facing with deploying our 
 - Re-using parameter definitions between reports
 - Simple creation and deployment of CSV generators
 
-The reports will be saved as Groovy scripts that are evaluated by a builder.  
+The source code of the reports, parameters, parameter lists, and other objects is completely independent of the environment in which it will be executed.  This means that the same code can be used in a Job Sumbission script or a Grails application, or anything in between.
 
-* Sample application
+It is also a text-based format, so it will be easy to use version control for them.  The parameter, parameter list, and report definitions would be stored in the file system.  It should be relatively simple to implement an inheritance scheme.
+* Some Examples of the DSL
+Here are some examples from the unit tests that show how you might use the domain specific language.
+** Creating a Parameter
+#+INCLUDE: src\test\groovy\edu\sunyjcc\simple_report\SimpleReportBuilderTest.groovy src groovy -n  :lines "58-60"
+(From [[file:src\test\groovy\edu\sunyjcc\simple_report\SimpleReportBuilderTest.groovy][SimpleReportBuilderTest.groovy]])
+** Creating a Parameter List
+#+INCLUDE: src\test\groovy\edu\sunyjcc\simple_report\SimpleReportBuilderTest.groovy src groovy -n  :lines "73-77"
+(From [[file:src\test\groovy\edu\sunyjcc\simple_report\SimpleReportBuilderTest.groovy][SimpleReportBuilderTest.groovy]])
+** Creating a Report with a CSV Data Source
+#+INCLUDE: src\test\groovy\edu\sunyjcc\simple_report\SimpleReportBuilderCsvTest.groovy src groovy -n :lines  "40-43"
+(From [[file:src\test\groovy\edu\sunyjcc\simple_report\SimpleReportBuilderCsvTest.groovy][SimpleReportBuilderCsvTest.groovy]])
+* A Sample Application
 
-Suppose you have a report file, [[file+emacs:sampleReport.srep][sampleReport.srep]].  
+Suppose that you wanted to have a report of all Grails applications in our system.  You could write a report definition file, [[file+emacs:sampleReport.srep][sampleReport.srep]].  
 
-#+INCLUDE: sampleReport.srep src groovy -n :lines "3-11"
+#+INCLUDE: sampleReport.srep src groovy :lines "3-11"
 
-You can execute it with a simple command line script.
+Run the report by invoking it from a Groovy script that I wrote.
 
 #+BEGIN_SRC cmd
-runReport -u %userid% -r sampleReport.srep app_type_code=GRLS
+runReport.groovy -u %userid% -r sampleReport.srep app_type_code=GRLS
 #+END_SRC
-
+With the following output.
 #+BEGIN_EXAMPLE
 APP_SA                 APP_TITLE
 ---------------------- -------------------------------
@@ -57,16 +69,41 @@ APP_SA                 APP_TITLE
 824                    Key Inventory
 4 rows selected.
 #+END_EXAMPLE
-The [[file+emacs:runReport.groovy][runReport.groovy]] script is just a shell; it has 27 lines that gather the  report parameters and connect to the database, 22 lines that format the report for output, and only 4 lines that actually run the report (counting an assertion).
+The [[file+emacs:runReport.groovy][runReport.groovy]] script is just a shell; it has 27 lines that gather the  report parameters and connect to the database, 22 lines that format the report for output, and only 4 lines that actually run the report (counting an assertion that guarantees that it /is/ a report).
 (See [[::*Downloading the application][Downloading the application]] below to run the example yourself).
 
-#+include: runReport.groovy src groovy -n :lines "42-46"
+#+include: runReport.groovy src groovy :lines "42-46"
+* Architecture
+
+A complete system would contain the following pieces.
+
+- Client        :: This might be a web browser or a script that runs in Job Submission.
+- Front End     :: This might be a Grails application; its job is to communicate between the client and the Report Engine.  For example, one job that falls to the front end is converting the list of parameters into an HTML form in a web application.
+- Report Engine :: The report engine fetches the relevant report, parameter list, and parameter definitions from the Report Store, queries the front end for the parameters, and returns the results to the Front End.
+- Report Store  :: This is probably a version-controlled directory or set of directories in the file system, containing the source for parameters, parameter lists, reports, and Jasper Reports jrxml files.
+ 
+
+| Client              | Front End                         | Report Engine                                 |
+|---------------------+-----------------------------------+-----------------------------------------------|
+| Request Report \to    | \to Request report \to                |                                               |
+|                     |                                   | Fetch report definition from storage \to        |
+|                     |                                   | Get parameter specification                   |
+|                     |                                   | \leftarrow Return parameter specification to front end |
+|                     | \leftarrow Generate parameter form         |                                               |
+| Return parameters \to |                                   |                                               |
+|                     | \to Return parameters to engine \to   |                                               |
+|                     |                                   | Validate Parameters                           |
+|                     |                                   | Get Report Data                               |
+|                     |                                   | \leftarrow Return raw report data to front end         |
+|                     | \leftarrow Format report data for client \leftarrow |                                               |
+| Display data        |                                   |                                               |
+
 
 * Appendices
 ** Downloading the application
 My demonstration is in the java/lib/simple_report repository on the [[https://inb01.sunyjcc.edu/git/][GitBlit server]].  You can go directly to the summary page here.
 
-https://inb01.sunyjcc.edu/git/summary/java!lib!simple_report.git
+[[https://inb01.sunyjcc.edu/git/summary/java!lib!simple_report.git]]
 
 It's probably better to take the url from the *repository url* listed on this page, but you can clone it with the following command (the difference is that GitBlit puts your user name in its link).
 
