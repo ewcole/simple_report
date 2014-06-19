@@ -58,18 +58,20 @@ APP_SA                 APP_TITLE
 4 rows selected.
 #+END_EXAMPLE
 The [[file+emacs:runReport.groovy][runReport.groovy]] script is just a shell; it has 27 lines that gather the  report parameters and connect to the database, 22 lines that format the report for output, and only 4 lines that actually run the report (counting an assertion).
+(See [[::*Downloading the application][Downloading the application]] below to run the example yourself).
 
 #+include: runReport.groovy src groovy -n :lines "42-46"
 
+* Appendices
 ** Downloading the application
 My demonstration is in the java/lib/simple_report repository on the [[https://inb01.sunyjcc.edu/git/][GitBlit server]].  You can go directly to the summary page here.
 
 https://inb01.sunyjcc.edu/git/summary/java!lib!simple_report.git
 
-It's probably better to take the url from the *repository url* listed on this page, but you can clone it with this command (the difference is that GitBlit puts your user name in its link.
+It's probably better to take the url from the *repository url* listed on this page, but you can clone it with the following command (the difference is that GitBlit puts your user name in its link).
 
 #+BEGIN_SRC cmd
 git clone https://inb01.sunyjcc.edu/git/git/java/lib/simple_report.git
 #+END_SRC
 
-To build the project, you need to have [[http://www.gradle.org/][Gradle]] installed on your system.  Run ~build.cmd~ and it should create the jar files.
+To build the project, run ~build.cmd~ and it should create the jar files and groovydoc for you.  It will download [[http://www.gradle.org/][Gradle]] the first time you run it.
