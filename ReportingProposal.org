@@ -1,0 +1,75 @@
+#+TITLE: Reporting Proposal
+#+DATE: <2014-06-19 Thu>
+#+AUTHOR: Ed Cole
+#+EMAIL: coleew01@JITECPC21
+#+OPTIONS: ':nil *:t -:t ::t <:t H:3 \n:nil ^:{} arch:headline
+#+OPTIONS: author:t c:nil creator:comment d:(not "LOGBOOK") date:t
+#+OPTIONS: e:t email:nil f:t inline:t num:nil p:nil pri:nil stat:t
+#+OPTIONS: tags:t tasks:t tex:t timestamp:t toc:1 todo:t |:t
+#+CREATOR: Emacs 24.2.1 (Org mode 8.2.6)
+#+DESCRIPTION:
+#+EXCLUDE_TAGS: noexport
+#+KEYWORDS:
+#+LANGUAGE: en
+#+SELECT_TAGS: export
+#+OPTIONS: html-link-use-abs-url:nil html-postamble:nil
+#+OPTIONS: html-preamble:t html-scripts:t html-style:t
+#+OPTIONS: html5-fancy:nil tex:t
+#+CREATOR: <a href="http://www.gnu.org/software/emacs/">Emacs</a> 24.2.1 (<a href="http://orgmode.org">Org</a> mode 8.2.6)
+#+HTML_CONTAINER: div
+#+HTML_DOCTYPE: xhtml-strict
+#+HTML_HEAD:
+#+HTML_HEAD_EXTRA:
+#+HTML_LINK_HOME:
+#+HTML_LINK_UP:
+#+HTML_MATHJAX:
+#+INFOJS_OPT:
+#+LATEX_HEADER:
+
+* Synopsis
+I am suggesting a solution to several problems we are facing with deploying our new reports.  Here are some issues that should be resolved by the service.
+
+- Defining and collecting parameters for a Jasper Report
+- Defining and collecting parameters for a CSV export file
+- Re-using parameter definitions between reports
+- Simple creation and deployment of CSV generators
+
+The reports will be saved as Groovy scripts that are evaluated by a builder.  
+
+* Sample application
+
+Suppose you have a report file, [[file+emacs:sampleReport.srep][sampleReport.srep]].  
+
+#+INCLUDE: sampleReport.srep src groovy -n :lines "3-11"
+
+You can execute it with a simple command line script.
+
+#+BEGIN_SRC cmd
+runReport -u %userid% -r sampleReport.srep app_type_code=GRLS
+#+END_SRC
+
+#+BEGIN_EXAMPLE
+APP_SA                 APP_TITLE
+---------------------- -------------------------------
+804                    Add-On Menu Administration
+807                    Add-On Menu Administration
+823                    Popsel Reference Editor
+824                    Key Inventory
+4 rows selected.
+#+END_EXAMPLE
+The [[file+emacs:runReport.groovy][runReport.groovy]] script is just a shell; it has 27 lines that gather the  report parameters and connect to the database, 22 lines that format the report for output, and only 4 lines that actually run the report (counting an assertion).
+
+#+include: runReport.groovy src groovy -n :lines "42-46"
+
+** Downloading the application
+My demonstration is in the java/lib/simple_report repository on the [[https://inb01.sunyjcc.edu/git/][GitBlit server]].  You can go directly to the summary page here.
+
+https://inb01.sunyjcc.edu/git/summary/java!lib!simple_report.git
+
+It's probably better to take the url from the *repository url* listed on this page, but you can clone it with this command (the difference is that GitBlit puts your user name in its link.
+
+#+BEGIN_SRC cmd
+git clone https://inb01.sunyjcc.edu/git/git/java/lib/simple_report.git
+#+END_SRC
+
+To build the project, you need to have [[http://www.gradle.org/][Gradle]] installed on your system.  Run ~build.cmd~ and it should create the jar files.
