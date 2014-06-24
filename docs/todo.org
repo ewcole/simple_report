@@ -24,3 +24,12 @@
 #+HTML_MATHJAX:
 #+INFOJS_OPT:
 #+LATEX_HEADER:
+
+This is now an official MIS project; it will be used as a generator for CSV files, as well as a parameter form generator for Jasper Reports.
+
+* Pre-production
+** TODO Make it compatible with Grails
+Make sure it will run with a Grails front end or plugin.  That might involve making the move to Grails 2
+** TODO Resource Loader
+The resource loader will plug into the SimpleReportBuilder and load objects by name as they are requested.
+* Version 1.0
