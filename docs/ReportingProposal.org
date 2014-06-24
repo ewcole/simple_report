@@ -34,7 +34,7 @@ I am suggesting a solution to several problems we are facing with deploying our 
 - Re-using parameter definitions between reports
 - Simple creation and deployment of CSV generators
 
-The source code of the reports, parameters, parameter lists, and other objects is completely independent of the environment in which it will be executed.  This means that the same code can be used in a Job Sumbission script or a Grails application, or anything in between.
+The source code of the reports, parameters, parameter lists, and other objects is completely independent of the environment in which it will be executed.  This means that the same code can be used in a Job Submission script or a Grails application, or anything in between.
 
 It is also a text-based format, so it will be easy to use version control for them.  The parameter, parameter list, and report definitions would be stored in the file system.  It should be relatively simple to implement an inheritance scheme.
 * Some Examples of the DSL
