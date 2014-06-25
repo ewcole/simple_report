@@ -5,7 +5,6 @@ import groovy.util.BuilderSupport
 // http://groovy.codehaus.org/api/groovy/util/BuilderSupport.html
 // http://grepcode.com/file/repo1.maven.org/maven2/org.codehaus.groovy/groovy/1.6.8/groovy/util/NodeBuilder.java
 // http://grepcode.com/file/repo1.maven.org/maven2/org.codehaus.groovy/groovy/1.8.0/groovy/xml/MarkupBuilder.java/
-
 // http://grepcode.com/file/repo1.maven.org/maven2/org.codehaus.groovy/groovy/1.8.0/groovy/util/AntBuilder.java#AntBuilder.%3Cinit%3E%28%29
 
 public class SimpleReportBuilder extends BuilderSupport {
