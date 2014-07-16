@@ -1,16 +1,23 @@
 def version = "0.0.1"
-project.version = version
-project.group = "edu.sunyjcc"
-apply plugin: 'groovy'
 
 // What branch do we have checked out?
 def currentGitBranch = "git branch".execute().text.readLines()
     .grep {it =~ /^\*/}.first().replaceAll(/^\* /,'')
 
+project.version = version + ((currentGitBranch=='prod')?'':"-$currentGitBranch")
+project.group = "edu.sunyjcc"
+
+println "Version: ${project.version}"
+
+def jccGroovydocHome = 'x:/doc/groovydoc'
+
 repositories {
   // Where do we look for dependencies?
   mavenCentral()
 }
+
+
+apply plugin: 'groovy'
 
 dependencies {
   compile 'org.codehaus.groovy:groovy-all:1.8.9'
@@ -52,22 +59,19 @@ dependencies {
 /***********************************************************************/
 
 // Include the project version number in the jar file name.
-jar.version  = version
-
-// Include the current branch into the jar file name, unless we're in the
-//     production branch.
-if (!(currentGitBranch == 'prod')) {
-  jar.classifier = "~${currentGitBranch}~"
-}
+jar.version  = version + ((currentGitBranch == 'prod')?'':"-$currentGitBranch")
 
 /***********************************************************************/
 /* groovydoc options                                                   */
 /***********************************************************************/
 groovydoc.groovyClasspath = configurations.compile
-
+if (currentGitBranch == 'prod') {
+  groovydoc.destinationDir = new File(jccGroovydocHome)
+}
 groovydoc {
-  // These are needed so that objects (from other packages) referenced in the 
-  //    groovydoc will be linked to their definitions in the external 
+
+  // These are needed so that objects (from other packages) referenced in the
+  //    groovydoc will be linked to their definitions in the external
   //    documentation
   link("http://docs.oracle.com/javase/6/docs/api", 
        "java.,org.xml.,javax.,org.xml.")
@@ -76,6 +80,7 @@ groovydoc {
   link("http://junit.sourceforge.net/junit3.8.1/javadoc/", 
        "org.junit.,junit.framework.")
   link("http://groovy.codehaus.org/api/", "groovy.,org.codehaus.groovy.")
+  link("file://$jccGroovydocHome", "edu.sunyjcc.")
 }
 
 // Make it so that it will automatically generate the documentation and jar 
@@ -85,7 +90,7 @@ task wrapper(type: Wrapper) {
   gradleVersion = '1.10'
 }
 
-build.dependsOn groovydoc, jar
+build.dependsOn jar, test, wrapper
 
 /**********************************************************************/
 /* Deploy to Maven server                                             */
@@ -95,15 +100,15 @@ apply plugin: 'maven'
 uploadArchives {
   repositories {
     mavenDeployer {
-      if (currentGitBranch =~ /^prod/) {
+      //if (currentGitBranch =~ /^prod/) {
         repository(url: "file://x:/source/mvn/prod")
-      } else {
-        repository(url: "file://x:/source/mvn/test")
-      }
+        //} else {
+        //repository(url: "file://x:/source/mvn/test")
+        //}
     }
   }
 }
 
 uploadArchives.dependsOn build, test
 task deploy
-deploy.dependsOn uploadArchives
+deploy.dependsOn groovydoc, uploadArchives, build
