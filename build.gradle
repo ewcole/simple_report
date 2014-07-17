@@ -100,11 +100,7 @@ apply plugin: 'maven'
 uploadArchives {
   repositories {
     mavenDeployer {
-      //if (currentGitBranch =~ /^prod/) {
-        repository(url: "file://x:/source/mvn/prod")
-        //} else {
-        //repository(url: "file://x:/source/mvn/test")
-        //}
+        repository(url: "file://x:/source/mvn")
     }
   }
 }
