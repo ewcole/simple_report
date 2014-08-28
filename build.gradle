@@ -1,4 +1,4 @@
-def version = "0.0.1"
+def version = "0.0.2"
 
 // What branch do we have checked out?
 def currentGitBranch = "git branch".execute().text.readLines()

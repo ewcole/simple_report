@@ -5,3 +5,6 @@ working_files.org
 
 .gradle/
 build/
+docs/ReportingProposal.docx
+docs/ReportingProposal.odt
+lib/ojdbc6.jar
