@@ -7,7 +7,7 @@ public class Param implements Exportable {
   String name;
 
   /** The type of the parameter */
-  Class type;
+  ParamType type;
   
   /** A one-line description of the parameter */
   String description;
@@ -51,7 +51,7 @@ public class Param implements Exportable {
 
   /** Explicit-argument constructor */
   public Param(String name, 
-               Class type, 
+               ParamType type, 
                String description, 
                String label,
                Object defaultValue = null) {
