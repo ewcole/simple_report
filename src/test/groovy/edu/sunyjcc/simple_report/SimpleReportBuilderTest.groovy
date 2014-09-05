@@ -56,7 +56,8 @@ public class SimpleReportBuilderTest extends GroovyTestCase {
     println "******** testCreateParam ********************"
     def a = new SimpleReportBuilder() 
     def p = a.param(name: 'scoobydoo', default: 'scared',
-                    value: 'hungry');
+                    // value: 'hungry'
+                   );
     def q = p.export()
     println "p.export() == $q"
     assert q == [name:        "scoobydoo", 
@@ -64,7 +65,8 @@ public class SimpleReportBuilderTest extends GroovyTestCase {
                  description: "scoobydoo", 
                  label:       "scoobydoo",
                  'default':   "scared",
-                 value:       'hungry']
+                 // value:       'hungry'
+                ]
   }
 
   void testCreateParamList() {
@@ -84,13 +86,15 @@ public class SimpleReportBuilderTest extends GroovyTestCase {
                               description: "scoobydoo", 
                               label:       "scoobydoo",
                               'default':   "scared",
-                              value:       null], 
+                              // value:       null
+                             ], 
                   shaggy: [name:        "shaggy", 
                            type:        "STRING", 
                            description: "shaggy", 
                            label:       "Shaggy",
-                           'default':   "hungry",
-                           value:       null]]
+                           'default':   "hungry"// ,
+                           // value:       null
+                          ]]
 
   }
 

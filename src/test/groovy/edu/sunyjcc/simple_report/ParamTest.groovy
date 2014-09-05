@@ -14,31 +14,28 @@ public class ParamTest extends GroovyTestCase {
                   type:        "STRING", 
                   description: "scoobydoo", 
                   default:     "scared",
-                  label:       "scoobydoo", 
-                  value:null]
-    p.value = 'hungry'
-    println "p.currentValue == ${p.currentValue}"
-    assert p.currentValue == 'hungry'
+                  label:       "scoobydoo"]
+    //p.value = 'hungry'
+    //println "p.currentValue == ${p.currentValue}"
+    //assert p.currentValue == 'hungry'
     assert p.export() == [name:        "scoobydoo", 
-                  type:        "STRING", 
-                  description: "scoobydoo", 
-                  default:     "scared",
-                  label:       "scoobydoo", 
-                  value:       "hungry"]
+                          type:        "STRING", 
+                          description: "scoobydoo", 
+                          'default':     "scared",
+                          label:       "scoobydoo"]
   }
 
   void testCreateParamList() {
     println "******** testCreateParamList ********************"
     def params = new SimpleReportBuilder().params {
-      param(name: 'term_code', value: '201312')
+      param(name: 'term_code', default: '201312')
     }
     assert params.export() == [
       term_code: [name:        'term_code', 
                   type:        'STRING', 
                   description: 'term_code', 
                   label:       'term_code', 
-                  "default":   null, 
-                  value:       '201312']
+                  "default":   '201312']
     ]
     println params.export()
   }
@@ -46,53 +43,49 @@ public class ParamTest extends GroovyTestCase {
   void testSetParamListValues() {
     println "******** testSetParamListValues ********************"
     def params = new SimpleReportBuilder().params {
-      param(name: 'term_code', value: '201312')
+      param(name: 'term_code', default: '201312')
     }
     assert params.export() == [
       term_code: [name:        'term_code', 
                   type:        'STRING', 
                   description: 'term_code', 
                   label:       'term_code', 
-                  "default":   null, 
-                  value:       '201312']
+                  "default":   '201312']
     ]
     println params.export()
-    params.setValues(term_code: '201312')
+    //params.setValues(term_code: '201312')
     println (params.export())
-    assert params.term_code.currentValue == '201312'
+    //assert params.term_code.currentValue == '201312'
     assert params.export() == [
       term_code: [name:        'term_code', 
                   type:        'STRING', 
                   description: 'term_code', 
                   label:       'term_code', 
-                  "default":   null, 
-                  value:       '201312']
+                  "default":   '201312']
     ]
   }
 
   void testGetParamListValues() {
     println "******** testGetParamListValues ********************"
     def params = new SimpleReportBuilder().params {
-      param(name: 'term_code', value: '201312')
-      param(name: 'subject',   value: 'ART')
+      param(name: 'term_code', default: '201312')
+      param(name: 'subject',   default: 'ART')
     }
     assert params.export() == [
       subject: [name:        'subject', 
                 type:        'STRING', 
                 description: 'subject', 
                 label:       'subject', 
-                "default":   null, 
-                value:       'ART'],
+                "default":   'ART'],
       term_code: [name:        'term_code', 
                   type:        'STRING', 
                   description: 'term_code', 
                   label:       'term_code', 
-                  "default":   null, 
-                  value:       '201312']
+                  "default":   '201312']
     ]
     println params.export()
-    def gv = params.getValues()
-    println "gv=${params.getValues()}"
-    assert gv == [term_code: '201312', subject: 'ART']
+    //def gv = params.getValues()
+    //println "gv=${params.getValues()}"
+    //assert gv == [term_code: '201312', subject: 'ART']
   }
 }

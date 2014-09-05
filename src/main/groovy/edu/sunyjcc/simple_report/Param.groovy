@@ -18,21 +18,21 @@ public class Param implements Exportable {
   /** A default value for the parameter */
   Object defaultValue;
 
-  /** The current currentValue for the parameter */
-  Object currentValue
+  // /** The current currentValue for the parameter */
+  // Object currentValue
 
-  /** Set the currentValue of the parameter, making sure it is of the right type. 
-   *  @param currentValue The new currentValue for the parameter
-   */
-  def setValue(def currentValue) {
-    if (currentValue == null) {
-      this.currentValue = null
-      return null
-    } else {
+  // /** Set the currentValue of the parameter, making sure it is of the right type. 
+  //  *  @param currentValue The new currentValue for the parameter
+  //  */
+  // def setValue(def currentValue) {
+  //   if (currentValue == null) {
+  //     this.currentValue = null
+  //     return null
+  //   } else {
 
-      this.currentValue = currentValue
-    }
-  }
+  //     this.currentValue = currentValue
+  //   }
+  // }
 
   /** Perform whatever initialization is needed for this parameter. */
   Param init(HashMap args) {
@@ -45,8 +45,7 @@ public class Param implements Exportable {
      type:        this.type.desc,
      description: this.description,
      label:       this.label,
-     'default':   this.defaultValue,
-     value:       this.currentValue]
+     'default':   this.defaultValue]
   }
 
   /** Explicit-argument constructor */
