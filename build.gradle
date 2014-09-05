@@ -90,6 +90,8 @@ task wrapper(type: Wrapper) {
   gradleVersion = '1.10'
 }
 
+task compile
+compile.dependsOn compileGroovy, compileJava
 build.dependsOn jar, test, wrapper
 
 /**********************************************************************/
