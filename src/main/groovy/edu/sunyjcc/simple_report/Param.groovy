@@ -38,11 +38,11 @@ public class Param implements Exportable {
   Param init(HashMap args) {
     return this
   }
-
+  
   /** Return the values as a HashMap. */
   def export() {
     [name:        this.name,
-     type:        this.type.name,
+     type:        this.type.desc,
      description: this.description,
      label:       this.label,
      'default':   this.defaultValue,

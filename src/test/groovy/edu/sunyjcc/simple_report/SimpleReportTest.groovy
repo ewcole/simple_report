@@ -57,7 +57,7 @@ public class SimpleReportTest extends GroovyTestCase {
                           version: "", 
                           description: null,
                           params:[scoobydoo: [name:        "scoobydoo", 
-                                              type:        "java.lang.String", 
+                                              type:        "STRING", 
                                               description: "scoobydoo", 
                                               label:       "Scooby Doo",
                                               'default':    "scared",

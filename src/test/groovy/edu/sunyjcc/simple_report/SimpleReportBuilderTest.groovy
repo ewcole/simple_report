@@ -60,7 +60,7 @@ public class SimpleReportBuilderTest extends GroovyTestCase {
     def q = p.export()
     println "p.export() == $q"
     assert q == [name:        "scoobydoo", 
-                 type:        "java.lang.String", 
+                 type:        "STRING", 
                  description: "scoobydoo", 
                  label:       "scoobydoo",
                  'default':   "scared",
@@ -80,13 +80,13 @@ public class SimpleReportBuilderTest extends GroovyTestCase {
     def pe = p.export()
     println pe
     assert pe == [scoobydoo: [name:        "scoobydoo", 
-                              type:        "java.lang.String", 
+                              type:        "STRING", 
                               description: "scoobydoo", 
                               label:       "scoobydoo",
                               'default':   "scared",
                               value:       null], 
                   shaggy: [name:        "shaggy", 
-                           type:        "java.lang.String", 
+                           type:        "STRING", 
                            description: "shaggy", 
                            label:       "Shaggy",
                            'default':   "hungry",

@@ -11,7 +11,7 @@ public class ParamTest extends GroovyTestCase {
     def pe = p.export()
     println pe
     assert pe == [name:        "scoobydoo", 
-                  type:        "java.lang.String", 
+                  type:        "STRING", 
                   description: "scoobydoo", 
                   default:     "scared",
                   label:       "scoobydoo", 
@@ -20,7 +20,7 @@ public class ParamTest extends GroovyTestCase {
     println "p.currentValue == ${p.currentValue}"
     assert p.currentValue == 'hungry'
     assert p.export() == [name:        "scoobydoo", 
-                  type:        "java.lang.String", 
+                  type:        "STRING", 
                   description: "scoobydoo", 
                   default:     "scared",
                   label:       "scoobydoo", 
@@ -34,7 +34,7 @@ public class ParamTest extends GroovyTestCase {
     }
     assert params.export() == [
       term_code: [name:        'term_code', 
-                  type:        'java.lang.String', 
+                  type:        'STRING', 
                   description: 'term_code', 
                   label:       'term_code', 
                   "default":   null, 
@@ -50,7 +50,7 @@ public class ParamTest extends GroovyTestCase {
     }
     assert params.export() == [
       term_code: [name:        'term_code', 
-                  type:        'java.lang.String', 
+                  type:        'STRING', 
                   description: 'term_code', 
                   label:       'term_code', 
                   "default":   null, 
@@ -62,7 +62,7 @@ public class ParamTest extends GroovyTestCase {
     assert params.term_code.currentValue == '201312'
     assert params.export() == [
       term_code: [name:        'term_code', 
-                  type:        'java.lang.String', 
+                  type:        'STRING', 
                   description: 'term_code', 
                   label:       'term_code', 
                   "default":   null, 
@@ -78,13 +78,13 @@ public class ParamTest extends GroovyTestCase {
     }
     assert params.export() == [
       subject: [name:        'subject', 
-                type:        'java.lang.String', 
+                type:        'STRING', 
                 description: 'subject', 
                 label:       'subject', 
                 "default":   null, 
                 value:       'ART'],
       term_code: [name:        'term_code', 
-                  type:        'java.lang.String', 
+                  type:        'STRING', 
                   description: 'term_code', 
                   label:       'term_code', 
                   "default":   null, 

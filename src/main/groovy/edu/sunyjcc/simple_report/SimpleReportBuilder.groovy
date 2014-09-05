@@ -39,7 +39,7 @@ public class SimpleReportBuilder extends BuilderSupport {
           assert name == 'param'
           assert attributes.name
           def param = new Param(attributes.name,
-                                attributes.type?:String,
+                                attributes.type?:ParamType.string,
                                 attributes.description?:attributes.name,
                                 attributes.label?:attributes.name,
                                 attributes.default?:null)
