@@ -4,7 +4,7 @@ package edu.sunyjcc.simple_report
 /** Test the Param class. */
 public class ParamTest extends GroovyTestCase {
 
-  void testParamValue() {
+  void testParamCreate() {
     println "******** testParamValue ********************"
     def a = new SimpleReportBuilder()
     def p = a.param(name: 'scoobydoo', default: 'scared')
@@ -15,9 +15,6 @@ public class ParamTest extends GroovyTestCase {
                   description: "scoobydoo", 
                   default:     "scared",
                   label:       "scoobydoo"]
-    //p.value = 'hungry'
-    //println "p.currentValue == ${p.currentValue}"
-    //assert p.currentValue == 'hungry'
     assert p.export() == [name:        "scoobydoo", 
                           type:        "STRING", 
                           description: "scoobydoo", 

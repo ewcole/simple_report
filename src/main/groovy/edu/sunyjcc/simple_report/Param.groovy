@@ -60,4 +60,9 @@ public class Param implements Exportable {
     this.label = label;
     this.defaultValue = defaultValue
   }
+
+  def validate(def value) {
+    return type.convert(value);
+  }
+
 }
