@@ -9,3 +9,4 @@ docs/ReportingProposal.docx
 docs/ReportingProposal.odt
 lib/ojdbc6.jar
 README.html
+docs/*.html
