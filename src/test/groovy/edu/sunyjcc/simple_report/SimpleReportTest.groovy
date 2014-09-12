@@ -43,8 +43,8 @@ public class SimpleReportTest extends GroovyTestCase {
   }
 
   /** Try inserting an (unnecessary) params call and see if this works. */
-  void testReportWithParamList() {
-    println "******** testReportWithParamList ********************"
+  void testReportWithParamForm() {
+    println "******** testReportWithParamForm ********************"
     def a = new SimpleReportBuilder()
     def r = a.report(name: "ghostHunt", title: "Ghost Hunt") {
       params {

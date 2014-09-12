@@ -22,8 +22,8 @@ public class ParamTest extends GroovyTestCase {
                           label:       "scoobydoo"]
   }
 
-  void testCreateParamList() {
-    println "******** testCreateParamList ********************"
+  void testCreateParamForm() {
+    println "******** testCreateParamForm ********************"
     def params = new SimpleReportBuilder().params {
       param(name: 'term_code', default: '201312')
     }
@@ -37,8 +37,8 @@ public class ParamTest extends GroovyTestCase {
     println params.export()
   }
 
-  void testSetParamListValues() {
-    println "******** testSetParamListValues ********************"
+  void testSetParamFormValues() {
+    println "******** testSetParamFormValues ********************"
     def params = new SimpleReportBuilder().params {
       param(name: 'term_code', default: '201312')
     }
@@ -62,8 +62,8 @@ public class ParamTest extends GroovyTestCase {
     ]
   }
 
-  void testGetParamListValues() {
-    println "******** testGetParamListValues ********************"
+  void testGetParamFormValues() {
+    println "******** testGetParamFormValues ********************"
     def params = new SimpleReportBuilder().params {
       param(name: 'term_code', default: '201312')
       param(name: 'subject',   default: 'ART')

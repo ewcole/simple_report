@@ -21,7 +21,7 @@ public class SimpleReport implements Exportable{
   
   /** The active parameters for the report
    */
-  private ParamList params
+  private ParamForm params
 
   /** The columns that this report will produce */
   private ColumnList columns
@@ -61,7 +61,7 @@ public class SimpleReport implements Exportable{
    */
   public void addParam(Param p) {
     if (!params) {
-      this.params = new ParamList()
+      this.params = new ParamForm()
     }
     params[p.name] = p
   }

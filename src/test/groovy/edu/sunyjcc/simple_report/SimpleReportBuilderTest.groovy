@@ -41,8 +41,8 @@ public class SimpleReportBuilderTest extends GroovyTestCase {
   }
 
   /** Try inserting an (unnecessary) params call and see if this works. */
-  void testReportWithParamList() {
-    println "******** testReportWithParamList ********************"
+  void testReportWithParamForm() {
+    println "******** testReportWithParamForm ********************"
     def a = new SimpleReportBuilder()
     def r = a.report(name: "ghostHunt", title: "Ghost Hunt") {
       params {
@@ -69,8 +69,8 @@ public class SimpleReportBuilderTest extends GroovyTestCase {
                 ]
   }
 
-  void testCreateParamList() {
-    println "******** testCreateParamList ********************"
+  void testCreateParamForm() {
+    println "******** testCreateParamForm ********************"
     def a = new SimpleReportBuilder()
     def p = a.params {
       param(name: 'scoobydoo', default: 'scared')
@@ -78,7 +78,7 @@ public class SimpleReportBuilderTest extends GroovyTestCase {
     }
     assert p
     // Show that we built the right thing.
-    assert p.getClass() == ParamList
+    assert p.getClass() == ParamForm
     def pe = p.export()
     println pe
     assert pe == [scoobydoo: [name:        "scoobydoo", 

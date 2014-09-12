@@ -28,7 +28,7 @@ public class QueryEngine implements Exportable {
     (ColumnList)[]
   }
 
-  ResultSet execute(ParamList params) {
+  ResultSet execute(ParamForm params) {
     // This returns an empty result set.
     return new ResultSet(columns: new ColumnList(), rows: [])
   }

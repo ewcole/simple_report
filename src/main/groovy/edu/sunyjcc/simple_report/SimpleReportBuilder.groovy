@@ -30,7 +30,7 @@ public class SimpleReportBuilder extends BuilderSupport {
     params: [
       create: {
         String name, Map attributes, def value ->
-          new ParamList()
+          new ParamForm()
       }],
     param: [
       create: {
@@ -92,7 +92,7 @@ public class SimpleReportBuilder extends BuilderSupport {
         parent, child ->
           parent.addParam(child)
       },
-      (ParamList): {
+      (ParamForm): {
         parent, child ->
           assert !parent.params
           parent.params = child
@@ -106,7 +106,7 @@ public class SimpleReportBuilder extends BuilderSupport {
           parent.queryEngine = child
       }
     ],
-    (ParamList):[
+    (ParamForm):[
       (Param): {
         parent, child ->
           parent[child.name] = child

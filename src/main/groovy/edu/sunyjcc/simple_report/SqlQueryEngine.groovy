@@ -100,7 +100,7 @@ public class SqlQueryEngine extends QueryEngine {
   /** Execute the query with the given parameter list.
    *  @param params The parameters we will use in this query.
    */
-  ResultSet execute(ParamList params) {
+  ResultSet execute(ParamForm params) {
     assert this.sql instanceof groovy.sql.Sql
     assert this.parsedQuery.size() > 0
     def rows = []
