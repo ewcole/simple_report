@@ -6,6 +6,11 @@ public class Param implements Exportable {
   /** The parameter name */
   String name;
 
+  /** If this is non-null, inherit unspecified properties from this paramter;
+   *  Also, call the super-param's validators before our own validation.
+   */
+  Param superParam;
+
   /** The type of the parameter */
   ParamType type;
   
@@ -17,22 +22,6 @@ public class Param implements Exportable {
 
   /** A default value for the parameter */
   Object defaultValue;
-
-  // /** The current currentValue for the parameter */
-  // Object currentValue
-
-  // /** Set the currentValue of the parameter, making sure it is of the right type. 
-  //  *  @param currentValue The new currentValue for the parameter
-  //  */
-  // def setValue(def currentValue) {
-  //   if (currentValue == null) {
-  //     this.currentValue = null
-  //     return null
-  //   } else {
-
-  //     this.currentValue = currentValue
-  //   }
-  // }
 
   /** Perform whatever initialization is needed for this parameter. */
   Param init(HashMap args) {
@@ -53,12 +42,14 @@ public class Param implements Exportable {
                ParamType type, 
                String description, 
                String label,
-               Object defaultValue = null) {
+               Object defaultValue = null,
+               Param superParam = null) {
     this.name = name;
     this.type = type;
     this.description = description;
     this.label = label;
     this.defaultValue = defaultValue
+    this.superParam = param;
   }
 
   def validate(def value) {

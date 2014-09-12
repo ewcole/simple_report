@@ -4,7 +4,7 @@ The first functional part of the system will be a scheme to collect parameters f
 
 ## Define parameters and parameter sets.
 
-This work is handled by [Param.groovy](.\src\main\groovy\edu\sunyjcc\simple_report\Param.groovy), which defines the individual parameters, [ParamList.groovy](.\src\main\groovy\edu\sunyjcc\simple_report\ParamList.groovy), which defines lists of parameters, and [ParamType.groovy](.\src\main\groovy\edu\sunyjcc\simple_report\ParamType.groovy), which defines parameter types.
+This work is handled by [Param.groovy](..\src\main\groovy\edu\sunyjcc\simple_report\Param.groovy), which defines the individual parameters, [ParamForm.groovy](..\src\main\groovy\edu\sunyjcc\simple_report\ParamForm.groovy), which defines lists of parameters, and [ParamType.groovy](..\src\main\groovy\edu\sunyjcc\simple_report\ParamType.groovy), which defines parameter types.
 
 ### Validation
 
