@@ -29,7 +29,7 @@
 * Parameters
 The first functional part of the system will be a scheme to collect parameters from the users and pass them on to the apps that request them.  The work will be divided into parameter definitions and parameter values.
 ** Define parameters and parameter sets.
-This work is handled by [[file:.\src\main\groovy\edu\sunyjcc\simple_report\Param.groovy][Param.groovy]], which defines the individual parameters, [[ file:.\src\main\groovy\edu\sunyjcc\simple_report\ParamList.groovy][ParamList.groovy]], which defines lists of parameters, and [[file:.\src\main\groovy\edu\sunyjcc\simple_report\ParamType.groovy][ParamType.groovy]], which defines parameter types.
+This work is handled by [[file:..\src\main\groovy\edu\sunyjcc\simple_report\Param.groovy][Param.groovy]], which defines the individual parameters, [[ file:..\src\main\groovy\edu\sunyjcc\simple_report\ParamList.groovy][ParamList.groovy]], which defines lists of parameters, and [[file:..\src\main\groovy\edu\sunyjcc\simple_report\ParamType.groovy][ParamType.groovy]], which defines parameter types.
 *** Validation
 The parameters will define methods for validating individual parameters and lists of parameters.
 *** Re-Use
