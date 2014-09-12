@@ -5,7 +5,7 @@ import java.util.*
 /** An ordered list of parameters that can be used with the SimpleReports 
  *  system.
  */
-public class ParamList extends HashMap<String, Param> implements Exportable {
+public class ParamForm extends HashMap<String, Param> implements Exportable {
   /** Return the parameter items as a list */
   def export() {
     this.keySet().inject([:]) {
@@ -16,7 +16,7 @@ public class ParamList extends HashMap<String, Param> implements Exportable {
   }
 
   /** Return a HashMap with the keys being the names of the parameters 
-   *  in the ParamList and the values their current value. 
+   *  in the ParamForm and the values their current value. 
    */
   HashMap getValues() {
     this.keySet().inject([:]) {
@@ -28,7 +28,7 @@ public class ParamList extends HashMap<String, Param> implements Exportable {
   }
 
   /** Perform whatever initialization is needed for the parameters. */
-  ParamList init(HashMap args) {
+  ParamForm init(HashMap args) {
     this.each {it.init(args)}
     return this
   }
@@ -36,7 +36,7 @@ public class ParamList extends HashMap<String, Param> implements Exportable {
   /** Look for matching parameters in the hash map
    *  and set the matching parameter values if possible. 
    */
-  ParamList setValues(HashMap p) {
+  ParamForm setValues(HashMap p) {
     // Create a new param map with lower-case keys 
     this.each {
       paramName, param ->
