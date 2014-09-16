@@ -49,7 +49,7 @@ public class Param implements Exportable {
     this.description = description;
     this.label = label;
     this.defaultValue = defaultValue
-    this.superParam = param;
+    this.superParam = superParam;
   }
 
   def validate(def value) {
