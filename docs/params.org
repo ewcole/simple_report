@@ -25,6 +25,7 @@
 #+INFOJS_OPT:
 #+LATEX_HEADER:
 #+HTML_HEAD: <link rel="stylesheet" type="text/css" href="docs.css" />
+#+STARTUP: showeverything
 
 * Parameters
 The first functional part of the system will be a scheme to collect parameters from the users and pass them on to the apps that request them.  The work will be divided into parameter definitions and parameter values.
