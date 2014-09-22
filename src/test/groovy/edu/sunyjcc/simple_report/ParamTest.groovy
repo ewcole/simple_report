@@ -5,7 +5,7 @@ package edu.sunyjcc.simple_report
 public class ParamTest extends GroovyTestCase {
 
   void testParamCreate() {
-    println "******** testParamValue ********************"
+    println "******** testParamCreate ********************"
     def a = new SimpleReportBuilder()
     def p = a.param(name: 'scoobydoo', default: 'scared')
     def pe = p.export()
