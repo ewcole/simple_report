@@ -12,28 +12,32 @@ public class FileSourceFactory {
    *  @param objName The name of the object.
    */
   private String getSource(String objType, String objName) {
-    new File(sourceRoot, objType).text
+    def f = new File(sourceRoot, objType)
+    assert f.exists()
+    def s = new File(f, "${objName}")
+    s.text
   }
 
   /** Get the source for a parameter object */
   @Override
   String getParamSource(String name) {
-    def pf = getSource("param", name)
+    def pf = getSource("param", "${name}.groovy")
   }
 
   /** Get the source for a parameter form object */
   @Override public String getParamFormSource(String name) {
+    def pf = getSource("param_form", "${name}.groovy")
   }
 
   /** Get a .jrxml file, defining a Jasper Report. */
   @Override public String getJrxmlSource(String name) {
-
+    def pf = getSource("jrxml", "${name}.jrxml")
   }
 
   /** Public constructor that builds on a 
    *  
    */
   public FileSourceFactory(File sourceRoot) {
-    
+    this.sourceRoot = sourceRoot
   }
 }

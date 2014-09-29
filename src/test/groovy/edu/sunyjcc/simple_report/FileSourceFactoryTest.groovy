@@ -11,6 +11,7 @@ public class FileSourceFactoryTest extends GroovyTestCase {
   void testFileSourceFactoryCreate() {
     println "******** testFileSourceFactoryCreate ********************";
     File f = getSourceDir();
+    assert f
     assert f.exists()
     FileSourceFactory fsf = new FileSourceFactory(f);
     assert fsf
