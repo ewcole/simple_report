@@ -45,3 +45,7 @@ Some clients (such as web browsers) have the ability to validate data before ret
 *** Deliver validated parameters to an application
 This would be a second adapter, based on the type of application called.
 * Modules
+** Source factories
+These classes are responsible for getting the source code for parameters, which can be compiled by the report object factories.
+** Report object factories
+These classes cache report objects and return a unique instance of each type of object for each name (creating them, if they don't already exist).
