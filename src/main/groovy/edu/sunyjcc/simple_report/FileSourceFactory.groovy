@@ -34,8 +34,8 @@ public class FileSourceFactory {
     def pf = getSource("jrxml", "${name}.jrxml")
   }
 
-  /** Public constructor that builds on a 
-   *  
+  /** Public constructor that takes a root directory.
+   *  @param sourceRoot The root directory of the source repository.
    */
   public FileSourceFactory(File sourceRoot) {
     this.sourceRoot = sourceRoot
