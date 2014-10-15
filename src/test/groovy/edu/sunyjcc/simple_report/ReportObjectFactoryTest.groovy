@@ -29,8 +29,10 @@ public class ReportObjectFactoryTest extends GroovyTestCase {
     rof;
   }
 
-  def runTest(String type, String name) {
-    println "Running test: type:'$type', name: '$name'"
+  void testCacheCreation() {
+    String type = 'param';
+    String name = 'scoobydoo';
+    println "Running test: type:'$type', name: '$name'";
     def fsf = getFileSourceFactory()
     assert fsf
     def rof = getReportObjectFactory()
@@ -47,7 +49,28 @@ public class ReportObjectFactoryTest extends GroovyTestCase {
     def getSrc = c.getSrc
     println "getSrc is a ${getSrc.getClass()}"
     assert getSrc
-    println "getSrc=${getSrc}"
+    println "getSrc=${getSrc.toString()}"
+    assert getSrc
+    String rofSrc = getSrc(name)
+    println "rofSrc = $rofSrc"
+    assert src == rofSrc
+  }
+
+  def runTest(String type, String name) {
+    println "Running test: type:'$type', name: '$name'"
+    def fsf = getFileSourceFactory()
+    assert fsf
+    def rof = getReportObjectFactory()
+    assert rof
+    def src = fsf.getSource(type, name)
+    println "fsfSrc = $src"
+    assert src.size()
+    def cache = rof.cache;
+    assert cache
+    def c = cache[type]
+    assert c && c.getSrc
+    def getSrc = c.getSrc
+    assert getSrc
     assert getSrc
     String rofSrc = getSrc(name)
     println "rofSrc = $rofSrc"

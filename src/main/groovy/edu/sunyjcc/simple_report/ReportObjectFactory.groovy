@@ -19,7 +19,7 @@ public class ReportObjectFactory {
         map[objType] = [
           // Get the object
           getSrc: {
-            name ->
+            String name ->
               def src = sf.getSource(objType, name);
           }
         ]
