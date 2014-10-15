@@ -29,6 +29,10 @@ public class ReportObjectFactoryTest extends GroovyTestCase {
     rof;
   }
 
+  void printBanner(String s) {
+    "******** $s ********************"
+  }
+
   void testCacheCreation() {
     String type = 'param';
     String name = 'scoobydoo';
@@ -78,26 +82,21 @@ public class ReportObjectFactoryTest extends GroovyTestCase {
   }
 
   void testGetParamSource() {
+    printBanner("testGetParamSource");
     runTest('param', 'scoobydoo')
   }
 
-  // void testGetParamFormSource() {
-  //   def fsf = getFileSourceFactory()
-  //   def rof = getReportObjectFactory()
-    
-  //   String pfName = "SubjectAndTerm"
-  //   def paramFormFile = new File(getSourceDir(), "param_form/${pfName}.groovy")
-  //   assert paramFormFile.exists()
-  //   def pfText = fsf.getParamFormSource(pfName)
-  //   assert pfText == paramFormFile.text
-  // }
+  void testGetParamFormSource() {
+    printBanner("testGetParamFormSource")
+    runTest('param_form', "SubjectAndTerm");
+  }
 
-  // void testGetJrxmlSource() {
-  //   def fsf = getFileSourceFactory()
-  //   def jrxmlDir = getSourceSubDir('jrxml')
-  //   assert jrxmlDir.exists()
-  //   def jrxmlSource = new File(jrxmlDir, "apps.jrxml")
-  //   def factorySource = fsf.getJrxmlSource("apps");
-  //   assert jrxmlSource.text == factorySource
-  // }
+  void testGetParamFormSource2() {
+    printBanner("testGetParamFormSource2")
+    runTest('paramForm', "SubjectAndTerm");
+  }
+  void testGetJrxmlSource() {
+    printBanner("testGetJrxmlSource")
+    runTest('jrxml', "apps")
+  }
 }
