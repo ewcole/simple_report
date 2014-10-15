@@ -6,10 +6,18 @@ package edu.sunyjcc.simple_report
  *  elsewhere.
  */
 public interface SourceFactory {
+
   /** Get the source for a parameter object */
   String getParamSource(String name);
+
   /** Get the source for a parameter form object */
   String getParamFormSource(String name);
+
   /** Get a .jrxml file, defining a Jasper Report. */
   String getJrxmlSource(String name);
+
+  /** Get the source for an object of the desired type 
+   *  @param type   The kind of object; one of 'param', 'paramForm', 'jrxml'.
+   */
+  String getSource(String type, String name);
 }

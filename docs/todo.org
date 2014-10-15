@@ -34,4 +34,8 @@ Make sure it will run with a Grails front end or plugin.  That might involve mak
 The resource loader will plug into the SimpleReportBuilder and load objects by name as they are requested.
 * Version 1.0
 Version 1.0 must have the basic functionality fully functional.
-** 
+** Parameters
+*** TODO Source Factory
+Created a BaseSourceFactory class to simplify implementation of different kinds of SourceFactory.
+*** TODO Report Object Factory
+ 

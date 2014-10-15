@@ -32,6 +32,19 @@ public class FileSourceFactoryTest extends GroovyTestCase {
     assert fsf.sourceRoot.exists()
   }
 
+  /** See if we can cast the file source factory to its base classes */
+  void testFileSourceFactoryCast() {
+    println "******** testFileSourceFactoryCast ********************";
+    def fsf = getFileSourceFactory()
+    println "fsf.getClass() == ${fsf.getClass()}"
+    BaseSourceFactory bsf = (BaseSourceFactory) fsf
+    println "bsf==${bsf}"
+    SourceFactory sf1 = (SourceFactory)bsf;
+    println "Converted BaseSourceFactory to SourceFactory (sf1=$sf1)"
+    SourceFactory sf = fsf;
+    println "Converted FileSourceFactory to SourceFactory (sf=$sf)"
+  }
+
   /** Test FileSourceFactory.getParam() */
   void testGetParamSource() {
     def f = getSourceDir();
