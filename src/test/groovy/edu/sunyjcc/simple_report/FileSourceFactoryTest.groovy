@@ -37,10 +37,8 @@ public class FileSourceFactoryTest extends GroovyTestCase {
     println "******** testFileSourceFactoryCast ********************";
     def fsf = getFileSourceFactory()
     println "fsf.getClass() == ${fsf.getClass()}"
-    BaseSourceFactory bsf = (BaseSourceFactory) fsf
-    println "bsf==${bsf}"
-    SourceFactory sf1 = (SourceFactory)bsf;
-    println "Converted BaseSourceFactory to SourceFactory (sf1=$sf1)"
+    SourceFactory sf1 = (SourceFactory)fsf;
+    println "Converted FileSourceFactory to SourceFactory (sf1=$sf1)"
     SourceFactory sf = fsf;
     println "Converted FileSourceFactory to SourceFactory (sf=$sf)"
   }

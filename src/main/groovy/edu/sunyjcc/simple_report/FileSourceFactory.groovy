@@ -3,7 +3,7 @@ package edu.sunyjcc.simple_report
 /** Objects that implement this interface will have methods that return the 
  *  source code for various objects defined in the simple_reports library.
  */
-public class FileSourceFactory extends BaseSourceFactory {
+public class FileSourceFactory extends SourceFactory {
 
   File sourceRoot;
 
