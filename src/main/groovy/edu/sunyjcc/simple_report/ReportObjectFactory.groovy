@@ -11,9 +11,20 @@ public class ReportObjectFactory {
    */
   def cache;
 
+  /** 
+   *  Filter out non-standard type names
+   *  @param typeName Un-normalized type name
+   */
+  static String normalizeTypeName(String typeName) {
+    return SourceFactory.normalizeTypeName(typeName);
+  }
+
+  /* Return a cache object that gets its source from the sf SourceFactory
+   * @param It will get the source for new objects from this factory.
+   */
   static def createCache(SourceFactory sf) { 
     assert sf
-    def objTypes = "param paramForm jrxml".split(/ +/);
+    def objTypes = "param param_form jrxml".split(/ +/);
     objTypes.inject([:]) {
       map, objType ->
         map[objType] = [
@@ -27,6 +38,14 @@ public class ReportObjectFactory {
     }
   }
 
+  /** Get the appropriate type cache for the input object. */
+  def getTypeCache(String rawTypeName) {
+    assert cache
+    cache[normalizeTypeName(rawTypeName)];
+  }
+
+  /** Set the source factory and create a new object cache.
+   */
   public setSourceFactory(SourceFactory sourceFactory) {
     println "in setSourceFactory($sourceFactory)"
     this.sourceFactory = sourceFactory

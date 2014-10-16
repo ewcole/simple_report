@@ -30,10 +30,15 @@ public class ReportObjectFactoryTest extends GroovyTestCase {
   }
 
   void printBanner(String s) {
-    "******** $s ********************"
+    println ""
+    println ""
+    println ("*" * 79)
+    println "******** $s ********************"
+    println ("*" * 79)
   }
 
   void testCacheCreation() {
+    printBanner("testCacheCreation");
     String type = 'param';
     String name = 'scoobydoo';
     println "Running test: type:'$type', name: '$name'";
@@ -61,24 +66,33 @@ public class ReportObjectFactoryTest extends GroovyTestCase {
   }
 
   def runTest(String type, String name) {
+    println ("*" * 79)
     println "Running test: type:'$type', name: '$name'"
+    println ("*" * 79)
     def fsf = getFileSourceFactory()
     assert fsf
     def rof = getReportObjectFactory()
     assert rof
     def src = fsf.getSource(type, name)
-    println "fsfSrc = $src"
+    assert src.size()
+    //println "fsfSrc = $src"
     assert src.size()
     def cache = rof.cache;
     assert cache
-    def c = cache[type]
+    def c = rof.getTypeCache(type)
+    if (!c) {
+      println "Cache not found for $type!"
+    } else {
+      println "cache[$type] = $c"
+    }
     assert c && c.getSrc
     def getSrc = c.getSrc
     assert getSrc
     assert getSrc
     String rofSrc = getSrc(name)
-    println "rofSrc = $rofSrc"
+    //println "rofSrc = $rofSrc"
     assert src == rofSrc
+    println ("*" * 79)
   }
 
   void testGetParamSource() {
@@ -95,6 +109,7 @@ public class ReportObjectFactoryTest extends GroovyTestCase {
     printBanner("testGetParamFormSource2")
     runTest('paramForm', "SubjectAndTerm");
   }
+
   void testGetJrxmlSource() {
     printBanner("testGetJrxmlSource")
     runTest('jrxml', "apps")
