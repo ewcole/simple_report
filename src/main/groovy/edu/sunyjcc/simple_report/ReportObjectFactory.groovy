@@ -1,6 +1,9 @@
 package edu.sunyjcc.simple_report
 
-/** 
+/** This class creates and caches the objects representing parameters, 
+ *  parameter forms, Jasper reports, and other things we will use the 
+ *  system for.  It will be one of the primary classes for users of the
+ *  library.
  */
 public class ReportObjectFactory {
   /** The place we will get the source code for the objects we create */
@@ -26,22 +29,27 @@ public class ReportObjectFactory {
    * @param sf It will get the source for new objects from this factory.
    * @param 
    */
-  static LinkedHashMap createCache(SourceFactory sf) { 
+  LinkedHashMap createCache(SourceFactory sf) { 
     assert sf
     def objTypes = "param param_form jrxml".split(/ +/);
     objTypes.inject([:]) {
       map, objType ->
+        Closure getSrc = {
+          String name ->
+            def src = sf.getSource(objType, name);
+        }
+        Closure getObject = {
+          name ->
+            builder.eval(getSrc(name))
+        }
+        if (objType == 'jrxml') {
+          getObject = { name -> getSrc(name)}
+        }
         map[objType] = [
           // Get the object's source code.
-          getSrc: {
-            String name ->
-              def src = sf.getSource(objType, name);
-          },
-          getObject: {
-            String name ->
-              def src = sf.getSource(objType, name);
-              builder.eval(src)
-          }
+          getSrc:    getSrc.memoize(),
+          // Get the compiled object 
+          getObject: getObject.memoize()
         ]
         return map;
     }
@@ -51,6 +59,14 @@ public class ReportObjectFactory {
   def getTypeCache(String rawTypeName) {
     assert cache
     cache[normalizeTypeName(rawTypeName)];
+  }
+
+  /** Create a requested object if not already in the cache. */
+  def createReportObject(String rawTypeName, String objName) {
+    assert cache
+    // Note: you can't say .getObject() because that closure 
+    //       is memoized.  
+    getTypeCache(rawTypeName).getObject.call(objName);
   }
 
   /** Set the source factory and create a new object cache.
@@ -74,20 +90,20 @@ public class ReportObjectFactory {
   }
 
   /** Public constructor with generic object argument */
-  public ReportObjectFactory(Object o) {
-    println "Object o = $o"
-    if (o instanceof Map) {
-      println "o instanceof Map"
-      if (o.sourceFactory) {
-        this.setSourceFactory((SourceFactory)o.sourceFactory);
-      }
-    } else if (o instanceof SourceFactory) {
-      println "o instanceof SourceFactory"
-      this.setSourceFactory((SourceFactory)o.sourceFactory);
-    } else {
-      setSourcefactory((SourceFactory)o);
-    }
-    assert this.cache
-  }
+  // public ReportObjectFactory(Object o) {
+  //   println "Object o = $o"
+  //   if (o instanceof Map) {
+  //     println "o instanceof Map"
+  //     if (o.sourceFactory) {
+  //       this.setSourceFactory((SourceFactory)o.sourceFactory);
+  //     }
+  //   } else if (o instanceof SourceFactory) {
+  //     println "o instanceof SourceFactory"
+  //     this.setSourceFactory((SourceFactory)o.sourceFactory);
+  //   } else {
+  //     setSourcefactory((SourceFactory)o);
+  //   }
+  //   assert this.cache
+  // }
   
 }

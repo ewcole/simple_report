@@ -95,6 +95,12 @@ public class ReportObjectFactoryTest extends GroovyTestCase {
     println ("*" * 79)
   }
 
+  def createFromCache(String objType, String objName) {
+    println "** Creating $objType/$objName"
+    def rof = getReportObjectFactory()
+    rof.getTypeCache(objType).getObject.call(objName)
+  }
+
   void testGetParamSource() {
     printBanner("testGetParamSource");
     runSrcTest('param', 'scoobydoo')
@@ -114,4 +120,45 @@ public class ReportObjectFactoryTest extends GroovyTestCase {
     printBanner("testGetJrxmlSource")
     runSrcTest('jrxml', "apps")
   }
+
+  /** See if the create function works for parameters. */
+  void testCacheCreateParam () {
+    printBanner("testCacheCreateParam")
+    def obj = createFromCache("param", "scoobydoo")
+    println "obj=${obj.export()}"
+    assert obj.export() == [name:        "scoobydoo", 
+                            type:        "STRING", 
+                            description: "scoobydoo", 
+                            label:       "scoobydoo", 
+                            default:     "scared"]
+  }
+  
+  /** See if the create function works for parameter forms. */
+  void testCacheCreateParamForm () {
+    printBanner("testCacheCreateParamForm")
+    def obj = createFromCache("paramForm", "SubjectAndTerm")
+    println "obj=${obj.export()}"
+    
+    assert obj.export() == [subject: [name:        "subject", 
+                                      type:        "STRING", 
+                                      description: "subject", 
+                                      label:       "subject", 
+                                      default:     "ART"], 
+                            term_code:[name:        "term_code", 
+                                       type:        "STRING", 
+                                       description: "term_code", 
+                                       label:       "term_code", 
+                                       default:     "201312"]]
+  
+  }
+  
+  /** See if the create function works for parameter forms. */
+  void testCacheCreateJasperReport () {
+    printBanner("testCacheCreateJasperReport")
+    def obj = createFromCache("jrxml", "apps")
+    println "obj=${obj}"
+    def fsfSrc = getFileSourceFactory().getSource("jrxml", "apps")
+    assert obj == fsfSrc
+  }
+  
 }
