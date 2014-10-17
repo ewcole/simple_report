@@ -4,7 +4,10 @@ package edu.sunyjcc.simple_report
  */
 public class ReportObjectFactory {
   /** The place we will get the source code for the objects we create */
-  SourceFactory sourceFactory
+  SourceFactory sourceFactory;
+
+  /** This turns the source code into report objects*/
+  SimpleReportBuilder builder = new SimpleReportBuilder();
 
   /** This will hold all of the report objects and provide functions to 
    *  get new ones.
@@ -20,18 +23,24 @@ public class ReportObjectFactory {
   }
 
   /* Return a cache object that gets its source from the sf SourceFactory
-   * @param It will get the source for new objects from this factory.
+   * @param sf It will get the source for new objects from this factory.
+   * @param 
    */
-  static def createCache(SourceFactory sf) { 
+  static LinkedHashMap createCache(SourceFactory sf) { 
     assert sf
     def objTypes = "param param_form jrxml".split(/ +/);
     objTypes.inject([:]) {
       map, objType ->
         map[objType] = [
-          // Get the object
+          // Get the object's source code.
           getSrc: {
             String name ->
               def src = sf.getSource(objType, name);
+          },
+          getObject: {
+            String name ->
+              def src = sf.getSource(objType, name);
+              builder.eval(src)
           }
         ]
         return map;

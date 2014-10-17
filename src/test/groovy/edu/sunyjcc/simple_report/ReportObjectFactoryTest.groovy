@@ -65,7 +65,7 @@ public class ReportObjectFactoryTest extends GroovyTestCase {
     assert src == rofSrc
   }
 
-  def runTest(String type, String name) {
+  def runSrcTest(String type, String name) {
     println ("*" * 79)
     println "Running test: type:'$type', name: '$name'"
     println ("*" * 79)
@@ -97,21 +97,21 @@ public class ReportObjectFactoryTest extends GroovyTestCase {
 
   void testGetParamSource() {
     printBanner("testGetParamSource");
-    runTest('param', 'scoobydoo')
+    runSrcTest('param', 'scoobydoo')
   }
 
   void testGetParamFormSource() {
     printBanner("testGetParamFormSource")
-    runTest('param_form', "SubjectAndTerm");
+    runSrcTest('param_form', "SubjectAndTerm");
   }
 
   void testGetParamFormSource2() {
     printBanner("testGetParamFormSource2")
-    runTest('paramForm', "SubjectAndTerm");
+    runSrcTest('paramForm', "SubjectAndTerm");
   }
 
   void testGetJrxmlSource() {
     printBanner("testGetJrxmlSource")
-    runTest('jrxml', "apps")
+    runSrcTest('jrxml', "apps")
   }
 }
