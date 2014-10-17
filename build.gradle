@@ -83,6 +83,9 @@ groovydoc {
   link("file://$jccGroovydocHome", "edu.sunyjcc.")
 }
 
+task doc
+doc.dependsOn groovydoc, javadoc
+
 // Make it so that it will automatically generate the documentation and jar 
 // file when you execute the build target.
 
@@ -92,7 +95,7 @@ task wrapper(type: Wrapper) {
 
 task compile
 compile.dependsOn compileGroovy, compileJava
-build.dependsOn jar, test, wrapper
+build.dependsOn jar, test, wrapper, doc
 
 /**********************************************************************/
 /* Deploy to Maven server                                             */
