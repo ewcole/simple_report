@@ -1,4 +1,4 @@
-#+TITLE: TODO List
+#+TITLE: Simple Report Roadmap
 #+AUTHOR: Ed Cole
 #+EMAIL: coleew01@JITECPC21
 #+OPTIONS: ':nil *:t -:t ::t <:t H:3 \n:nil ^:{} arch:headline
@@ -33,9 +33,21 @@ Make sure it will run with a Grails front end or plugin.  That might involve mak
 ** TODO Resource Loader
 The resource loader will plug into the SimpleReportBuilder and load objects by name as they are requested.
 * Version 1.0
-Version 1.0 must have the basic functionality fully functional.
+  Version 1.0 must have the basic parameter functionality fully functional.  We will initially target command line scripts and Grails.
 ** Parameters
 *** TODO Source Factory
-Created a BaseSourceFactory class to simplify implementation of different kinds of SourceFactory.
+Created a SourceFactory class to simplify implementation of different kinds of SourceFactory.
+**** DONE FileSourceFactory
+**** TODO SourcePathSourceFactory
+This should accept a string representing a path representing different source sources and convert them into a chain of SourceFactories.  The first factory in the list that can provide an object of the requested type is the winner.  
+
+This will be the default type of SourceFactory.
 *** TODO Report Object Factory
- 
+**** DONE Get the source code from a factory
+**** TODO Convert the source code into report objects.
+**** TODO Cache report object definitions
+Creating the objects will be an expensive process, so let's save the results of our queries.
+**** TODO Create report object values
+These are not cached.
+*** TODO ClientInteraction
+We need a class that handles interaction with client environments.  Duties include displaying a parameter form, validating data.  In the future, it might also take on the responsibility of executing queries and displaying the results.
