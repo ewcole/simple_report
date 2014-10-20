@@ -133,6 +133,29 @@ public class ReportObjectFactoryTest extends GroovyTestCase {
                             default:     "scared"]
   }
   
+  void testGetReportObject_param() {
+    printBanner("testGetReportObject_param")
+    def obj = getReportObjectFactory().getReportObject("param", "scoobydoo");
+    println "obj=${obj?.export()}"
+    assert obj.export() == [name:        "scoobydoo", 
+                            type:        "STRING", 
+                            description: "scoobydoo", 
+                            label:       "scoobydoo", 
+                            default:     "scared"]
+  }
+ 
+  void testGetParam() {
+    printBanner("testGetParam")
+    def obj = getReportObjectFactory().getParam("scoobydoo");
+    println "obj=${obj?.export()}"
+    assert obj.export() == [name:        "scoobydoo", 
+                            type:        "STRING", 
+                            description: "scoobydoo", 
+                            label:       "scoobydoo", 
+                            default:     "scared"]
+
+  }
+
   /** See if the create function works for parameter forms. */
   void testCacheCreateParamForm () {
     printBanner("testCacheCreateParamForm")
@@ -151,7 +174,41 @@ public class ReportObjectFactoryTest extends GroovyTestCase {
                                        default:     "201312"]]
   
   }
-  
+
+  void testGetReportObject_paramForm() {
+    printBanner("testGetReportObject_paramForm")
+    def factory = getReportObjectFactory()
+    def obj = factory.getReportObject("paramForm", 
+                                      "SubjectAndTerm");
+    println "obj=${obj?.export()}"
+    assert obj.export() == [subject: [name:        "subject", 
+                                      type:        "STRING", 
+                                      description: "subject", 
+                                      label:       "subject", 
+                                      default:     "ART"], 
+                            term_code:[name:        "term_code", 
+                                       type:        "STRING", 
+                                       description: "term_code", 
+                                       label:       "term_code", 
+                                       default:     "201312"]]
+  }  
+
+  void testGetParamForm() {
+    printBanner("testGetParamForm")
+    def obj = getReportObjectFactory().getParamForm("SubjectAndTerm");
+    println "obj=${obj?.export()}"
+    assert obj.export() == [subject: [name:        "subject", 
+                                      type:        "STRING", 
+                                      description: "subject", 
+                                      label:       "subject", 
+                                      default:     "ART"], 
+                            term_code:[name:        "term_code", 
+                                       type:        "STRING", 
+                                       description: "term_code", 
+                                       label:       "term_code", 
+                                       default:     "201312"]]
+  }
+
   /** See if the create function works for parameter forms. */
   void testCacheCreateJasperReport () {
     printBanner("testCacheCreateJasperReport")
@@ -160,5 +217,8 @@ public class ReportObjectFactoryTest extends GroovyTestCase {
     def fsfSrc = getFileSourceFactory().getSource("jrxml", "apps")
     assert obj == fsfSrc
   }
-  
+
+  void testGetJrxml() {
+    printBanner("testGetJrxml")
+  } 
 }

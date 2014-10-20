@@ -61,14 +61,6 @@ public class ReportObjectFactory {
     cache[normalizeTypeName(rawTypeName)];
   }
 
-  /** Create a requested object if not already in the cache. */
-  def createReportObject(String rawTypeName, String objName) {
-    assert cache
-    // Note: you can't say .getObject() because that closure 
-    //       is memoized.  
-    getTypeCache(rawTypeName).getObject.call(objName);
-  }
-
   /** Set the source factory and create a new object cache.
    */
   public setSourceFactory(SourceFactory sourceFactory) {
@@ -79,11 +71,39 @@ public class ReportObjectFactory {
     assert this.cache
   }
 
-  public Param     getParam(String name) {}
-  public ParamForm getParamForm(String name) {}
-  public Object    getJrxml(String name) {}
+  /** Create a requested object if not already in the cache. */
+  def getReportObject(String rawTypeName, String objName) {
+    assert cache
+    // Note: you can't say .getObject() because that closure 
+    //       is memoized.  
+    getTypeCache(rawTypeName).getObject.call(objName);
+  }
 
-  /** Public constructor with one SourceFactory argument */
+
+  /** Get a parameter object 
+   *  @param name The name of the parameter, without extension
+   */
+  public Param getParam(String name) {
+    return getReportObject('param', name)
+  }
+
+  /** Get a parameter form object 
+   *  @param name The name of the parameter form, without extension
+   */
+  public ParamForm getParamForm(String name) {
+    return getReportObject('param_form', name)
+  }
+  
+  /** Get a Jasper Report object 
+   *  @param name The name of the Jasper Report, without extension
+   */
+  public String getJrxml(String name) {
+    return getReportObject('param_form', name)
+  }
+
+  /** Public constructor with one SourceFactory argument 
+   *  @param sourceFactory Get our source code from this SourceFactory.
+   */
   public ReportObjectFactory(SourceFactory sourceFactory) {
     this.setSourceFactory(sourceFactory)
     assert this.cache
