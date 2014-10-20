@@ -27,7 +27,7 @@
 
 This project is a report builder that can be used from Java or Groovy Applications.
 
-See the [[file:todo.org][roadmap]] for the implementation strategy.
+See the [[file:docs\todo.org][roadmap]] for the implementation strategy.
 
 * Branches
 ** Production

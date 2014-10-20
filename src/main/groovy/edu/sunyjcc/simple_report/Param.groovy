@@ -56,4 +56,12 @@ public class Param implements Exportable {
     return type.convert(value);
   }
 
+  ParamValue getParamValue() {
+    return new ParamValue(this)
+  }
+
+  ParamValue getParamValue(def value) {
+    return new ParamValue(this, type.convert(value))
+  }
+
 }

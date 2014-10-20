@@ -49,8 +49,12 @@ This will be the default type of SourceFactory.
 **** DONE Cache report object definitions
 Creating the objects will be an expensive process, so let's save the results of our queries.
 **** TODO Create parameter list from JRXML
+Pull out all /jasperReport/parameter elements from the jrxml and create parameters of the appropriate type for them.  Look for an existing parameter of the same name and use that if it is compatible.
 *** TODO Create report object values
 These are not cached.  This will be done in the individual object types.
-
+**** TODO ParamValue
+**** TODO ParamFormValue
 *** TODO ClientInteraction
 We need a class that handles interaction with client environments.  Duties include displaying a parameter form, validating data.  In the future, it might also take on the responsibility of executing queries and displaying the results.
+**** TODO CliBuilderClientInteraction
+**** TODO GrailsClientInteraction
