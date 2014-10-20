@@ -21,6 +21,11 @@
     (search-forward "\\src\\main\\" nil t)
     (search-backward "\n")
     (insert "\n* Source"))
+  ;; find the first \src\samples\ line and create Samples header
+  (progn 
+    (search-forward "\\src\\samples\\" nil t)
+    (search-backward "\n")
+    (insert "\n* Samples"))
   ;; find the first \src\test\ line and create Test header
   (progn 
     (search-forward "\\src\\test\\" nil t)
