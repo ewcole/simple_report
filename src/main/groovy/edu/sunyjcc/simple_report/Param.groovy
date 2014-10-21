@@ -56,10 +56,14 @@ public class Param implements Exportable, Buildable {
     return type.convert(value);
   }
 
+  /** Get a ParamValue of this parameter type */
   ParamValue getParamValue() {
     return new ParamValue(this)
   }
 
+  /** Get a ParamValue of this parameter type 
+   *  @value The value for the ParamValue.
+   */
   ParamValue getParamValue(def value) {
     return new ParamValue(this, type.convert(value))
   }
