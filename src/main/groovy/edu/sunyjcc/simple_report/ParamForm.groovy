@@ -5,7 +5,8 @@ import java.util.*
 /** An ordered list of parameters that can be used with the SimpleReports 
  *  system.
  */
-public class ParamForm extends HashMap<String, Param> implements Exportable {
+public class ParamForm extends HashMap<String, Param> 
+                       implements Buildable, Exportable {
   /** Return the parameter items as a list */
   def export() {
     this.keySet().inject([:]) {

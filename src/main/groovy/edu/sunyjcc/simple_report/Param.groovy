@@ -2,7 +2,7 @@ package edu.sunyjcc.simple_report;
 
 /** A parameter definition to be used in a report or application invocation.
  */
-public class Param implements Exportable {
+public class Param implements Exportable, Buildable {
   /** The parameter name */
   String name;
 
