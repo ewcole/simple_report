@@ -12,9 +12,10 @@
 <ul>
 <li><a href="#sec-2-1">2.1. Parameters</a>
 <ul>
-<li><a href="#sec-2-1-1">2.1.1. <span class="todo TODO">TODO</span> Source Factory</a></li>
+<li><a href="#sec-2-1-1">2.1.1. <span class="todo DONE">DONE</span> Source Factory</a></li>
 <li><a href="#sec-2-1-2">2.1.2. <span class="todo TODO">TODO</span> Report Object Factory</a></li>
-<li><a href="#sec-2-1-3">2.1.3. <span class="todo TODO">TODO</span> ClientInteraction</a></li>
+<li><a href="#sec-2-1-3">2.1.3. <span class="todo TODO">TODO</span> Create report object values</a></li>
+<li><a href="#sec-2-1-4">2.1.4. <span class="todo TODO">TODO</span> ClientInteraction</a></li>
 </ul>
 </li>
 </ul>
@@ -37,11 +38,12 @@ The resource loader will plug into the SimpleReportBuilder and load objects by n
 
 # Version 1.0
 
-Version 1.0 must have the basic parameter functionality fully functional.  We will initially target command line scripts and Grails.
+  Version 1.0 must have the basic parameter functionality fully functional.  We will initially target command line scripts and Grails.
+We will not attempt to allow validation, inheritance, or chains of source factories yet.
 
 ## Parameters
 
-### TODO Source Factory
+### DONE Source Factory
 
 Created a SourceFactory class to simplify implementation of different kinds of SourceFactory.
 
@@ -57,16 +59,28 @@ Created a SourceFactory class to simplify implementation of different kinds of S
 
 1.  DONE Get the source code from a factory
 
-2.  TODO Convert the source code into report objects.
+2.  DONE Convert the source code into report objects.
 
-3.  TODO Cache report object definitions
+3.  DONE Cache report object definitions
 
     Creating the objects will be an expensive process, so let's save the results of our queries.
 
-4.  TODO Create report object values
+4.  TODO Create parameter list from JRXML
 
-    These are not cached.
+    Pull out all /jasperReport/parameter elements from the jrxml and create parameters of the appropriate type for them.  Look for an existing parameter of the same name and use that if it is compatible.
+
+### TODO Create report object values
+
+These are not cached.  This will be done in the individual object types.
+
+1.  DONE ParamValue
+
+2.  TODO ParamFormValue
 
 ### TODO ClientInteraction
 
 We need a class that handles interaction with client environments.  Duties include displaying a parameter form, validating data.  In the future, it might also take on the responsibility of executing queries and displaying the results.
+
+1.  TODO CliBuilderClientInteraction
+
+2.  TODO GrailsClientInteraction

@@ -1,6 +1,7 @@
 #+TITLE: Simple Report Roadmap
 #+AUTHOR: Ed Cole
 #+EMAIL: coleew01@JITECPC21
+#+STARTUP: content
 #+OPTIONS: ':nil *:t -:t ::t <:t H:3 \n:nil ^:{} arch:headline
 #+OPTIONS: author:t c:nil creator:comment d:(not "LOGBOOK") date:t
 #+OPTIONS: e:t email:nil f:t inline:t num:t p:nil pri:nil stat:t
