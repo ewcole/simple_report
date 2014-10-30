@@ -9,6 +9,7 @@ public class FileSourceFactory extends SourceFactory {
 
   /** {@inheritDoc} */
   public String getSourceText(String objType, String objName) {
+    assert sourceRoot
     def sourceDir = new File(sourceRoot, objType)
     assert sourceDir.exists()
     def s = new File(sourceDir, "${objName}")

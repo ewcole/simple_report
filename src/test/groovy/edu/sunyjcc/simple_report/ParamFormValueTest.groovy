@@ -13,22 +13,19 @@ public class ParamFormValueTest extends GroovyTestCase {
 
   /** Get the source directory for the parameter forms, reports, etc. */
   File getSourceDir() {
-    println 'Before Getting Source Dir'
+    //println 'Before Getting Source Dir'
     File f = new File('src/samples/dir1');
-    println 'After Getting Source Dir'
+    println "Source dir = $f"
     assert f
     assert f.exists()
-  }
-
-  /** Get a subdirectory of the source directory */
-  File getSourceSubDir(String subDirName) {
-    File f = new File(getSourceDir(), subDirName);
-    assert f.exists()
+    return f
   }
 
   /** Get a FileSourceFactory with the source directory as its root. */
   FileSourceFactory getFileSourceFactory() {
-    def fsf = new FileSourceFactory(getSourceDir())
+    def d = getSourceDir();
+    assert d;
+    def fsf = new FileSourceFactory(d)
     assert fsf
     return fsf
   }
@@ -42,13 +39,16 @@ public class ParamFormValueTest extends GroovyTestCase {
   }
 
   void getParamForm(String name) {
-    getReportObjectFactory().getParamForm(name)
+    // def rof = getReportObjectFactory()
+    // assert rof
+    // rof.getParamForm(name)
+    getReportObjectFactory().getParamForm(name);
   }
 
   void testGetParamForm() {
     printBanner("testGetParamForm")
-    def f = getParamForm("SubjectAndTerm");
-    assert f;
+    def f = getReportObjectFactory().getParamForm("SubjectAndTerm");
+    assert f
     assert f.export()  == [subject: [name:        "subject", 
                                      type:        "STRING", 
                                      description: "subject", 
@@ -63,7 +63,8 @@ public class ParamFormValueTest extends GroovyTestCase {
 
   void testGetParamFormValue() {
     printBanner("testGetParamFormValue")
-    def f = getParamForm("SubjectAndTerm");
+    def f = getReportObjectFactory().getParamForm("SubjectAndTerm");
+    //def f = getParamForm("SubjectAndTerm");
     assert f
     assert f.export() == [subject: [name:        "subject", 
                                     type:        "STRING", 
