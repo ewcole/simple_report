@@ -63,10 +63,10 @@ public class ParamFormValueTest extends GroovyTestCase {
 
   void testGetParamFormValue() {
     printBanner("testGetParamFormValue")
-    def f = getReportObjectFactory().getParamForm("SubjectAndTerm");
+    def pf = getReportObjectFactory().getParamForm("SubjectAndTerm");
     //def f = getParamForm("SubjectAndTerm");
-    assert f
-    assert f.export() == [subject: [name:        "subject", 
+    assert pf
+    assert pf.export() == [subject: [name:        "subject", 
                                     type:        "STRING", 
                                     description: "subject", 
                                     label:       "subject", 
@@ -76,8 +76,27 @@ public class ParamFormValueTest extends GroovyTestCase {
                                      description: "term_code", 
                                      label:       "term_code", 
                                      default:     "201312"]]
-    def v = new ParamFormValue(f)
+    def v = new ParamFormValue(pf)
     assert v
+    println "v.term_code=${v.term_code}"
+    assert v.term_code;
+    println "v.term_code.export()=${v.term_code.export()}"
+    println "v.subject=${v.subject}"
+    println "v.subject.export()=${v.subject.export()}"
+    // Should be same as the param form export, but with added values.
+    assert v.export() == [subject: [name:        "subject", 
+                                    type:        "STRING", 
+                                    description: "subject", 
+                                    label:       "subject", 
+                                    "default":     "ART",
+                                    value:         "ART"
+                                   ], 
+                          term_code:[name:        "term_code", 
+                                     type:        "STRING", 
+                                     description: "term_code", 
+                                     label:       "term_code", 
+                                     "default":     "201312",
+                                     value:         "201312"]]
   }
 
 }
