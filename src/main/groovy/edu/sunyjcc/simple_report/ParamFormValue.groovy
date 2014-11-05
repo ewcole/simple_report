@@ -38,6 +38,24 @@ public class ParamFormValue implements Exportable {
     values[s]
   }
 
+  /** Set the value of a parameters
+   *  @param s The name of the parameter from the ParamForm object.
+   */
+  public ParamValue put(String s, ParamValue v) {
+    assert values;
+    assert values[s];
+    values[s] = v;
+  }
+
+  // /** Set the value of a parameters
+  //  *  @param s The name of the parameter from the ParamForm object.
+  //  */
+  // public ParamValue put(String s, String v) {
+  //   assert values;
+  //   assert values[s];
+  //   values[s].currentValue = v;
+  // }
+
   /** Initialize all contained objects with the given arguments
    *  @param args Data used for initialization.  This might contain 
    *              a database connection or other info.

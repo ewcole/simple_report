@@ -50,6 +50,13 @@ public class ParamValueTest extends GroovyTestCase {
                            'default':   "scared",
                            label:       "scoobydoo",
                            value:       "hungry"]
+    pv.value = 'spooked';
+    assert pv.export() == [name:        "scoobydoo", 
+                           type:        "STRING", 
+                           description: "scoobydoo", 
+                           'default':   "scared",
+                           label:       "scoobydoo",
+                           value:       "spooked"]
   }
 
 }

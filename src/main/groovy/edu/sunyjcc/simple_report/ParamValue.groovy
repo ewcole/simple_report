@@ -11,6 +11,17 @@ public class ParamValue implements Exportable {
   /** The current value of this parameter. */
   Object currentValue;
 
+  /** Get the current value of the parameter */
+  Object getValue() {
+    currentValue
+  }
+
+  /** Set the current value of the parameter 
+   *  @param v The value you would like to assign.
+   */
+  void setValue(def v) {
+    currentValue = v;
+  }
   /** Constructor with no current value */
   public ParamValue(Param param) {
     this.param = param;

@@ -126,4 +126,20 @@ public class ParamFormValueTest extends GroovyTestCase {
                                     value:         "201312"]
   }
 
+ void testSetParamValue() {
+    printBanner("testGetParamFormParamValue")
+    def pf = getReportObjectFactory().getParamForm("SubjectAndTerm");
+    //def f = getParamForm("SubjectAndTerm");
+    assert pf
+    def v = new ParamFormValue(pf)
+    assert v
+    v.term_code.value = "201512"
+    assert v.term_code.export() == [name:        "term_code", 
+                                    type:        "STRING", 
+                                    description: "term_code", 
+                                    label:       "term_code", 
+                                    "default":     "201312",
+                                    value:         "201512"]
+ }
+
 }
