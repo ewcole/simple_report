@@ -99,4 +99,31 @@ public class ParamFormValueTest extends GroovyTestCase {
                                      value:         "201312"]]
   }
 
+  void testGetParamFormParamValue() {
+    printBanner("testGetParamFormParamValue")
+    def pf = getReportObjectFactory().getParamForm("SubjectAndTerm");
+    //def f = getParamForm("SubjectAndTerm");
+    assert pf
+    assert pf.export() == [subject: [name:        "subject", 
+                                    type:        "STRING", 
+                                    description: "subject", 
+                                    label:       "subject", 
+                                    default:     "ART"], 
+                          term_code:[name:        "term_code", 
+                                     type:        "STRING", 
+                                     description: "term_code", 
+                                     label:       "term_code", 
+                                     default:     "201312"]]
+    def v = new ParamFormValue(pf)
+    assert v
+    println "v.term_code=${v.term_code}"
+    assert v.term_code;
+    assert v.term_code.export() == [name:        "term_code", 
+                                    type:        "STRING", 
+                                    description: "term_code", 
+                                    label:       "term_code", 
+                                    "default":     "201312",
+                                    value:         "201312"]
+  }
+
 }

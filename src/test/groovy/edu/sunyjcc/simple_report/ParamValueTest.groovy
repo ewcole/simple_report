@@ -52,5 +52,4 @@ public class ParamValueTest extends GroovyTestCase {
                            value:       "hungry"]
   }
 
-
 }

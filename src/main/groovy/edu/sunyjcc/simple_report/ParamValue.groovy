@@ -1,6 +1,7 @@
 package edu.sunyjcc.simple_report;
 
-/** A value that can be held by 
+/** A value for a Parameter object.  They are separated so that we can share 
+ *  Param objects  
  */
 public class ParamValue implements Exportable {
 
