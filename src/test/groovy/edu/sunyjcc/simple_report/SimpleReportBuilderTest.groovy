@@ -35,8 +35,8 @@ public class SimpleReportBuilderTest extends GroovyTestCase {
     assert r
     assert r.name == "ghostHunt"
     assert r.title == "Ghost Hunt"
-    assert r.params.size() == 1
-    def p = r.params['scoobydoo']
+    assert r.params.params.size() == 1
+    def p = r.params.params['scoobydoo']
     assert p?.name == 'scoobydoo'
   }
 

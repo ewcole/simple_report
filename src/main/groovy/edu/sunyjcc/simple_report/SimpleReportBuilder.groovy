@@ -109,7 +109,7 @@ public class SimpleReportBuilder extends BuilderSupport {
     (ParamForm):[
       (Param): {
         parent, child ->
-          parent[child.name] = child
+          parent.params[child.name] = child
       },
     ],
   ]

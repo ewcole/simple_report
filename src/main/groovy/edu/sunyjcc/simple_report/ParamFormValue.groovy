@@ -15,7 +15,7 @@ public class ParamFormValue implements Exportable {
   ParamFormValue setParamForm(ParamForm paramForm) {
     println "in setParamForm(${paramForm.export()})"
     this.paramForm = paramForm;
-    this.values = paramForm.inject([:]) {
+    this.values = paramForm.params.inject([:]) {
       vals, paramFormEntry ->
         String paramName = paramFormEntry.key;
         Param param = paramFormEntry.value;
