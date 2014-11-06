@@ -14,7 +14,7 @@ public class Invocation implements Exportable {
   String id;
   /** A parameter form to hold our values */
   ParamFormValue    params;
-  boolean isValid = false;
+  private boolean isValid = false;
 
   /** Create a new invocation object with the type and name given.  Generally,
    *  You would not call this directly. */
@@ -26,7 +26,27 @@ public class Invocation implements Exportable {
     this.name             = name;
   }
 
+  /** Property accessor for isValid */
+  boolean getIsValid() {
+    isValid;
+  }
 
+  /** Property setter for isValid; don't allow changes. 
+   *  @param x This is simply ignored. 
+   */
+  boolean setIsValid(boolean x) {
+    // Don't allow updates from the outside
+  }
+
+  public Invocation init(HashMap args) {
+    factory?.init(args);
+    paramForm?.init(args);
+  }
+
+  public Invocation validate() {
+
+  }
+  
   /** Return a HashMap with info about this Invocation. */
   def export() {
     [type: reportObjectType,

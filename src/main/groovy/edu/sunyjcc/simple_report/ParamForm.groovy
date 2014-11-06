@@ -8,6 +8,7 @@ import java.util.*
 public class ParamForm implements Buildable, Exportable {
   // The parameters
   HashMap<String,Param> params = [:]
+  private boolean isValid;
 
   /** Return the parameter items as a list */
   def export() {
@@ -30,9 +31,19 @@ public class ParamForm implements Buildable, Exportable {
   //   }
   // }
 
+  /** Access the isValid property */
+  public boolean getIsValid() {
+    return isValid;
+  }
+
   /** Perform whatever initialization is needed for the parameters. */
   ParamForm init(HashMap args) {
     this.each {it.init(args)}
+    return this
+  }
+
+  /** Test all parameters and see if they're OK. */
+  ParamForm validate() {
     return this
   }
 
