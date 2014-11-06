@@ -4,7 +4,7 @@
 #+STARTUP: content
 #+OPTIONS: ':nil *:t -:t ::t <:t H:3 \n:nil ^:{} arch:headline
 #+OPTIONS: author:t c:nil creator:comment d:(not "LOGBOOK") date:t
-#+OPTIONS: e:t email:nil f:t inline:t num:t p:nil pri:nil stat:t
+#+OPTIONS: e:t email:nil f:t inline:t num:nil p:nil pri:nil stat:t
 #+OPTIONS: tags:t tasks:t tex:t timestamp:t toc:t todo:t |:t
 #+CREATOR: Emacs 24.2.1 (Org mode 8.2.6)
 #+DESCRIPTION:
@@ -12,8 +12,8 @@
 #+KEYWORDS:
 #+LANGUAGE: en
 #+SELECT_TAGS: export
-#+OPTIONS: html-link-use-abs-url:nil html-postamble:auto
-#+OPTIONS: html-preamble:t html-scripts:t html-style:t
+#+OPTIONS: html-link-use-abs-url:nil html-postamble:nil
+#+OPTIONS: html-preamble:nil html-scripts:t html-style:t
 #+OPTIONS: html5-fancy:nil tex:t
 #+CREATOR: <a href="http://www.gnu.org/software/emacs/">Emacs</a> 24.2.1 (<a href="http://orgmode.org">Org</a> mode 8.2.6)
 #+HTML_CONTAINER: div
@@ -33,8 +33,8 @@ This is now an official MIS project; it will be used as a generator for CSV file
 Make sure it will run with a Grails front end or plugin.  That might involve making the move to Grails 2
 ** TODO Resource Loader
 The resource loader will plug into the SimpleReportBuilder and load objects by name as they are requested.
-* Version 1.0
-  Version 1.0 must have the basic parameter functionality fully functional.  We will initially target command line scripts and Grails.
+* Version 0.1.0
+  Version 0.1.0 must have the basic parameter functionality fully functional.  We will initially target command line scripts and Grails.
 We will not attempt to allow validation, inheritance, or chains of source factories yet.
 ** Parameters
 *** DONE Source Factory
@@ -51,11 +51,17 @@ This will be the default type of SourceFactory.
 Creating the objects will be an expensive process, so let's save the results of our queries.
 **** TODO Create parameter list from JRXML
 Pull out all /jasperReport/parameter elements from the jrxml and create parameters of the appropriate type for them.  Look for an existing parameter of the same name and use that if it is compatible.
-*** TODO Create report object values
+**** TODO Create invocation for objects
+*** DONE Create report object values
 These are not cached.  This will be done in the individual object types.
 **** DONE ParamValue
-**** TODO ParamFormValue
-*** TODO ClientInteraction
+**** DONE ParamFormValue
+     :LOGBOOK:
+     - State "DONE"       from "TODO"       [2014-11-06 Thu 10:12]
+     :END:
+*** TODO Invocation
+
+*** TODO Client
 We need a class that handles interaction with client environments.  Duties include displaying a parameter form, validating data.  In the future, it might also take on the responsibility of executing queries and displaying the results.
-**** TODO CliBuilderClientInteraction
-**** TODO GrailsClientInteraction
+**** TODO CliBuilderClient
+**** TODO GrailsClient
