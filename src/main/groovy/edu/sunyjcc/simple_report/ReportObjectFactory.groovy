@@ -101,6 +101,11 @@ public class ReportObjectFactory {
     return getReportObject('param_form', name)
   }
 
+  /** Get the appropriate invocation object for this type and object name */
+  public Invocation getInvocation(String objectType, String objectName) {
+    assert 1 == 2
+  }
+
   /** Public constructor with one SourceFactory argument 
    *  @param sourceFactory Get our source code from this SourceFactory.
    */
