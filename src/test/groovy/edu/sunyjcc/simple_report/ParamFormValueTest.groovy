@@ -142,4 +142,31 @@ public class ParamFormValueTest extends GroovyTestCase {
                                     value:         "201512"]
  }
 
+ void testGetValues() {
+    printBanner("testGetValues")
+    def pf = getReportObjectFactory().getParamForm("SubjectAndTerm");
+    //def f = getParamForm("SubjectAndTerm");
+    assert pf
+    def v = new ParamFormValue(pf)
+    assert v
+    assert v.getValues() == [term_code: "201312", subject: "ART"]
+ }
+
+ void testSetValues() {
+    printBanner("testSetValues")
+    def pf = getReportObjectFactory().getParamForm("SubjectAndTerm");
+    //def f = getParamForm("SubjectAndTerm");
+    assert pf
+    def v = new ParamFormValue(pf)
+    assert v
+    assert v.getValues() == [term_code: "201312", subject: "ART"]
+    v.setValues([term_code: "201512", subject: "CSC"])
+    def v2 = v.getValues();
+    assert "${v2.term_code}" == "201512"
+    assert "${v2.subject}"   == "CSC"
+    assert v2.keySet().sort() == "term_code subject".split(/ +/).sort()
+    assert v2 == [term_code: "201512", subject: "CSC"]
+    assert (v2.term_code).getClass() == java.lang.String
+ }
+
 }

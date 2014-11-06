@@ -93,9 +93,21 @@ public class ParamFormValue implements Exportable {
     values.inject([:]) {
       pMap, param ->
         println "param.key=${param.key}, param.value=${param.value}"
-        pMap[param.key] = param.value.currentValue
+        pMap[param.key] = "${param.value.value}" as String
         return pMap;
     }
+  }
+  
+  /** Return a HashMap with the keys being the names of the parameters
+   *  and the values their current value.
+   */
+  public ParamFormValue SetValues(HashMap<String,Object> v) {
+    v.each {
+      paramName, paramValue ->
+        assert values[paramName]
+        values[paramName].value = paramValue;
+    }
+    return this
   }
   
 }
