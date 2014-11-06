@@ -1,0 +1,53 @@
+h3 {
+    font-style: italic;
+    font-weight: bold;
+    font-family: "Goudy Old Style";
+}
+
+h4 {
+    font-style: italic;
+    font-weight: normal;
+    font-family: "Goudy Old Style";
+}
+
+p.author,p.date,p.creator {display: none;}
+.todo {
+    display: none;
+}
+
+.outline-3 {
+    margin-left: 20px;
+    background-color: beige;
+}
+.outline-4 {
+    margin-left: 20px;
+}
+
+.outline-text-3 {}
+/*
+     .title              document title
+     .done               the DONE keywords, all states that count as done
+     .WAITING            each TODO keyword also uses a class named after itself
+     .timestamp          timestamp
+     .timestamp-kwd      keyword associated with a timestamp, like SCHEDULED
+     .timestamp-wrapper  span around keyword plus timestamp
+     .tag                tag in a headline
+     ._HOME              each tag uses itself as a class, "@" replaced by "_"
+     .target             target for links
+     .linenr             the line number in a code example
+     .code-highlighted   for highlighting referenced code lines
+     div.outline-N       div for outline level N (headline plus text))
+     div.outline-text-N  extra div for text at outline level N
+     .section-number-N   section number in headlines, different for each level
+     .figure-number      label like "Figure 1:"
+     .table-number       label like "Table 1:"
+     .listing-number     label like "Listing 1:"
+     div.figure          how to format an inlined image
+     pre.src             formatted source code
+     pre.example         normal example
+     p.verse             verse paragraph
+     div.footnotes       footnote section headline
+     p.footnote          footnote definition paragraph, containing a footnote
+     .footref            a footnote reference number (always a <sup>)
+     .footnum            footnote number in footnote definition (always <sup>)
+*/
