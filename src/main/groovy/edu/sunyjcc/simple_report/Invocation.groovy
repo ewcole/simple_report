@@ -29,23 +29,26 @@ public class Invocation implements Exportable {
     isValid;
   }
 
-  /** Property setter for isValid; don't allow changes. 
-   *  @param x This is simply ignored. 
+  /** Property setter for isValid; don't allow changes.
+   *  @param x This is simply ignored.
    */
   boolean setIsValid(boolean x) {
     // Don't allow updates from the outside
   }
 
   /** Initialize this object, using the parameters provided.
-   *  Create the report object if necessary, and return this 
+   *  Create the report object if necessary, and return this
    *  so that it can be chained.
    */
-  public Invocation init(HashMap args) {
+  public Invocation init(HashMap args = [:]) {
     // Don't initialize the factory.  That should already be done.
     // factory?.init(args);
     if (!target) {
       target = factory.getReportObject(reportObjectType, name)
+      assert target instanceof Runnable
     }
+    params = target.getParamFormValue()
+    assert params
     params?.init(args);
     return this
   }
@@ -55,7 +58,7 @@ public class Invocation implements Exportable {
     isValid = paramForm.validate().isValid
     return this
   }
-  
+
   /** Return a HashMap with info about this Invocation. */
   def export() {
     [type: reportObjectType,

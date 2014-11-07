@@ -5,7 +5,7 @@ import java.util.*
 /** An ordered list of parameters that can be used with the SimpleReports 
  *  system.
  */
-public class ParamForm implements Buildable, Exportable {
+public class ParamForm implements Buildable, Exportable, Runnable {
   // The parameters
   HashMap<String,Param> params = [:]
   private boolean isValid;
@@ -19,6 +19,10 @@ public class ParamForm implements Buildable, Exportable {
     }
   }
 
+  @Override
+  public ParamFormValue getParamFormValue() {
+    new ParamFormValue(this)
+  }
   // /** Return a HashMap with the keys being the names of the parameters 
   //  *  in the ParamForm and the values their current value. 
   //  */
