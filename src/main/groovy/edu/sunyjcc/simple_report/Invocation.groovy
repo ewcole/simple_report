@@ -6,27 +6,23 @@ package edu.sunyjcc.simple_report
 public class Invocation implements Exportable {
   /** Our source for all objects */
   ReportObjectFactory  factory
+
   /** A string representing the type of object we are trying to run. */
   String               reportObjectType
+
   /** The name of the object we are trying to run. */
   String              name
+
   // /** A unique name (within the factory) that identifies this invocation. */
   // String              id;
+
   /** A parameter form to hold our values */
   ParamFormValue    params;
+
+  /** The current state of the Invocation parameters */
   private boolean isValid = false;
 
-  /** Create a new invocation object with the type and name given.  Generally,
-   *  You would not call this directly. */
-  public Invocation(ReportObjectFactory factory,
-                    String reportObjectType,
-                    String name,
-                    ParamForm params = null) {
-    this.factory          = factory;
-    this.reportObjectType = reportObjectType;
-    this.name             = name;
-    this.params           = params;
-  }
+  private def target
 
   /** Property accessor for isValid */
   boolean getIsValid() {
@@ -40,9 +36,18 @@ public class Invocation implements Exportable {
     // Don't allow updates from the outside
   }
 
+  /** Initialize this object, using the parameters provided.
+   *  Create the report object if necessary, and return this 
+   *  so that it can be chained.
+   */
   public Invocation init(HashMap args) {
-    factory?.init(args);
+    // Don't initialize the factory.  That should already be done.
+    // factory?.init(args);
+    if (!target) {
+      target = factory.getReportObject(reportObjectType, name)
+    }
     paramForm?.init(args);
+    return this
   }
 
   public Invocation validate() {
@@ -58,4 +63,19 @@ public class Invocation implements Exportable {
      isValid: isValid,
      params: params?params.export(): [:]]
   }
+
+
+  /** Create a new invocation object with the type and name given.  Generally,
+   *  You would not call this directly. */
+  public Invocation(ReportObjectFactory factory,
+                    String reportObjectType,
+                    String name,
+                    ParamForm params = null) {
+    this.factory          = factory;
+    this.reportObjectType = reportObjectType;
+    this.name             = name;
+    this.params           = params;
+    this.init()
+  }
+
 }
