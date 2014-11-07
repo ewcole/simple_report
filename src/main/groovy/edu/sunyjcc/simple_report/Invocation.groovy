@@ -46,7 +46,7 @@ public class Invocation implements Exportable {
     if (!target) {
       target = factory.getReportObject(reportObjectType, name)
     }
-    paramForm?.init(args);
+    params?.init(args);
     return this
   }
 
