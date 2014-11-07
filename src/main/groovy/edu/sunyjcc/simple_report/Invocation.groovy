@@ -1,17 +1,17 @@
 package edu.sunyjcc.simple_report
 
-/**
- *
+/** This class is responsible for managing the state of a report request.  It
+ *  validates the parameter form and executes the target application.
  */
 public class Invocation implements Exportable {
   /** Our source for all objects */
   ReportObjectFactory  factory
   /** A string representing the type of object we are trying to run. */
-  String            reportObjectType
+  String               reportObjectType
   /** The name of the object we are trying to run. */
-  String            name
+  String              name
   /** A unique name (within the factory) that identifies this invocation. */
-  String id;
+  String              id;
   /** A parameter form to hold our values */
   ParamFormValue    params;
   private boolean isValid = false;
@@ -44,7 +44,9 @@ public class Invocation implements Exportable {
   }
 
   public Invocation validate() {
-
+    assert paramForm;
+    isValid = paramForm.validate().isValid
+    return this
   }
   
   /** Return a HashMap with info about this Invocation. */

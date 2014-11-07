@@ -103,7 +103,8 @@ public class ReportObjectFactory {
 
   /** Get the appropriate invocation object for this type and object name */
   public Invocation getInvocation(String objectType, String objectName) {
-    assert 1 == 2
+    def typeName = normalizeTypeName(objectType)
+    return new Invocation(this, typeName, objectName)
   }
 
   /** Public constructor with one SourceFactory argument 
