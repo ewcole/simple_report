@@ -10,8 +10,8 @@ public class Invocation implements Exportable {
   String               reportObjectType
   /** The name of the object we are trying to run. */
   String              name
-  /** A unique name (within the factory) that identifies this invocation. */
-  String              id;
+  // /** A unique name (within the factory) that identifies this invocation. */
+  // String              id;
   /** A parameter form to hold our values */
   ParamFormValue    params;
   private boolean isValid = false;
@@ -20,10 +20,12 @@ public class Invocation implements Exportable {
    *  You would not call this directly. */
   public Invocation(ReportObjectFactory factory,
                     String reportObjectType,
-                    String name) {
+                    String name,
+                    ParamForm params = null) {
     this.factory          = factory;
     this.reportObjectType = reportObjectType;
     this.name             = name;
+    this.params           = params;
   }
 
   /** Property accessor for isValid */
@@ -53,8 +55,7 @@ public class Invocation implements Exportable {
   def export() {
     [type: reportObjectType,
      name: name,
-     id:   id,
      isValid: isValid,
-     params: params.export()]
+     params: params?params.export(): [:]]
   }
 }

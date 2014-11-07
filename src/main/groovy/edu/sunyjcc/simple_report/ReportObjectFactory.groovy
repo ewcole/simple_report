@@ -104,6 +104,7 @@ public class ReportObjectFactory {
   /** Get the appropriate invocation object for this type and object name */
   public Invocation getInvocation(String objectType, String objectName) {
     def typeName = normalizeTypeName(objectType)
+    
     return new Invocation(this, typeName, objectName)
   }
 

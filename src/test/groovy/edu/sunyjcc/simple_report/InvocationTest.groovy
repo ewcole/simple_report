@@ -41,4 +41,26 @@ public class InvocationTest extends GroovyTestCase {
     assert i
     assert i instanceof Invocation
   }
+
+  void testExport() {
+    def rf = getReportObjectFactory();
+    assert rf
+    def i = rf.getInvocation('param', 'scoobydoo')
+    assert i
+    assert i instanceof Invocation
+    def ie = i.export()
+    println "i.export()==${ie}"
+    def sampleData = [type: "param",
+                      name: "scoobydoo",
+                      isValid: false]
+    sampleData.each {
+      k, v ->
+        assert ie[k] == v
+    }
+    // assert ie == [type: "param",
+    //               name: "scoobydoo",
+    //               isValid: false,
+    //               params:  'null'
+    //              ]
+  }
 }
