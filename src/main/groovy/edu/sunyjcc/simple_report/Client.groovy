@@ -9,12 +9,17 @@ public abstract class Client {
   ReportObjectFactory factory;
 
   /** Set the value of the factory property. */
-  public void setReportObjectFactory(ReportObjectFactory factory) {
+  public Client setReportObjectFactory(ReportObjectFactory factory) {
     this.factory = factory
+    return this
+  }
+
+  public Client(ReportObjectFactory factory) { 
+    setReportObjectFactory(this)
   }
 
   /** Initialize the Client object and all composed objects */
-  public abstract Client init(HashMap args);
+  public Client init(HashMap args) { return this }
 
   /** Present a single parameter as it should appear in a parameter form
    *  @param ParamValue The parameter value we want to collect
