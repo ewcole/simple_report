@@ -63,6 +63,24 @@ public class ClientTest extends GroovyTestCase {
                                            'default':   '201312', 
                                            value:       '201312']
   }
+  void testShowParamForm() {
+    printBanner "testShowParamForm";
+    def factory = getReportObjectFactory();
+    def c = new PogoClient(factory)
+    def i = factory.getInvocation('param_form', 'SubjectAndTerm')
+    assert c.showParamForm(i) == [params: [name:        'subject', 
+                                           type:        'STRING', 
+                                           description: 'subject', 
+                                           label:       'subject', 
+                                           'default':   'ART', 
+                                           value:       'ART'],
+                                  [name:        'term_code', 
+                                   type:        'STRING', 
+                                   description: 'term_code', 
+                                   label:       'term_code', 
+                                   'default':   '201312', 
+                                   value:       '201312']]
+  }
 
   
 }
