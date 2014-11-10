@@ -22,9 +22,32 @@ public abstract class Client {
   public abstract showParam(ParamValue paramValue);
 
   /** Present a single parameter as it should appear in a parameter form
+   *  @param invocation An Invocation (which has a param form)
+   */
+  public showParam(Invocation invocation, String paramName) {
+    showParam(invocation.params[paramName]);
+  }
+
+  /** Show all of the parameters in the parameter form and collect their values
    *  @param ParamFormValue The parameter value we want to collect
    */
   public abstract showParamForm(ParamFormValue paramFormValue);
 
+  /** Show all of the parameters in the parameter form and collect their values
+   *  @param invocation An Invocation object.
+   */
+  public showParamForm(Invocation invocation) {
+    showParamForm(invocation.params);
+  }
 
+  /** Validate the parameters for an invocation and run it
+   *  @param invocation An Invocation representing the object we need to run.
+   */
+  public def run(Invocation invocation) {
+    if (invocation.validate().isValid) {
+      [status: 'Run', invocation: invocation, result: invocation.run()]
+    } else {
+      [status: 'Errors', invocation: invocation]
+    }
+  }
 }

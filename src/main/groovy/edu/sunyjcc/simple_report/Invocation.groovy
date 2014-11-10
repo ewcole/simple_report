@@ -13,6 +13,9 @@ public class Invocation implements Exportable {
   /** The name of the object we are trying to run. */
   String              name
 
+  // /** The front end */
+  // Client              client;
+
   // /** A unique name (within the factory) that identifies this invocation. */
   // String              id;
 
@@ -67,7 +70,12 @@ public class Invocation implements Exportable {
      params: params?params.export(): [:]]
   }
 
-
+  def run() {
+    if (this.validate().isValid) {
+      target.run(params)
+    }
+  }
+  
   /** Create a new invocation object with the type and name given.  Generally,
    *  You would not call this directly. */
   public Invocation(ReportObjectFactory factory,

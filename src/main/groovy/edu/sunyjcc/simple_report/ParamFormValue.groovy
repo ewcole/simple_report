@@ -3,7 +3,7 @@ package edu.sunyjcc.simple_report;
 /** 
  *  A list of the values for a ParameterForm.
  */
-public class ParamFormValue implements Exportable {
+public class ParamFormValue implements Exportable, Runnable {
   /** The form that tells us what parameters are required. */
   ParamForm paramForm;
   HashMap<String, ParamValue> values
@@ -57,8 +57,8 @@ public class ParamFormValue implements Exportable {
   // }
 
   /** Initialize all contained objects with the given arguments
-   *  @param args Data used for initialization.  This might contain 
-   *              a database connection or other info.
+   * 
+   *  @param args Data used for initialization.  This might contain a database connection or other info.
    */
   public ParamFormValue init(HashMap args) {
     paramForm.init(args);
@@ -109,5 +109,23 @@ public class ParamFormValue implements Exportable {
     }
     return this
   }
-  
+
+  /* Methods required by the Runnable interface */
+
+  @Override
+  /** Get a param form value for the object.*/
+  ParamFormValue getParamFormValue() {
+    return this;
+  }
+
+  /** Validate the object and return true or false if params are good 
+   *  @param args The new argument values (optional)
+   */
+  @Override
+  boolean checkValidity(HashMap args) {
+    setValues(args);
+    return true;
+  }
+
+
 }

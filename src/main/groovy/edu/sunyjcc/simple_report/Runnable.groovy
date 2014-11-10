@@ -4,5 +4,10 @@ package edu.sunyjcc.simple_report;
  */
 public interface Runnable {
   /** Get a param form value for the object.*/
-  ParamFormValue getParamFormValue()
+  ParamFormValue getParamFormValue();
+
+  /** */
+  
+  // /** Validate the object and return true or false if params are good */
+  // boolean checkValidity(HashMap args);
 }
