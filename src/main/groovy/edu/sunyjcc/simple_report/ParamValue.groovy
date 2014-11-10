@@ -51,4 +51,8 @@ public class ParamValue implements Exportable {
     
   }
 
+  ParamValue init(HashMap args = [:]) {
+    param.init(args);
+    return this;
+  }
 }

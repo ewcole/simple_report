@@ -42,7 +42,7 @@ public class ParamForm implements Buildable, Exportable, Runnable {
 
   /** Perform whatever initialization is needed for the parameters. */
   ParamForm init(HashMap args) {
-    this.each {it.init(args)}
+    params.each {it.value.init(args)}
     return this
   }
 

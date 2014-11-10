@@ -22,7 +22,7 @@ public class Invocation implements Exportable {
   /** The current state of the Invocation parameters */
   private boolean isValid = false;
 
-  private def target
+  private Runnable target
 
   /** Property accessor for isValid */
   boolean getIsValid() {

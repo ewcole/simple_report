@@ -37,7 +37,7 @@ public class InvocationTest extends GroovyTestCase {
   void testGetInvocation() {
     def rf = getReportObjectFactory();
     assert rf
-    def i = rf.getInvocation('param', 'scoobydoo')
+    def i = rf.getInvocation('paramForm', 'SubjectAndTerm')
     assert i
     assert i instanceof Invocation
   }
@@ -50,7 +50,7 @@ public class InvocationTest extends GroovyTestCase {
     assert i instanceof Invocation
     def ie = i.export()
     println "i.export()==${ie}"
-    def sampleData = [type: "paramForm",
+    def sampleData = [type: "param_form",
                       name: "SubjectAndTerm",
                       isValid: false]
     sampleData.each {
