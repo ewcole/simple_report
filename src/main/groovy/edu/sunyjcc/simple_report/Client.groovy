@@ -14,6 +14,10 @@ public abstract class Client {
     return this
   }
 
+  public Client() {
+
+  }
+
   public Client(ReportObjectFactory factory) { 
     setReportObjectFactory(this)
   }

@@ -57,10 +57,5 @@ public class InvocationTest extends GroovyTestCase {
       k, v ->
         assert ie[k] == v
     }
-    // assert ie == [type: "paramForm",
-    //               name: "SubjectAndTerm",
-    //               isValid: false,
-    //               params:  'null'
-    //              ]
   }
 }

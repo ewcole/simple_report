@@ -23,13 +23,13 @@ public class PogoClient extends Client {
     return paramFormValue.export()
   }
 
-  // /** Zero-argument constructor */
-  // public PogoClient() {
-  // }
- 
-  // /** Constructor with ReportObjectFactory argument */
-  // public PogoClient(ReportObjectFactory factory) {
-  //   setReportObjectFactory(factory);
-  // }
+  /** Zero-argument constructor */
+  public PogoClient() {
+  }
+  
+  /** Constructor with ReportObjectFactory argument */
+  public PogoClient(ReportObjectFactory factory) {
+    super.setReportObjectFactory(factory);
+  }
 
 }

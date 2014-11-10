@@ -35,9 +35,33 @@ public class ClientTest extends GroovyTestCase {
   }
 
   void testCreateClient() {
-    printBanner "testGetClient";
+    printBanner "testCreateClient";
+    def c = new PogoClient()
+  }
+
+  void testCreateClientWithFactory() {
+    printBanner "testCreateClientWithFactory";
     def factory = getReportObjectFactory();
-    //def c = new PogoClient()
+    def c = new PogoClient(factory)
+  }
+
+  void testShowParam() {
+    printBanner "testShowParam";
+    def factory = getReportObjectFactory();
+    def c = new PogoClient(factory)
+    def i = factory.getInvocation('param_form', 'SubjectAndTerm')
+    assert c.showParam(i, 'subject') == [name:        'subject', 
+                                         type:        'STRING', 
+                                         description: 'subject', 
+                                         label:       'subject', 
+                                         'default':   'ART', 
+                                         value:       'ART']
+    assert c.showParam(i, 'term_code') == [name:        'term_code', 
+                                           type:        'STRING', 
+                                           description: 'term_code', 
+                                           label:       'term_code', 
+                                           'default':   '201312', 
+                                           value:       '201312']
   }
 
   
