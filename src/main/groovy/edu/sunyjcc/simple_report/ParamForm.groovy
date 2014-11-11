@@ -50,7 +50,11 @@ public class ParamForm implements Buildable, Exportable, Runnable {
   ParamForm validate() {
     return this
   }
-
+  
+  @Override
+  HashMap run(ParamFormValue paramFormValue) {
+    this.getParamFormValue().run(paramFormValue)
+  }
   // /** Look for matching parameters in the hash map
   //  *  and set the matching parameter values if possible. 
   //  */

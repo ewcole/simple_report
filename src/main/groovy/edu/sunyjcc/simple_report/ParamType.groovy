@@ -1,3 +1,5 @@
+package edu.sunyjcc.simple_report
+
 enum ParamType {
   string("STRING", {it.toString()}), 
   // date("DATE"),

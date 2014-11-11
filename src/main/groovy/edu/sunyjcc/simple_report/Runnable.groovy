@@ -6,8 +6,17 @@ public interface Runnable {
   /** Get a param form value for the object.*/
   ParamFormValue getParamFormValue();
 
-  /* * */
-  
-  // /** Validate the object and return true or false if params are good */
-  // boolean checkValidity(HashMap args);
+  // /** Get the mime type that this will produce */
+  // String getMimeType() 
+
+  // /** Run the runnable object, writing its output data to the stream you 
+  //  *  provide.
+  //  *  @param out An output stream that will hold the results of your run.
+  //  */
+  // void run(OutputStream out);
+
+  /** Run the report, returning the results as a HashMap with keys mimeType, 
+   *   
+   */
+  HashMap run(ParamFormValue paramFormValue);
 }

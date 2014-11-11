@@ -98,14 +98,30 @@ public class ParamFormValue implements Exportable, Runnable {
     }
   }
   
-  /** Return a HashMap with the keys being the names of the parameters
-   *  and the values their current value.
+  /** Copy the values  from the HashMap object given to us.  
+   *  It will ignore parameters not in this object.
+   *  @param v A Map with parameter names for keys.
    */
   public ParamFormValue SetValues(HashMap<String,Object> v) {
     v.each {
       paramName, paramValue ->
-        assert values[paramName]
-        values[paramName].value = paramValue;
+        if (values[paramName]) {
+          values[paramName].value = paramValue;
+        }
+    }
+    return this
+  }
+
+  /** Copy the values for shared parameters from the ParamFormValue
+   *  object given to us.  It will ignore parameters not in this object.
+   *  @param v Another ParamFormValue object.
+   */
+  public ParamFormValue SetValues(ParamFormValue v) {
+    v.values.each {
+      paramName, paramValue ->
+        if (values[paramName]) {
+          values[paramName].value = paramValue;
+        }
     }
     return this
   }
@@ -127,5 +143,13 @@ public class ParamFormValue implements Exportable, Runnable {
     return true;
   }
 
+  @Override
+  HashMap run(ParamFormValue paramFormValue) {
+    if (paramFormValue) {
+      this.setValues(paramFormValue);
+    }
+    [format: 'data',
+     data: this.export()]
+  }
 
 }
