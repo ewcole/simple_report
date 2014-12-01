@@ -22,4 +22,11 @@ public class FileSourceFactory extends SourceFactory {
   public FileSourceFactory(File sourceRoot) {
     this.sourceRoot = sourceRoot
   }
+
+  /** Public constructor that takes a root directory.
+   *  @param sourceRoot The name of the root directory of the source repository.
+   */
+  public FileSourceFactory(String sourceRoot) {
+    this.sourceRoot = new File(sourceRoot);
+  }
 }
