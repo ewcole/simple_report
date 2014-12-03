@@ -194,5 +194,14 @@ public class ParamFormValueTest extends GroovyTestCase {
     //                                       value:       '201312']]]
   }
 
+  void testGetOutputFormat() {
+    printBanner("testGetOutputFormat")
+    def pf = getReportObjectFactory().getParamForm("SubjectAndTerm");
+    //def f = getParamForm("SubjectAndTerm");
+    assert pf
+    def v = new ParamFormValue(pf)
+    assert v
+    assert v.getOutputFormats() == [OutputFormat.json, OutputFormat.html]
+  }
 }
 
