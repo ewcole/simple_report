@@ -1,4 +1,5 @@
 package edu.sunyjcc.simple_report
+import groovy.json.*
 
 /** Test the ParamFormValue class. */
 public class ParamFormValueTest extends GroovyTestCase {
@@ -176,22 +177,21 @@ public class ParamFormValueTest extends GroovyTestCase {
     assert pf
     def v = new ParamFormValue(pf)
     assert v
-    //def s = new StringWriter()
-    //assert v.run(OutputFormat.json, )
-    // def o = new JsonParser().parseText(s.toString())
-    // assert o == [format: 'data',
-    //                    data: [subject: [name:        'subject', 
-    //                                     type:        'STRING', 
-    //                                     description: 'subject', 
-    //                                     label:       'subject', 
-    //                                     'default':   'ART', 
-    //                                     value:       'ART'],
-    //                           term_code: [name:        'term_code', 
-    //                                       type:        'STRING', 
-    //                                       description: 'term_code', 
-    //                                       label:       'term_code', 
-    //                                       'default':   '201312', 
-    //                                       value:       '201312']]]
+    def s = new StringWriter()
+    assert v.run(OutputFormat.json, s)
+    def o = new JsonSlurper().parseText(s.toString())
+    assert o == [subject: [name:        'subject', 
+                           type:        'STRING', 
+                           description: 'subject', 
+                           label:       'subject', 
+                           'default':   'ART', 
+                           value:       'ART'],
+                 term_code: [name:        'term_code', 
+                             type:        'STRING', 
+                             description: 'term_code', 
+                             label:       'term_code', 
+                             'default':   '201312', 
+                             value:       '201312']]
   }
 
   void testGetOutputFormat() {

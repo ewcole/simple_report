@@ -13,5 +13,5 @@ public interface Runnable {
    *  provide.
    *  @param out An output stream that will hold the results of your run.
    */
-  boolean run(OutputFormat outputFormat, OutputStream out);
+  boolean run(OutputFormat outputFormat, Writer out);
 }
