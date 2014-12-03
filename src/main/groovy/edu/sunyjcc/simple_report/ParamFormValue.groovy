@@ -1,5 +1,6 @@
 package edu.sunyjcc.simple_report;
-
+import groovy.json.*
+import groovy.xml.*
 /** 
  *  A list of the values for a ParameterForm.
  */
@@ -143,9 +144,39 @@ public class ParamFormValue implements Exportable, Runnable {
     return true;
   }
 
+  def runFunctions = [
+    JSON: {
+      Writer out ->
+        def j = new JsonOutput()
+        out.print(j.toJson(this.export()));
+        out.flush()
+        return true;
+    },
+    HTML: {
+      Writer out ->
+        def m = new MarkupBuilder(out);
+        m.setUseDoubleQuotes(true)
+        m.table {
+          thead {
+            th("Parameter");
+            th("Value");
+          }
+          tbody {
+            this.values.each {
+              key, value ->
+                td(class: "parameterName", value.name);
+                td(class: "parameterValue", value.value);
+            }
+          }
+        }
+        out.flush()
+        return true;
+    },
+  ]
+
   /** Get a list of the supported output types */
   ArrayList<OutputFormat> getOutputFormats() {
-    "json html".split(/\s+/).collect {OutputFormat[it]}
+    runFunctions.keySet().collect {OutputFormat[it.toLowerCase()]}
   }
 
   /** Run the runnable object, writing its output data to the stream you 
@@ -154,8 +185,12 @@ public class ParamFormValue implements Exportable, Runnable {
    *  @return Returns true if successful, false otherwise.
    */
   @Override
-  boolean run(OutputFormat outputFormat, OutputStream out) {
-    return false
+  boolean run(OutputFormat outputFormat, Writer out) {
+    if (runFunctions.containsKey(outputFormat.desc)) {
+      return runFunctions[outputFormat.desc](out);
+    } else {
+      return false
+    }
   }
 
   // HashMap run(ParamFormValue paramFormValue) {
