@@ -1,6 +1,6 @@
 package edu.sunyjcc.simple_report
 
-enum JasperReportFormat {
+enum OutputFormat {
   
     pdf("PDF", "application/pdf"),
     html("HTML", "text/html"),
@@ -14,9 +14,10 @@ enum JasperReportFormat {
     docx("DOCX", "application/msword"),
     xlsx("XLSX", "application/vnd.ms-excel"),
     pptx("PPTX", "application/vnd.ms-powerpoint"),
-    //json("JSON", "application/json"),
+    // Not supported by Jasper Reports.
+    json("JSON", "application/json"),
 
-    JasperReportFormat(String desc, String mimeType, String extension = '') {
+    OutputFormat(String desc, String mimeType, String extension = '') {
       this.desc = desc
       this.mimeType = mimeType
       this.extension = (extension?.size())?extension:(desc.toLowerCase());
