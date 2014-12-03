@@ -144,6 +144,16 @@ public class ParamFormValue implements Exportable, Runnable {
     return true;
   }
 
+  /** Is this valid? */
+  boolean getIsValid() {
+    return checkValidity([:]);
+  }
+
+  ParamFormValue validate() {
+    checkValidity([:]);
+    return this
+  }
+
   def runFunctions = [
     JSON: {
       Writer out ->

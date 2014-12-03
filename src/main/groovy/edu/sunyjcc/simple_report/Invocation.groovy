@@ -57,8 +57,8 @@ public class Invocation implements Exportable {
   }
 
   public Invocation validate() {
-    assert paramForm;
-    isValid = paramForm.validate().isValid
+    assert params;
+    isValid = params.validate().isValid
     return this
   }
 

@@ -58,4 +58,12 @@ public class InvocationTest extends GroovyTestCase {
         assert ie[k] == v
     }
   }
+
+  void testValidate() {
+    def rf = getReportObjectFactory();
+    assert rf
+    def i = rf.getInvocation('paramForm', 'SubjectAndTerm')
+    def b = i.validate()
+    assert b.isValid
+  }
 }
