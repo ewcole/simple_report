@@ -194,6 +194,35 @@ public class ParamFormValueTest extends GroovyTestCase {
                              value:       '201312']]
   }
 
+  void testRunParamFormToHtml () {
+    printBanner("testRunParamFormToHtml") 
+    def pf = getReportObjectFactory().getParamForm("SubjectAndTerm");
+    //def f = getParamForm("SubjectAndTerm");
+    assert pf
+    def v = new ParamFormValue(pf)
+    assert v
+    def s = new StringWriter()
+    assert v.run(OutputFormat.html, s)
+    def o = s.toString()
+    assert o.trim() == """
+<table>
+  <thead>
+    <th>Parameter</th>
+    <th>Value</th>
+  </thead>
+  <tbody>
+    <tr>
+      <td class="parameterName">term_code</td>
+      <td class="parameterValue">201312</td>
+    </tr>
+    <tr>
+      <td class="parameterName">subject</td>
+      <td class="parameterValue">ART</td>
+    </tr>
+  </tbody>
+</table>""".trim()
+  }
+
   void testGetOutputFormat() {
     printBanner("testGetOutputFormat")
     def pf = getReportObjectFactory().getParamForm("SubjectAndTerm");

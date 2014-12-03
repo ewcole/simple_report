@@ -3,7 +3,7 @@ package edu.sunyjcc.simple_report;
 /** A report that can be defined in a small Groovy script, producing an 
  *  output
  */
-public class SimpleReport implements Exportable{
+public class SimpleReport implements Exportable {
 
   /* Report-level properties *************/
   /** The report name */

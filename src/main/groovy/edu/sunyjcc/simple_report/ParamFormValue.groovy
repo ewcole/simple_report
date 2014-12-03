@@ -155,7 +155,7 @@ public class ParamFormValue implements Exportable, Runnable {
     HTML: {
       Writer out ->
         def m = new MarkupBuilder(out);
-        m.setUseDoubleQuotes(true)
+        m.setDoubleQuotes(true)
         m.table {
           thead {
             th("Parameter");
@@ -164,8 +164,10 @@ public class ParamFormValue implements Exportable, Runnable {
           tbody {
             this.values.each {
               key, value ->
-                td(class: "parameterName", value.name);
-                td(class: "parameterValue", value.value);
+                tr {
+                  td(class: "parameterName", key);
+                  td(class: "parameterValue", "$value.value");
+                }
             }
           }
         }
