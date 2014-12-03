@@ -143,13 +143,27 @@ public class ParamFormValue implements Exportable, Runnable {
     return true;
   }
 
-  @Override
-  HashMap run(ParamFormValue paramFormValue) {
-    if (paramFormValue) {
-      this.setValues(paramFormValue);
-    }
-    [format: 'data',
-     data: this.export()]
+  /** Get a list of the supported output types */
+  ArrayList<OutputFormat> getOutputFormats() {
+    "json html".split(/\s+/).collect {OutputFormat[it]}
   }
+
+  /** Run the runnable object, writing its output data to the stream you 
+   *  provide.
+   *  @param out An output stream that will hold the results of your run.
+   *  @return Returns true if successful, false otherwise.
+   */
+  @Override
+  boolean run(OutputFormat outputFormat, OutputStream out) {
+    return false
+  }
+
+  // HashMap run(ParamFormValue paramFormValue) {
+  //   if (paramFormValue) {
+  //     this.setValues(paramFormValue);
+  //   }
+  //   [format: 'data',
+  //    data: this.export()]
+  // }
 
 }
