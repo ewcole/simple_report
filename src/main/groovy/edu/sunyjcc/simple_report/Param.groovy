@@ -52,8 +52,9 @@ public class Param implements Exportable, Buildable {
     this.superParam = superParam;
   }
 
-  def validate(def value) {
-    return type.convert(value);
+  boolean validate(def value) {
+    return true
+    // return type.convert(value);
   }
 
   /** Get a ParamValue of this parameter type */

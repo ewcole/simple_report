@@ -53,7 +53,7 @@ public abstract class Client {
    *  @param invocation An Invocation representing the object we need to run.
    */
   public def run(Invocation invocation) {
-    if (invocation.validate().isValid) {
+    if (invocation.validate()) {
       [status: 'Run', invocation: invocation, result: invocation.run()]
     } else {
       [status: 'Errors', invocation: invocation]

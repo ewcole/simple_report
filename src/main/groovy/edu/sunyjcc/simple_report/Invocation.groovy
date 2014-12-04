@@ -56,10 +56,11 @@ public class Invocation implements Exportable {
     return this
   }
 
-  public Invocation validate() {
+  @Override
+  boolean validate() {
     assert params;
-    isValid = params.validate().isValid
-    return this
+    isValid = params.validate()
+    return isValid
   }
 
   /** Return a HashMap with info about this Invocation. */
@@ -71,7 +72,7 @@ public class Invocation implements Exportable {
   }
 
   def run() {
-    if (this.validate().isValid) {
+    if (this.validate()) {
       target.run(params)
     }
   }

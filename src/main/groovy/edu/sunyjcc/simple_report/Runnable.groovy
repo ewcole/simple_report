@@ -14,4 +14,7 @@ public interface Runnable {
    *  @param out An output stream that will hold the results of your run.
    */
   boolean run(OutputFormat outputFormat, Writer out);
+
+  /** Is this object valid and ready to run? */
+  boolean validate();
 }

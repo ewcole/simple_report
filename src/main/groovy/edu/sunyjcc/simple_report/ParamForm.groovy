@@ -47,8 +47,8 @@ public class ParamForm implements Buildable, Exportable, Runnable {
   }
 
   /** Test all parameters and see if they're OK. */
-  ParamForm validate() {
-    return this
+  boolean validate() {
+    return true
   }
   
   /** Get a list of the supported output types */

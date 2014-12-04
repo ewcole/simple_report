@@ -64,6 +64,6 @@ public class InvocationTest extends GroovyTestCase {
     assert rf
     def i = rf.getInvocation('paramForm', 'SubjectAndTerm')
     def b = i.validate()
-    assert b.isValid
+    assert b
   }
 }
