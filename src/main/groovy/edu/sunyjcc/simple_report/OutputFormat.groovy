@@ -26,4 +26,8 @@ enum OutputFormat {
     String desc;
     String mimeType;
     String extension
+
+    String toString() {
+      this.desc
+    }
 }
