@@ -1,6 +1,7 @@
 *~
 \#*\#
 *junk*
+*.log
 working_files.org
 
 .gradle/

@@ -3,7 +3,7 @@ package edu.sunyjcc.simple_report
 /** This class is responsible for managing the state of a report request.  It
  *  validates the parameter form and executes the target application.
  */
-public class Invocation implements Exportable {
+public class Invocation implements Exportable, Runnable {
   /** Our source for all objects */
   ReportObjectFactory  factory
 
@@ -56,13 +56,6 @@ public class Invocation implements Exportable {
     return this
   }
 
-  @Override
-  boolean validate() {
-    assert params;
-    isValid = params.validate()
-    return isValid
-  }
-
   /** Return a HashMap with info about this Invocation. */
   def export() {
     [type: reportObjectType,
@@ -88,6 +81,34 @@ public class Invocation implements Exportable {
     this.name             = name;
     this.params           = params;
     this.init()
+  }
+
+  // Methods required by Runnable interface
+  
+  /** Get a param form value for the object.*/
+  ParamFormValue getParamFormValue() {
+    params
+  }
+
+  /** Get a list of the supported output types */
+  ArrayList<OutputFormat> getOutputFormats() {
+    // Just JSON 
+    target.getOutputFormats()
+  }
+
+  /** Run the runnable object, writing its output data to the stream you 
+   *  provide.
+   *  @param out An output stream that will hold the results of your run.
+   */
+  boolean run(OutputFormat outputFormat, Writer out) {
+    target.run(outputFormat, out)
+  }
+
+  /** Is this object valid and ready to run? */
+  @Override boolean validate() {
+    assert params;
+    isValid = params.validate()
+    return isValid
   }
 
 }
