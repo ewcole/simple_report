@@ -38,7 +38,7 @@ public class ParamFormValue implements Exportable, Runnable {
    */
   public ParamValue getValue(String s) {
     assert this.values
-    def v = values[s]
+    def v = this.values[s]
     assert v instanceof ParamValue
     return v
   }
@@ -52,6 +52,7 @@ public class ParamFormValue implements Exportable, Runnable {
     assert values[s] instanceof ParamValue
     assert v.value
     values[s].setValue(v.value);
+    assert values[s].value == v.value
   }
 
   /** Set the value of a parameters
@@ -111,7 +112,9 @@ public class ParamFormValue implements Exportable, Runnable {
    *  It will ignore parameters not in this object.
    *  @param v A Map with parameter names for keys.
    */
-  public ParamFormValue SetValues(HashMap<String,Object> v) {
+  public ParamFormValue SetValues(HashMap v) {
+    println "in SetValues(HashMap<String,Object> $v)"
+    assert 1 == 2
     v.each {
       String paramName, paramValue ->
         if (values[paramName]) {
@@ -128,10 +131,11 @@ public class ParamFormValue implements Exportable, Runnable {
    *  @param v Another ParamFormValue object.
    */
   public ParamFormValue SetValues(ParamFormValue v) {
+    println "in SetValues(ParamFormValue $v)"
     v.values.each {
       paramName, paramValue ->
         if (values[paramName]) {
-          values[paramName].value = paramValue;
+          values[paramName].setValue(paramValue);
         }
     }
     return this
