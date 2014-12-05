@@ -152,7 +152,10 @@ public class ParamFormValueTest extends GroovyTestCase {
     assert pf
     def v = new ParamFormValue(pf)
     assert v
-    assert v.getValues() == [term_code: "201312", subject: "ART"]
+    assert v.getValues().inject([:]) {
+      m, vv ->
+        m << [(vv.key): vv.value.value]
+    } == [term_code: "201312", subject: "ART"]
  }
 
  void testSetValues() {
@@ -162,7 +165,7 @@ public class ParamFormValueTest extends GroovyTestCase {
     assert pf
     def v = new ParamFormValue(pf)
     assert v
-    assert v.getValues() == [term_code: "201312", subject: "ART"]
+    assert v.getValueMap() == [term_code: "201312", subject: "ART"]
     v.setValues([term_code: "201512", subject: "CSC"])
     def v2 = v.getValues();
     assert "${v2.term_code}" == "201512"

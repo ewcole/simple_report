@@ -98,7 +98,7 @@ public class ParamFormValue implements Exportable, Runnable {
   /** Return a HashMap with the keys being the names of the parameters
    *  and the values their current value.
    */
-  public HashMap getValues() {
+  public HashMap getValueMap() {
     values.inject([:]) {
       pMap, param ->
         println "param.key=${param.key}, param.value=${param.value}"
