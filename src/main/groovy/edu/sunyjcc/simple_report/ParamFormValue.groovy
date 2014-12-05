@@ -112,9 +112,8 @@ public class ParamFormValue implements Exportable, Runnable {
    *  It will ignore parameters not in this object.
    *  @param v A Map with parameter names for keys.
    */
-  public ParamFormValue SetValues(HashMap v) {
-    println "in SetValues(HashMap<String,Object> $v)"
-    assert 1 == 2
+  public ParamFormValue setParamValues(HashMap v) {
+    println "in setParamValues(HashMap<String,Object> $v)"
     v.each {
       String paramName, paramValue ->
         if (values[paramName]) {
@@ -130,8 +129,8 @@ public class ParamFormValue implements Exportable, Runnable {
    *  object given to us.  It will ignore parameters not in this object.
    *  @param v Another ParamFormValue object.
    */
-  public ParamFormValue SetValues(ParamFormValue v) {
-    println "in SetValues(ParamFormValue $v)"
+  public ParamFormValue setParamValues(ParamFormValue v) {
+    println "in setParamValues(ParamFormValue $v)"
     v.values.each {
       paramName, paramValue ->
         if (values[paramName]) {
@@ -153,7 +152,7 @@ public class ParamFormValue implements Exportable, Runnable {
    *  @param args The new argument values (optional)
    */
   boolean checkValidity(HashMap args) {
-    setValues(args);
+    setParamValues(args);
     return true;
   }
 

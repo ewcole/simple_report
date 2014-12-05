@@ -27,7 +27,7 @@ q = new SqlQueryEngine(
 def params = new SimpleReportBuilder().params {
   param(name: 'term_code', value: '201312')
 }
-params.setValues([term_code: '201312'])
+params.setParamValues([term_code: '201312'])
 println "params=${params.export()}"
 e = q.execute(params)
 println e.rows

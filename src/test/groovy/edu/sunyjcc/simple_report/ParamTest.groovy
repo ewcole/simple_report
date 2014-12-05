@@ -50,7 +50,7 @@ public class ParamTest extends GroovyTestCase {
                   "default":   '201312']
     ]
     println params.export()
-    //params.setValues(term_code: '201312')
+    //params.setParamValues(term_code: '201312')
     println (params.export())
     //assert params.term_code.currentValue == '201312'
     assert params.export() == [

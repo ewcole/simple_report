@@ -166,13 +166,13 @@ public class ParamFormValueTest extends GroovyTestCase {
     def v = new ParamFormValue(pf)
     assert v
     assert v.getValueMap() == [term_code: "201312", subject: "ART"]
-    v.setValues([term_code: "201512", subject: "CSC"])
-    def v2 = v.getValues();
-    assert "${v2.term_code}" == "201512"
-    assert "${v2.subject}"   == "CSC"
+    v.setParamValues([term_code: "201512", subject: "CSC"])
+    def v2 = v.values;
+    assert v2.term_code.value == "201512"
+    assert v2.subject.value   == "CSC"
     assert v2.keySet().sort() == "term_code subject".split(/ +/).sort()
-    assert v2 == [term_code: "201512", subject: "CSC"]
-    assert (v2.term_code).getClass() == java.lang.String
+    assert v.getValueMap() == [term_code: "201512", subject: "CSC"]
+    assert (v2.term_code.value).getClass() == java.lang.String
  }
 
   void testRunParamForm () {
