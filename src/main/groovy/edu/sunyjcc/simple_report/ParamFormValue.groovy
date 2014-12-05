@@ -18,14 +18,16 @@ public class ParamFormValue implements Exportable, Runnable {
     this.paramForm = paramForm;
     this.values = paramForm.params.inject([:]) {
       vals, paramFormEntry ->
+        // paramForm.params is a HashMap
         String paramName = paramFormEntry.key;
         Param param = paramFormEntry.value;
         ParamValue pv = new ParamValue(param)
-        //println "$paramName -> ${param.export()} -> ${pv.export()}"
+        println "** $paramName -> ${param.export()} -> ${pv.export()}"
         vals[paramName] = pv;
         return vals
     }
     println "this.values=${this.values}"
+    println "this.values keys =${this.values.keySet()}"
     assert this.values
     return this
   }
@@ -35,7 +37,7 @@ public class ParamFormValue implements Exportable, Runnable {
    *  @param s The name of a parameter from the paramForm object.
    */
   public ParamValue getValue(String s) {
-    assert values
+    assert this.values
     def v = values[s]
     assert v instanceof ParamValue
     return v
@@ -47,6 +49,8 @@ public class ParamFormValue implements Exportable, Runnable {
   public ParamValue setValue(String s, ParamValue v) {
     assert values;
     assert values[s];
+    assert values[s] instanceof ParamValue
+    assert v.value
     values[s].setValue(v.value);
   }
 
@@ -56,21 +60,14 @@ public class ParamFormValue implements Exportable, Runnable {
   public ParamValue setValue(String s, String v) {
     assert values;
     assert values[s];
+    assert values[s] instanceof ParamValue
     values[s].setValue(v);
   }
 
-  // /** Set the value of a parameters
-  //  *  @param s The name of the parameter from the ParamForm object.
-  //  */
-  // public ParamValue put(String s, String v) {
-  //   assert values;
-  //   assert values[s];
-  //   values[s].currentValue = v;
-  // }
-
   /** Initialize all contained objects with the given arguments
    * 
-   *  @param args Data used for initialization.  This might contain a database connection or other info.
+   *  @param args Data used for initialization.  This might contain a 
+   *              database connection or other info.
    */
   public ParamFormValue init(HashMap args) {
     paramForm.init(args);
@@ -118,11 +115,9 @@ public class ParamFormValue implements Exportable, Runnable {
     v.each {
       String paramName, paramValue ->
         if (values[paramName]) {
-          // def vls = values[paramName]
-          // assert vls instanceof ParamValue
-          // vls.value = paramValue;
           assert values[paramName] instanceof ParamValue
           values[paramName].setValue(paramValue)
+          assert values[paramName].value == paramValue
         }
     }
     return this
@@ -217,13 +212,5 @@ public class ParamFormValue implements Exportable, Runnable {
       return false
     }
   }
-
-  // HashMap run(ParamFormValue paramFormValue) {
-  //   if (paramFormValue) {
-  //     this.setValues(paramFormValue);
-  //   }
-  //   [format: 'data',
-  //    data: this.export()]
-  // }
 
 }
