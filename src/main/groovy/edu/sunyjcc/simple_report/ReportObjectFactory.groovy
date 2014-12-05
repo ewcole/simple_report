@@ -64,9 +64,9 @@ public class ReportObjectFactory {
   /** Set the source factory and create a new object cache.
    */
   public setSourceFactory(SourceFactory sourceFactory) {
-    println "in setSourceFactory($sourceFactory)"
+    //println "in setSourceFactory($sourceFactory)"
     this.sourceFactory = sourceFactory
-    println "this.sourceFactory=${this.sourceFactory}"
+    //println "this.sourceFactory=${this.sourceFactory}"
     this.cache = createCache(sourceFactory)
     assert this.cache
   }

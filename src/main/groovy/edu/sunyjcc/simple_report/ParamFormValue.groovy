@@ -14,14 +14,14 @@ public class ParamFormValue implements Exportable, Runnable {
    *  @param paramForm The ParamForm that defines the Parameters you seek to collect.
    */
   ParamFormValue setParamForm(ParamForm paramForm) {
-    println "in setParamForm(${paramForm.export()})"
+    //println "in setParamForm(${paramForm.export()})"
     this.paramForm = paramForm;
     this.values = paramForm.params.inject([:]) {
       vals, paramFormEntry ->
         String paramName = paramFormEntry.key;
         Param param = paramFormEntry.value;
         ParamValue pv = new ParamValue(param)
-        println "$paramName -> ${param.export()} -> ${pv.export()}"
+        //println "$paramName -> ${param.export()} -> ${pv.export()}"
         vals[paramName] = pv;
         return vals
     }
@@ -36,7 +36,9 @@ public class ParamFormValue implements Exportable, Runnable {
    */
   public ParamValue get(String s) {
     assert values
-    values[s]
+    def v = values[s]
+    assert v instanceof ParamValue
+    return v
   }
 
   /** Set the value of a parameters
@@ -105,9 +107,13 @@ public class ParamFormValue implements Exportable, Runnable {
    */
   public ParamFormValue SetValues(HashMap<String,Object> v) {
     v.each {
-      paramName, paramValue ->
+      String paramName, paramValue ->
         if (values[paramName]) {
-          values[paramName].value = paramValue;
+          // def vls = values[paramName]
+          // assert vls instanceof ParamValue
+          // vls.value = paramValue;
+          assert values[paramName] instanceof ParamValue
+          values[paramName].setValue(paramValue)
         }
     }
     return this
