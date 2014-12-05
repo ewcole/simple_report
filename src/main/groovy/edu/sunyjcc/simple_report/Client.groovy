@@ -34,7 +34,7 @@ public abstract class Client {
    *  @param invocation An Invocation (which has a param form)
    */
   public showParam(Invocation invocation, String paramName) {
-    showParam(invocation.params[paramName]);
+    showParam(invocation.params.getValue(paramName));
   }
 
   /** Show all of the parameters in the parameter form and collect their values

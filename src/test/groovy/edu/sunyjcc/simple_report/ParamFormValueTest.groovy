@@ -79,11 +79,13 @@ public class ParamFormValueTest extends GroovyTestCase {
                                      default:     "201312"]]
     def v = new ParamFormValue(pf)
     assert v
-    println "v.term_code=${v.term_code}"
-    assert v.term_code;
-    println "v.term_code.export()=${v.term_code.export()}"
-    println "v.subject=${v.subject}"
-    println "v.subject.export()=${v.subject.export()}"
+    assert v.values.containsKey('term_code')
+    def tcv = v.getValue('term_code');
+    assert tcv;
+    println "tcv.export()=${tcv.export()}"
+    def sv = v.getValue('subject');
+    println "sv=${sv}"
+    println "sv.export()=${sv.export()}"
     // Should be same as the param form export, but with added values.
     assert v.export() == [subject: [name:        "subject", 
                                     type:        "STRING", 
@@ -117,14 +119,14 @@ public class ParamFormValueTest extends GroovyTestCase {
                                      default:     "201312"]]
     def v = new ParamFormValue(pf)
     assert v
-    println "v.term_code=${v.term_code}"
-    assert v.term_code;
-    assert v.term_code.export() == [name:        "term_code", 
-                                    type:        "STRING", 
-                                    description: "term_code", 
-                                    label:       "term_code", 
-                                    "default":     "201312",
-                                    value:         "201312"]
+    def tc = v.getValue('term_code');
+    assert tc;
+    assert tc.export() == [name:        "term_code", 
+                           type:        "STRING", 
+                           description: "term_code", 
+                           label:       "term_code", 
+                           "default":     "201312",
+                           value:         "201312"]
   }
 
  void testSetParamValue() {
@@ -134,13 +136,13 @@ public class ParamFormValueTest extends GroovyTestCase {
     assert pf
     def v = new ParamFormValue(pf)
     assert v
-    v.term_code.value = "201512"
-    assert v.term_code.export() == [name:        "term_code", 
-                                    type:        "STRING", 
-                                    description: "term_code", 
-                                    label:       "term_code", 
-                                    "default":     "201312",
-                                    value:         "201512"]
+    v.setValue('term_code', "201512")
+    assert v.getValue('term_code').export() == [name:        "term_code", 
+                                                type:        "STRING", 
+                                                description: "term_code", 
+                                                label:       "term_code", 
+                                                "default":     "201312",
+                                                value:         "201512"]
  }
 
  void testGetValues() {

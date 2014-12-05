@@ -34,7 +34,7 @@ public class ParamFormValue implements Exportable, Runnable {
    *  by dot notation or brackets).
    *  @param s The name of a parameter from the paramForm object.
    */
-  public ParamValue get(String s) {
+  public ParamValue getValue(String s) {
     assert values
     def v = values[s]
     assert v instanceof ParamValue
@@ -44,10 +44,19 @@ public class ParamFormValue implements Exportable, Runnable {
   /** Set the value of a parameters
    *  @param s The name of the parameter from the ParamForm object.
    */
-  public ParamValue put(String s, ParamValue v) {
+  public ParamValue setValue(String s, ParamValue v) {
     assert values;
     assert values[s];
-    values[s] = v;
+    values[s].setValue(v.value);
+  }
+
+  /** Set the value of a parameters
+   *  @param s The name of the parameter from the ParamForm object.
+   */
+  public ParamValue setValue(String s, String v) {
+    assert values;
+    assert values[s];
+    values[s].setValue(v);
   }
 
   // /** Set the value of a parameters
