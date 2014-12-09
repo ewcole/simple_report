@@ -290,5 +290,48 @@ public class ParamFormValueTest extends GroovyTestCase {
     assert v
     assert v.getOutputFormats() == [OutputFormat.json, OutputFormat.html]
   }
+
+  void testToJson() {
+    printBanner("testToJson")
+    def pf = getReportObjectFactory().getParamForm("SubjectAndTerm");
+    assert pf.export() == [subject: [name:        "subject", 
+                                    type:        "STRING", 
+                                    description: "subject", 
+                                    label:       "subject", 
+                                    default:     "ART"], 
+                          term_code:[name:        "term_code", 
+                                     type:        "STRING", 
+                                     description: "term_code", 
+                                     label:       "term_code", 
+                                     default:     "201312"]]
+    def v = new ParamFormValue(pf)
+    assert v
+    assert v.values.containsKey('term_code')
+    def tcv = v.getValue('term_code');
+    assert tcv;
+    println "tcv.export()=${tcv.export()}"
+    def sv = v.getValue('subject');
+    println "sv=${sv}"
+    println "sv.export()=${sv.export()}"
+    // Should be same as the param form export, but with added values.
+    assert v.export() == [subject: [name:        "subject", 
+                                    type:        "STRING", 
+                                    description: "subject", 
+                                    label:       "subject", 
+                                    "default":     "ART",
+                                    value:         "ART"
+                                   ], 
+                          term_code:[name:        "term_code", 
+                                     type:        "STRING", 
+                                     description: "term_code", 
+                                     label:       "term_code", 
+                                     "default":     "201312",
+                                     value:         "201312"]]
+    def j = v.toJson()
+    println "j=$j"
+    def j2 = new JsonSlurper().parseText(j)
+    assert j2 == v.export()
+  }
+
 }
 

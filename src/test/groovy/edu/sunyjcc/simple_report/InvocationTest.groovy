@@ -106,17 +106,17 @@ public class InvocationTest extends GroovyTestCase {
 
   void testRun() {
     printBanner "testRun"
-    // def rf = getReportObjectFactory();
-    // assert rf
-    // def i = rf.getInvocation('paramForm', 'SubjectAndTerm')
-    // i.params.setParamValues([term_code: '199712', subject: 'BIO'])
-    // println "i.params= ${i.params.export()}"
-    // println "i.params.values.term_code = ${i.params.values.term_code.export()}"
-    // assert i.params.values.term_code.value == '199712'
-    // println "i.params.values.subject = ${i.params.values.subject.export()}"
-    // assert i.params.values.subject.value == 'BIO'
-    // def s = new StringWriter()
-    // i.run(OutputFormat.json, s);
+    def rf = getReportObjectFactory();
+    assert rf
+    def i = rf.getInvocation('paramForm', 'SubjectAndTerm')
+    i.setParamValues([term_code: '199712', subject: 'BIO'])
+    println "i.params= ${i.params.export()}"
+    println "i.params.values.term_code = ${i.params.values.term_code.export()}"
+    assert i.params.values.term_code.value == '199712'
+    println "i.params.values.subject = ${i.params.values.subject.export()}"
+    assert i.params.values.subject.value == 'BIO'
+    def s = new StringWriter()
+    i.run(OutputFormat.json, s);
     // println "j=$j"
     // def j = new JsonSlurper().parseText(s.toString())
     // assert j.term_code.value == '199712'

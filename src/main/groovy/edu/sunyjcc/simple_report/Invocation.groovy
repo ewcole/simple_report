@@ -66,12 +66,6 @@ public class Invocation implements Exportable, Runnable {
      isValid: isValid,
      params: params.export()]
   }
-
-  // def run() {
-  //   if (this.validate()) {
-  //     target.run(params)
-  //   }
-  // }
   
   /** Create a new invocation object with the type and name given.  Generally,
    *  You would not call this directly. */
@@ -108,6 +102,7 @@ public class Invocation implements Exportable, Runnable {
   }
 
   boolean run(OutputFormat outputFormat, Writer out) {
+    println "In Invocation.run($outputFormat)"
     target.run(outputFormat, params, out)
   }
 

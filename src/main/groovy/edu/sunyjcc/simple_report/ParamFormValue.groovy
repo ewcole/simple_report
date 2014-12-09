@@ -104,6 +104,11 @@ public class ParamFormValue implements Exportable, Runnable {
     return pf;
   }
 
+  public String toJson() {
+    def j = new JsonOutput()
+    j.toJson(this.export())
+  }
+
   /** Return a HashMap with the keys being the names of the parameters
    *  and the values their current value.
    */
@@ -178,8 +183,7 @@ public class ParamFormValue implements Exportable, Runnable {
   def runFunctions = [
     JSON: {
       Writer out ->
-        def j = new JsonOutput()
-        out.print(j.toJson(this.export()));
+        out.print(this.toJson());
         out.flush()
         return true;
     },
@@ -219,9 +223,13 @@ public class ParamFormValue implements Exportable, Runnable {
    */
   @Override
   boolean run(OutputFormat outputFormat, ParamFormValue paramFormValue, Writer out) {
+    println "in ParamFormValue.run($outputFormat, $paramFormValue, out)"
     if (runFunctions.containsKey(outputFormat.desc)) {
-      this.setParamValues(paramFormValue)
-      return runFunctions[outputFormat.desc](out);
+      println "....ready to run"
+      //this.setParamValues(paramFormValue)
+      println "....after setParamValues()"
+      def f = runFunctions[outputFormat.desc]
+      return f(out);
     } else {
       return false
     }
@@ -233,7 +241,9 @@ public class ParamFormValue implements Exportable, Runnable {
    *  @return Returns true if successful, false otherwise.
    */
   boolean run(OutputFormat outputFormat, Writer out) {
+    println "in ParamFormValue.run($outputFormat, out)"
     if (runFunctions.containsKey(outputFormat.desc)) {
+      println "....ready to run"
       return runFunctions[outputFormat.desc](out);
     } else {
       return false
