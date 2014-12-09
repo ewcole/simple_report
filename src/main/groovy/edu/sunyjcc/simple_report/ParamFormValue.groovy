@@ -9,6 +9,14 @@ public class ParamFormValue implements Exportable, Runnable {
   ParamForm paramForm;
   HashMap<String, ParamValue> values
 
+  public HashMap<String, ParamValue> getValues() {
+    this.values
+  }
+
+  public void setValues() {
+    assert 1 == 2
+  }
+
   /** Set the paramForm property from the given ParamForm variable.
    *  It initializes the values HashMap.
    *  @param paramForm The ParamForm that defines the Parameters you seek to collect.

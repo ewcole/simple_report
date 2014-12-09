@@ -173,6 +173,8 @@ public class ParamFormValueTest extends GroovyTestCase {
     assert v2.keySet().sort() == "term_code subject".split(/ +/).sort()
     assert v.getValueMap() == [term_code: "201512", subject: "CSC"]
     assert (v2.term_code.value).getClass() == java.lang.String
+    assert v.values
+    assert v.values.term_code instanceof ParamValue
  }
 
   void testRunParamForm () {
