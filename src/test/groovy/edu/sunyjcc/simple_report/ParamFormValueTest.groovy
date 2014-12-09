@@ -101,6 +101,14 @@ public class ParamFormValueTest extends GroovyTestCase {
                                      "default":     "201312",
                                      value:         "201312"]]
   }
+  void testGetParamFormValue2() {
+    printBanner("testGetParamFormValue2")
+    println "Does the getParamFormValue() function return self?"
+    def pf = getReportObjectFactory().getParamForm("SubjectAndTerm");
+    def v = new ParamFormValue(pf)
+    assert v
+    assert v.getParamFormValue() == v
+  }
 
   void testGetParamFormParamValue() {
     printBanner("testGetParamFormParamValue")
@@ -180,18 +188,29 @@ public class ParamFormValueTest extends GroovyTestCase {
   void testRunParamForm () {
     printBanner("testRunParamForm") 
     def pf = getReportObjectFactory().getParamForm("SubjectAndTerm");
-    //def f = getParamForm("SubjectAndTerm");
     assert pf
     def v = new ParamFormValue(pf)
     assert v
     def s = new StringWriter()
     assert v.run(OutputFormat.json, s)
     def o = new JsonSlurper().parseText(s.toString())
-    assert o == [subject: [name:        'subject', 
+    assert o.subject == [name:        'subject', 
+                         type:        'STRING', 
+                         description: 'subject', 
+                         label:       'subject', 
+                         'default':   'ART', 
+                         value:       'ART']
+    assert o.term_code == [name:        'term_code', 
                            type:        'STRING', 
+                           description: 'term_code', 
+                           label:       'term_code', 
+                           'default':   '201312', 
+                           value:       '201312']
+    assert o == [subject: ['default':   'ART', 
                            description: 'subject', 
+                           name:        'subject', 
+                           type:        'STRING', 
                            label:       'subject', 
-                           'default':   'ART', 
                            value:       'ART'],
                  term_code: [name:        'term_code', 
                              type:        'STRING', 
@@ -199,6 +218,38 @@ public class ParamFormValueTest extends GroovyTestCase {
                              label:       'term_code', 
                              'default':   '201312', 
                              value:       '201312']]
+  }
+
+  void testRunParamFormWithNonDefaultValues () {
+    printBanner("testRunParamFormWithNonDefaultValues") 
+    def pf = getReportObjectFactory().getParamForm("SubjectAndTerm");
+    //def f = getParamForm("SubjectAndTerm");
+    assert pf
+    println "pf=${pf.export()}"
+    def v = new ParamFormValue(pf)
+    assert v
+    println "v=${v.export()}"
+    def s = new StringWriter()
+    v.setParamValues([subject: 'BIO', term_code: '199712'])
+    println "After setting param values, v=${v.export()}"
+    assert v.values.subject.value == 'BIO'
+    assert v.values.term_code.value == '199712'
+    assert v.run(OutputFormat.json, s)
+    def o = new JsonSlurper().parseText(s.toString())
+    assert o.subject.value == 'BIO'
+    assert o.term_code.value == '199712'
+    assert o.subject == [name:        'subject', 
+                         type:        'STRING', 
+                         description: 'subject', 
+                         label:       'subject', 
+                         'default':   'ART', 
+                         value:       'BIO']
+    assert o.term_code == ['default':   '201312', 
+                           description: 'term_code', 
+                           name:        'term_code', 
+                           type:        'STRING', 
+                           label:       'term_code', 
+                           value:       '199712']
   }
 
   void testRunParamFormToHtml () {

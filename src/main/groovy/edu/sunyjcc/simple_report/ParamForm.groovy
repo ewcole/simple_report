@@ -61,8 +61,8 @@ public class ParamForm implements Buildable, Exportable, Runnable {
    *  @param out An output stream that will hold the results of your run.
    */
   @Override
-  boolean run(OutputFormat outputFormat, Writer out) {
-    getParamFormValue().run(outputFormat, out)
+  boolean run(OutputFormat outputFormat, ParamFormValue paramFormValue, Writer out) {
+    getParamFormValue().setParamValues(paramFormValue).run(outputFormat, out)
   }
 
   // @Override

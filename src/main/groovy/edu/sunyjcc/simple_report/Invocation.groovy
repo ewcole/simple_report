@@ -21,6 +21,10 @@ public class Invocation implements Exportable, Runnable {
 
   /** A parameter form to hold our values */
   ParamFormValue    params;
+  
+  void setParamValues(pvals) {
+    params.setParamValues(pvals)
+  }
 
   /** The current state of the Invocation parameters */
   private boolean isValid = false;
@@ -49,10 +53,9 @@ public class Invocation implements Exportable, Runnable {
     if (!target) {
       target = factory.getReportObject(reportObjectType, name)
       assert target instanceof Runnable
+      this.params = target.getParamFormValue()
     }
-    params = target.getParamFormValue()
-    assert params
-    params?.init(args);
+    target.getParamFormValue().init(args);
     return this
   }
 
@@ -61,31 +64,30 @@ public class Invocation implements Exportable, Runnable {
     [type: reportObjectType,
      name: name,
      isValid: isValid,
-     params: params?params.export(): [:]]
+     params: params.export()]
   }
 
-  def run() {
-    if (this.validate()) {
-      target.run(params)
-    }
-  }
+  // def run() {
+  //   if (this.validate()) {
+  //     target.run(params)
+  //   }
+  // }
   
   /** Create a new invocation object with the type and name given.  Generally,
    *  You would not call this directly. */
   public Invocation(ReportObjectFactory factory,
                     String reportObjectType,
-                    String name,
-                    ParamForm params = null) {
+                    String name) {
     this.factory          = factory;
     this.reportObjectType = reportObjectType;
     this.name             = name;
-    this.params           = params;
     this.init()
   }
 
   // Methods required by Runnable interface
   
   /** Get a param form value for the object.*/
+  @Override
   ParamFormValue getParamFormValue() {
     params
   }
@@ -100,14 +102,19 @@ public class Invocation implements Exportable, Runnable {
    *  provide.
    *  @param out An output stream that will hold the results of your run.
    */
+  @Override
+  boolean run(OutputFormat outputFormat, ParamFormValue paramFormValue, Writer out) {
+    target.run(outputFormat, paramFormValue, out)
+  }
+
   boolean run(OutputFormat outputFormat, Writer out) {
-    target.run(outputFormat, out)
+    target.run(outputFormat, params, out)
   }
 
   /** Is this object valid and ready to run? */
   @Override boolean validate() {
-    assert params;
-    isValid = params.validate()
+    //assert params;
+    isValid = target.getParamFormValue().validate()
     return isValid
   }
 

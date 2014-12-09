@@ -1,5 +1,7 @@
 package edu.sunyjcc.simple_report
 
+import groovy.json.*
+
 public class InvocationTest extends GroovyTestCase {
     /** Get the source directory for the parameter forms, reports, etc. */
   File getSourceDir() {
@@ -65,5 +67,59 @@ public class InvocationTest extends GroovyTestCase {
     def i = rf.getInvocation('paramForm', 'SubjectAndTerm')
     def b = i.validate()
     assert b
+  }
+
+  /** See if we get the same param form object each time */
+  void testParamFormIdentity() {
+    printBanner "testParamFormIdentity"
+    def i = getReportObjectFactory().getInvocation('paramForm', 
+                                                   'SubjectAndTerm')
+    assert i
+    def pf0 = i.target
+
+    assert pf0 instanceof ParamForm
+    def pf1 = i.getParamFormValue()
+    println "pf1=$pf1"
+    assert pf1 == i.params
+    def pf2 = i.getParamFormValue()
+    assert pf1 == pf2
+    pf2 = i.params
+    assert pf1 == pf2    
+  }
+
+  void testSetParamValues() {
+    printBanner "testSetParamValues"
+    def rf = getReportObjectFactory();
+    assert rf
+    def i = rf.getInvocation('paramForm', 'SubjectAndTerm')
+    println "Before setParamValues()"
+    i.setParamValues([term_code: '199712', subject: 'BIO'])
+    println "After setParamValues()"
+    println "i.params= ${i.params.export()}"
+    assert i.params instanceof ParamFormValue
+    assert i.params.values.term_code instanceof ParamValue
+    println "i.params.values.term_code = ${i.params.values.term_code.export()}"
+    assert i.params.values.term_code.value == '199712'
+    println "i.params.values.subject = ${i.params.values.subject.export()}"
+    assert i.params.values.subject.value == 'BIO'    
+  }
+
+  void testRun() {
+    printBanner "testRun"
+    // def rf = getReportObjectFactory();
+    // assert rf
+    // def i = rf.getInvocation('paramForm', 'SubjectAndTerm')
+    // i.params.setParamValues([term_code: '199712', subject: 'BIO'])
+    // println "i.params= ${i.params.export()}"
+    // println "i.params.values.term_code = ${i.params.values.term_code.export()}"
+    // assert i.params.values.term_code.value == '199712'
+    // println "i.params.values.subject = ${i.params.values.subject.export()}"
+    // assert i.params.values.subject.value == 'BIO'
+    // def s = new StringWriter()
+    // i.run(OutputFormat.json, s);
+    // println "j=$j"
+    // def j = new JsonSlurper().parseText(s.toString())
+    // assert j.term_code.value == '199712'
+    // assert j.subject.value == 'BIO'
   }
 }

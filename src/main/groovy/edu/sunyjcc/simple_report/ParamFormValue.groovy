@@ -30,12 +30,12 @@ public class ParamFormValue implements Exportable, Runnable {
         String paramName = paramFormEntry.key;
         Param param = paramFormEntry.value;
         ParamValue pv = new ParamValue(param)
-        println "** $paramName -> ${param.export()} -> ${pv.export()}"
+        //println "** $paramName -> ${param.export()} -> ${pv.export()}"
         vals[paramName] = pv;
         return vals
     }
-    println "this.values=${this.values}"
-    println "this.values keys =${this.values.keySet()}"
+    // println "this.values=${this.values}"
+    // println "this.values keys =${this.values.keySet()}"
     assert this.values
     return this
   }
@@ -124,10 +124,12 @@ public class ParamFormValue implements Exportable, Runnable {
     println "in setParamValues(HashMap<String,Object> $v)"
     v.each {
       String paramName, paramValue ->
+        println "....paramName = $paramName; paramValue=$paramValue"
         if (values[paramName]) {
-          assert values[paramName] instanceof ParamValue
+          assert this.values[paramName] instanceof ParamValue
           values[paramName].setValue(paramValue)
           assert values[paramName].value == paramValue
+          println "values[$paramName] == ${values[paramName].export()}"
         }
     }
     return this
@@ -216,6 +218,20 @@ public class ParamFormValue implements Exportable, Runnable {
    *  @return Returns true if successful, false otherwise.
    */
   @Override
+  boolean run(OutputFormat outputFormat, ParamFormValue paramFormValue, Writer out) {
+    if (runFunctions.containsKey(outputFormat.desc)) {
+      this.setParamValues(paramFormValue)
+      return runFunctions[outputFormat.desc](out);
+    } else {
+      return false
+    }
+  }
+
+  /** Run the runnable object, writing its output data to the stream you 
+   *  provide.
+   *  @param out An output stream that will hold the results of your run.
+   *  @return Returns true if successful, false otherwise.
+   */
   boolean run(OutputFormat outputFormat, Writer out) {
     if (runFunctions.containsKey(outputFormat.desc)) {
       return runFunctions[outputFormat.desc](out);
