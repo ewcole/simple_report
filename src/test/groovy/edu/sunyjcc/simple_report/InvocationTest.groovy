@@ -117,9 +117,9 @@ public class InvocationTest extends GroovyTestCase {
     assert i.params.values.subject.value == 'BIO'
     def s = new StringWriter()
     i.run(OutputFormat.json, s);
-    // println "j=$j"
-    // def j = new JsonSlurper().parseText(s.toString())
-    // assert j.term_code.value == '199712'
-    // assert j.subject.value == 'BIO'
+    println "j=$s"
+    def j = new JsonSlurper().parseText(s.toString())
+    assert j.term_code.value == '199712'
+    assert j.subject.value == 'BIO'
   }
 }

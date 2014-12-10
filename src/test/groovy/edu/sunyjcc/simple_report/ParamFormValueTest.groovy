@@ -193,6 +193,7 @@ public class ParamFormValueTest extends GroovyTestCase {
     assert v
     def s = new StringWriter()
     assert v.run(OutputFormat.json, s)
+    println s.toString()
     def o = new JsonSlurper().parseText(s.toString())
     assert o.subject == [name:        'subject', 
                          type:        'STRING', 

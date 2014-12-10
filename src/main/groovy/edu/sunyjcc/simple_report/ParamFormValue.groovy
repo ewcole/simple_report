@@ -106,7 +106,14 @@ public class ParamFormValue implements Exportable, Runnable {
 
   public String toJson() {
     def j = new JsonOutput()
-    j.toJson(this.export())
+    def t = this.export()
+    def s = new StringWriter()
+    s.println "{"
+    s.println (t.keySet().collect {
+                 "\"$it\": ${values[it].toJson()}"
+               }.join(",\r\n"))
+    s.println "}"
+    return s.toString()
   }
 
   /** Return a HashMap with the keys being the names of the parameters
@@ -201,7 +208,7 @@ public class ParamFormValue implements Exportable, Runnable {
               key, value ->
                 tr {
                   td(class: "parameterName", key);
-                  td(class: "parameterValue", "$value.value");
+                  td(class: "parameterValue", "${value.value.value}");
                 }
             }
           }

@@ -1,5 +1,7 @@
 package edu.sunyjcc.simple_report;
 
+import groovy.json.*
+
 /** A value for a Parameter object.  They are separated so that we can share 
  *  Param objects  
  */
@@ -22,6 +24,14 @@ public class ParamValue implements Exportable {
   void setValue(def v) {
     currentValue = v;
   }
+
+  /** Set the current value of the parameter 
+   *  @param v The value you would like to assign.
+   */
+  void setValue(ParamValue v) {
+    currentValue = v.currentValue;
+  }
+
   /** Constructor with no current value */
   public ParamValue(Param param) {
     this.param = param;
@@ -43,7 +53,7 @@ public class ParamValue implements Exportable {
   /** Export to a HashMap */
   def export() {
     def m = param.export();
-    m.value = this.currentValue;
+    m.value = "${this.currentValue}";
     m;
   }
 
@@ -54,5 +64,15 @@ public class ParamValue implements Exportable {
   ParamValue init(HashMap args = [:]) {
     param.init(args);
     return this;
+  }
+
+  String toJson() {
+    //def j = new JsonOutput()
+    //j.toJson(this.export())
+    def e = this.export()
+    '{' + e.collect {
+      key, value ->
+        "\"$key\": \"$value\""
+    }.join(', ') + '}'
   }
 }
