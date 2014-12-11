@@ -13,6 +13,7 @@ public class FileSourceFactory extends SourceFactory {
     def sourceDir = new File(sourceRoot, objType)
     assert sourceDir.exists()
     def s = new File(sourceDir, "${objName}")
+    assert s.exists()
     s.text
   }
 

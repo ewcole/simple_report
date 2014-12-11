@@ -22,7 +22,7 @@ public class SourceFactoryTest extends GroovyTestCase {
   }
 
   void printBanner(String s) {
-    "******** $s ********************"
+    println "******** $s ********************"
   }
 
   void testNormalizeParamType() {
@@ -34,6 +34,7 @@ public class SourceFactoryTest extends GroovyTestCase {
       param_form=param_form
       paramForm=param_form
       ParamForm=param_form
+      report=report
       jrxml=jrxml
       jasper=jrxml""".split(/ *\r?\n */).grep{it.size()};
     println equivs;
@@ -47,5 +48,24 @@ public class SourceFactoryTest extends GroovyTestCase {
         println "    $src -> $dest?  $rslt"
         assert dest == rslt;
     }
+  }
+
+
+  void testGetReport() {
+    printBanner("testGetReport");
+    def sf = getSourceFactory()
+    def reportName = 'simple_report_types'
+    def reportDir = getSourceSubDir('report');
+    assert reportDir.exists()
+    def reportFile = new File(reportDir, "${reportName}.groovy")
+    assert reportFile.exists()
+    def txt = reportFile.text
+    println "Report source: "
+    println "$txt"
+    println "Before getting report source: sf.getReportSource('$reportName')"
+    assert sf.getReportSource(reportName) == txt
+    println "Got report source."
+    println "Getting report source: sf.getSourceText('report', '$reportName')"
+    assert sf.getSource('report', reportName) == txt
   }
 }

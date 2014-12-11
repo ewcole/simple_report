@@ -58,7 +58,7 @@ public abstract class SourceFactory {
    *  @param name The name of the report you want to fetch
    */
   public String getReportSource(String name) {
-    def pf = getSourceText("report", "${name}.jrxml")
+    def pf = getSourceText("report", "${name}.groovy")
   }
   
   /** Get the source for an object of the desired type 
