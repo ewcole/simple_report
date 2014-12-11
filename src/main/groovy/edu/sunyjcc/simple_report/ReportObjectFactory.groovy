@@ -31,7 +31,7 @@ public class ReportObjectFactory {
    */
   LinkedHashMap createCache(SourceFactory sf) { 
     assert sf
-    def objTypes = "param param_form jrxml".split(/ +/);
+    def objTypes = "param param_form jrxml report".split(/ +/);
     objTypes.inject([:]) {
       map, objType ->
         Closure getSrc = {
@@ -58,7 +58,9 @@ public class ReportObjectFactory {
   /** Get the appropriate type cache for the input object. */
   def getTypeCache(String rawTypeName) {
     assert cache
-    cache[normalizeTypeName(rawTypeName)];
+    def c = cache[normalizeTypeName(rawTypeName)];
+    assert c
+    return c
   }
 
   /** Set the source factory and create a new object cache.
@@ -92,6 +94,13 @@ public class ReportObjectFactory {
    */
   public ParamForm getParamForm(String name) {
     return getReportObject('param_form', name)
+  }
+  
+  /** Get a report object 
+   *  @param name The name of the report, without extension
+   */
+  public SimpleReport getReport(String name) {
+    return getReportObject('report', name)
   }
   
   /** Get a Jasper Report object 

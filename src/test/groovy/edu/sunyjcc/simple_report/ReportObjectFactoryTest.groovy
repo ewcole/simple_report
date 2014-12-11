@@ -218,6 +218,17 @@ public class ReportObjectFactoryTest extends GroovyTestCase {
     assert obj == fsfSrc
   }
 
+  void testGetReport () {
+    printBanner("testGetReport")
+    String reportName = 'simple_report_types'
+    def factory = getReportObjectFactory()
+    def rpt = factory.getReportObject('report', reportName);
+    assert rpt
+    assert rpt instanceof SimpleReport
+    println "rpt exists: $rpt"
+    rpt = factory.getReport(reportName)
+  }
+
   void testGetJrxml() {
     printBanner("testGetJrxml")
   } 
