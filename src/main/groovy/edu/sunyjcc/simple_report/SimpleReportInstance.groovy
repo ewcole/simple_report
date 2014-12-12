@@ -19,7 +19,7 @@ public class SimpleReportInstance implements Exportable, Runnable {
     params
   }
 
-def runFunctions = [
+  def runFunctions = [
     // JSON: {
     //   Writer out ->
     //     out.print(this.toJson());
@@ -27,7 +27,7 @@ def runFunctions = [
     //     return true;
     // },
     HTML: {
-    Writer out, ResultSet resultSet ->
+      Writer out, ResultSet resultSet ->
         def m = new MarkupBuilder(out);
         m.setDoubleQuotes(true)
         m.table {

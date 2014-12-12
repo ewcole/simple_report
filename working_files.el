@@ -12,7 +12,7 @@
   (erase-buffer)
   (shell-command "gradle clean" "*Messages*")
   (shell-command "dir /s /b *.groovy" work-buffer-name "*Messages*")
-  (while (re-search-forward "\\(.*\\\\\\([A-Za-z0-9]+\.groovy\\)\\)" nil t)
+  (while (re-search-forward "\\(.*\\\\\\([A-Za-z0-9_]+\.groovy\\)\\)" nil t)
     (insert (concat "- [[file:" (get-re-match 1) "][" (get-re-match 2) "]]"))
     (delete-region (match-beginning 0) (match-end 0)))
   (goto-char 0)
