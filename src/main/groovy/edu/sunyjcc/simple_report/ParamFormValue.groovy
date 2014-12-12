@@ -33,10 +33,10 @@ public class ParamFormValue implements Exportable, Runnable {
         //println "** $paramName -> ${param.export()} -> ${pv.export()}"
         vals[paramName] = pv;
         return vals
-    }
+    }?:[:]
     // println "this.values=${this.values}"
     // println "this.values keys =${this.values.keySet()}"
-    assert this.values
+    assert this.values != null
     return this
   }
 

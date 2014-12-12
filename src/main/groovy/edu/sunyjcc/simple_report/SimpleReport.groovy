@@ -3,7 +3,7 @@ package edu.sunyjcc.simple_report;
 /** A report that can be defined in a small Groovy script, producing an 
  *  output
  */
-public class SimpleReport implements Exportable {
+public class SimpleReport implements Exportable, Runnable {
 
   /* Report-level properties *************/
   /** The report name */
@@ -40,6 +40,9 @@ public class SimpleReport implements Exportable {
     assert queryEngine
     if (queryEngine) {
       queryEngine.init(args)
+    }
+    if (params) {
+      params.init(args)
     }
     return this
   }
@@ -102,4 +105,36 @@ public class SimpleReport implements Exportable {
     queryEngine.execute(this.params)
   }
  
+  // Methods we need to implement for the Runnable interface
+
+  /** Get a param form value for the object.*/
+  @Override
+  ParamFormValue getParamFormValue() {
+    new ParamFormValue((this.params)?:(new ParamForm()))
+  }
+
+  /** Get a list of the supported output types */
+  @Override
+  ArrayList<OutputFormat> getOutputFormats() {
+    new SimpleReportInstance(this).getOutputFormats()
+  }
+
+  /** Run the runnable object, writing its output data to the stream you 
+   *  provide.
+   *  @param outputFormat This tells us what kind of output you want to create,
+   *                      For example, you might want HTML or CSV.
+   *  @param paramFormValue An object that gives us the parameters to be used 
+   *                        when creating the output for the report.
+   *  @param out       An output stream that will hold the results of your run.
+   */
+  boolean run(OutputFormat outputFormat, ParamFormValue paramFormValue, 
+              Writer out) {
+    new SimpleReportInstance(this).run(outputFormat, paramFormValue, out)
+  }
+
+  /** Is this object valid and ready to run? */
+  boolean validate() {
+    return false
+  }
+
 }
