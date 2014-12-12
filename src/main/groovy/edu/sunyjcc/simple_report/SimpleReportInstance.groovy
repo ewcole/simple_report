@@ -19,6 +19,14 @@ public class SimpleReportInstance implements Exportable, Runnable {
     params
   }
 
+  /** Create a new SimpleReportInstance for the report object.
+   *  @param report The SimpleReport that this instance will wrap.
+   */
+  public SimpleReportInstance(SimpleReport report) {
+    this.report = report
+    this.params = report.getParamFormValue()
+  }
+
   def runFunctions = [
     // JSON: {
     //   Writer out ->
