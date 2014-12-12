@@ -43,13 +43,25 @@ public class SimpleReportInstance implements Exportable, Runnable {
           h1(this.report.title);
           table {
             thead {
-              resultSet?.columns?.each {
-                c ->
-                  th(class: "${c.name}", tooltip: "${c.description}",
-                     "${c.label}");
+              tr {
+                resultSet?.columns?.each {
+                  c ->
+                    th(class: "${c.name}", tooltip: "${c.description}",
+                       "${c.label}");
+                }
               }
             }
             tbody {
+              def cols = resultSet?.columns?.collect {it.name}
+              resultSet?.rows?.eachWithIndex {
+                row, i ->
+                  tr(class: "data ${(i%2)?'even':'odd'}") {
+                    cols.each {
+                      td(class: "$it", "${row[it]}")
+                    }
+
+                  }
+              }
             }
           }
         }   
