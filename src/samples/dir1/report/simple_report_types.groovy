@@ -8,7 +8,7 @@ report (name: 'simple_report_types') {
   def s = new StringWriter()
   s.println "Name,Description"
   reportObjectTypes.each {
-    s.println "$it.name,$it.description"
+    s.println "$it.name,$it.desc"
   }
   csv(text: s.toString())
 }
