@@ -10,7 +10,10 @@ public class ParamFormValue implements Exportable, Runnable {
   HashMap<String, ParamValue> values
 
   public HashMap<String, ParamValue> getValues() {
-    this.values
+    if (!values) {
+      values = [:]
+    }
+    return values
   }
 
   public void setValues() {
@@ -23,8 +26,8 @@ public class ParamFormValue implements Exportable, Runnable {
    */
   ParamFormValue setParamForm(ParamForm paramForm) {
     //println "in setParamForm(${paramForm.export()})"
-    this.paramForm = paramForm;
-    this.values = paramForm.params.inject([:]) {
+    this.paramForm = paramForm?:new ParamForm();
+    this.values = this.paramForm.params.inject([:]) {
       vals, paramFormEntry ->
         // paramForm.params is a HashMap
         String paramName = paramFormEntry.key;

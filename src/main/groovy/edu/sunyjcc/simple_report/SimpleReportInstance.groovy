@@ -43,7 +43,7 @@ public class SimpleReportInstance implements Exportable, Runnable {
           h1(this.report.title);
           table {
             thead {
-              resultSet.columns.each {
+              resultSet?.columns?.each {
                 c ->
                   th(class: "${c.name}", tooltip: "${c.description}",
                      "${c.label}");

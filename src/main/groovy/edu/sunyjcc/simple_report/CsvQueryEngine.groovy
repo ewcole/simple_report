@@ -5,8 +5,10 @@ package edu.sunyjcc.simple_report
  */
 public class CsvQueryEngine extends QueryEngine {
 
-  File   file
-  String text
+  File      file
+  String    text
+  ColumnList   columns
+  ArrayList rows
 
   /* Inherited methods */
 
@@ -36,11 +38,56 @@ public class CsvQueryEngine extends QueryEngine {
     return ex
   }
 
-  /** List the columns that this report produces. */
-  ColumnList getColumns() {
-    []
+  /** read the CSV file input and set the local values */
+  def parseCsvText(String csvText) {
+    def lines = csvText.readLines()*.split(',');
+    def columns = (lines?.size() > 0)?lines[0]:[]
+    // println "columns=$columns"
+    // println "lines=$lines"
+    // println "lines.size()=${lines.size()}"
+    def rows = (lines.size()<=1)?[]:(
+      lines[1..-1].collect{
+        line ->
+          // println "line=$line"
+          def m = [:]
+          line.eachWithIndex {
+            fieldVal, i ->
+              m[columns[i]] = fieldVal
+          }
+          // println "m=$m"
+          return m
+      }
+    )
+    // println "rows=$rows"
+    [columns: columns,
+     rows: rows]
   }
-  
+
+  /** read the CSV file input and set the local values */
+  def parseCsv() {
+    def csvText = (file?.exists())?file.text:text;
+    parseCsvText(csvText)
+  }
+
+  /** List the columns that this report produces. */
+  @Override
+  ColumnList getColumns() {
+    (ColumnList) parseCsv().columns
+  }
+
+  @Override
+  ResultSet execute(HashMap params) {
+    def data = parseCsv()
+    def r = new ResultSet()
+    r.columns = data.columns.collect{new Column([name: it, label: it])}
+    r.rows = data.rows
+    return r;
+  }
+
+  ResultSet execute() {
+    execute([:])
+  }
+
   CsvQueryEngine() {
     super()
   }

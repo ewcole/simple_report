@@ -91,16 +91,24 @@ public class SqlQueryEngine extends QueryEngine {
   /** Execute without passing parameters. The query will fail if there are any bind variables in it.
    */
   ResultSet execute() {
-    assert this.sql instanceof groovy.sql.Sql
-    assert this.parsedQuery.size() > 0
-    def rows = sql.rows(parsedQuery, getColumnMetadata)
-    return new ResultSet(columns: columns, rows: rows)
+    // assert this.sql instanceof groovy.sql.Sql
+    // assert this.parsedQuery.size() > 0
+    // def rows = sql.rows(parsedQuery, getColumnMetadata)
+    // return new ResultSet(columns: columns, rows: rows)
+    return execute([:])
   }
 
   /** Execute the query with the given parameter list.
    *  @param params The parameters we will use in this query.
    */
-  ResultSet execute(ParamForm params) {
+  ResultSet execute(ParamFormValue params) {
+    return execute((params?.getValues())?:[:])
+  }
+
+  /** Execute the query with the given parameter list.
+   *  @param params The parameters we will use in this query.
+   */
+  ResultSet execute(HashMap params) {
     assert this.sql instanceof groovy.sql.Sql
     assert this.parsedQuery.size() > 0
     def rows = []
@@ -111,7 +119,6 @@ public class SqlQueryEngine extends QueryEngine {
       rows = sql.rows(parsedQuery, getColumnMetadata)
     }
     return new ResultSet(columns: columns, rows: rows)
-    
   }
 
   /** Public hash-map constructor */

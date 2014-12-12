@@ -100,6 +100,13 @@ public class SimpleReport implements Exportable, Runnable {
   }
  
   /** Execute the report and return the result. */
+  public ResultSet execute(ParamFormValue params) {
+    def p = (this.params?.getParamFormValue())?:new ParamFormValue();
+    p.setParamValues(params)
+    queryEngine.execute(p)
+  }
+ 
+  /** Execute the report and return the result. */
   public ResultSet execute(HashMap params) {
     this.params.setParamValues(params)
     queryEngine.execute(this.params)

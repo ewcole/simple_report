@@ -3,7 +3,7 @@ package edu.sunyjcc.simple_report
 /** This class provides functions that generate the data for the report.
  *  You build an instance of this class into a report.
  */
-public class QueryEngine implements Exportable {
+public abstract class QueryEngine implements Exportable {
 
   String queryEngineType = "queryEngine"
 
@@ -24,12 +24,12 @@ public class QueryEngine implements Exportable {
   }
 
   /** List the columns that this report produces. */
-  ColumnList getColumns() {
-    (ColumnList)[]
+  abstract ColumnList getColumns();
+
+  ResultSet execute(ParamFormValue params) {
+    execute(params.getValueMap())
   }
 
-  ResultSet execute(ParamForm params) {
-    // This returns an empty result set.
-    return new ResultSet(columns: new ColumnList(), rows: [])
-  }
+  abstract ResultSet execute(HashMap params);
+
 }
