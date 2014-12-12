@@ -36,19 +36,23 @@ public class SimpleReportInstance implements Exportable, Runnable {
     // },
     HTML: {
       Writer out, ResultSet resultSet ->
+        println "In SimpleReportInstance.runFunctions[HTML]()"
         def m = new MarkupBuilder(out);
         m.setDoubleQuotes(true)
-        m.table {
-          thead {
-            resultSet.columns.each {
-              c ->
-                th(class: "${c.name}", tooltip: "${c.description}",
-                   "${c.label}");
+        m.div(class: "simple_report $report.name") { 
+          h1(this.report.title);
+          table {
+            thead {
+              resultSet.columns.each {
+                c ->
+                  th(class: "${c.name}", tooltip: "${c.description}",
+                     "${c.label}");
+              }
+            }
+            tbody {
             }
           }
-          tbody {
-          }
-        }
+        }   
         out.flush()
         return true;
     },
@@ -67,9 +71,11 @@ public class SimpleReportInstance implements Exportable, Runnable {
   @Override
   boolean run(OutputFormat outputFormat, ParamFormValue paramFormValue,
               Writer out) {
-    if (runFunctions[outputFormat]) {
-      def rs = target.execute(paramFormValue)
-      return runFunctions[outputFormat](out, rs);
+    def oFm = outputFormat.desc
+    assert runFunctions[oFm]
+    if (runFunctions[oFm]) {
+      def rs = report.execute(paramFormValue)
+      return runFunctions[oFm](out, rs);
     }
     return false
   }
