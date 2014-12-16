@@ -6,16 +6,16 @@ public class SimpleReportBuilderSqlTest extends GroovyTestCase {
   void testCreateSqlQueryEngine() {
     println "******** testCreateSqlQueryEngine ********************"
     def a = new SimpleReportBuilder()
-    def e = a.sql()
+    def e = a.sql(query: 'select user from dual')
     println "e = $e"
     assert e
     def exp = e.export()
     println "new sql query engine=${exp}"
     assert exp == [queryEngineType: 'sql', 
                    class: 'edu.sunyjcc.simple_report.SqlQueryEngine',
-                   query:       null,
-                   parsedQuery: null,
-                   paramRefs:   null,]
+                   query:       'select user from dual',
+                   parsedQuery: 'select user from dual',
+                   paramRefs:   [],]
     println ("*" * 70)
     println()
   }

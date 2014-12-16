@@ -102,7 +102,12 @@ public class SqlQueryEngine extends QueryEngine {
    *  @param params The parameters we will use in this query.
    */
   ResultSet execute(ParamFormValue params) {
-    return execute((params?.getValues())?:[:])
+    def paramVals = params?.getValues()?.inject([:]) {
+      map, pv ->
+        map[pv.key] = pv.value.value
+        map
+    }
+    return execute(paramVals?:[:])
   }
 
   /** Execute the query with the given parameter list.
@@ -110,9 +115,13 @@ public class SqlQueryEngine extends QueryEngine {
    */
   ResultSet execute(HashMap params) {
     assert this.sql instanceof groovy.sql.Sql
-    assert this.parsedQuery.size() > 0
+    println "SqlQueryEngine.execute($params)"
+    if (!parsedQuery) {
+      parseSql(this.query)
+    }
+    assert this.parsedQuery?.size() > 0
     def rows = []
-    HashMap paramVals = (params?.getValues())?:[:]
+    HashMap paramVals = params?:[:]
     if (paramVals.keySet().size()) {
       rows = sql.rows(paramVals, parsedQuery, getColumnMetadata)
     } else {
@@ -123,6 +132,7 @@ public class SqlQueryEngine extends QueryEngine {
 
   /** Public hash-map constructor */
   public SqlQueryEngine(HashMap args) {
+    assert args.query
     init(args)
   }
 }
