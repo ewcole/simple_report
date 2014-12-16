@@ -1,5 +1,6 @@
 package edu.sunyjcc.simple_report
 
+@Grab('edu.sunyjcc:util:1.1.0')
 import edu.sunyjcc.util.JccConnectionManager
 
 assert args.size()
