@@ -72,4 +72,3 @@ public class SqlQueryEngineTest extends GroovyTestCase {
     println ("*"*70)
     println ()
   }
-}

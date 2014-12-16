@@ -55,7 +55,8 @@ public class Invocation implements Exportable, Runnable {
       assert target instanceof Runnable
       this.params = target.getParamFormValue()
     }
-    target.getParamFormValue().init(args);
+    target.init(args);
+    params.init(args);
     return this
   }
 
