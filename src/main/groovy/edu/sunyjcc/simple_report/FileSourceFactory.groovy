@@ -17,6 +17,18 @@ public class FileSourceFactory extends SourceFactory {
     s.text
   }
 
+  /** List the objects this factory can find the source for */
+  public ArrayList list() {
+    ['param',
+     'param_form',
+     'report'].collect {
+      dir ->
+        new File(sourceRoot, dir).list().grep{it =~ /(?i)\.groovy$/}.collect {
+          [type: dir, name: it.replaceAll(/(?i)\.groovy$/, '')]
+        }
+    }.flatten() 
+  }
+
   /** Public constructor that takes a root directory.
    *  @param sourceRoot The root directory of the source repository.
    */
@@ -30,4 +42,5 @@ public class FileSourceFactory extends SourceFactory {
   public FileSourceFactory(String sourceRoot) {
     this.sourceRoot = new File(sourceRoot);
   }
+
 }

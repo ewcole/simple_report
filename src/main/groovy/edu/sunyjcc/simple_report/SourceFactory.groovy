@@ -71,4 +71,7 @@ public abstract class SourceFactory {
     getSourceText(nType, qName)
   }
 
+  /** List the objects this factory can find the source for */
+  public abstract ArrayList list();
+
 }

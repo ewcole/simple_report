@@ -68,4 +68,14 @@ public class SourceFactoryTest extends GroovyTestCase {
     println "Getting report source: sf.getSourceText('report', '$reportName')"
     assert sf.getSource('report', reportName) == txt
   }
+
+  void testList () {
+    printBanner("testList")
+    def sf = getSourceFactory()
+    def l = sf.list()
+    println l
+    assert l == [[type: 'param', name:'scoobydoo'], 
+                 [type: 'param_form', name: 'SubjectAndTerm'], 
+                 [type: 'report', name: 'simple_report_types']]
+  }
 }
