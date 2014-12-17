@@ -42,8 +42,12 @@ public class SimpleReportBuilderCsvTest extends GroovyTestCase {
     }
     println "e=$e"
     assert e
-    def exp = e//.export()
+    def exp = e.export()
     println "new csv query engine=${exp}"
+    def i = new Invocation(e)
+    println "i = $i"
+    //assert ex == [A: 1, B: 2, C: 3]
+
     println ("*" * 70)
     println()
   }

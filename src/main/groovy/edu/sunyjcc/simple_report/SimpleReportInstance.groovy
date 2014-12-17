@@ -19,6 +19,14 @@ public class SimpleReportInstance implements Exportable, Runnable {
     params
   }
 
+  String csvEscape(String v) {
+    if (v =~ /,/) {
+      '"' + v.replaceAll('"', '""') + '"'
+    } else {
+      v
+    }
+  }
+
   /** Create a new SimpleReportInstance for the report object.
    *  @param report The SimpleReport that this instance will wrap.
    */
@@ -64,11 +72,32 @@ public class SimpleReportInstance implements Exportable, Runnable {
               }
             }
           }
-        }   
+        }
+        out.flush()
+        return true;
+    },
+    CSV: {
+      Writer out, ResultSet resultSet ->
+        println "In SimpleReportInstance.runFunctions[CSV]()"
+        def cols = resultSet?.columns?.collect {it.name}
+        def columnHeaders = cols.collect {
+          csvEscape(it)
+        }
+        out.println (columnHeaders.join(','))
+        // Now print the data rows
+        resultSet?.rows?.each {
+          row ->
+            out.println (cols.collect {
+                           val ->
+                             csvEscape("${row[val]}")
+                         }.join(','))
+
+        }
         out.flush()
         return true;
     },
   ]
+  
 
   /** Get a list of the supported output types */
   @Override

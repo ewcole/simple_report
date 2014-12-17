@@ -8,7 +8,7 @@ enum OutputFormat {
     csv("CSV", "application/csv"),
     xls("XLS", "application/vnd.ms-excel"),
     rtf("RTF", "application/rtf"),
-    text("TEXT", "text/plain", ".txt"),
+    text("TEXT", "text/plain", "txt"),
     odt("ODT", "application/odt"),
     ods("ODS", "application/ods"),
     docx("DOCX", "application/msword"),
