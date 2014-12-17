@@ -6,9 +6,9 @@ for %%f in (.\build\reports\tests\index.html) do (
     start %%f
 )
 
-if "%userid%" equ "" (
-   set /p userid=userid: 
-)
+:: if "%userid%" equ "" (
+::    set /p userid=userid: 
+:: )
 :: setlocal
 :: set classpath=.\build\classes\main;%classpath%
 :: testQueryEngine.groovy %userid%
