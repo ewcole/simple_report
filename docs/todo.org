@@ -29,9 +29,15 @@
 This is now an official MIS project; it will be used as a generator for CSV files, as well as a parameter form generator for Jasper Reports.
 
 * Pre-production
-** TODO Make it compatible with Grails
+** DONE Make it compatible with Grails
+   :LOGBOOK:
+   - State "DONE"       from "TODO"       [2014-12-17 Wed 16:03]
+   :END:
 Make sure it will run with a Grails front end or plugin.  That might involve making the move to Grails 2
-** TODO Resource Loader
+** DONE Resource Loader
+   :LOGBOOK:
+   - State "DONE"       from "TODO"       [2014-12-17 Wed 16:04]
+   :END:
 The resource loader will plug into the SimpleReportBuilder and load objects by name as they are requested.
 * Version 0.1.0
   Version 0.1.0 must have the basic parameter functionality fully functional.  We will initially target command line scripts and Grails.
@@ -49,7 +55,9 @@ This will be the default type of SourceFactory.
 **** DONE Convert the source code into report objects.
 **** DONE Cache report object definitions
 Creating the objects will be an expensive process, so let's save the results of our queries.
-**** TODO Create parameter list from JRXML
+**** CANCELED Create parameter list from JRXML
+*Defer this to a later version.*
+
 Pull out all /jasperReport/parameter elements from the jrxml and create parameters of the appropriate type for them.  Look for an existing parameter of the same name and use that if it is compatible.
 **** TODO Create invocation for objects
 *** DONE Create report object values
@@ -59,9 +67,16 @@ These are not cached.  This will be done in the individual object types.
      :LOGBOOK:
      - State "DONE"       from "TODO"       [2014-11-06 Thu 10:12]
      :END:
-*** TODO Invocation
+*** CANCELED Client
+Defer this to a later version.
 
-*** TODO Client
 We need a class that handles interaction with client environments.  Duties include displaying a parameter form, validating data.  In the future, it might also take on the responsibility of executing queries and displaying the results.
-**** TODO CliBuilderClient
-**** TODO GrailsClient
+* Version 0.2.0
+** TODO Create reload button in developer page
+** TODO New home page
+** TODO Improve developer page
+** TODO Inheritance
+* Version 0.3.0
+** TODO Integrate with menu system
+** TODO Lists of Values
+** TODO Validation
