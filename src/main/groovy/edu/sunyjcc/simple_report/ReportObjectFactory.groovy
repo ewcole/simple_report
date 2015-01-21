@@ -63,6 +63,11 @@ public class ReportObjectFactory {
     return c
   }
 
+  /** Clear the cache so that we can reload updated apps. */
+  def clearCache() {
+    this.cache = createCache(sourceFactory)
+  }
+
   /** Set the source factory and create a new object cache.
    */
   public setSourceFactory(SourceFactory sourceFactory) {
