@@ -35,7 +35,8 @@ prod
 ** Master
 master
 ** Feature branches
-- params :: Feature branch for the collection and validation of parameters.
+# - params :: Feature branch for the collection and validation of parameters.
+- autodoc :: Feature branch for generating builder documentation.
 
 * Current work
 ** Parameters

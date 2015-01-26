@@ -1,7 +1,7 @@
 #+TITLE: Simple Report Roadmap
 #+AUTHOR: Ed Cole
 #+EMAIL: coleew01@JITECPC21
-#+STARTUP: content
+#+STARTUP: showall
 #+OPTIONS: ':nil *:t -:t ::t <:t H:3 \n:nil ^:{} arch:headline
 #+OPTIONS: author:t c:nil creator:comment d:(not "LOGBOOK") date:t
 #+OPTIONS: e:t email:nil f:t inline:t num:nil p:nil pri:nil stat:t
@@ -59,7 +59,7 @@ Creating the objects will be an expensive process, so let's save the results of 
 *Defer this to a later version.*
 
 Pull out all /jasperReport/parameter elements from the jrxml and create parameters of the appropriate type for them.  Look for an existing parameter of the same name and use that if it is compatible.
-**** TODO Create invocation for objects
+**** DONE Create invocation for objects
 *** DONE Create report object values
 These are not cached.  This will be done in the individual object types.
 **** DONE ParamValue
@@ -72,11 +72,10 @@ Defer this to a later version.
 
 We need a class that handles interaction with client environments.  Duties include displaying a parameter form, validating data.  In the future, it might also take on the responsibility of executing queries and displaying the results.
 * Version 0.2.0
-** TODO Create reload button in developer page
-** TODO New home page
-** TODO Improve developer page
-** TODO Inheritance
+** TODO Auto documentation
 * Version 0.3.0
+** TODO Inheritance
+* Version 0.4.0
 ** TODO Integrate with menu system
 ** TODO Lists of Values
 ** TODO Validation
