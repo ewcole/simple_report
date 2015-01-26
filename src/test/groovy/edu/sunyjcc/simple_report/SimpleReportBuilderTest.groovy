@@ -98,4 +98,11 @@ public class SimpleReportBuilderTest extends GroovyTestCase {
 
   }
 
+  void testgetBuildDocs() {
+    println "******** testgetBuildDocs ********************"
+    def a = new SimpleReportBuilder()
+    def x = a.getBuildDocs()
+    println x
+  }
+
 }

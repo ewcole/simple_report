@@ -26,12 +26,15 @@ public class SimpleReportBuilder extends BuilderSupport {
           }
           return report
       },
+      implClass: SimpleReport,
     ],
     params: [
       create: {
         String name, Map attributes, def value ->
           new ParamForm()
-      }],
+      },
+      implClass: ParamForm
+    ],
     param: [
       create: {
         String name, Map attributes, def value ->
@@ -54,6 +57,7 @@ public class SimpleReportBuilder extends BuilderSupport {
           }
           return param;
       },
+      implClass: Param,
     ],
     csv: [
       create: {
@@ -64,7 +68,8 @@ public class SimpleReportBuilder extends BuilderSupport {
           debug "nodeFactory.csv => $eng"
           assert eng
           return eng
-      }
+      },
+      implClass: CsvQueryEngine
     ],
     sql: [
       create: {
@@ -75,7 +80,8 @@ public class SimpleReportBuilder extends BuilderSupport {
           debug "nodeFactory.sql => $eng"
           assert eng
           return eng
-      }
+      },
+      implClass: SqlQueryEngine
     ],
   ];
 
@@ -114,7 +120,6 @@ public class SimpleReportBuilder extends BuilderSupport {
     ],
   ]
 
-
   Object createNode(Object name) {
     createNode(name, [:], null)
   }
@@ -136,6 +141,20 @@ public class SimpleReportBuilder extends BuilderSupport {
     def n = nodeFactory[name].create(name, attributes, value)
     debug "createNode => $n"
     return n
+  }
+
+  def getBuildDocs() {
+    nodeFactory.keySet().inject([:]) {
+      objMap, keyword ->
+        def z = nodeFactory[keyword]
+        def childClasses = ((addChildFarm[z.implClass])?.keySet())?:[]
+        def childMethods = nodeFactory.grep {childClasses.contains(it.value.implClass)}
+                               .collect {it.key}
+        objMap << ["$keyword": [methodName: "$keyword",
+                                implClass: z.implClass,
+                                childMethods: childMethods]]
+        objMap
+    }
   }
 
   void setParent(Object parent, Object child) {
