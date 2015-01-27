@@ -3,7 +3,7 @@ package edu.sunyjcc.simple_report
 /** This class provides functions that generate the data for the report.
  *  You build an instance of this class into a report.
  */
-public class CsvQueryEngine extends QueryEngine {
+public class CsvQueryEngine extends QueryEngine implements Buildable {
 
   File      file
   String    text

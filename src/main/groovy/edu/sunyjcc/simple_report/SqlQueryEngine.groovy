@@ -5,7 +5,7 @@ import groovy.sql.Sql
 
 /** A query based on an SQL statement
  */
-public class SqlQueryEngine extends QueryEngine {
+public class SqlQueryEngine extends QueryEngine implements Buildable {
 
   String queryEngineType = "sql"
   
