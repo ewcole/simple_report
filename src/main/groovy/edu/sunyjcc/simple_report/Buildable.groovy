@@ -5,5 +5,9 @@ package edu.sunyjcc.simple_report;
 public interface Buildable {
   /** Return a block of HTML text that tells us what we create when we build
    *  this object. */
-  String getBuildDocHtml()
+  String        getBuildDocHtml();
+
+  /** List the different options you can pass as parameters to the builder 
+   *  method call for this class. */
+  LinkedHashMap getBuildOptions();
 }

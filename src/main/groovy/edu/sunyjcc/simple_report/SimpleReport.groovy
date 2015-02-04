@@ -6,7 +6,16 @@ package edu.sunyjcc.simple_report;
 public class SimpleReport implements Exportable, Buildable, Runnable {
 
   String getBuildDocHtml() {
-    "Change me."
+    ("This creates a report that can produce a data file in several "
+     + "formats, including CSV.")
+  }
+
+  /** List the different options you can pass as parameters to the builder 
+   *  method call for this class. */
+  LinkedHashMap getBuildOptions() {
+    [name:    "The name of the report.  It defaults to the name of the script.",
+     version: "The version number for this report.",
+     title:   "The report's title."]
   }
 
   /* Report-level properties *************/

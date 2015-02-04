@@ -11,6 +11,10 @@ public class SqlQueryEngine extends QueryEngine implements Buildable {
     "Change me."
   }
 
+  /** List the different options you can pass as parameters to the builder 
+   *  method call for this class. */
+  LinkedHashMap getBuildOptions() {[:]}
+
   String queryEngineType = "sql"
   
   Sql sql

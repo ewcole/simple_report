@@ -12,6 +12,10 @@ public class ParamForm implements Buildable, Exportable, Runnable {
   }
 
 
+  /** List the different options you can pass as parameters to the builder 
+   *  method call for this class. */
+  LinkedHashMap getBuildOptions() {[:]}
+
   // The parameters
   HashMap<String,Param> params = [:]
   private boolean isValid;
