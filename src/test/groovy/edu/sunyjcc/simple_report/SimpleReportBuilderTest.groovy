@@ -8,12 +8,14 @@ import groovy.util.BuilderSupport
 public class SimpleReportBuilderTest extends GroovyTestCase {
 
   void testCreateBuilder() {
+    println ""
     println "******** testCreateBuilder ********************"
     def a = new SimpleReportBuilder()
       assert a 
   }
 
   void testCreateReport() {
+    println ""
     println "******** testCreateReport ********************"
     def a = new SimpleReportBuilder()
     def r = a.report(name: "ghostHunt", title: "Ghost Hunt") //{
@@ -26,6 +28,7 @@ public class SimpleReportBuilderTest extends GroovyTestCase {
   }
 
   void testReportWithParameters() {
+    println ""
     println "******** testReportWithParameters ********************"
     def a = new SimpleReportBuilder()
     def r = a.report(name: "ghostHunt", title: "Ghost Hunt") {
@@ -42,6 +45,7 @@ public class SimpleReportBuilderTest extends GroovyTestCase {
 
   /** Try inserting an (unnecessary) params call and see if this works. */
   void testReportWithParamForm() {
+    println ""
     println "******** testReportWithParamForm ********************"
     def a = new SimpleReportBuilder()
     def r = a.report(name: "ghostHunt", title: "Ghost Hunt") {
@@ -53,6 +57,7 @@ public class SimpleReportBuilderTest extends GroovyTestCase {
 
 
   void testCreateParam() {
+    println ""
     println "******** testCreateParam ********************"
     def a = new SimpleReportBuilder() 
     def p = a.param(name: 'scoobydoo', default: 'scared',
@@ -70,6 +75,7 @@ public class SimpleReportBuilderTest extends GroovyTestCase {
   }
 
   void testCreateParamForm() {
+    println ""
     println "******** testCreateParamForm ********************"
     def a = new SimpleReportBuilder()
     def p = a.params {
@@ -98,11 +104,27 @@ public class SimpleReportBuilderTest extends GroovyTestCase {
 
   }
 
-  void testgetBuildDocs() {
-    println "******** testgetBuildDocs ********************"
+  void testGetBuildDocs() {
+    println ""
+    println "******** testGetBuildDocs ********************"
     def a = new SimpleReportBuilder()
     def x = a.getBuildDocs()
     println x
+  }
+
+  /** Make sure all of the objects you call in the SimpleReportBuilder 
+   *  implement the Buildable interface.
+   */
+  void testBuildableObjects() {
+    println ""
+    println "******** testBuildableObjects ********************"
+    def a = new SimpleReportBuilder()
+    def x = a.getBuildDocs()
+    x.each {
+      key, val ->
+        println "$key: ${val}"
+        assert Buildable.getClass().isInstance(val.implClass)
+    }
   }
 
 }
