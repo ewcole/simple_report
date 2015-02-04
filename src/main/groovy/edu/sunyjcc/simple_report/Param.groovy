@@ -3,6 +3,11 @@ package edu.sunyjcc.simple_report;
 /** A parameter definition to be used in a report or application invocation.
  */
 public class Param implements Exportable, Buildable {
+
+  String getBuildDocHtml() {
+    "Change me."
+  }
+
   /** The parameter name */
   String name;
 

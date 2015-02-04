@@ -5,6 +5,11 @@ package edu.sunyjcc.simple_report
  */
 public class CsvQueryEngine extends QueryEngine implements Buildable {
 
+  String getBuildDocHtml() {
+    "Change me."
+  }
+
+
   File      file
   String    text
   ColumnList   columns

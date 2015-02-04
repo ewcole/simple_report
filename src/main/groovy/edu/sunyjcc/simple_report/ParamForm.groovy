@@ -6,6 +6,12 @@ import java.util.*
  *  system.
  */
 public class ParamForm implements Buildable, Exportable, Runnable {
+
+  String getBuildDocHtml() {
+    "Change me."
+  }
+
+
   // The parameters
   HashMap<String,Param> params = [:]
   private boolean isValid;

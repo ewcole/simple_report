@@ -5,6 +5,10 @@ package edu.sunyjcc.simple_report;
  */
 public class SimpleReport implements Exportable, Buildable, Runnable {
 
+  String getBuildDocHtml() {
+    "Change me."
+  }
+
   /* Report-level properties *************/
   /** The report name */
   String name    = "";

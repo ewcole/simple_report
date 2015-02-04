@@ -7,6 +7,10 @@ import groovy.sql.Sql
  */
 public class SqlQueryEngine extends QueryEngine implements Buildable {
 
+  String getBuildDocHtml() {
+    "Change me."
+  }
+
   String queryEngineType = "sql"
   
   Sql sql
