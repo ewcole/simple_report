@@ -74,8 +74,8 @@ We need a class that handles interaction with client environments.  Duties inclu
 * Version 0.2.0
 ** DONE Auto documentation
 * Version 0.3.0
-** TODO Inheritance
-* Version 0.4.0
 ** TODO Integrate with menu system
+* Version 0.4.0
+** TODO Inheritance
 ** TODO Lists of Values
 ** TODO Validation
