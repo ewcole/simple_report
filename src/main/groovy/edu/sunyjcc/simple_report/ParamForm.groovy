@@ -8,13 +8,15 @@ import java.util.*
 public class ParamForm implements Buildable, Exportable, Runnable {
 
   String getBuildDocHtml() {
-    "Change me."
+    "This creates a parameter form."
   }
 
 
   /** List the different options you can pass as parameters to the builder 
    *  method call for this class. */
-  LinkedHashMap getBuildOptions() {[:]}
+  LinkedHashMap getBuildOptions() {
+    [:]
+  }
 
   // The parameters
   HashMap<String,Param> params = [:]

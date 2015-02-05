@@ -6,12 +6,16 @@ package edu.sunyjcc.simple_report
 public class CsvQueryEngine extends QueryEngine implements Buildable {
 
   String getBuildDocHtml() {
-    "Change me."
+    ("This creates a source of data that takes its values from a CSV file " +
+     " or a string in the CSV format.")
   }
 
   /** List the different options you can pass as parameters to the builder 
    *  method call for this class. */
-  LinkedHashMap getBuildOptions() {[:]}
+  LinkedHashMap getBuildOptions() {
+    [file: [desc: "The name of a CSV file on the server to be used as input."],
+     text: [desc: "A CSV-formatted block of text."]]
+  }
 
 
   File      file
@@ -97,11 +101,11 @@ public class CsvQueryEngine extends QueryEngine implements Buildable {
     execute([:])
   }
 
-  CsvQueryEngine() {
+  public CsvQueryEngine() {
     super()
   }
 
-  CsvQueryEngine(HashMap args) {
+  public CsvQueryEngine(HashMap args) {
     super()
     init(args)
   }

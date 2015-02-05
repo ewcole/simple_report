@@ -5,12 +5,20 @@ package edu.sunyjcc.simple_report;
 public class Param implements Exportable, Buildable {
 
   String getBuildDocHtml() {
-    "Change me."
+    "This creates a single parameter that will appear on a parameter form."
   }
 
   /** List the different options you can pass as parameters to the builder 
    *  method call for this class. */
-  LinkedHashMap getBuildOptions() {[:]}
+  LinkedHashMap getBuildOptions() {
+    [name:        [desc: "name",
+                   required: true],
+     type:        [desc: "The type of the parameter.  Currently the only supported type is STRING."],
+     description: [desc: "A description of the parameter"],
+     label:       [desc: "The label that will appear on the parameter form."],
+     'default':   [desc: "The default value for the parameter."]]
+    
+  }
 
   /** The parameter name */
   String name;
@@ -59,6 +67,10 @@ public class Param implements Exportable, Buildable {
     this.label = label;
     this.defaultValue = defaultValue
     this.superParam = superParam;
+  }
+
+  /** Zero-argument constructor */
+  public Param() {
   }
 
   boolean validate(def value) {

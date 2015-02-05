@@ -8,12 +8,16 @@ import groovy.sql.Sql
 public class SqlQueryEngine extends QueryEngine implements Buildable {
 
   String getBuildDocHtml() {
-    "Change me."
+    "This creates an SQL query to be used in a report."
   }
 
   /** List the different options you can pass as parameters to the builder 
    *  method call for this class. */
-  LinkedHashMap getBuildOptions() {[:]}
+  LinkedHashMap getBuildOptions() {
+    [query:    [desc: "The text of an SQL select statement.  Use ':' to mark bind variables.",
+                required: true]]
+
+  }
 
   String queryEngineType = "sql"
   
@@ -142,5 +146,9 @@ public class SqlQueryEngine extends QueryEngine implements Buildable {
   public SqlQueryEngine(HashMap args) {
     assert args.query
     init(args)
+  }
+
+  /** Public hash-map constructor */
+  public SqlQueryEngine() {
   }
 }
