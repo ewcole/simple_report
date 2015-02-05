@@ -13,7 +13,7 @@
 <li><a href="#sec-2-1">Parameters</a>
 <ul>
 <li><a href="#sec-2-1-1"><span class="todo DONE">DONE</span> Source Factory</a></li>
-<li><a href="#sec-2-1-2"><span class="todo TODO">TODO</span> Report Object Factory</a></li>
+<li><a href="#sec-2-1-2"><span class="todo DONE">DONE</span> Report Object Factory</a></li>
 <li><a href="#sec-2-1-3"><span class="todo DONE">DONE</span> Create report object values</a></li>
 <li><a href="#sec-2-1-4"><span class="done CANCELED">CANCELED</span> Client</a></li>
 </ul>
@@ -22,17 +22,19 @@
 </li>
 <li><a href="#sec-3">Version 0.2.0</a>
 <ul>
-<li><a href="#sec-3-1"><span class="todo TODO">TODO</span> Create reload button in developer page</a></li>
-<li><a href="#sec-3-2"><span class="todo TODO">TODO</span> New home page</a></li>
-<li><a href="#sec-3-3"><span class="todo TODO">TODO</span> Improve developer page</a></li>
-<li><a href="#sec-3-4"><span class="todo TODO">TODO</span> Inheritance</a></li>
+<li><a href="#sec-3-1"><span class="todo DONE">DONE</span> Auto documentation</a></li>
 </ul>
 </li>
 <li><a href="#sec-4">Version 0.3.0</a>
 <ul>
-<li><a href="#sec-4-1"><span class="todo TODO">TODO</span> Integrate with menu system</a></li>
-<li><a href="#sec-4-2"><span class="todo TODO">TODO</span> Lists of Values</a></li>
-<li><a href="#sec-4-3"><span class="todo TODO">TODO</span> Validation</a></li>
+<li><a href="#sec-4-1"><span class="todo TODO">TODO</span> Inheritance</a></li>
+</ul>
+</li>
+<li><a href="#sec-5">Version 0.4.0</a>
+<ul>
+<li><a href="#sec-5-1"><span class="todo TODO">TODO</span> Integrate with menu system</a></li>
+<li><a href="#sec-5-2"><span class="todo TODO">TODO</span> Lists of Values</a></li>
+<li><a href="#sec-5-3"><span class="todo TODO">TODO</span> Validation</a></li>
 </ul>
 </li>
 </ul>
@@ -70,7 +72,7 @@ Created a SourceFactory class to simplify implementation of different kinds of S
     
     This will be the default type of SourceFactory.
 
-### TODO Report Object Factory
+### DONE Report Object Factory
 
 -   DONE Get the source code from a factory
 
@@ -86,7 +88,7 @@ Created a SourceFactory class to simplify implementation of different kinds of S
     
     Pull out all /jasperReport/parameter elements from the jrxml and create parameters of the appropriate type for them.  Look for an existing parameter of the same name and use that if it is compatible.
 
--   TODO Create invocation for objects
+-   DONE Create invocation for objects
 
 ### DONE Create report object values
 
@@ -104,15 +106,13 @@ We need a class that handles interaction with client environments.  Duties inclu
 
 # Version 0.2.0
 
-## TODO Create reload button in developer page
+## DONE Auto documentation
 
-## TODO New home page
-
-## TODO Improve developer page
+# Version 0.3.0
 
 ## TODO Inheritance
 
-# Version 0.3.0
+# Version 0.4.0
 
 ## TODO Integrate with menu system
 
