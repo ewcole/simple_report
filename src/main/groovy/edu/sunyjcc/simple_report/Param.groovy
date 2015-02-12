@@ -11,13 +11,16 @@ public class Param implements Exportable, Buildable {
   /** List the different options you can pass as parameters to the builder 
    *  method call for this class. */
   LinkedHashMap getBuildOptions() {
-    [name:        [desc: "name",
+    [name:        [desc: """The name of the parameter.  This is the handle that will be used to 
+                            reference it within SQL queries and other code, so it should be a 
+                            valid variable name in SQL, Groovy, and other formats; please use only 
+                            alphanumeric characters and the underscore ("_").""",
                    required: true],
-     type:        [desc: "The type of the parameter.  Currently the only supported type is STRING."],
-     description: [desc: "A description of the parameter"],
+     type:        [desc: "The type of the parameter.  Currently the only supported type is STRING.",
+                   default: 'STRING'],
+     description: [desc: "A description of the parameter.  This will be available to the user."],
      label:       [desc: "The label that will appear on the parameter form."],
      'default':   [desc: "The default value for the parameter."]]
-    
   }
 
   /** The parameter name */
