@@ -42,6 +42,26 @@ public class SimpleReportInstance implements Exportable, Runnable {
     //     out.flush()
     //     return true;
     // },
+    CSV: {
+      Writer out, ResultSet resultSet ->
+        println "In SimpleReportInstance.runFunctions[CSV]()"
+        def cols = resultSet?.columns?.collect {it.name}
+        def columnHeaders = cols.collect {
+          csvEscape(it)
+        }
+        out.println (columnHeaders.join(','))
+        // Now print the data rows
+        resultSet?.rows?.each {
+          row ->
+            out.println (cols.collect {
+                           val ->
+                             csvEscape("${row[val]}")
+                         }.join(','))
+
+        }
+        out.flush()
+        return true;
+    },
     HTML: {
       Writer out, ResultSet resultSet ->
         println "In SimpleReportInstance.runFunctions[HTML]()"
@@ -72,26 +92,6 @@ public class SimpleReportInstance implements Exportable, Runnable {
               }
             }
           }
-        }
-        out.flush()
-        return true;
-    },
-    CSV: {
-      Writer out, ResultSet resultSet ->
-        println "In SimpleReportInstance.runFunctions[CSV]()"
-        def cols = resultSet?.columns?.collect {it.name}
-        def columnHeaders = cols.collect {
-          csvEscape(it)
-        }
-        out.println (columnHeaders.join(','))
-        // Now print the data rows
-        resultSet?.rows?.each {
-          row ->
-            out.println (cols.collect {
-                           val ->
-                             csvEscape("${row[val]}")
-                         }.join(','))
-
         }
         out.flush()
         return true;
