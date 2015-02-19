@@ -180,7 +180,11 @@ public class SimpleReportBuilder extends BuilderSupport {
     // wrap the script in a closure before evaluating.
     Closure c = shell.evaluate("{->$text}")
     c.setDelegate(this)
-    c()
+    def b = c()
+    if (b instanceof Buildable) {
+      b.source = text
+    }
+    return b;
   }
  
 }

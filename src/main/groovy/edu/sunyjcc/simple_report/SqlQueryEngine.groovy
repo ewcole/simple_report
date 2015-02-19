@@ -19,6 +19,9 @@ public class SqlQueryEngine extends QueryEngine implements Buildable {
 
   }
 
+  /** The source code used to create this object */
+  String source;
+
   String queryEngineType = "sql"
   
   Sql sql

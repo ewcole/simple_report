@@ -18,6 +18,8 @@ public class ParamForm implements Buildable, Exportable, Runnable {
     [:]
   }
 
+  String source;
+
   // The parameters
   HashMap<String,Param> params = [:]
   private boolean isValid;

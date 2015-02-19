@@ -18,6 +18,8 @@ public class SimpleReport implements Exportable, Buildable, Runnable {
      title:   [desc: "The report's title."]]
   }
 
+  String source;
+
   /* Report-level properties *************/
   /** The report name */
   String name    = "";

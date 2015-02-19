@@ -65,7 +65,8 @@ public class Invocation implements Exportable, Runnable {
     [type: reportObjectType,
      name: name,
      isValid: isValid,
-     params: params.export()]
+     params: params.export(),
+     target: target.export()]
   }
   
   /** Create a new invocation object with the type and name given.  Generally,
@@ -114,4 +115,7 @@ public class Invocation implements Exportable, Runnable {
     return isValid
   }
 
+  String getSource() {
+    return target.source
+  }
 }

@@ -10,4 +10,9 @@ public interface Buildable {
   /** List the different options you can pass as parameters to the builder 
    *  method call for this class. */
   LinkedHashMap getBuildOptions();
+
+  /** The source code used to create this object. It will be provided by
+   *  the SimpleReportBuilder if a
+   */
+  String source;
 }

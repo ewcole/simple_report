@@ -23,6 +23,9 @@ public class Param implements Exportable, Buildable {
      'default':   [desc: "The default value for the parameter."]]
   }
 
+  /** The source code used to create this object */
+  String source;
+
   /** The parameter name */
   String name;
 
