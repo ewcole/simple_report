@@ -55,7 +55,7 @@ public class SimpleReportInstance implements Exportable, Runnable {
           row ->
             out.println (cols.collect {
                            val ->
-                             csvEscape("${row[val]}")
+                             csvEscape("${(row[val])?:''}")
                          }.join(','))
 
         }
@@ -85,7 +85,7 @@ public class SimpleReportInstance implements Exportable, Runnable {
                 row, i ->
                   tr(class: "data ${(i%2)?'even':'odd'}") {
                     cols.each {
-                      td(class: "$it", "${row[it]}")
+                      td(class: "$it", "${row[it]?:''}")
                     }
 
                   }
