@@ -27,6 +27,9 @@ public class ListOfValues implements Buildable {
 
   }
 
+  /** A name that can be given this list of values. */
+  String name;
+
   /** A database connection to use for SQL queries */
   Sql sql;
 
@@ -78,8 +81,9 @@ public class ListOfValues implements Buildable {
         [type: "sql",
          query: queryStr]
       }
-    } else {
-      throw new Exception("not implemented")
     }
   }
+
+  /** Zero-argument constructor is required for documentation */
+  public ListOfValues() {}
 }
