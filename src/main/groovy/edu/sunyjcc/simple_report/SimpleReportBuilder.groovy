@@ -63,7 +63,7 @@ public class SimpleReportBuilder extends BuilderSupport {
       create: {
         String name, Map attributes, def value ->
           def ks = attributes.keySet()
-          if (!(ks.intersect(['sql', 'values']).size()) && value.size()) {
+          if (!(ks.intersect(['sql', 'values'])?.size()) && value?.size()) {
             attributes += [sql: value]
           }
           return ListOfValues.build(attributes)
@@ -143,7 +143,7 @@ public class SimpleReportBuilder extends BuilderSupport {
     (Param): [
       (ListOfValues): {
         parent, child ->
-          parent.listOfValues[child.name] = child
+          parent.listOfValues/*[child.name]*/ = child
       }
     ],
   ]
