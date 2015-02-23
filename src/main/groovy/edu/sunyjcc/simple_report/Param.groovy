@@ -51,6 +51,7 @@ public class Param implements Exportable, Buildable {
 
   /** Perform whatever initialization is needed for this parameter. */
   Param init(HashMap args) {
+    listOfValues?.init(args)
     return this
   }
   

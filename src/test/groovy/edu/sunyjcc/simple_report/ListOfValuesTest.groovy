@@ -14,4 +14,26 @@ public class ListOfValuesTest extends GroovyTestCase {
                   values: [['a',1],['b', 2]]]
   }
 
+ void testListOfValuesExecute() {
+    println "******** testListOfValuesExecute ********************"
+    def a = new SimpleReportBuilder()
+    def l = a.lov(values: [['a',1],['b', 2]])
+    assert l
+    def le = l.values
+    println le
+    assert le == [['a',1],
+                  ['b', 2]]
+  }
+
+ void testSqlListOfValuesCreate() {
+    println "******** testSqlListOfValuesCreate ********************"
+    def a = new SimpleReportBuilder()
+    def l = a.lov(query: "select user from dual")
+    assert l
+    def le = l.export()
+    println le
+    assert le == [type:   "sql",
+                  query:  "select user from dual"]
+  }
+
 }

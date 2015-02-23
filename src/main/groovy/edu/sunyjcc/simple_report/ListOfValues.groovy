@@ -17,7 +17,7 @@ public class ListOfValues implements Buildable {
   /** List the different options you can pass as parameters to the builder 
    *  method call for this class. */
   LinkedHashMap getBuildOptions() {
-    [sql: [desc: """A two-column SQL select statement to retrieve the list values."""],
+    [query: [desc: """A two-column SQL select statement to retrieve the list values."""],
      values: [desc: """A list of acceptable values for the parameter.  
                        Each item in the list must be a two-value list in which the first 
                        item is the value of the choice and the second is a description.
@@ -26,6 +26,9 @@ public class ListOfValues implements Buildable {
     ]
 
   }
+
+  /** A database connection to use for SQL queries */
+  Sql sql;
 
   /** The source code used to create this object */
   String source;
@@ -43,19 +46,38 @@ public class ListOfValues implements Buildable {
     valueClosure()
   }
 
+  ListOfValues init(HashMap args) {
+    if (args.sql) {
+      this.sql = new Sql(args.sql)
+    } 
+    return this
+  }
+  
+  /** Build a new list of values from the given attributes. */
   static ListOfValues build(attributes) {
     return new ListOfValues(attributes)
   }
 
   public ListOfValues(HashMap attributes) {
+    init(attributes)
     if (attributes.values) {
       valueClosure = {->attributes.values}
       exportClosure = {->
         [type: 'value_list',
          values: valueClosure()]
       }
-    } else if (attributes.sql) {
-      throw new Exception("not implemented")
+    } else if (attributes.query) {
+      queryStr = attributes.query
+      valueClosure = {
+        sql.rows(queryStr).collect {
+          row ->
+            row
+        }
+      }
+      exportClosure = { ->
+        [type: "sql",
+         query: queryStr]
+      }
     } else {
       throw new Exception("not implemented")
     }
