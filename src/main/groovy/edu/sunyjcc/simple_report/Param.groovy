@@ -46,6 +46,9 @@ public class Param implements Exportable, Buildable {
   /** A default value for the parameter */
   Object defaultValue;
 
+  /** A list of values. */
+  ListOfValues listOfValues;
+
   /** Perform whatever initialization is needed for this parameter. */
   Param init(HashMap args) {
     return this
@@ -53,11 +56,16 @@ public class Param implements Exportable, Buildable {
   
   /** Return the values as a HashMap. */
   def export() {
-    [name:        this.name,
-     type:        this.type.desc,
-     description: this.description,
-     label:       this.label,
-     'default':   this.defaultValue]
+    [name:         this.name,
+     type:         this.type.desc,
+     description:  this.description,
+     label:        this.label,
+     'default':    this.defaultValue
+    ] + (
+      (this.listOfValues)?[
+        listOfValues: this.listOfValues.export()
+      ] : [:]
+    )
   }
 
   /** Explicit-argument constructor */

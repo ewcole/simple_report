@@ -59,6 +59,28 @@ public class SimpleReportBuilder extends BuilderSupport {
       },
       implClass: Param,
     ],
+    list_of_values: [
+      create: {
+        String name, Map attributes, def value ->
+          def ks = attributes.keySet()
+          if (!(ks.intersect(['sql', 'values']).size()) && value.size()) {
+            attributes += [sql: value]
+          }
+          return ListOfValues.build(attributes)
+      },
+      implClass: ListOfValues
+    ],
+    lov: [
+      create: {
+        String name, Map attributes, def value ->
+          def ks = attributes.keySet()
+          if (!(ks.intersect(['sql', 'values']).size()) && value.size()) {
+            attributes += [sql: value]
+          }
+          return ListOfValues.build(attributes)
+      },
+      implClass: ListOfValues
+    ],
     csv: [
       create: {
         String name, Map attributes, def value ->
@@ -117,6 +139,12 @@ public class SimpleReportBuilder extends BuilderSupport {
         parent, child ->
           parent.params[child.name] = child
       },
+    ],
+    (Param): [
+      (ListOfValues): {
+        parent, child ->
+          parent.listOfValues[child.name] = child
+      }
     ],
   ]
 
