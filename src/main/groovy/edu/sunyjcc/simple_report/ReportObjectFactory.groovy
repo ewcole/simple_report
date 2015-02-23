@@ -122,6 +122,17 @@ public class ReportObjectFactory {
     return new Invocation(this, typeName, objectName)
   }
 
+  /** Evaluate a string as a report object builder script. */
+  public eval(String s) {
+    builder.eval(s)
+  }
+
+  /** Evaluate the closure into a report object */
+  public build(Closure c) {
+    c.delegate = builder
+    c()
+  }
+
   /** Public constructor with one SourceFactory argument 
    *  @param sourceFactory Get our source code from this SourceFactory.
    */
