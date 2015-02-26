@@ -1,6 +1,6 @@
 package edu.sunyjcc.simple_report
 
-public class BuildExeption extends Exception {
+public class BuildException extends Exception {
 
   /** One-argument constructor that sends the error message.
    *  @param message The error message
