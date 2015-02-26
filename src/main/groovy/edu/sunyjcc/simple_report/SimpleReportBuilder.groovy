@@ -162,7 +162,7 @@ public class SimpleReportBuilder extends BuilderSupport {
   Object createNode(Object name, Map attributes, Object value) {
     debug "createNode($name)"
     if (!nodeFactory[name]) {
-      debug "Invalid object: $name"
+      throw new BuildException("'$name' is not a valid build method");
     }
     assert name in nodeFactory.keySet()
     debug "After assert; call nodeFactory[$name]($name, $attributes, $value)}"
