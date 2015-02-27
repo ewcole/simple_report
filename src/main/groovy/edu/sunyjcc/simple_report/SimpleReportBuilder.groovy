@@ -70,17 +70,17 @@ public class SimpleReportBuilder extends BuilderSupport {
       },
       implClass: ListOfValues
     ],
-    lov: [
-      create: {
-        String name, Map attributes, def value ->
-          def ks = attributes.keySet()
-          if (!(ks.intersect(['query', 'values'])?.size()) && value.size()) {
-            attributes += [sql: value]
-          }
-          return ListOfValues.build(attributes)
-      },
-      implClass: ListOfValues
-    ],
+    // lov: [
+    //   create: {
+    //     String name, Map attributes, def value ->
+    //       def ks = attributes.keySet()
+    //       if (!(ks.intersect(['query', 'values'])?.size()) && value.size()) {
+    //         attributes += [sql: value]
+    //       }
+    //       return ListOfValues.build(attributes)
+    //   },
+    //   implClass: ListOfValues
+    // ],
     csv: [
       create: {
         String name, Map attributes, def value ->
