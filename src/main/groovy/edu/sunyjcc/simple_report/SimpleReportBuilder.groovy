@@ -107,6 +107,12 @@ public class SimpleReportBuilder extends BuilderSupport {
     ],
   ];
 
+  /** A map from report object class name to the method used to build it. */
+  def classMethodNames = nodeFactory.collect {[it.key, it.value.implClass]}.reverse().inject([:]) {
+    m, v ->
+      m << [(v[1]): v[0]]
+  }
+
   /** Each entry in this table is a closure that attaches the child to the 
    *  parent.  The keys for the map are a subset of the cross-product of the 
    *  classes that can go into a SimpleReport.
@@ -162,7 +168,8 @@ public class SimpleReportBuilder extends BuilderSupport {
   Object createNode(Object name, Map attributes, Object value) {
     debug "createNode($name)"
     if (!nodeFactory[name]) {
-      throw new BuildException("'$name' is not a valid build method");
+      throw new BuildException("'$name' is not a valid build method.  Valid values are ["
+                               + nodeFactory.keySet().join(', ') + "]");
     }
     assert name in nodeFactory.keySet()
     debug "After assert; call nodeFactory[$name]($name, $attributes, $value)}"
@@ -191,7 +198,15 @@ public class SimpleReportBuilder extends BuilderSupport {
     //debug "parent.addChild = ${parent.addChild}"
     //debug "parent.addChild.keySet()=${parent.addChild.keySet()}"
     //assert  parent.addChild.keySet().contains(child.name)
-    def z = addChildFarm[parent.getClass()][child.getClass()](parent, child)
+    def parentClass = parent.getClass()
+    def farm = addChildFarm[parent.getClass()]
+    if (! farm[child.getClass()]) {
+      def parentMethod = classMethodNames[parentClass]
+      def childMethod = classMethodNames[child.getClass()]
+      throw new BuildException("You cannot embed a $childMethod within a $parentMethod. "
+               + "Valid options are: [${farm.keySet().collect { classMethodNames[it]}.join(',')}]")
+    }
+    def z = farm[child.getClass()](parent, child)
     debug "z=$z"
     z
   }
@@ -206,13 +221,18 @@ public class SimpleReportBuilder extends BuilderSupport {
   def eval(String text) {
     def shell = new GroovyShell()
     // wrap the script in a closure before evaluating.
-    Closure c = shell.evaluate("{->$text}")
-    c.setDelegate(this)
-    def b = c()
-    if (b instanceof Buildable) {
-      b.source = text
+    try {
+      Closure c = shell.evaluate("{->$text}")
+      c.setDelegate(this)
+      def b = c()
+      if (b instanceof Buildable) {
+        b.source = text
+      }
+      return b;
+    } catch (BuildException e) {
+      e.source = text;
+      throw e
     }
-    return b;
   }
  
 }
