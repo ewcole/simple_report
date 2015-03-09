@@ -70,11 +70,30 @@ public class ListOfValues implements Buildable {
          values: valueClosure()]
       }
     } else if (attributes.query) {
+      // Get the list of values from the SQL query.
       queryStr = attributes.query
+      def colNames = []
+      // Method to capture query columns from query metadata
+      def captureColNames = {
+        meta ->
+          colNames = []
+          def cc = meta.columnCount
+          println "cc = $cc"
+          colNames << meta.getColumnLabel(1) as String
+          // If there's only one column, duplicate the value. 
+          // Otherwise return the first and the second columns.
+          if (cc >=2) {
+            colNames << meta.getColumnLabel(2) as String
+          } else {
+            colNames << meta.getColumnLabel(1) as String
+          }
+      }
       valueClosure = {
-        sql.rows(queryStr).collect {
+        sql.rows(queryStr, captureColNames).collect {
           row ->
-            row
+            def c1 = row[colNames[0]] as String
+            def c2 = row[colNames[1]] as String
+            [value: c1, desc: c2]
         }
       }
       exportClosure = { ->
