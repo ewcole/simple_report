@@ -105,6 +105,18 @@ public class SimpleReportBuilder extends BuilderSupport {
       },
       implClass: SqlQueryEngine
     ],
+    dynamic_sql: [
+      create: {
+        String name, Map attributes, def value ->
+          debug ("in nodeFactory.dynamic_sql($name, $attributes, $value)") 
+          assert name == 'dynamic_sql'
+          def eng = new DynamicSqlQueryEngine(attributes)
+          debug "nodeFactory.sql => $eng"
+          assert eng
+          return eng
+      },
+      implClass: DynamicSqlQueryEngine
+    ],
   ];
 
   /** A map from report object class name to the method used to build it. */
@@ -132,6 +144,10 @@ public class SimpleReportBuilder extends BuilderSupport {
           parent.params = child
       },
       (SqlQueryEngine): {
+        parent, child ->
+          parent.queryEngine = child
+      },
+      (DynamicSqlQueryEngine): {
         parent, child ->
           parent.queryEngine = child
       },
