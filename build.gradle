@@ -1,6 +1,7 @@
-def version = "1.1.4"
+def version = "1.1.6"
 
-/* 1.1.4: ListOfValues can now handle two-column SQL.
+/* 1.1.6: Created DynamicSqlQueryEngine class
+ * 1.1.4: ListOfValues can now handle two-column SQL.
  * 1.1.2: Replace builder property in ReportObjectFactory with getBuilder()
  */
 // What branch do we have checked out?
