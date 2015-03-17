@@ -11,7 +11,8 @@ public class ListOfValuesTest extends GroovyTestCase {
     def le = l.export()
     println le
     assert le == [type: 'value_list',
-                  values: [['a',1],['b', 2]]]
+                  values: [[value: 'a', desc: 1],
+                           [value: 'b', desc: 2]]]
   }
 
  void testListOfValuesExecute() {
@@ -21,8 +22,8 @@ public class ListOfValuesTest extends GroovyTestCase {
     assert l
     def le = l.values
     println le
-    assert le == [['a',1],
-                  ['b', 2]]
+    assert le == [[value: 'a', desc: 1],
+                  [value: 'b', desc: 2]]
   }
 
  void testSqlListOfValuesCreate() {

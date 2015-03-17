@@ -64,7 +64,11 @@ public class ListOfValues implements Buildable {
   public ListOfValues(HashMap attributes) {
     init(attributes)
     if (attributes.values) {
-      valueClosure = {->attributes.values}
+      def vals = attributes.values.collect {
+        val ->
+            [value: val[0], desc: val[1]]
+      }
+      valueClosure = {-> vals}
       exportClosure = {->
         [type: 'value_list',
          values: valueClosure()]
