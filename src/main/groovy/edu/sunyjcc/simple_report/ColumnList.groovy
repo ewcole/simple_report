@@ -1,11 +1,49 @@
 package edu.sunyjcc.simple_report
 
 /** This class describes the output columns for a report. */
-public class ColumnList extends ArrayList<Column> implements Exportable {
+public class ColumnList implements Exportable {
+
+  ArrayList columnNames = []
+  HashMap   columns     = [:]
+
+  /** Return an array list with all of the columns in order. */
+  def list() {
+    columnNames.collect {columns[it]}
+  }
+
+  /** Override the '<<' operator; add to the end of the column list,
+   *  unless it already exists.  If it exists, then do nothing. 
+   */
+  ColumnList leftShift(Column c) {
+    add(c)
+    return this
+  }
+
+  /** Iterate through each column and execute the closure */
+  ArrayList each(Closure c) {
+    list().each(c)
+  }
+
+  Long size() {
+    return columns?.size()
+  }
+
+  /** Add */
+  Column add(Column c) {
+    assert c?.name?.size()
+    String columnName = c.name.toLowerCase()
+    Column c2 = columns[columnName];
+    if (!columnNames.contains(columnName)) {
+      columnNames << columnName
+      columns[columnName] = c
+    }
+  }
+
+  
 
   /** Return a list of exported values for all columns */
   def export() {
-    this.collect{it.export()}
+    this.columns.collect{it.value.export()}
   }
 
   /** Build a ColumnList from an ArrayList 
@@ -20,4 +58,11 @@ public class ColumnList extends ArrayList<Column> implements Exportable {
       }
     }
   }
+
+  /** Build a ColumnList from another ColumnList */
+  /* public ColumnList(ColumnList c) {
+    c.each {
+      columns.add(it)
+    }
+    }*/
 }

@@ -45,7 +45,7 @@ public class SimpleReportInstance implements Exportable, Runnable {
     CSV: {
       Writer out, ResultSet resultSet ->
         println "In SimpleReportInstance.runFunctions[CSV]()"
-        def cols = resultSet?.columns?.collect {it.name}
+        def cols = resultSet?.columns?.list().collect {it.name}
         def columnHeaders = cols.collect {
           csvEscape(it)
         }
@@ -80,7 +80,7 @@ public class SimpleReportInstance implements Exportable, Runnable {
               }
             }
             tbody {
-              def cols = resultSet?.columns?.collect {it.name}
+              def cols = resultSet?.columns?.list().collect {it.name}
               resultSet?.rows?.eachWithIndex {
                 row, i ->
                   tr(class: "data ${(i%2)?'even':'odd'}") {
