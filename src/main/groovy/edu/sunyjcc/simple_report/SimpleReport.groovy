@@ -123,8 +123,8 @@ public class SimpleReport implements Exportable, Buildable, Runnable {
  
   /** Execute the report and return the result. */
   public ResultSet execute(HashMap params) {
-    this.params.setParamValues(params)
-    queryEngine.execute(this.params)
+    def p = this.params.getParamFormValue().setParamValues(params)
+    queryEngine.execute(p)
   }
  
   // Methods we need to implement for the Runnable interface
