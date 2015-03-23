@@ -134,7 +134,7 @@ public class DynamicSqlQueryEngine extends QueryEngine implements Buildable {
     assert parsedQuery?.size() > 0
     println "SQL query: $parsedQuery"
     def rows = []
-    HashMap paramVals = params?:[:]
+    HashMap paramVals = params.subMap(parsedSql.paramRefs?.unique())?:[:]
     if (paramVals.keySet().size()&& parsedSql?.paramRefs?.size()) {
       rows = sql.rows(paramVals, parsedQuery, getColumnMetadata)
     } else {
