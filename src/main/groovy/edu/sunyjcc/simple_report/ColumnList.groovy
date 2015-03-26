@@ -19,6 +19,14 @@ public class ColumnList implements Exportable {
     return this
   }
 
+  /** Override the '<<' operator; add to the end of the column list,
+   *  unless it already exists.  If it exists, then do nothing. 
+   */
+  ColumnList leftShift(ArrayList a) {
+    a.each { add(it) }
+    return this
+  }
+
   /** Iterate through each column and execute the closure */
   ArrayList each(Closure c) {
     list().each(c)
