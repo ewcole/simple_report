@@ -1,6 +1,6 @@
 package edu.sunyjcc.simple_report
 
-/** Objects that implement this interface will have methods that return the 
+/** Objects that extend this class will have methods that return the 
  *  source code for various objects defined in the simple_reports library.
  *  SourceFactory objects are not responsible for caching; that will be done 
  *  elsewhere.
