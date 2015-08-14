@@ -53,6 +53,13 @@ public abstract class SourceFactory {
   public String getJrxmlSource(String name) {
     def pf = getSourceText("jrxml", "${name}.jrxml")
   }
+
+  /** Get a .sql file, defining a Jasper Report. 
+   *  @param name The name of the Jasper Report you want to fetch
+   */
+  public String getSqlSource(String name) {
+    def pf = getSourceText("sql", "${name}.sql")
+  }
   
   /** Get a .groovy file, defining a Simple Report. 
    *  @param name The name of the report you want to fetch

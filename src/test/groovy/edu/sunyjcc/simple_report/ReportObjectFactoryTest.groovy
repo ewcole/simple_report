@@ -232,4 +232,13 @@ public class ReportObjectFactoryTest extends GroovyTestCase {
   void testGetJrxml() {
     printBanner("testGetJrxml")
   } 
+
+  void testGetSqlObject() {
+    printBanner("testGetSqlObject");
+    def factory = getReportObjectFactory()
+    def s = factory.getSql("tables")
+    assert s
+    println "s = ${s?.export()}"
+    assert s.export() == []
+  }
 }

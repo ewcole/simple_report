@@ -33,7 +33,7 @@ public class ReportObjectFactory {
    */
   LinkedHashMap createCache(SourceFactory sf) { 
     assert sf
-    def objTypes = "param param_form jrxml report".split(/ +/);
+    def objTypes = "param param_form jrxml report sql".split(/ +/);
     objTypes.inject([:]) {
       map, objType ->
         Closure getSrc = {
@@ -45,7 +45,17 @@ public class ReportObjectFactory {
             builder.eval(getSrc(name))
         }
         if (objType == 'jrxml') {
+          // Just return the raw source code
           getObject = { name -> getSrc(name)}
+        }
+        if (objType == 'sql') {
+          getObject = {
+            name ->
+              def queryText = getSrc(name);
+              builder.report(name: name) {
+                sql(query: queryText)
+              }
+          }
         }
         map[objType] = [
           // Get the object's source code.
@@ -114,7 +124,14 @@ public class ReportObjectFactory {
    *  @param name The name of the Jasper Report, without extension
    */
   public String getJrxml(String name) {
-    return getReportObject('param_form', name)
+    return getReportObject('jrxml', name)
+  }
+
+  /** Get a SQL query object 
+   *  @param name The name of the Sql Query, without extension
+   */
+  public String getSql(String name) {
+    return getReportObject('sql', name)
   }
 
   /** Get the appropriate invocation object for this type and object name */
