@@ -52,9 +52,12 @@ public class ReportObjectFactory {
           getObject = {
             name ->
               def queryText = getSrc(name);
-              builder.report(name: name) {
+              assert queryText?.size()
+              SimpleReport r = builder.report(name: name) {
                 sql(query: queryText)
               }
+              assert r.getClass() == SimpleReport
+              return r
           }
         }
         map[objType] = [
@@ -130,8 +133,8 @@ public class ReportObjectFactory {
   /** Get a SQL query object 
    *  @param name The name of the Sql Query, without extension
    */
-  public String getSql(String name) {
-    return getReportObject('sql', name)
+  public SimpleReport getSql(String name) {
+    getReportObject('sql', name)
   }
 
   /** Get the appropriate invocation object for this type and object name */

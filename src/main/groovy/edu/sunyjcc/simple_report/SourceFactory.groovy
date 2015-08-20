@@ -73,7 +73,7 @@ public abstract class SourceFactory {
    */
   public String getSource(String type, String name) {
     def nType = normalizeTypeName(type)
-    def ext = (nType == 'jrxml')?'jrxml':'groovy';
+    def ext = (nType == 'jrxml'||nType == 'sql')?nType:'groovy';
     def qName = "${name}.${ext}"
     getSourceText(nType, qName)
   }

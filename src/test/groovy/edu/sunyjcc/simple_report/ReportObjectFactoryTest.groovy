@@ -238,7 +238,7 @@ public class ReportObjectFactoryTest extends GroovyTestCase {
     def factory = getReportObjectFactory()
     def s = factory.getSql("tables")
     assert s
-    println "s = ${s?.export()}"
-    assert s.export() == []
+    println "s = $s"
+    assert s instanceof SimpleReport
   }
 }
