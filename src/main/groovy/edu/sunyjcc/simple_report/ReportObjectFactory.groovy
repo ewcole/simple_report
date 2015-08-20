@@ -51,9 +51,15 @@ public class ReportObjectFactory {
         if (objType == 'sql') {
           getObject = {
             name ->
-              def queryText = getSrc(name);
+              def queryText = getSrc(name)
               assert queryText?.size()
+              // Extract the parameter names from this query
+              def psql = SqlQueryEngine.parseSql(queryText)
               SimpleReport r = builder.report(name: name) {
+                psql.paramRefs?.each {
+                  paramName ->
+                    param(name: paramName);
+                }
                 sql(query: queryText)
               }
               assert r.getClass() == SimpleReport
