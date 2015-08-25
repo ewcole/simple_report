@@ -21,10 +21,11 @@ public class FileSourceFactory extends SourceFactory {
   public ArrayList list() {
     ['param',
      'param_form',
-     'report'].collect {
+     'report', 
+     'sql'].collect {
       dir ->
-        new File(sourceRoot, dir).list().grep{it =~ /(?i)\.groovy$/}.collect {
-          [type: dir, name: it.replaceAll(/(?i)\.groovy$/, '')]
+        new File(sourceRoot, dir).list().grep{it =~ /(?i)\.[a-z]+?$/}.collect {
+          [type: dir, name: it.replaceAll(/(?i)\.[a-z]+?$/, '')]
         }
     }.flatten() 
   }

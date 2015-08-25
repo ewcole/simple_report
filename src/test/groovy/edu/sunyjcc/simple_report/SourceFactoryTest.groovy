@@ -76,6 +76,8 @@ public class SourceFactoryTest extends GroovyTestCase {
     println l
     assert l == [[type: 'param', name:'scoobydoo'], 
                  [type: 'param_form', name: 'SubjectAndTerm'], 
-                 [type: 'report', name: 'simple_report_types']]
+                 [type: 'report', name: 'simple_report_types'],
+                 [type: 'sql', name: 'tables'],
+                 [type: 'sql', name: 'terms'],]
   }
 }

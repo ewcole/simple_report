@@ -76,4 +76,15 @@ public class FileSourceFactoryTest extends GroovyTestCase {
     def factorySource = fsf.getJrxmlSource("apps");
     assert jrxmlSource.text == factorySource
   }
+
+  void testList() {
+    def fsf = getFileSourceFactory()
+    assert fsf.list() == [
+      [type: 'param', name: 'scoobydoo'], 
+      [type: 'param_form', name: 'SubjectAndTerm'], 
+      [type: 'report', name: 'simple_report_types'],
+      [type: 'sql', name: 'tables'],
+      [type: 'sql', name: 'terms'],
+    ]
+  }
 }
