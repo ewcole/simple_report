@@ -35,6 +35,18 @@ public class SimpleReportInstance implements Exportable, Runnable {
     this.params = report.getParamFormValue()
   }
 
+  /** CLOB rows were not being handled correctly.  Get the String 
+                  //    value to get their contents. */
+  public def convColumnType(def columnVal) {
+    if (columnVal) {
+      // Check to see if columnVal has a stringValue() method.
+      boolean isClob = (columnVal?.metaClass?.respondsTo(columnVal,'stringValue'))
+      def v = isClob ? columnVal.stringValue() : columnVal;
+    } else {
+      return null;
+    }
+  }
+
   def runFunctions = [
     // JSON: {
     //   Writer out ->
@@ -53,11 +65,12 @@ public class SimpleReportInstance implements Exportable, Runnable {
         // Now print the data rows
         resultSet?.rows?.each {
           row ->
-            out.println (cols.collect {
-                           val ->
-                             csvEscape("${(row[val])?:''}")
-                         }.join(','))
-
+            out.println (
+              cols.collect {
+                val ->
+                  def v = convColumnType(row[val])?:''
+                  csvEscape("${(v)?:''}")
+              }.join(','));
         }
         out.flush()
         return true;
@@ -85,7 +98,10 @@ public class SimpleReportInstance implements Exportable, Runnable {
                 row, i ->
                   tr(class: "data ${(i%2)?'even':'odd'}") {
                     cols.each {
-                      td(class: "$it", "${row[it]?:''}")
+                      // CLOB rows were not being handled correctly.  Get the String 
+                      //    value to get their contents.
+                      def datum = convColumnType(row[it])?:''
+                      td(class: "$it", "${datum}")
                     }
 
                   }
