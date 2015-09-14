@@ -73,7 +73,7 @@ jar.version  = version + ((currentGitBranch == 'prod')?'':"-$currentGitBranch")
 /***********************************************************************/
 groovydoc.groovyClasspath = configurations.compile
 if (currentGitBranch == 'prod') {
-  groovydoc.destinationDir = new File(jccGroovydocHome)
+  groovydoc.destinationDir = new File("${jccGroovydocHome}/${project.name}")
 }
 groovydoc {
 
