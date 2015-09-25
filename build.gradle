@@ -87,7 +87,13 @@ groovydoc {
   link("http://junit.sourceforge.net/junit3.8.1/javadoc/", 
        "org.junit.,junit.framework.")
   link("http://groovy.codehaus.org/api/", "groovy.,org.codehaus.groovy.")
-  link("file://$jccGroovydocHome", "edu.sunyjcc.")
+  // Link up our own library documentation
+  //link("file://$jccGroovydocHome", "edu.sunyjcc.")
+  new File(jccGroovydocHome).eachDir() {
+    if (it.name != project.name) {
+      link("file://$jccGroovydocHome/${it.name}", "edu.sunyjcc.${it.name}")
+    }
+  }
 }
 
 task doc
