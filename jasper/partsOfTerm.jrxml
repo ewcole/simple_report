@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version last-->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="partsOfTerm" language="groovy" pageWidth="612" pageHeight="792" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="e62b8cf9-7252-44df-9c39-ab5fef5c694e">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="PPRD"/>
+	<property name="com.jaspersoft.studio.layout" value="com.jaspersoft.studio.editor.layout.HorizontalRowLayout"/>
+	<parameter name="TERM_CODE" class="java.lang.String">
+		<parameterDescription><![CDATA[Term code]]></parameterDescription>
+	</parameter>
+	<queryString language="SQL">
+		<![CDATA[select * from census_roster r where r.term_code = $P{TERM_CODE}]]>
+	</queryString>
+	<field name="TERM_CODE" class="java.lang.String"/>
+	<field name="CRN" class="java.lang.String"/>
+	<field name="FAC_PIDM" class="java.math.BigDecimal"/>
+	<field name="SSTS_CODE" class="java.lang.String"/>
+	<field name="CENSUS_DUE_DATE" class="java.sql.Timestamp"/>
+	<field name="SIGNATURE_PIDM" class="java.math.BigDecimal"/>
+	<field name="SIGNATURE_DATE" class="java.sql.Timestamp"/>
+	<field name="ACTIVITY_DATE" class="java.sql.Timestamp"/>
+	<field name="ACTIVITY_USER" class="java.lang.String"/>
+	<field name="PROCESSED_FLAG" class="java.lang.String"/>
+	<columnHeader>
+		<band height="15" splitType="Stretch">
+			<staticText>
+				<reportElement x="-20" y="0" width="80" height="15" forecolor="#000000" backcolor="#C0C0C0" uuid="d331c3ab-1c30-4898-9919-7d87f8dfadad"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[CRN]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="60" y="0" width="70" height="15" forecolor="#000000" backcolor="#C0C0C0" uuid="b83cd07c-c43f-42ac-8391-cee0c53f7256"/>
+				<text><![CDATA[FAC_PIDM]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="130" y="0" width="130" height="15" uuid="ee58e171-266c-461b-b3a3-327809c0c26d"/>
+				<text><![CDATA[SIGNATURE_PIDM]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="20" splitType="Stretch">
+			<textField>
+				<reportElement x="-21" y="0" width="81" height="20" uuid="e77e4d0e-c70e-488f-a589-c7a0ab3ecd58"/>
+				<textFieldExpression><![CDATA[$F{CRN}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="60" y="0" width="70" height="20" uuid="4fc9740e-76b8-4370-8ac2-696f770308ee"/>
+				<textFieldExpression><![CDATA[$F{FAC_PIDM}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="130" y="0" width="130" height="20" uuid="3baf24dc-5ef0-4391-aaae-5aea7265cd15"/>
+				<textFieldExpression><![CDATA[$F{SIGNATURE_PIDM}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>

@@ -3,6 +3,7 @@
 *junk*
 *.log
 working_files.org
+*.jasper
 
 .gradle/
 build/

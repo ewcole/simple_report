@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version last-->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="mantoux" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" whenResourceMissingType="Empty" uuid="ccda4584-ce9d-4eb5-92fa-1b9dee8bb06c">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="jccsct"/>
+	<parameter name="student_pidm" class="java.math.BigDecimal"/>
+	<queryString language="SQL">
+		<![CDATA[select 'Mantoux' test_name,
+ spryhis_pidm, to_char(spryhis_date,'mm/dd/yyyy') test_date, spryhis_result, spryhis_comment
+from spryhis
+where spryhis_yhis_code in ('MNTX','TB')  and
+           spryhis_result is not null  and
+           instr(spryhis_comment,'chest x') = 0 and
+           spryhis_pidm = $P{student_pidm}
+union
+select 'Chest x-ray' test_name,
+ spryhis_pidm, to_char(spryhis_date,'mm/dd/yyyy') test_date, spryhis_result, spryhis_comment
+from spryhis
+where spryhis_yhis_code in ('MNTX','TB')  and
+           spryhis_result is not null  and
+           instr(spryhis_comment,'chest x') > 0 and
+           spryhis_pidm = $P{student_pidm}
+ minus
+select 'Mantoux' test_name,
+spryhis_pidm, to_char(spryhis_date,'mm/dd/yyyy') test_date, spryhis_result, spryhis_comment
+from spryhis, spbyimm
+where spryhis_pidm = spbyimm_pidm  and
+           spryhis_result is not null           and
+           spryhis_yhis_code = 'MNTX' and
+           spryhis_user_id = 'SICAS7XS' and
+          (spryhis_activity_date > to_date('15-SEP-2006') and
+           spryhis_activity_date < to_date('17-SEP-2006')) and
+           spryhis_pidm = $P{student_pidm}
+order by test_date]]>
+	</queryString>
+	<field name="SPRYHIS_PIDM" class="java.math.BigDecimal"/>
+	<field name="SPRYHIS_RESULT" class="java.lang.String"/>
+	<field name="SPRYHIS_COMMENT" class="java.lang.String"/>
+	<field name="TEST_NAME" class="java.lang.String"/>
+	<field name="TEST_DATE" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band splitType="Stretch">
+			<property name="local_mesure_unitheight" value="pixel"/>
+			<property name="com.jaspersoft.studio.unit.height" value="px"/>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch">
+			<property name="local_mesure_unitheight" value="pixel"/>
+			<property name="com.jaspersoft.studio.unit.height" value="px"/>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="20" splitType="Stretch">
+			<property name="local_mesure_unitheight" value="pixel"/>
+			<property name="com.jaspersoft.studio.unit.height" value="px"/>
+			<staticText>
+				<reportElement x="110" y="0" width="50" height="14" uuid="48691f1f-977a-406b-bd34-f27ecfaa2f8f">
+					<property name="local_mesure_unity" value="pixel"/>
+					<property name="local_mesure_unitwidth" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					<property name="local_mesure_unitheight" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="local_mesure_unitx" value="pixel"/>
+				</reportElement>
+				<textElement>
+					<font fontName="Franklin Gothic Book" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Results]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="250" y="0" width="50" height="14" uuid="d1697e16-d23e-4078-a55b-97812da8cdd8">
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="local_mesure_unity" value="pixel"/>
+					<property name="local_mesure_unitx" value="pixel"/>
+				</reportElement>
+				<textElement>
+					<font fontName="Franklin Gothic Book" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Notes]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="170" y="0" width="50" height="14" uuid="44682a36-79d0-459c-ae9b-f7fb430b9f38">
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="local_mesure_unity" value="pixel"/>
+					<property name="local_mesure_unitx" value="pixel"/>
+				</reportElement>
+				<textElement>
+					<font fontName="Franklin Gothic Book" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Date]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="0" width="30" height="14" uuid="0d181642-6982-4647-8c94-7a5eb4519539">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="local_mesure_unitx" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.x" value="px"/>
+					<property name="local_mesure_unity" value="pixel"/>
+					<property name="local_mesure_unitwidth" value="pixel"/>
+				</reportElement>
+				<textElement>
+					<font fontName="Franklin Gothic Book" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Test]]></text>
+			</staticText>
+			<line>
+				<reportElement x="0" y="15" width="505" height="1" uuid="8265236d-83c7-4b2b-97b1-616c38ebfc9b">
+					<property name="local_mesure_unitx" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.x" value="px"/>
+					<property name="local_mesure_unity" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+					<property name="local_mesure_unitwidth" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					<property name="local_mesure_unitheight" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+			</line>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="17">
+			<property name="local_mesure_unitheight" value="pixel"/>
+			<frame>
+				<reportElement mode="Opaque" x="0" y="0" width="505" height="17" backcolor="#C0C0C0" uuid="004021d0-8597-47b5-b696-0aee767e9222">
+					<property name="local_mesure_unitheight" value="pixel"/>
+				</reportElement>
+				<textField>
+					<reportElement mode="Opaque" x="10" y="1" width="100" height="14" uuid="d83fd990-2186-4df4-aa8d-8e3afca390be">
+						<property name="com.jaspersoft.studio.unit.height" value="px"/>
+						<property name="local_mesure_unitwidth" value="pixel"/>
+						<property name="com.jaspersoft.studio.unit.width" value="px"/>
+						<property name="local_mesure_unitx" value="pixel"/>
+						<property name="local_mesure_unity" value="pixel"/>
+						<property name="com.jaspersoft.studio.unit.y" value="px"/>
+					</reportElement>
+					<textElement>
+						<font fontName="Franklin Gothic Book" size="12"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{TEST_NAME}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement mode="Opaque" x="126" y="1" width="30" height="14" uuid="978b3c7d-cc39-49c8-9f32-29d6d65ba6a3">
+						<property name="local_mesure_unity" value="pixel"/>
+						<property name="local_mesure_unitheight" value="pixel"/>
+						<property name="com.jaspersoft.studio.unit.height" value="px"/>
+						<property name="local_mesure_unitx" value="pixel"/>
+						<property name="local_mesure_unitwidth" value="pixel"/>
+						<property name="com.jaspersoft.studio.unit.width" value="px"/>
+						<property name="com.jaspersoft.studio.unit.x" value="px"/>
+						<property name="com.jaspersoft.studio.unit.y" value="px"/>
+					</reportElement>
+					<textElement>
+						<font fontName="Franklin Gothic Book" size="12"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{SPRYHIS_RESULT}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement mode="Opaque" x="174" y="1" width="70" height="14" uuid="78a7aa17-03d0-410f-9922-5a96c54261d4">
+						<property name="com.jaspersoft.studio.unit.height" value="px"/>
+						<property name="local_mesure_unitwidth" value="pixel"/>
+						<property name="local_mesure_unitx" value="pixel"/>
+						<property name="com.jaspersoft.studio.unit.y" value="px"/>
+					</reportElement>
+					<textElement>
+						<font fontName="Franklin Gothic Book" size="12"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{TEST_DATE}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement mode="Opaque" x="260" y="1" width="210" height="14" uuid="0d6d0a4c-8102-4783-a2dc-47643a757e37">
+						<property name="com.jaspersoft.studio.unit.height" value="px"/>
+						<property name="local_mesure_unitx" value="pixel"/>
+						<property name="com.jaspersoft.studio.unit.x" value="px"/>
+						<property name="com.jaspersoft.studio.unit.y" value="px"/>
+					</reportElement>
+					<textElement>
+						<font fontName="Franklin Gothic Book" size="12"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{SPRYHIS_COMMENT}]]></textFieldExpression>
+				</textField>
+			</frame>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch">
+			<property name="local_mesure_unitheight" value="pixel"/>
+			<property name="com.jaspersoft.studio.unit.height" value="px"/>
+		</band>
+	</columnFooter>
+	<pageFooter>
+		<band splitType="Prevent">
+			<property name="local_mesure_unitheight" value="pixel"/>
+			<property name="com.jaspersoft.studio.unit.height" value="px"/>
+		</band>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch">
+			<property name="local_mesure_unitheight" value="pixel"/>
+			<property name="com.jaspersoft.studio.unit.height" value="px"/>
+		</band>
+	</summary>
+</jasperReport>

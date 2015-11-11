@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version last-->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="PigLatin" language="javascript" pageWidth="612" pageHeight="792" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="e3e7beed-286c-429a-b39d-3199e3d4fd31">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="PPRD"/>
+	<queryString language="SQL">
+		<![CDATA[select s.spriden_first_name first_name from spriden s
+             where s.spriden_pidm in (130956, 789, 129973, 2775)
+             and s.spriden_change_ind is null
+             order by s.spriden_first_name]]>
+	</queryString>
+	<field name="FIRST_NAME" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band height="35" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="61" splitType="Stretch">
+			<staticText>
+				<reportElement x="23" y="2" width="70" height="30" uuid="f26d34bd-3e17-47d1-a6d7-468f8e013ddc"/>
+				<text><![CDATA[FIRST_NAME]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="125" splitType="Stretch">
+			<textField>
+				<reportElement x="23" y="56" width="70" height="30" uuid="20b70d2e-6806-4b2c-a027-d3d6f4ac3d98"/>
+				<textFieldExpression><![CDATA[$F{FIRST_NAME}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

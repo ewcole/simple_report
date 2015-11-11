@@ -1,0 +1,17 @@
+task compileJasperReports()
+
+new File('.').list().grep { it =~ /(?i)\.jrxml$/}.each {
+  fileName ->
+    String taskName = "compile $fileName"
+    task "$taskName" {
+      inputs.file file(fileName);
+      outputs.file file(fileName.replaceAll(/(?i)\.jrxml$/, '.jasper'))
+    } << {
+      println "compiling $fileName"
+      println "cmd /c compileReport.cmd $fileName".execute().text
+    }
+    compileJasperReports.dependsOn "$taskName"
+}
+
+task compile(dependsOn: compileJasperReports);
+task build(dependsOn: compile);

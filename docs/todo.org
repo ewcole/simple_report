@@ -55,10 +55,6 @@ This will be the default type of SourceFactory.
 **** DONE Convert the source code into report objects.
 **** DONE Cache report object definitions
 Creating the objects will be an expensive process, so let's save the results of our queries.
-**** CANCELED Create parameter list from JRXML
-*Defer this to a later version.*
-
-Pull out all /jasperReport/parameter elements from the jrxml and create parameters of the appropriate type for them.  Look for an existing parameter of the same name and use that if it is compatible.
 **** DONE Create invocation for objects
 *** DONE Create report object values
 These are not cached.  This will be done in the individual object types.
@@ -71,11 +67,22 @@ These are not cached.  This will be done in the individual object types.
 Defer this to a later version.
 
 We need a class that handles interaction with client environments.  Duties include displaying a parameter form, validating data.  In the future, it might also take on the responsibility of executing queries and displaying the results.
-* Version 0.2.0
-** DONE Auto documentation
-* Version 0.3.0
-** TODO Integrate with menu system
-* Version 0.4.0
+** CANCELED Create parameter list from JRXML
+*Defer this to a later version.*
+
+Pull out all /jasperReport/parameter elements from the jrxml and create parameters of the appropriate type for them.  Look for an existing parameter of the same name and use that if it is compatible.
+* Pre-Production
+** Version 0.2.0
+*** DONE Auto documentation
+** Version 0.3.0
+*** DONE Integrate with menu system
+** Version 0.4.0
+*** TODO Lists of Values
+* Version 1
+** Version 1.2.1
+** Version 1.3.0 
+*** TODO Run Jasper Reports
+Run Jasper reports; take parameter form from parameter form defs.
+* Future Versions
 ** TODO Inheritance
-** TODO Lists of Values
 ** TODO Validation
