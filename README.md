@@ -1,5 +1,7 @@
 This project is a report builder that can be used from Java or Groovy Applications.
 
+See the [roadmap](docs/todo.md) for the implementation strategy.
+
 # Branches
 
 ## Production
@@ -12,7 +14,9 @@ master
 
 ## Feature branches
 
--   **params:** Feature branch for the collection and validation of parameters.
+
+-   **autodoc:** Feature branch for generating builder documentation.
+-   **jasper:** Make this system run Jasper Reports.
 
 # Current work
 
