@@ -4,6 +4,8 @@
 *.log
 working_files.org
 *.jasper
+*.orig
+*.jasper
 
 .gradle/
 build/

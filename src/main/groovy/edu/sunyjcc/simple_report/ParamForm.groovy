@@ -79,6 +79,15 @@ public class ParamForm implements Buildable, Exportable, Runnable {
     getParamFormValue().setParamValues(paramFormValue).run(outputFormat, out)
   }
 
+  /** Run the runnable object, writing its output data to the stream you 
+   *  provide.
+   *  @param out An output stream that will hold the results of your run.
+   */
+  @Override
+  boolean run(OutputFormat outputFormat, ParamFormValue paramFormValue, OutputStream out) {
+    getParamFormValue().setParamValues(paramFormValue).run(outputFormat, out)
+  }
+
   // @Override
   // HashMap run(ParamFormValue paramFormValue) {
   //   this.getParamFormValue().run(paramFormValue)

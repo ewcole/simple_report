@@ -56,7 +56,7 @@ public class SimpleReportInstance implements Exportable, Runnable {
     // },
     CSV: {
       Writer out, ResultSet resultSet ->
-        println "In SimpleReportInstance.runFunctions[CSV]()"
+        //println "In SimpleReportInstance.runFunctions[CSV]()"
         def cols = resultSet?.columns?.list().collect {it.name}
         def columnHeaders = cols.collect {
           csvEscape(it)
@@ -77,7 +77,7 @@ public class SimpleReportInstance implements Exportable, Runnable {
     },
     HTML: {
       Writer out, ResultSet resultSet ->
-        println "In SimpleReportInstance.runFunctions[HTML]()"
+        //println "In SimpleReportInstance.runFunctions[HTML]()"
         def m = new MarkupBuilder(out);
         m.setDoubleQuotes(true)
         m.div(class: "simple_report $report.name") { 
@@ -135,6 +135,16 @@ public class SimpleReportInstance implements Exportable, Runnable {
       return runFunctions[oFm](out, rs);
     }
     return false
+  }
+
+  /** Run the runnable object, writing its output data to the stream you
+   *  provide.
+   *  @param out An output stream that will hold the results of your run.
+   */
+  @Override
+  boolean run(OutputFormat outputFormat, ParamFormValue paramFormValue,
+              OutputStream out) {
+    run(outputFormat, paramFormValue, new BufferedWriter(new OutputStreamWriter(out)));
   }
 
   /** Run the runnable object, writing its output data to the stream you

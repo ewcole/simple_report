@@ -74,7 +74,18 @@ public class FileSourceFactoryTest extends GroovyTestCase {
     assert jrxmlDir.exists()
     def jrxmlSource = new File(jrxmlDir, "apps.jrxml")
     def factorySource = fsf.getJrxmlSource("apps");
-    assert jrxmlSource.text == factorySource
+    assert "${jrxmlSource.canonicalFile}" == factorySource
+  }
+
+  /** Test FileSourceFactory.getJrxml() */
+  void testGetJrxmlSource2() {
+    def fsf = getFileSourceFactory()
+    def jrxmlDir = getSourceSubDir('jrxml')
+    assert jrxmlDir.exists()
+    def jrxmlSource = new File(jrxmlDir, "apps.jrxml")
+    def factorySource = fsf.getSourceText("jrxml", "apps");
+    assert "${jrxmlSource.canonicalFile}" == factorySource
+    assert factorySource == fsf.getSource("jrxml", "apps");
   }
 
   void testList() {
@@ -85,6 +96,7 @@ public class FileSourceFactoryTest extends GroovyTestCase {
       [type: 'report', name: 'simple_report_types'],
       [type: 'sql', name: 'tables'],
       [type: 'sql', name: 'terms'],
+      [type: 'jrxml', name: 'apps'],
     ]
   }
 }

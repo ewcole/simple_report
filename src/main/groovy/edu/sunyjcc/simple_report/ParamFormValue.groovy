@@ -250,6 +250,15 @@ public class ParamFormValue implements Exportable, Runnable {
    *  @param out An output stream that will hold the results of your run.
    *  @return Returns true if successful, false otherwise.
    */
+  @Override
+  boolean run(OutputFormat outputFormat, ParamFormValue paramFormValue, OutputStream out) {
+    run(outputFormat, paramFormValue, new BufferedWriter(new OutputStreamWriter(out)));
+  }
+  /** Run the runnable object, writing its output data to the stream you 
+   *  provide.
+   *  @param out An output stream that will hold the results of your run.
+   *  @return Returns true if successful, false otherwise.
+   */
   boolean run(OutputFormat outputFormat, Writer out) {
     println "in ParamFormValue.run(${outputFormat.code}, out)"
     if (runFunctions.containsKey(outputFormat.code)) {

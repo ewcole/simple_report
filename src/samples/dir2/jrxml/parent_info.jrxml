@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version last-->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="parent_info" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="51c533ac-5036-40e2-aca0-5b6de80bb5e1">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="jccsct"/>
+	<parameter name="student_pidm" class="java.lang.String">
+		<parameterDescription><![CDATA[]]></parameterDescription>
+	</parameter>
+	<queryString language="SQL">
+		<![CDATA[select substr(sorfolk_parent_first||' '||sorfolk_parent_last,1,56) parent,
+       substr(spraddr_street_line1||'  '||spraddr_street_line2,1,60) pstreet,
+       substr(spraddr_city||', '||spraddr_stat_code||'  '||spraddr_zip,1,40) pcsz
+from spraddr, sorfolk
+where spraddr_pidm = sorfolk_pidm     and
+      spraddr.rowid = jcc_gb_address.f_get_addr_rowid($P{student_pidm} ,'MA',sysdate) and
+      sorfolk_pidm = $P{student_pidm} and
+      sorfolk_relt_code in ('M','F','U','1') and
+      sorfolk.rowid = (select max(rowid)
+                       from sorfolk
+                       where sorfolk_pidm = $P{student_pidm} and
+                             sorfolk_relt_code in ('M','F','U','1') and
+                             sorfolk_activity_date = (select max(sorfolk_activity_date)
+                                                      from sorfolk
+                                                      where sorfolk_pidm = $P{student_pidm} and
+                                                            sorfolk_relt_code in ('M','F','U','1')))]]>
+	</queryString>
+	<field name="PARENT" class="java.lang.String"/>
+	<field name="PSTREET" class="java.lang.String"/>
+	<field name="PCSZ" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<detail>
+		<band height="63" splitType="Stretch">
+			<property name="local_mesure_unitheight" value="pixel"/>
+			<property name="com.jaspersoft.studio.unit.height" value="px"/>
+			<textField>
+				<reportElement x="0" y="0" width="300" height="14" uuid="8c071cb0-1fdf-4524-8163-47bb5758ef72">
+					<property name="local_mesure_unitx" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.x" value="px"/>
+					<property name="local_mesure_unitwidth" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					<property name="local_mesure_unitheight" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement>
+					<font fontName="Franklin Gothic Book" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{PARENT}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="26" width="300" height="14" uuid="38261678-2967-49e2-b0c0-21510a3aa00c">
+					<property name="com.jaspersoft.studio.unit.x" value="px"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="local_mesure_unity" value="pixel"/>
+				</reportElement>
+				<textElement>
+					<font fontName="Franklin Gothic Book" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{PSTREET}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="47" width="300" height="14" uuid="45f5df78-cce2-4c59-ad20-92f6776f51be">
+					<property name="com.jaspersoft.studio.unit.x" value="px"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="local_mesure_unity" value="pixel"/>
+				</reportElement>
+				<textElement>
+					<font fontName="Franklin Gothic Book" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{PCSZ}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>

@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version last-->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="emergency_info" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="201d42d8-3693-42bc-ae27-8c9f2b612b9a">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="jccsct"/>
+	<parameter name="student_pidm_e" class="java.lang.String">
+		<parameterDescription><![CDATA[]]></parameterDescription>
+	</parameter>
+	<queryString language="SQL">
+		<![CDATA[select substr(spremrg_first_name||' '||spremrg_last_name,1,35) emcontact,
+            substr(spremrg_phone_area||'   '||spremrg_phone_number,1,17) emphone 
+from spremrg
+where spremrg_pidm     = $P{student_pidm_e} and 
+            spremrg_priority = (select max(spremrg_priority)
+                                             from spremrg
+                                             where spremrg_pidm = $P{student_pidm_e}) and
+            spremrg.rowid = (select max(rowid)
+                                          from spremrg
+                                          where spremrg_pidm = $P{student_pidm_e} and
+                                                      spremrg_priority = (select max(spremrg_priority)
+                                                                                        from spremrg
+                                                                                        where spremrg_pidm = $P{student_pidm_e}))]]>
+	</queryString>
+	<field name="EMCONTACT" class="java.lang.String"/>
+	<field name="EMPHONE" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<detail>
+		<band height="35" splitType="Stretch">
+			<property name="local_mesure_unitheight" value="pixel"/>
+			<property name="com.jaspersoft.studio.unit.height" value="px"/>
+			<textField>
+				<reportElement x="0" y="0" width="300" height="14" uuid="70b5a019-bd99-4d42-9bf1-719dee2c8e77">
+					<property name="local_mesure_unitwidth" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					<property name="local_mesure_unitheight" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="local_mesure_unitx" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.x" value="px"/>
+					<property name="local_mesure_unity" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+				</reportElement>
+				<textFieldExpression><![CDATA[$F{EMCONTACT}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="21" width="100" height="14" uuid="83b5d615-5f7d-4e6e-bd3a-0ea539792951">
+					<property name="local_mesure_unitwidth" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					<property name="local_mesure_unitheight" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="local_mesure_unitx" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.x" value="px"/>
+					<property name="local_mesure_unity" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+				</reportElement>
+				<textFieldExpression><![CDATA[$F{EMPHONE}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>

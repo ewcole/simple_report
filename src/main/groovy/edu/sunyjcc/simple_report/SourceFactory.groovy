@@ -33,6 +33,9 @@ public abstract class SourceFactory {
    */
   abstract String getSourceText(String objType, String objName);
 
+  /** Return a file name pointing to the JRXML source code  */
+  abstract String getJasperSourceText(String objType, String objName)
+
   /** Get the source for a parameter object 
    *  @param name The name of the parameter you want to fetch
    */
@@ -51,7 +54,7 @@ public abstract class SourceFactory {
    *  @param name The name of the Jasper Report you want to fetch
    */
   public String getJrxmlSource(String name) {
-    def pf = getSourceText("jrxml", "${name}.jrxml")
+    def pf = getJasperSourceText("jrxml", name)
   }
 
   /** Get a .sql file, defining a Jasper Report. 

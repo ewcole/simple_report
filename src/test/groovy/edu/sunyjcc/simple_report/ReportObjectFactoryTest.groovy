@@ -215,7 +215,7 @@ public class ReportObjectFactoryTest extends GroovyTestCase {
     def obj = createFromCache("jrxml", "apps")
     println "obj=${obj}"
     def fsfSrc = getFileSourceFactory().getSource("jrxml", "apps")
-    assert obj == fsfSrc
+    assert obj.source == fsfSrc
   }
 
   void testGetReport () {

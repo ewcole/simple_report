@@ -56,14 +56,33 @@ We need to use the following artifacts to run Jasper Reports.
 
 Rhino is needed because JasperReports can include JavaScript code.
 
+# How to Run Jasper Reports from Java
+
+You can call Jasper Reports from Java or Groovy code by making calls to the 
+[JasperReports API](http://jasperreports.sourceforge.net/api/).  Some of the important ones are listed here.
+
+-   **[net.sf.jasperreports.engine.JasperCompileManager](http://jasperreports.sourceforge.net/api/net/sf/jasperreports/engine/JasperCompileManager.html):** This is a facade class for converting Jasper Reports to and from the XML format.
+-   **[net.sf.jasperreports.engine.JasperReport](http://jasperreports.sourceforge.net/api/net/sf/jasperreports/engine/JasperReport.html):** This is the compiled form of the report.
+-   **[net.sf.jasperreports.engine.JasperFillManager](http://jasperreports.sourceforge.net/api/net/sf/jasperreports/engine/JasperFillManager.html):** This is used to apply the data to the report definition, giving you a JasperPrint object.
+-   **[net.sf.jasperreports.engine.JasperPrint](http://jasperreports.sourceforge.net/api/net/sf/jasperreports/engine/JasperPrint.html):** This is the report with all of the data filled in, ready to be converted into one of the final formats
+-   **[net.sf.jasperreports.export.Exporter](http://jasperreports.sourceforge.net/api/net/sf/jasperreports/export/Exporter.html):** This converts the filled-in report to the desired format.
+
+## So, how do you run a report?
+
+First, compile the report using the [JasperCompileManager](http://jasperreports.sourceforge.net/api/net/sf/jasperreports/engine/JasperCompileManager.html).
+Next, use the [JasperFillManager](http://jasperreports.sourceforge.net/api/net/sf/jasperreports/engine/JasperFillManager.html) to run the report and produce a [JasperPrint](http://jasperreports.sourceforge.net/api/net/sf/jasperreports/engine/JasperPrint.html).
+Finally, Convert it to the desired output format using an [Exporter](http://jasperreports.sourceforge.net/api/net/sf/jasperreports/export/Exporter.html).
+
 # Modifications
 
-## TODO Create an object to represent Jasper Reports report
+## Create an object to represent Jasper Reports report
 
-This must implement the Runnable interface.
+JasperReport, implements Runnable
 
 ## Modify the ReportObjectFactory
 
-### TODO Add a method, `getJasperReport()` to return a callable Jasper Report object
+### DONE Add a method, `getJasperReport()` to return a callable Jasper Report object
 
-### TODO Modify getInvocation() to return invocable object for j. report
+### DONE Modify getInvocation() to return invocable object for j. report
+
+### TODO Create an exporter class for rendering the report to its final form.

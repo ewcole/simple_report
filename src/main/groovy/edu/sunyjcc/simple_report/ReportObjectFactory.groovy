@@ -46,7 +46,11 @@ public class ReportObjectFactory {
         }
         if (objType == 'jrxml') {
           // Just return the raw source code
-          getObject = { name -> getSrc(name)}
+          getObject = { 
+            name -> 
+              def jasperSrc = getSrc(name)
+              new JasperReportInstance(jasperSrc, this);
+          }
         }
         if (objType == 'sql') {
           getObject = {
@@ -132,7 +136,7 @@ public class ReportObjectFactory {
   /** Get a Jasper Report object 
    *  @param name The name of the Jasper Report, without extension
    */
-  public String getJrxml(String name) {
+  public JasperReportInstance getJasperReport(String name) {
     return getReportObject('jrxml', name)
   }
 

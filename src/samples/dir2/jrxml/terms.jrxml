@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version last-->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Terms" language="groovy" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="72711981-f5fb-4286-8865-8b30be6c7404">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="JTEST"/>
+	<style name="Title" fontName="Times New Roman" fontSize="50" isBold="true" pdfFontName="Times-Bold"/>
+	<style name="SubTitle" forecolor="#736343" fontName="Arial" fontSize="18"/>
+	<style name="Column header" forecolor="#666666" fontName="Arial" fontSize="12" isBold="true"/>
+	<style name="Detail" fontName="Arial" fontSize="12"/>
+	<style name="Row" mode="Transparent">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$V{REPORT_COUNT}%2 == 0]]></conditionExpression>
+			<style backcolor="#E6DAC3"/>
+		</conditionalStyle>
+	</style>
+	<queryString language="SQL">
+		<![CDATA[select * from stvterm t order by t.stvterm_code desc]]>
+	</queryString>
+	<field name="STVTERM_CODE" class="java.lang.String"/>
+	<field name="STVTERM_DESC" class="java.lang.String"/>
+	<field name="STVTERM_START_DATE" class="java.sql.Timestamp"/>
+	<field name="STVTERM_END_DATE" class="java.sql.Timestamp"/>
+	<field name="STVTERM_ACYR_CODE" class="java.lang.String"/>
+	<field name="STVTERM_FA_PROC_YR" class="java.lang.String"/>
+	<field name="STVTERM_ACTIVITY_DATE" class="java.sql.Timestamp"/>
+	<field name="STVTERM_FA_TERM" class="java.lang.String"/>
+	<field name="STVTERM_FA_PERIOD" class="java.math.BigDecimal"/>
+	<field name="STVTERM_FA_END_PERIOD" class="java.math.BigDecimal"/>
+	<field name="STVTERM_HOUSING_START_DATE" class="java.sql.Timestamp"/>
+	<field name="STVTERM_HOUSING_END_DATE" class="java.sql.Timestamp"/>
+	<field name="STVTERM_SYSTEM_REQ_IND" class="java.lang.String"/>
+	<field name="STVTERM_TRMT_CODE" class="java.lang.String"/>
+	<field name="STVTERM_FA_SUMMER_IND" class="java.lang.String"/>
+	<sortField name="STVTERM_ACYR_CODE" order="Descending"/>
+	<sortField name="STVTERM_CODE" order="Descending"/>
+	<group name="Group1">
+		<groupExpression><![CDATA[$F{STVTERM_ACYR_CODE}]]></groupExpression>
+		<groupHeader>
+			<band height="37">
+				<frame>
+					<reportElement mode="Opaque" x="-21" y="7" width="597" height="24" forecolor="#B89F7D" backcolor="#F2EBDF" uuid="b0c056c9-d0b8-4cea-a694-91339512cd0d"/>
+					<rectangle>
+						<reportElement mode="Opaque" x="21" y="0" width="36" height="24" backcolor="#736343" uuid="17163cc3-ee6d-464b-8d9d-0d922c62dc87"/>
+						<graphicElement>
+							<pen lineWidth="0.0"/>
+						</graphicElement>
+					</rectangle>
+					<textField>
+						<reportElement style="SubTitle" x="68" y="0" width="413" height="24" forecolor="#736343" uuid="d5ec693a-cbc0-4d3d-8355-c9694b142e45"/>
+						<textElement>
+							<font isBold="true"/>
+						</textElement>
+						<textFieldExpression><![CDATA[$F{STVTERM_ACYR_CODE}]]></textFieldExpression>
+					</textField>
+				</frame>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band height="32"/>
+		</groupFooter>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="136" splitType="Stretch">
+			<image>
+				<reportElement x="0" y="0" width="164" height="126" uuid="14bfb9ec-1b37-43b3-8a80-b0c8bd6b629c"/>
+				<imageExpression><![CDATA["coffee.jpg"]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement style="Title" x="170" y="0" width="263" height="62" uuid="8ce20d14-01ca-4250-8b56-57e4b41f2f9b"/>
+				<textElement verticalAlignment="Middle">
+					<font pdfFontName="Times-Roman"/>
+				</textElement>
+				<text><![CDATA[Coffee Title]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="SubTitle" x="219" y="62" width="196" height="22" uuid="8826455c-26a9-4f26-b097-eb57d38d934b"/>
+				<textElement>
+					<font fontName="Times New Roman" pdfFontName="Times-Roman"/>
+				</textElement>
+				<text><![CDATA[Coffee SubTitle]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="172" y="94" width="383" height="42" uuid="9e97a876-afae-4960-8563-2dd612ba1b44"/>
+				<textElement textAlignment="Right">
+					<font size="10"/>
+				</textElement>
+				<text><![CDATA[Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce auctor purus gravida arcu aliquam mattis. Donec et nulla libero, ut varius massa. Nulla sed turpis elit. Etiam aliquet mauris a ligula hendrerit in auctor leo lobortis.]]></text>
+			</staticText>
+			<image>
+				<reportElement x="433" y="-115" width="267" height="209" uuid="3945ffdc-40c4-4e77-99c6-b627e0bd678e"/>
+				<imageExpression><![CDATA["coffee_stain.png"]]></imageExpression>
+			</image>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="16" splitType="Stretch">
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="15" width="555" height="1" uuid="57635d2f-cee8-4ef5-8fe9-7a6dcd121629"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+			<staticText>
+				<reportElement style="Column header" x="0" y="0" width="138" height="15" forecolor="#736343" uuid="e1183f9d-8a7f-4d8f-ab91-330f02d83ac3"/>
+				<text><![CDATA[STVTERM_CODE]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="138" y="0" width="138" height="15" forecolor="#736343" uuid="acc16a7d-d008-406c-8672-37f262c1b751"/>
+				<text><![CDATA[STVTERM_DESC]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="276" y="0" width="138" height="15" forecolor="#736343" uuid="15095701-2c3c-4a61-bf9f-d43e8b437f3a"/>
+				<text><![CDATA[START_DATE]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="414" y="0" width="138" height="15" isPrintInFirstWholeBand="true" forecolor="#736343" uuid="c6682ed5-2459-4b47-86f9-ebd4acb7392d"/>
+				<text><![CDATA[END_DATE]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="66" splitType="Stretch">
+			<frame>
+				<reportElement style="Row" mode="Opaque" x="0" y="0" width="555" height="15" uuid="91f05466-0353-4335-badf-ce86fdedf676"/>
+				<textField isStretchWithOverflow="true">
+					<reportElement style="Detail" x="0" y="0" width="138" height="15" uuid="53d3dd6c-3de2-4403-bf91-e02013e8303b"/>
+					<textFieldExpression><![CDATA[$F{STVTERM_CODE}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement style="Detail" x="138" y="0" width="138" height="15" uuid="bb85bf35-7209-49dc-8fbb-8d4e87b2e0a5"/>
+					<textFieldExpression><![CDATA[$F{STVTERM_DESC}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true" pattern="yyyy-MM-dd">
+					<reportElement style="Detail" x="276" y="0" width="138" height="15" uuid="47cece1a-2fab-4ceb-a937-38d853a4fc15"/>
+					<textFieldExpression><![CDATA[$F{STVTERM_START_DATE}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true" pattern="yyyy-MM-dd">
+					<reportElement style="Detail" x="414" y="0" width="138" height="15" uuid="cd613c29-031a-4c21-8862-cd0171e7f45f"/>
+					<textElement markup="rtf"/>
+					<textFieldExpression><![CDATA[$F{STVTERM_END_DATE}]]></textFieldExpression>
+				</textField>
+			</frame>
+			<subreport runToBottom="false">
+				<reportElement x="36" y="15" width="519" height="51" uuid="391cf84c-85af-4c07-b37d-9eff03118788"/>
+				<subreportParameter name="TERM_CODE">
+					<subreportParameterExpression><![CDATA[$F{STVTERM_CODE}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA["partsOfTerm.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch">
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="3" width="555" height="1" uuid="effe6371-bf8d-4e95-92ef-77e956dbe052"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+		</band>
+	</columnFooter>
+	<pageFooter>
+		<band height="25" splitType="Stretch">
+			<frame>
+				<reportElement mode="Opaque" x="-21" y="1" width="597" height="24" forecolor="#D0B48E" backcolor="#F2EBDF" uuid="c548b5a0-ecd1-4d5d-8163-39e84fb1046d"/>
+				<textField evaluationTime="Report">
+					<reportElement style="Column header" x="533" y="0" width="40" height="20" forecolor="#736343" uuid="0e69a62e-68a4-404d-906a-b600d93a4849"/>
+					<textElement verticalAlignment="Middle">
+						<font size="10" isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement style="Column header" x="453" y="0" width="80" height="20" forecolor="#736343" uuid="b7bf0cd5-ce99-488c-b122-39b881484d26"/>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font size="10" isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+				</textField>
+				<textField pattern="EEEEE dd MMMMM yyyy">
+					<reportElement style="Column header" x="22" y="1" width="197" height="20" forecolor="#736343" uuid="20631f05-655f-47cb-9af0-12c1702f1b90"/>
+					<textElement verticalAlignment="Middle">
+						<font size="10" isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+				</textField>
+			</frame>
+		</band>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>
