@@ -251,10 +251,10 @@ public class ParamFormValue implements Exportable, Runnable {
    *  @return Returns true if successful, false otherwise.
    */
   boolean run(OutputFormat outputFormat, Writer out) {
-    println "in ParamFormValue.run($outputFormat, out)"
-    if (runFunctions.containsKey(outputFormat.desc)) {
+    println "in ParamFormValue.run(${outputFormat.code}, out)"
+    if (runFunctions.containsKey(outputFormat.code)) {
       println "....ready to run"
-      return runFunctions[outputFormat.desc](out);
+      return runFunctions[outputFormat.code](out);
     } else {
       return false
     }

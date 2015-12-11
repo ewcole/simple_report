@@ -128,7 +128,7 @@ public class SimpleReportInstance implements Exportable, Runnable {
   @Override
   boolean run(OutputFormat outputFormat, ParamFormValue paramFormValue,
               Writer out) {
-    def oFm = outputFormat.desc
+    def oFm = outputFormat.code
     assert runFunctions[oFm]
     if (runFunctions[oFm]) {
       def rs = report.execute(paramFormValue)
