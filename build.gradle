@@ -1,6 +1,7 @@
-def version = "1.2.0"
+def version = "1.2.1"
 
-/* 1.2.0: Convert CLOB columns to String.
+/* 1.2.1: Add detailed descriptions to output formats.
+ * 1.2.0: Convert CLOB columns to String.
  * 1.1.8: Serve plain SQL scripts.
  * 1.1.7: DynamicSqlQueryEngine - filter params before evaluating SQL query.
  * 1.1.6: Created DynamicSqlQueryEngine class
