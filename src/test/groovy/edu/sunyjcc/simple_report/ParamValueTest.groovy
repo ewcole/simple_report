@@ -59,4 +59,31 @@ public class ParamValueTest extends GroovyTestCase {
                            value:       "spooked"]
   }
 
+  void testNumberParamValue() {
+    println "${'*' * 10} testNumberParamValue ${'*' * 10}"
+    def a = new SimpleReportBuilder()
+    def p = a.param(name: 'scoobydoo', 
+                    type: 'number',
+                    'default': 12);
+    def pv = new ParamValue(p);
+    pv.currentValue = 42;
+    assert pv.currentValue == 42;
+    def pve = pv.export()
+    assert pve.name        == "scoobydoo";
+    assert pve.type        == "NUMBER";
+    assert pve.description == "scoobydoo";
+    assert pve.label       == "scoobydoo";
+    assert pve."default"   == 12;
+    println "value class = ${pv.currentValue.getClass()}"
+    assert pve.value       == 42;
+    assert pv.export() == [name:        "scoobydoo", 
+                           type:        "NUMBER", 
+                           description: "scoobydoo", 
+                           label:       "scoobydoo",
+                           'default':   12,
+                           value:       42]
+    // Try assigning a string to the value.
+    pv.currentValue = "43"
+    assert pv.currentValue == 43
+  }
 }

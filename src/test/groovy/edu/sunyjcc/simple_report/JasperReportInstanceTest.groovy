@@ -72,11 +72,11 @@ public class JasperReportInstanceTest extends GroovyTestCase {
     assert p 
     def pe = p.export()
     assert pe.pidm == [name: "pidm", 
-                       type: "STRING", 
+                       type: "NUMBER", 
                        description: "pidm", 
                        label: "pidm", 
                        "default": null, 
-                       value: "null"];
+                       value: null];
     println pe.keySet().getClass()
  pe.keySet() == ['param_choice', 'pidm', 'popsel_app', 
                            'popsel_selection', 

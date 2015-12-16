@@ -41,8 +41,10 @@ public class SimpleReportBuilder extends BuilderSupport {
           debug ("in nodeFactory.param($name, $attributes, $value)") 
           assert name == 'param'
           assert attributes.name
+          String paramTypeStr = (attributes.type?:'string').toLowerCase();
+          ParamType paramType = ParamType[paramTypeStr];
           def param = new Param(attributes.name,
-                                attributes.type?:ParamType.string,
+                                paramType,
                                 attributes.description?:attributes.name,
                                 attributes.label?:attributes.name,
                                 attributes.default?:null)

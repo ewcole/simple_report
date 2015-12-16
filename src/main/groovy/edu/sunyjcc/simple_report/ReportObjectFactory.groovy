@@ -10,9 +10,7 @@ public class ReportObjectFactory {
   SourceFactory sourceFactory;
 
   /** This turns the source code into report objects*/
-  SimpleReportBuilder getBuilder() {
-    new SimpleReportBuilder();
-  }
+  SimpleReportBuilder builder = new SimpleReportBuilder();
 
   /** This will hold all of the report objects and provide functions to 
    *  get new ones.

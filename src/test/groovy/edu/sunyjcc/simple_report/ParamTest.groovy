@@ -85,4 +85,26 @@ public class ParamTest extends GroovyTestCase {
     //println "gv=${params.getValues()}"
     //assert gv == [term_code: '201312', subject: 'ART']
   }
+
+  void testNumberParamCreate() {
+    println "******** testNumberParamCreate ********************"
+    def a = new SimpleReportBuilder()
+    def p = a.param(name: 'scoobydoo', type: 'NUMBER', 'default': 42)
+    def pe = p.export()
+    println pe
+    assert pe == [name:        "scoobydoo", 
+                  type:        "NUMBER", 
+                  description: "scoobydoo", 
+                  default:     42,
+                  label:       "scoobydoo"]
+    assert p.export() == [name:        "scoobydoo", 
+                          type:        "NUMBER", 
+                          description: "scoobydoo", 
+                          'default':     42,
+                          label:       "scoobydoo"]
+    p = a.param(name: 'scoobydoo', type: 'NUMBER', 'default': "42")
+    assert p.export() == pe
+  }
+
+
 }

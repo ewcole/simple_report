@@ -82,6 +82,29 @@ public class JasperReportInstance implements Runnable, Exportable {
       JasperCompileManager.compileReportToFile(sourceFile.canonicalPath, 
                                                outputFile.canonicalPath) 
     }
+    // Copy any images in the file to the working directory
+    def images = new XmlSlurper().parse(sourceFile)
+                          .depthFirst()
+                          .findAll {it.name() == 'imageExpression'}
+                          .collect{it.text() as String}
+                          .collect {it.replaceAll(/"(.*)"/, "\$1")};
+    def ant = new AntBuilder();
+    images.each {
+      img ->
+        def imgFile = new File(img);
+        if (imgFile.parent) {
+          println "Absolute reference in report ${sourceFile.name}: $img"
+        } else {
+          imgFile = new File(jrxmlDir, img);
+        }
+        if (imgFile.exists()) {
+          ant.copy(file: imgFile.getCanonicalPath(),
+                   todir: jasperDir.canonicalPath) 
+        } else {
+          println "File not found: $imgFile"
+        }
+    }
+  // Return a reference to the compiled file.
     outputFile.canonicalFile;
   }
 
@@ -130,11 +153,21 @@ public class JasperReportInstance implements Runnable, Exportable {
 
   /** Search for a parameter form for the report. */
   private loadParamForm() {
+    def paramTypes = [
+      /java.math.BigDecimal/: 'NUMBER',
+      /.*/:     'STRING'
+    ];
     ParamForm paramForm = factory.build {
       params() {
         parsedSource.parameter.each {
+          def paramClass = "${it.@class}"
+          def pType = paramTypes.inject(null) {
+            currType, re ->
+              currType?:(paramClass =~ re.key)?re.value:null;
+          }
           param(name: "${it.@name}",
-                description: "${it.parameterDescription}")
+                description: "${it.parameterDescription}",
+                type: pType)
         }
       }
     }

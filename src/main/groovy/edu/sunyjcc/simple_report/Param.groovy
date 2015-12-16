@@ -80,7 +80,7 @@ public class Param implements Exportable, Buildable {
     this.type = type;
     this.description = description;
     this.label = label;
-    this.defaultValue = defaultValue
+    this.defaultValue = (defaultValue instanceof String)?type.parse(defaultValue):defaultValue
     this.superParam = superParam;
   }
 

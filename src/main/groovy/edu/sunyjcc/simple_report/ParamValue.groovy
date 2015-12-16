@@ -22,7 +22,26 @@ public class ParamValue implements Exportable {
    *  @param v The value you would like to assign.
    */
   void setValue(def v) {
-    currentValue = v;
+    println "setting Object value"
+    if (v instanceof String) {
+      println "parsing String";
+      this.currentValue = param.type.parse(v);
+    } else {
+      println "Copying value";
+      this.currentValue = v;
+    }
+  }
+
+  /** Set the current value of the parameter 
+   *  @param v The value you would like to assign.
+   */
+  void setValue(String v) {
+    println "setting String value"
+    currentValue = param.type.parse(v);
+  }
+
+  void setCurrentValue(def v) {
+    setValue(v);
   }
 
   /** Set the current value of the parameter 
@@ -35,25 +54,25 @@ public class ParamValue implements Exportable {
   /** Constructor with no current value */
   public ParamValue(Param param) {
     this.param = param;
-    this.currentValue = param.defaultValue;
+    setValue param.defaultValue;
   }
   
   /** Constructor with a current value */
   public ParamValue(Param param, Object currentValue) {
     this.param = param;
-    this.currentValue = currentValue;
+    setValue currentValue;
   }
 
   /** Clone a parameter value from another parameter value. */
   public ParamValue(ParamValue pv) {
     this.param = pv.param;
-    this.currentValue = pv.currentValue;
+    setValue pv.currentValue;
   }
 
   /** Export to a HashMap */
   def export() {
     def m = param.export();
-    m.value = "${this.currentValue}";
+    m.value = this.currentValue;
     m;
   }
 

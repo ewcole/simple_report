@@ -37,12 +37,14 @@ dependencies {
 
   compile 'javax.servlet:javax.servlet-api:3.0.1'
 
-  compile 'org.codehaus.groovy:groovy-all:1.8.9'
+  compile 'org.codehaus.groovy:groovy-all:2.4.4'
+  compile 'org.apache.ant:ant:1.8.2'
   compile 'net.sf.jasperreports:jasperreports:6.2.0'
 
   testCompile 'junit:junit:4.11'
   runtime 'net.sf.jasperreports:jasperreports:6.2.0'
   runtime 'org.mozilla:rhino:1.7.7'
+  runtime 'org.apache.ant:ant:1.8.2'
 }
 
 /***********************************************************************/

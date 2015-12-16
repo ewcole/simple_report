@@ -76,6 +76,16 @@ public class ParamFormValue implements Exportable, Runnable {
     values[s].setValue(v);
   }
 
+  /** Set the value of a parameters
+   *  @param s The name of the parameter from the ParamForm object.
+   */
+  public ParamValue setValue(String s, Object v) {
+    assert values;
+    assert values[s];
+    assert values[s] instanceof ParamValue
+    values[s].setValue(v);
+  }
+
   /** Initialize all contained objects with the given arguments
    * 
    *  @param args Data used for initialization.  This might contain a 
@@ -126,7 +136,7 @@ public class ParamFormValue implements Exportable, Runnable {
     values.inject([:]) {
       pMap, param ->
         println "param.key=${param.key}, param.value=${param.value}"
-        pMap[param.key] = "${param.value.value}" as String
+        pMap[param.key] = param.value.value
         return pMap;
     }
   }
