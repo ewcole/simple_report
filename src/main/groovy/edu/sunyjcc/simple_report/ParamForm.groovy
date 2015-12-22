@@ -29,6 +29,9 @@ public class ParamForm implements Buildable, Exportable, Runnable {
 
   public ParamForm addParam(Param param) {
     println ("in addParam(${param})");
+    if (this.params.containsKey(param.name)) { 
+      throw new BuildException("ParamForm already contains parameter ${param.name}");
+    }
     this.params[param.name] = param;
     assert this.params.containsKey(param.name)
     return this;

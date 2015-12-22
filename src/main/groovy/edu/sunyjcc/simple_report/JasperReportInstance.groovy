@@ -157,18 +157,30 @@ public class JasperReportInstance implements Runnable, Exportable {
       /java.math.BigDecimal/: 'NUMBER',
       /.*/:     'STRING'
     ];
-    ParamForm paramForm = factory.build {
-      params() {
-        parsedSource.parameter.each {
-          def paramClass = "${it.@class}"
+    ParamForm superParamForm;
+    try {
+      superParamForm = factory.getParamForm(this.name);
+    } catch (BuildException e) {
+      // Cannot create the parameter form
+      superParamForm = new ParamForm();
+    }
+    println "superParamForm = ${superParamForm?.export()}"
+    ParamForm paramForm = new ParamForm(superParamForm);
+    parsedSource.parameter.each {
+      prm ->
+      def paramClass = "${prm.@class}"
+      try {
+        paramForm.addParam(factory.build {
           def pType = paramTypes.inject(null) {
             currType, re ->
               currType?:(paramClass =~ re.key)?re.value:null;
           }
-          param(name: "${it.@name}",
-                description: "${it.parameterDescription}",
+          param(name: "${prm.@name}",
+                description: "${prm.parameterDescription}",
                 type: pType)
-        }
+          
+        });
+      } catch (BuildException e) {
       }
     }
     this.params = paramForm.getParamFormValue()

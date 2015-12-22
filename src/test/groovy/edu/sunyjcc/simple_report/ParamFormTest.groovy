@@ -111,5 +111,16 @@ public class ParamFormTest extends GroovyTestCase {
     assert st.export() == pf.export()
   }
 
+  void testDuplicateParams() {
+    printBanner "testDuplicateParams"
+    def f = getReportObjectFactory()
+    def pf = f.build {
+      params(copyFrom: "SubjectAndTerm")
+    }
+    shouldFail(BuildException) {
+      pf.addParam(f.build { param name: "term_code" });
+    }
+  }
+
 }
 
