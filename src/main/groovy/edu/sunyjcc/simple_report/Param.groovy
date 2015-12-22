@@ -16,7 +16,7 @@ public class Param implements Exportable, Buildable {
                             valid variable name in SQL, Groovy, and other formats; please use only 
                             alphanumeric characters and the underscore ("_").""",
                    required: true],
-     type:        [desc: "The type of the parameter.  Currently the only supported type is STRING.",
+     type:        [desc: "The type of the parameter.  The supported types are ${ParamType.collect{it.desc}.join(', ').replaceAll(/(.*,)(.*)/, '$1 and $2')}.",
                    default: 'STRING'],
      description: [desc: "A description of the parameter.  This will be available to the user."],
      label:       [desc: "The label that will appear on the parameter form."],
