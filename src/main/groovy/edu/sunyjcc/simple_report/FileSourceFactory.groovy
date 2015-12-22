@@ -30,7 +30,9 @@ public class FileSourceFactory extends SourceFactory {
     assert sourceDir.exists()
     if (objType != 'jrxml') {
       def s = new File(sourceDir, "${objName}")
-      assert s.exists()
+      if (!s.exists()) {
+        throw new BuildException("No source code for $objType/$objName.");
+      }
       return s.text
     } else {
       // return a reference to the file.
