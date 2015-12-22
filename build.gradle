@@ -1,6 +1,7 @@
-def version = "1.2.3"
+def version = "2.0.0"
 
-/* 1.2.3: Add isBinary property to OutputFormat; update text of CSV 
+/* 2.0.0: Support for JasperReports
+ * 1.2.3: Add isBinary property to OutputFormat; update text of CSV 
  * 1.2.2: Skipped to sync up with Grails project.
  * 1.2.1: Add detailed descriptions to output formats.
  * 1.2.0: Convert CLOB columns to String.
