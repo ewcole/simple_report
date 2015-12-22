@@ -9,6 +9,11 @@ import groovy.util.BuilderSupport
 
 public class SimpleReportBuilder extends BuilderSupport {
 
+  /** We will retrieve pre-built report objects from here when creating
+   *  objects with inheritance.
+   */
+  ReportObjectFactory reportObjectFactory;
+
   private def reports = [:];
 
   private def debug(String text) {
@@ -31,7 +36,13 @@ public class SimpleReportBuilder extends BuilderSupport {
     params: [
       create: {
         String name, Map attributes, def value ->
-          new ParamForm()
+          if (attributes.copyFrom?.size()) {
+            debug("param(copyFrom: '${attributes.copyFrom}')");
+            ParamForm p = reportObjectFactory.getParamForm(attributes.copyFrom);
+            new ParamForm(p);
+          } else {
+            new ParamForm()
+          }
       },
       implClass: ParamForm
     ],
@@ -161,7 +172,7 @@ public class SimpleReportBuilder extends BuilderSupport {
     (ParamForm):[
       (Param): {
         parent, child ->
-          parent.params[child.name] = child
+          parent.addParam(child);
       },
     ],
     (Param): [
@@ -231,8 +242,17 @@ public class SimpleReportBuilder extends BuilderSupport {
 
   void nodeCompleted(Object parent, Object node) {}
   
+  /** Zero-argument constructor */
   SimpleReportBuilder() {
     super()
+  }
+
+  /** Create this with a reference to a ReportObjectFactory; this will
+   *  be used for implementing inheritance 
+   */
+  SimpleReportBuilder(ReportObjectFactory reportObjectFactory) {
+    super()
+    this.reportObjectFactory = reportObjectFactory;
   }
 
   /** Evaluate a string and return the results */

@@ -8,21 +8,40 @@ import java.util.*
 public class ParamForm implements Buildable, Exportable, Runnable {
 
   String getBuildDocHtml() {
-    "This creates a parameter form."
+    ("This creates a parameter form.  Prototypical inheritance is available "
+     + "by using the copyFrom option.") 
   }
 
 
   /** List the different options you can pass as parameters to the builder 
    *  method call for this class. */
   LinkedHashMap getBuildOptions() {
-    [:]
+    [copyFrom: [
+        desc: "The name of another parameter form that will serve as a prototype for this one.  The parameters and validation from the prototype will be copied into this form."
+      ]]
   }
 
   String source;
 
   // The parameters
-  HashMap<String,Param> params = [:]
+  private HashMap<String,Param> params = [:];
   private boolean isValid;
+
+  public ParamForm addParam(Param param) {
+    println ("in addParam(${param})");
+    this.params[param.name] = param;
+    assert this.params.containsKey(param.name)
+    return this;
+  }
+
+  public ParamForm copyFrom(ParamForm prototype) {
+    prototype.params.each {
+      paramName, param ->
+        this.addParam(param);
+        assert this.params.containsKey(paramName);
+    }
+    return this;
+  }
 
   /** Return the parameter items as a list */
   def export() {
@@ -37,17 +56,6 @@ public class ParamForm implements Buildable, Exportable, Runnable {
   public ParamFormValue getParamFormValue() {
     new ParamFormValue(this)
   }
-  // /** Return a HashMap with the keys being the names of the parameters 
-  //  *  in the ParamForm and the values their current value. 
-  //  */
-  // HashMap getValues() {
-  //   this.keySet().inject([:]) {
-  //     valueMap, paramName ->
-  //       def p = this[paramName]
-  //       valueMap += [(paramName): (p.hasProperty('currentValue'))?p.currentValue:p]
-  //       return valueMap
-  //   }
-  // }
 
   /** Access the isValid property */
   public boolean getIsValid() {
@@ -88,24 +96,17 @@ public class ParamForm implements Buildable, Exportable, Runnable {
     getParamFormValue().setParamValues(paramFormValue).run(outputFormat, out)
   }
 
-  // @Override
-  // HashMap run(ParamFormValue paramFormValue) {
-  //   this.getParamFormValue().run(paramFormValue)
-  // }
+  //////////////////////////////////////////////////////////////////////
+  // Constructors                                                     //
+  //////////////////////////////////////////////////////////////////////
+  public ParamForm() {
+  }
 
-  // /** Look for matching parameters in the hash map
-  //  *  and set the matching parameter values if possible. 
-  //  */
-  // ParamForm setValues(HashMap p) {
-  //   // Create a new param map with lower-case keys 
-  //   this.each {
-  //     paramName, param ->
-  //       def key = param.name
-  //       if (p[key]) {
-  //         param.value = p[key]
-  //         this[param.name] = param
-  //       }
-  //   }
-  //   return this
-  // }
+  /** Build a new parameter form based on another parameter form 
+   *  @param  prototype The other ParamForm that we will use as a model.
+   */  
+  public ParamForm(ParamForm prototype) {
+    println "Prototype param form"
+    this.copyFrom(prototype)
+  }
 }
