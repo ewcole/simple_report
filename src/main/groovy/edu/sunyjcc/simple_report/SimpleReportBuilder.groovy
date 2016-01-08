@@ -106,6 +106,22 @@ public class SimpleReportBuilder extends BuilderSupport {
       },
       implClass: CsvQueryEngine
     ],
+    data_script: [
+      create: {
+        String name, Map attributes, def value ->
+          debug ("in nodeFactory.query_script($name, $attributes, $value)") 
+          assert name == 'data_script'
+          def attrs = attributes?:[:];
+          if (value && value instanceof Closure) {
+            attrs.script = value;
+          }
+          def eng = new ClosureQueryEngine(attrs)
+          debug "nodeFactory.query_script => $eng"
+          assert eng
+          return eng
+      },
+      implClass: ClosureQueryEngine
+    ],
     sql: [
       create: {
         String name, Map attributes, def value ->
@@ -164,10 +180,14 @@ public class SimpleReportBuilder extends BuilderSupport {
         parent, child ->
           parent.queryEngine = child
       },
+      (ClosureQueryEngine): {
+        parent, child ->
+          parent.queryEngine = child
+      },
       (CsvQueryEngine): {
         parent, child ->
           parent.queryEngine = child
-      }
+      },
     ],
     (ParamForm):[
       (Param): {
