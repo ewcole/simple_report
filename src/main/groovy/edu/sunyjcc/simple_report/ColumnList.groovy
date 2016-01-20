@@ -22,6 +22,14 @@ public class ColumnList implements Exportable {
   /** Override the '<<' operator; add to the end of the column list,
    *  unless it already exists.  If it exists, then do nothing. 
    */
+  ColumnList leftShift(String s) {
+    add(s)
+    return this
+  }
+
+  /** Override the '<<' operator; add to the end of the column list,
+   *  unless it already exists.  If it exists, then do nothing. 
+   */
   ColumnList leftShift(ArrayList a) {
     a.each { add(it) }
     return this
@@ -47,6 +55,9 @@ public class ColumnList implements Exportable {
     }
   }
 
+  Column add(String name) {
+    this.add(new Column(name: name));
+  }
   
 
   /** Return a list of exported values for all columns */
