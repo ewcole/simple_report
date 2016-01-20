@@ -1,6 +1,7 @@
-def version = "2.0.0"
+def version = "2.1.0"
 
-/* 2.0.0: Support for JasperReports
+/* 2.1.0: ClosureQueryEngine class
+ * 2.0.0: Support for JasperReports
  * 1.2.3: Add isBinary property to OutputFormat; update text of CSV 
  * 1.2.2: Skipped to sync up with Grails project.
  * 1.2.1: Add detailed descriptions to output formats.
