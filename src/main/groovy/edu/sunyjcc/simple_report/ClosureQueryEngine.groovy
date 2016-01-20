@@ -24,7 +24,7 @@ public class ClosureQueryEngine extends QueryEngine implements Buildable, Export
           "defined at the time of creation. It can be called either with a " +
           "closure or a map value containing a closure.  The closure is described below " +
           "under the ";
-          em(class: "source_code", "script");
+          em(class: "source_code", "closure");
           mkp.yield "option below.";
       }
     }
@@ -97,8 +97,8 @@ public class ClosureQueryEngine extends QueryEngine implements Buildable, Export
   /** List the different options you can pass as parameters to the builder 
    *  method call for this class. */
   LinkedHashMap getBuildOptions() {
-    [script: [desc: getQueryClosureDocs(),
-              action: {Closure script -> dataScript = script},
+    [closure: [desc: getQueryClosureDocs(),
+              action: {Closure closure -> dataScript = closure},
              ]]
   }
 
@@ -155,7 +155,7 @@ public class ClosureQueryEngine extends QueryEngine implements Buildable, Export
     ResultSet resultSet = new ResultSet();
     ColumnList cols = this.columns?:new ColumnList();
     // 1. Build the delegate that defines the classes and 
-    //    properties the script can call
+    //    properties the closure can call
     def model = new Expando(sql: sql);
     model.column = {args -> resultSet.columns.addColumn(args)}
     model.row = {
@@ -165,7 +165,7 @@ public class ClosureQueryEngine extends QueryEngine implements Buildable, Export
           resultSet.columns << it
         };
     }
-    // 2. Call the script with the pre-defined environment
+    // 2. Call the closure with the pre-defined environment
     println "model=$model"
     dataScript.delegate = model;
     dataScript.resolveStrategy = Closure.DELEGATE_ONLY

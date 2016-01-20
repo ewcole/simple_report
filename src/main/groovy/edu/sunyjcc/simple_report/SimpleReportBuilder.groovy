@@ -106,17 +106,17 @@ public class SimpleReportBuilder extends BuilderSupport {
       },
       implClass: CsvQueryEngine
     ],
-    data_script: [
+    data_generator: [
       create: {
         String name, Map attributes, def value ->
           debug ("in nodeFactory.query_script($name, $attributes, $value)") 
-          assert name == 'data_script'
+          assert name == 'data_generator'
           def attrs = attributes?:[:];
           if (value && value instanceof Closure) {
-            attrs.script = value;
+            attrs.closure = value;
           }
           def eng = new ClosureQueryEngine(attrs)
-          debug "nodeFactory.query_script => $eng"
+          debug "nodeFactory.data_generator => $eng"
           assert eng
           return eng
       },
