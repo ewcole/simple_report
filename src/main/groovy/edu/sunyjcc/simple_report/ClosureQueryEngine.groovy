@@ -157,7 +157,7 @@ public class ClosureQueryEngine extends QueryEngine implements Buildable, Export
     // 1. Build the delegate that defines the classes and 
     //    properties the closure can call
     def model = new Expando(sql: sql);
-    model.column = {args -> resultSet.columns.addColumn(args)}
+    model.column = {args -> resultSet.columns << new Column(args)}
     model.row = {
       HashMap args -> 
         resultSet.rows << args
