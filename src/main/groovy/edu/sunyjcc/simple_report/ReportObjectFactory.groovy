@@ -9,9 +9,6 @@ public class ReportObjectFactory {
   /** The place we will get the source code for the objects we create */
   SourceFactory sourceFactory;
 
-  /** This turns the source code into report objects*/
-  SimpleReportBuilder builder = new SimpleReportBuilder(this);
-
   /** This will hold all of the report objects and provide functions to 
    *  get new ones.
    */
@@ -40,6 +37,8 @@ public class ReportObjectFactory {
         }
         Closure getObject = {
           name ->
+            /** This turns the source code into report objects*/
+            SimpleReportBuilder builder = new SimpleReportBuilder(this);
             builder.eval(getSrc(name))
         }
         if (objType == 'jrxml') {
@@ -57,6 +56,8 @@ public class ReportObjectFactory {
               assert queryText?.size()
               // Extract the parameter names from this query
               def psql = SqlQueryEngine.parseSql(queryText)
+              /** This turns the source code into report objects*/
+              def builder = new SimpleReportBuilder(this);
               SimpleReport r = builder.report(name: name) {
                 psql.paramRefs?.each {
                   paramName ->
@@ -154,12 +155,14 @@ public class ReportObjectFactory {
 
   /** Evaluate a string as a report object builder script. */
   public eval(String s) {
+    /** This turns the source code into report objects*/
+    SimpleReportBuilder builder = new SimpleReportBuilder(this);
     builder.eval(s)
   }
 
   /** Evaluate the closure into a report object */
   public build(Closure c) {
-    c.delegate = builder
+    c.delegate = new SimpleReportBuilder(this);
     c()
   }
 
