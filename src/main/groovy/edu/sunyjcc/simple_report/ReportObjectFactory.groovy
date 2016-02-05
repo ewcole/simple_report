@@ -14,6 +14,11 @@ public class ReportObjectFactory {
    */
   def cache;
 
+  /** Return a simple report builder */
+  public SimpleReportBuilder getBuilder() {
+    new SimpleReportBuilder(this)
+  }
+
   /** 
    *  Filter out non-standard type names
    *  @param typeName Un-normalized type name
