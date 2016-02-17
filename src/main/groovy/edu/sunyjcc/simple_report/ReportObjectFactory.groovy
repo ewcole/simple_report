@@ -66,22 +66,22 @@ public class ReportObjectFactory {
               ParamForm superParamForm;
               try {
                 superParamForm = this.getParamForm(name);
+                println "superParamForm = $superParamForm"
               } catch (BuildException e) {
                 // Cannot create the parameter form
-                superParamForm = null;
+                superParamForm = new ParamForm();
+                println "param form $name not found."
               }
               SimpleReport r = builder.report(name: name) {
-                if (superParamForm) {
-                  params(copyFrom: name)
-                } else {
-                  params() 
-                }
-                psql.paramRefs?.each {
-                  paramName ->
-                    param(name: paramName);
-                }
                 sql(query: queryText)
               }
+              psql.paramRefs?.each {
+                paramName ->
+                  if (!(superParamForm.params.containsKey(paramName))) {
+                    superParamForm.addParam(builder.param(name: paramName));
+                  }
+              }
+              r.params = superParamForm;
               assert r.getClass() == SimpleReport
               return r
           }

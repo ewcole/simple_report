@@ -38,6 +38,11 @@ public class SimpleReport implements Exportable, Buildable, Runnable {
    */
   private ParamForm params
 
+
+  public setParams(ParamForm params) {
+    this.params = params;
+  }
+
   /** The columns that this report will produce */
   private ColumnList columns
 
