@@ -63,7 +63,19 @@ public class ReportObjectFactory {
               def psql = SqlQueryEngine.parseSql(queryText)
               /** This turns the source code into report objects*/
               def builder = new SimpleReportBuilder(this);
+              ParamForm superParamForm;
+              try {
+                superParamForm = this.getParamForm(name);
+              } catch (BuildException e) {
+                // Cannot create the parameter form
+                superParamForm = null;
+              }
               SimpleReport r = builder.report(name: name) {
+                if (superParamForm) {
+                  params(copyFrom: name)
+                } else {
+                  params() 
+                }
                 psql.paramRefs?.each {
                   paramName ->
                     param(name: paramName);
