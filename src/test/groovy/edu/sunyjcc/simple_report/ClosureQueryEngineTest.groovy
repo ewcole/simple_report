@@ -118,29 +118,30 @@ public class ClosureQueryEngineTest extends GroovyTestCase {
     assert r.columns.columnNames.size() == 3
   }
 
-  // void testExecute2() {
-  //   println "******** testExecute2 ********************"
-  //   def a = new SimpleReportBuilder()
-  //   def e = a.report() {
-  //     data_generator {
-  //       (1..3).each {
-  //         row(num: it, square: it*it, cube: it*it*it)
-  //       }
-  //     }
-  //   }
-  //   assert e instanceof SimpleReport
-  //   println "Engine=${e.queryEngine}";
-  //   def engine = e.queryEngine
-  //   assert engine instanceof ClosureQueryEngine;
-  //   assert engine.dataScript
-  //   assert engine.dataScript instanceof Closure
-  //   def r = e.execute([:])
-  //   println "r.columns = ${r.columns.export()}"
-  //   println "r.rows = ${r.rows}"
-  //   assert r.rows.size() == 3;
-  //   assert r.rows[0] == [num: 1, square: 1, cube: 1];
-  //   assert r.columns.columnNames.size() == 3
-  // }
+  void testReportWithParameters() {
+    println "******** testReportWithParameters ********************"
+    def a = new SimpleReportBuilder()
+    def e = a.report() {
+      param(name: 'rep_name');
+      data_generator closure: {
+        String given_name = params.rep_name;
+        row(expected_name: 'Xantham', 
+            given_name: given_name)
+      }
+    }
+    assert e instanceof SimpleReport
+    println "Engine=${e.queryEngine}";
+    def engine = e.queryEngine
+    assert engine instanceof ClosureQueryEngine;
+    assert engine.dataScript
+    assert engine.dataScript instanceof Closure
+    def r = e.execute([rep_name: 'Gum'])
+    println "r.columns = ${r.columns.export()}"
+    println "r.rows = ${r.rows}"
+    assert r.rows.size() == 1;
+    assert r.rows[0] == [expected_name: 'Xantham', given_name: 'Gum'];
+    assert r.columns.columnNames.size() == 2
+  }
 
   void testGetQueryClosureDocs() {
     banner "testGetQueryClosureDocs"

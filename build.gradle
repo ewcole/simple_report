@@ -1,6 +1,7 @@
-def version = "2.2.0"
+def version = "2.2.1"
 
-/* 2.2.0: Look for param form of same name when running SQL script
+/* 2.2.1: Forgot to pass parameters in ClosureQueryEngine 
+ * 2.2.0: Look for param form of same name when running SQL script
  * 2.1.1: Fix column definitions in ClosureQueryEngine
  * 2.1.0: ClosureQueryEngine class
  * 2.0.0: Support for JasperReports

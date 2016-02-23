@@ -165,6 +165,7 @@ public class ClosureQueryEngine extends QueryEngine implements Buildable, Export
           resultSet.columns << it
         };
     }
+    model.params = params?:[:]
     // 2. Call the closure with the pre-defined environment
     println "model=$model"
     dataScript.delegate = model;
