@@ -1,5 +1,7 @@
 package edu.sunyjcc.simple_report;
 
+import groovy.sql.Sql;
+
 /** A job that can be defined in a small Groovy script, producing an 
  *  output
  */
@@ -47,19 +49,27 @@ public class SimpleJob implements Exportable, Buildable, Runnable {
   private ColumnList columns
 
   /** The engine that will power the job */
-  private QueryEngine queryEngine
+  private Closure jobEngine
 
   /* End of job-level properties *************/
 
+  /** A database connection to be used during execution */
+  Sql sql;
+
+  /** The factory that produced this object. */
+  ReportObjectFactory factory;
 
   public void setJobParams(ArrayList l) {
     // Don't let outsiders mess with params.
   }
 
   SimpleJob init(HashMap args) {
-    assert queryEngine
-    if (queryEngine) {
-      queryEngine.init(args)
+    assert jobEngine
+    // if (queryEngine) {
+    //   queryEngine.init(args)
+    // }
+    if (args.containsKey('sql')) {
+      this.sql = args.sql
     }
     if (params) {
       params.init(args)
@@ -75,7 +85,7 @@ public class SimpleJob implements Exportable, Buildable, Runnable {
      description: this.description,
      params: this.params?.export(),
      columns: this.columns?.export(),
-     queryEngine: this.queryEngine?.export(),
+     //queryEngine: this.queryEngine?.export(),
     ]
   }
 
@@ -120,19 +130,19 @@ public class SimpleJob implements Exportable, Buildable, Runnable {
   }
  
   /** Execute the job and return the result. */
-  public ResultSet execute(ParamFormValue params) {
+  public ResultSet execute(ParamFormValue params, Writer w) {
     def p = (this.params?.getParamFormValue())?:new ParamFormValue();
     p.setParamValues(params)
-    queryEngine.execute(p)
+    jobEngine(p, w)
   }
  
   /** Execute the job and return the result. */
-  public ResultSet execute(HashMap params) {
+  public ResultSet execute(HashMap params, Writer w) {
     if (!this.params) {
       this.params = new ParamForm()
     }
     def p = this.params.getParamFormValue().setParamValues(params)
-    queryEngine.execute(p)
+    jobEngine(p, w)
   }
  
   // Methods we need to implement for the Runnable interface
