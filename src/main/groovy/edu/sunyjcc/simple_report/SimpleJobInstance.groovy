@@ -81,33 +81,16 @@ public class SimpleJobInstance implements Exportable, Runnable {
     HTML: {
       Writer out, ResultSet resultSet ->
         //println "In SimpleJobInstance.runFunctions[HTML]()"
-        def m = new MarkupBuilder(out);
-        m.setDoubleQuotes(true)
-        m.div(class: "simple_job $job.name") { 
-          h1(this.job.title);
-          table {
-            thead {
-              tr {
-                resultSet?.columns?.each {
-                  c ->
-                    th(class: "${c.name}", tooltip: "${c.description}",
-                       "${c.label}");
-                }
-              }
-            }
-            tbody {
-              def cols = resultSet?.columns?.list().collect {it.name}
-              resultSet?.rows?.eachWithIndex {
-                row, i ->
-                  tr(class: "data ${(i%2)?'even':'odd'}") {
-                    cols.each {
-                      // CLOB rows were not being handled correctly.  Get the String 
-                      //    value to get their contents.
-                      def datum = convColumnType(row[it])?:''
-                      td(class: "$it", "${datum}")
-                    }
 
-                  }
+        m.html {
+          head {
+            title: this.job.title
+          }
+          body {
+            div(class: "simple_job $job.name") { 
+              h1(this.job.title);
+              div (class: "job_output") {
+                 job.execute(paramFormValue, m)
               }
             }
           }
@@ -134,7 +117,6 @@ public class SimpleJobInstance implements Exportable, Runnable {
     def oFm = outputFormat.code
     assert runFunctions[oFm]
     if (runFunctions[oFm]) {
-      def rs = job.execute(paramFormValue)
       return runFunctions[oFm](out, rs);
     }
     return false

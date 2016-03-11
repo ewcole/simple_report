@@ -17,7 +17,8 @@ public class SimpleJob implements Exportable, Buildable, Runnable {
   LinkedHashMap getBuildOptions() {
     [name:    [desc: "The name of the job.  It defaults to the name of the script."],
      version: [desc: "The version number for this job."],
-     title:   [desc: "The job's title."]]
+     title:   [desc: "The job's title."],
+     jobEngine:  [desc:  "A Closure that does the work"]]
   }
 
   String source;
@@ -80,6 +81,7 @@ public class SimpleJob implements Exportable, Buildable, Runnable {
   /** Return a HashMap representing this job object. */
   def export() {
     [name: this.name,
+     type: 'SimpleJob',
      title: this.title,
      version: this.version,
      description: this.description,
@@ -113,6 +115,9 @@ public class SimpleJob implements Exportable, Buildable, Runnable {
     if (params.title) {
       this.title = params.title
     }
+    if (params.jobEngine) {
+      this.jobEngine = jobEngine
+    }
   }
 
   /** Create an unnamed job. Calls newJob() to do its stuff.
@@ -129,20 +134,36 @@ public class SimpleJob implements Exportable, Buildable, Runnable {
     newJob(params);
   }
  
+  public void runJobEngine(HashMap params, MarkupBuilder markupBuilder) {
+    assert jobEngine;
+    // 1. Build the delegate that defines the classes and 
+    //    properties the closure can call
+    def model = new Expando(sql: sql);
+    model.params = params?:[:]
+    model.markupBuilder = markupBuilder
+    // 2. Call the closure with the pre-defined environment
+    println "model=$model"
+    jobEngine.delegate = model;
+    jobEngine.resolveStrategy = Closure.DELEGATE_ONLY
+    jobEngine();
+  }
+
+
   /** Execute the job and return the result. */
-  public ResultSet execute(ParamFormValue params, Writer w) {
+  public void execute(ParamFormValue params, MarkupBuilder m) {
     def p = (this.params?.getParamFormValue())?:new ParamFormValue();
     p.setParamValues(params)
-    jobEngine(p, w)
+    def vals = p.getValues()?.inject([:]) {
+      map, pv ->
+        map[pv.key] = pv.value.value;
+        map;
+    }
+    execute(vals, m);
   }
  
   /** Execute the job and return the result. */
-  public ResultSet execute(HashMap params, Writer w) {
-    if (!this.params) {
-      this.params = new ParamForm()
-    }
-    def p = this.params.getParamFormValue().setParamValues(params)
-    jobEngine(p, w)
+  public void execute(HashMap params, MarkupBuilder m) {
+    runJobEngine(params, m)
   }
  
   // Methods we need to implement for the Runnable interface
