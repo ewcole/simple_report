@@ -58,7 +58,7 @@ public class Param implements Exportable, Buildable {
   /** Return the values as a HashMap. */
   def export() {
     [name:         this.name,
-     type:         this.type.desc,
+     type:         this.type?.desc,
      description:  this.description,
      label:        this.label,
      'default':    this.defaultValue
@@ -77,7 +77,7 @@ public class Param implements Exportable, Buildable {
                Object defaultValue = null,
                Param superParam = null) {
     this.name = name;
-    this.type = type;
+    this.type = type?:ParamType.string;
     this.description = description;
     this.label = label;
     this.defaultValue = (defaultValue instanceof String)?type.parse(defaultValue):defaultValue
