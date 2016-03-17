@@ -28,35 +28,55 @@ public class SimpleJobTest extends GroovyTestCase {
     println " - Test execute function for simple job -"
     SimpleJob j = new SimpleJob(name: 'testExecute',
                       title: 'Test to see if we can execute a job');
-    j.addParam(new Param(name: 'a', title: 'parameter a'));
-    j.addParam(new Param(name: 'b', title: 'parameter b'));
-    j.addParam(new Param(name: 'c', title: 'parameter c'));
-    assert j.export() == [name: 'testJob',
+    j.addParam(new Param(name: 'a', label: 'parameter a'));
+    j.addParam(new Param(name: 'b', label: 'parameter b'));
+    j.addParam(new Param(name: 'c', label: 'parameter c'));
+    assert j.export() == [name: 'testExecute',
                           type: 'SimpleJob',
-                          title: 'Job for testing',
+                          title: 'Test to see if we can execute a job',
                           version: '',
                           description: null,
-                          params: null];
+                          params: [a: [name: 'a', 
+                                       type: null, 
+                                       description: null, 
+                                       label: 'parameter a', 
+                                       "default":null], 
+                                   b: [name: 'b', 
+                                       type: null, 
+                                       description: null, 
+                                       label: 'parameter b', 
+                                       "default": null], 
+                                   c: [name: 'c', 
+                                       type: null, 
+                                       description: null, 
+                                       label: 'parameter c', 
+                                       "default": null]]];
+    def paramVals = ('a'..'c').inject([:]) {
+      map, v ->
+        map << ["$v": "*$v*"]
+    }
+    println "paramVals=$paramVals"
+    def writeOutput = {
+      mb, hsh ->
+        mb.output {
+          ('a'..'c').each {
+            "$it"(value: "${hsh[it]}", "${hsh[it]}")
+          }
+        }
+    }
     def jobEngine = {
       ->
-      markupBuilder.output {
-        ('a'..'c').each {
-          "$it"(value: "${params[it]}", "${params[it]}")
-        }
-      }
+      writeOutput(markupBuilder, params);
     }
-    String s = new MarkupBuilder().output {
-        ('a'..'c').each {
-          "$it"(value: "*${it}*", "*${it}*")
-        }      
-    }
+    def s = new StringWriter()
+    writeOutput(new MarkupBuilder(s), paramVals);
     j.jobEngine = jobEngine;
-    def sb = new StringBuffer();
-    def m = new MarkupBuilder(sb);
+    def sw = new StringWriter();
+    def m = new MarkupBuilder(sw);
     j.execute(('a'..'c').inject([:]) {
                 map, v ->
                   map << ["$v": "*$v*"]
               }, m)
-    assert sb.toString() == s
+    assert sw.toString() == s.toString()
   }
 }
