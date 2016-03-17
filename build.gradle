@@ -94,7 +94,7 @@ doc.dependsOn groovydoc, javadoc
 // file when you execute the build target.
 
 task wrapper(type: Wrapper) {
-  gradleVersion = '1.10'
+  gradleVersion = '2.3'
 }
 
 task compile
