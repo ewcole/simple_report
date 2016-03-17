@@ -1,6 +1,7 @@
 package edu.sunyjcc.simple_report;
 
 import groovy.sql.Sql;
+import groovy.xml.*;
 
 /** A job that can be defined in a small Groovy script, producing an 
  *  output
@@ -8,8 +9,8 @@ import groovy.sql.Sql;
 public class SimpleJob implements Exportable, Buildable, Runnable {
 
   String getBuildDocHtml() {
-    ("This creates a job that can produce a data file in several "
-     + "formats, including CSV.")
+    ("This creates a job that can change data in the database.  "
+     + "It .")
   }
 
   /** List the different options you can pass as parameters to the builder 
@@ -41,13 +42,17 @@ public class SimpleJob implements Exportable, Buildable, Runnable {
    */
   private ParamForm params
 
-
+  /** Replace the parameter form for this job */
   public setParams(ParamForm params) {
     this.params = params;
   }
 
-  /** The columns that this job will produce */
-  private ColumnList columns
+  public ParamForm getParams() {
+    if (!params) {
+      params = new ParamForm()
+    }
+    params;
+  }
 
   /** The engine that will power the job */
   private Closure jobEngine
@@ -86,7 +91,6 @@ public class SimpleJob implements Exportable, Buildable, Runnable {
      version: this.version,
      description: this.description,
      params: this.params?.export(),
-     columns: this.columns?.export(),
      //queryEngine: this.queryEngine?.export(),
     ]
   }
@@ -113,7 +117,7 @@ public class SimpleJob implements Exportable, Buildable, Runnable {
       this.version = params.version
     }
     if (params.title) {
-      this.title = params.title
+      this.title = params.title?:params.name;
     }
     if (params.jobEngine) {
       this.jobEngine = jobEngine
