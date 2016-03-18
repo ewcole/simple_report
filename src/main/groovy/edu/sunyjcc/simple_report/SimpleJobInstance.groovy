@@ -19,32 +19,12 @@ public class SimpleJobInstance implements Exportable, Runnable {
     params
   }
 
-  String csvEscape(String v) {
-    if (v =~ /,/) {
-      '"' + v.replaceAll('"', '""') + '"'
-    } else {
-      v
-    }
-  }
-
   /** Create a new SimpleJobInstance for the job object.
    *  @param job The SimpleJob that this instance will wrap.
    */
   public SimpleJobInstance(SimpleJob job) {
     this.job = job
     this.params = job.getParamFormValue()
-  }
-
-  /** CLOB rows were not being handled correctly.  Get the String 
-                  //    value to get their contents. */
-  public def convColumnType(def columnVal) {
-    if (columnVal) {
-      // Check to see if columnVal has a stringValue() method.
-      boolean isClob = (columnVal?.metaClass?.respondsTo(columnVal,'stringValue'))
-      def v = isClob ? columnVal.stringValue() : columnVal;
-    } else {
-      return null;
-    }
   }
 
   def runFunctions = [

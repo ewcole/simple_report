@@ -35,7 +35,7 @@ public class Param implements Exportable, Buildable {
   Param superParam;
 
   /** The type of the parameter */
-  ParamType type;
+  ParamType type = ParamType.string;
   
   /** A one-line description of the parameter */
   String description;

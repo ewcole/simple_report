@@ -23,7 +23,7 @@ public class ParamValue implements Exportable {
    */
   void setValue(def v) {
     println "setting Object value"
-    if (v instanceof String) {
+    if (v && v instanceof String) {
       println "parsing String";
       this.currentValue = param.type.parse(v);
     } else {
@@ -36,8 +36,13 @@ public class ParamValue implements Exportable {
    *  @param v The value you would like to assign.
    */
   void setValue(String v) {
+    assert param.type;
     println "setting String value"
-    currentValue = param.type.parse(v);
+    if (v) {
+      currentValue = param.type.parse(v);
+    } else {
+      currentValue = null;
+    }
   }
 
   void setCurrentValue(def v) {
