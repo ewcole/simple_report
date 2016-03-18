@@ -59,12 +59,13 @@ public class SimpleJobInstance implements Exportable, Runnable {
     //     return true;
     // },
     HTML: {
-      Writer out, ResultSet resultSet ->
+      Writer out ->
         //println "In SimpleJobInstance.runFunctions[HTML]()"
-
+        def m = new MarkupBuilder(out)
+        m.useDoubleQuotes = true
         m.html {
           head {
-            title: this.job.title
+            title(this.job.title)
           }
           body {
             div(class: "simple_job $job.name") { 
@@ -97,7 +98,7 @@ public class SimpleJobInstance implements Exportable, Runnable {
     def oFm = outputFormat.code
     assert runFunctions[oFm]
     if (runFunctions[oFm]) {
-      return runFunctions[oFm](out, rs);
+      return runFunctions[oFm](out);
     }
     return false
   }

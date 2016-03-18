@@ -99,6 +99,25 @@ public class SimpleJobInstanceTest extends GroovyTestCase {
     "abc".each {
       ji.params.setValue(it, "*$it*");
     }
-    
+    def s = new StringWriter();
+    ji.run(OutputFormat.html, s)
+    println s.toString()
+    assert s.toString() == """<html>
+  <head>
+    <title>Job to be used for testing</title>
+  </head>
+  <body>
+    <div class="simple_job test_job">
+      <h1>Job to be used for testing</h1>
+      <div class="job_output">
+        <output>
+          <a value="*a*">*a*</a>
+          <b value="*b*">*b*</b>
+          <c value="*c*">*c*</c>
+        </output>
+      </div>
+    </div>
+  </body>
+</html>"""
   }
 }
