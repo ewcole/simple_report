@@ -33,6 +33,15 @@ public class SimpleReportBuilder extends BuilderSupport {
       },
       implClass: SimpleReport,
     ],
+    job: [
+      create: {
+        String name, Map attributes, def value ->
+          SimpleJob job = new SimpleJob(attributes)
+          assert job 
+          return job
+      },
+      implClass: SimpleJob,
+    ],
     params: [
       create: {
         String name, Map attributes, def value ->
@@ -187,6 +196,17 @@ public class SimpleReportBuilder extends BuilderSupport {
       (CsvQueryEngine): {
         parent, child ->
           parent.queryEngine = child
+      },
+    ],
+    (SimpleJob): [
+      (Param): {
+        parent, child ->
+          parent.addParam(child)
+      },
+      (ParamForm): {
+        parent, child ->
+          assert !parent.params
+          parent.params = child
       },
     ],
     (ParamForm):[

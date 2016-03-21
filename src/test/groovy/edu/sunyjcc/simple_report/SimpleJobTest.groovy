@@ -79,4 +79,24 @@ public class SimpleJobTest extends GroovyTestCase {
               }, m)
     assert sw.toString() == s.toString()
   }
+
+  void testBuilder() {
+    banner "testBuilder"
+    def builder = new SimpleReportBuilder()
+    def j = builder.job(name: "buildABear",
+                        version: '0.0.0') {
+      param(name: "a");
+    }
+    assert j instanceof SimpleJob;
+    assert j.export() == [name:        "buildABear",
+                          type:        "SimpleJob",
+                          title:       '',
+                          version:     "0.0.0",
+                          description: null,
+                          params: [a: [name:        "a",
+                                       type:        "STRING",
+                                       description: "a",
+                                       label:       "a",
+                                       "default":   null]]];
+  }
 }
