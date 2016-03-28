@@ -42,6 +42,15 @@ public class SimpleReportBuilder extends BuilderSupport {
       },
       implClass: SimpleJob,
     ],
+    jobEngine: [
+      create: {
+        String name, Map attributes, def value ->
+          SimpleJobEngine engine = new SimpleJobEngine(attributes)
+          assert engine
+          return engine
+      },
+      implClass: SimpleJobEngine,
+    ],
     params: [
       create: {
         String name, Map attributes, def value ->
@@ -207,6 +216,10 @@ public class SimpleReportBuilder extends BuilderSupport {
         parent, child ->
           assert !parent.params
           parent.params = child
+      },
+      (SimpleJobEngine): {
+        parent, child ->
+          parent.jobEngine = child.jobEngine
       },
     ],
     (ParamForm):[
