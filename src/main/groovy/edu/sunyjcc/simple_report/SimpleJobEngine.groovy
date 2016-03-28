@@ -16,7 +16,7 @@ public class SimpleJobEngine implements Buildable {
     [closure: [desc: "A closure to execute the action."]]
   }
 
-  Closure jobEngine;
+  Closure closure;
 
   SimpleJobEngine init(HashMap args) {
     if (args.containsKey('closure')) {

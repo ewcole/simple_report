@@ -145,6 +145,7 @@ public class SimpleJob implements Exportable, Buildable, Runnable {
     def model = new Expando(sql: sql);
     model.params = params?:[:]
     model.markupBuilder = markupBuilder
+    model.factory = this.factory
     // 2. Call the closure with the pre-defined environment
     println "model=$model"
     jobEngine.delegate = model;

@@ -17,7 +17,7 @@ public class SimpleReportBuilder extends BuilderSupport {
   private def reports = [:];
 
   private def debug(String text) {
-    // println text
+    println text
   }
 
   private nodeFactory = [
@@ -208,6 +208,16 @@ public class SimpleReportBuilder extends BuilderSupport {
       },
     ],
     (SimpleJob): [
+      (SimpleJobEngine): {
+        parent, child ->
+          debug("Adding $child to $parent")
+          parent.jobEngine = child.closure
+          debug("After adding $child to $parent")
+          // It's important not to return the closure;
+          //    otherwise it will be executed right away
+          //    instead of the time that it is appropriate.
+          return null;
+      },
       (Param): {
         parent, child ->
           parent.addParam(child)
@@ -216,10 +226,6 @@ public class SimpleReportBuilder extends BuilderSupport {
         parent, child ->
           assert !parent.params
           parent.params = child
-      },
-      (SimpleJobEngine): {
-        parent, child ->
-          parent.jobEngine = child.jobEngine
       },
     ],
     (ParamForm):[
@@ -277,11 +283,12 @@ public class SimpleReportBuilder extends BuilderSupport {
   void setParent(Object parent, Object child) {
     debug "in setParent(${parent.getClass()}, ${child.getClass()})"
     debug "parent=$parent"
-    //debug "parent.addChild = ${parent.addChild}"
-    //debug "parent.addChild.keySet()=${parent.addChild.keySet()}"
+    //debug "parent.addChild = ${parent?.addChild}"
+    //debug "parent.addChild.keySet()=${parent.addChild?.keySet()}"
     //assert  parent.addChild.keySet().contains(child.name)
     def parentClass = parent.getClass()
     def farm = addChildFarm[parent.getClass()]
+    debug "farm=$farm"
     if (! farm[child.getClass()]) {
       def parentMethod = classMethodNames[parentClass]
       def childMethod = classMethodNames[child.getClass()]
