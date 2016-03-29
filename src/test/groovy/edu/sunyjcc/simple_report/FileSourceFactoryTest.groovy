@@ -67,6 +67,16 @@ public class FileSourceFactoryTest extends GroovyTestCase {
     assert pfText == paramFormFile.text
   }
 
+  /** Test FileSourceFactory.getJob() */
+  void testGetJobSource() {
+    def fsf = getFileSourceFactory();
+    String pfName = "sample_job"
+    def jobFile = new File(getSourceDir(), "job/${pfName}.groovy")
+    assert jobFile.exists()
+    def pfText = fsf.getJobSource(pfName)
+    assert pfText == jobFile.text
+  }
+
   /** Test FileSourceFactory.getJrxml() */
   void testGetJrxmlSource() {
     def fsf = getFileSourceFactory()
@@ -96,6 +106,7 @@ public class FileSourceFactoryTest extends GroovyTestCase {
       [type: 'report', name: 'simple_report_types'],
       [type: 'sql', name: 'tables'],
       [type: 'sql', name: 'terms'],
+      [type: 'job', name: 'sample_job'],
       [type: 'jrxml', name: 'apps'],
     ]
   }

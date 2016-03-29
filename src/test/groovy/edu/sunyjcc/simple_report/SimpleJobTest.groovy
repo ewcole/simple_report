@@ -127,4 +127,5 @@ public class SimpleJobTest extends GroovyTestCase {
               }, m)
     assert sw.toString() == "<p>OK.</p>"
   }
+
 }

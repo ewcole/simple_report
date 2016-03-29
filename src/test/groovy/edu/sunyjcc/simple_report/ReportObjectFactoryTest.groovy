@@ -209,6 +209,21 @@ public class ReportObjectFactoryTest extends GroovyTestCase {
                                        default:     "201312"]]
   }
 
+  void testGetReportObject_job() {
+    printBanner("testGetReportObject_job")
+    def factory = getReportObjectFactory()
+    def obj = factory.getReportObject("job", 
+                                      "sample_job");
+    println "obj=${obj?.export()}"
+    assert obj instanceof SimpleJob
+    assert obj.export() == [name:        'sample_job',
+                            type:        'SimpleJob',
+                            title:       '',
+                            version:     '',
+                            description: null,
+                            params:      null]
+  }
+
   /** See if the create function works for parameter forms. */
   void testCacheCreateJasperReport () {
     printBanner("testCacheCreateJasperReport")

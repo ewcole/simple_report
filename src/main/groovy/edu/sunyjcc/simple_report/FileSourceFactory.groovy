@@ -46,6 +46,7 @@ public class FileSourceFactory extends SourceFactory {
      'param_form',
      'report', 
      'sql',
+     'job',
      'jrxml'].collect {
       dir ->
         new File(sourceRoot, dir).list().grep{it =~ /(?i)\.[a-z]+?$/}.collect {

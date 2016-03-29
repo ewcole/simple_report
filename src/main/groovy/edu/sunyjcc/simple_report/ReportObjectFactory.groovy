@@ -33,7 +33,7 @@ public class ReportObjectFactory {
    */
   LinkedHashMap createCache(SourceFactory sf) { 
     assert sf
-    def objTypes = "param param_form jrxml report sql".split(/ +/);
+    def objTypes = "param param_form jrxml report sql job".split(/ +/);
     objTypes.inject([:]) {
       map, objType ->
         Closure getSrc = {
@@ -161,6 +161,13 @@ public class ReportObjectFactory {
    */
   public SimpleReport getSql(String name) {
     getReportObject('sql', name)
+  }
+
+  /** Get a SimpleJob object
+   *  @param name The name of the Job, without extension
+   */
+  public SimpleReport getJob(String name) {
+    getReportObject('job', name)
   }
 
   /** Get the appropriate invocation object for this type and object name */
