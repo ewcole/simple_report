@@ -79,6 +79,7 @@ public class SourceFactoryTest extends GroovyTestCase {
                  [type: 'report', name: 'simple_report_types'],
                  [type: 'sql', name: 'tables'],
                  [type: 'sql', name: 'terms'],
+                 [type: 'job', name: 'hello_world'],
                  [type: 'job', name: 'sample_job'],
                  [type: 'jrxml', name: 'apps'],]
   }
