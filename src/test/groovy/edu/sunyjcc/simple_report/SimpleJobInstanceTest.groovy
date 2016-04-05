@@ -120,4 +120,28 @@ public class SimpleJobInstanceTest extends GroovyTestCase {
   </body>
 </html>"""
   }
+
+  void testRun() {
+    banner "testRun"
+    String origString = "Never Say \"to who.\""
+    def b = new SimpleReportBuilder();
+    SimpleJob j = b.job {
+      param(name: "whom", label: "Whom");
+      jobEngine closure: {
+        println "In job closure(${params.whom});"
+        markupBuilder.p()
+        origString = "Always say, \"to ${params.whom}.\""
+      }
+    }
+    ParamForm p = j.params
+    assert p
+    ParamFormValue pv = p.paramFormValue
+    pv.setValue('whom', "whom");
+    println "pv.export=${pv.export()}"
+    SimpleJobInstance i = new SimpleJobInstance(j)
+    def sw = new StringWriter()
+    i.run(OutputFormat.html, pv, sw);
+    println "sw=$sw"
+    assert origString == "Always say, \"to whom.\""
+  }
 }

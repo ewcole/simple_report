@@ -96,6 +96,7 @@ public class SimpleJobInstance implements Exportable, Runnable {
   boolean run(OutputFormat outputFormat, ParamFormValue paramFormValue,
               Writer out) {
     def oFm = outputFormat.code
+    this.paramFormValue.setParamValues(paramFormValue)
     assert runFunctions[oFm]
     if (runFunctions[oFm]) {
       return runFunctions[oFm](out);

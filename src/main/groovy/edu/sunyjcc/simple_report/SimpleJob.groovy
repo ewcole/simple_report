@@ -8,9 +8,13 @@ import groovy.xml.*;
  */
 public class SimpleJob implements Exportable, Buildable, Runnable {
 
+  void debug(String text) {
+    println text;
+  }
+
   String getBuildDocHtml() {
     ("This creates a job that can change data in the database.  "
-     + "It .")
+     + "")
   }
 
   /** List the different options you can pass as parameters to the builder 
@@ -147,7 +151,7 @@ public class SimpleJob implements Exportable, Buildable, Runnable {
     model.markupBuilder = markupBuilder
     model.factory = this.factory
     // 2. Call the closure with the pre-defined environment
-    println "model=$model"
+    debug "model=$model"
     jobEngine.delegate = model;
     jobEngine.resolveStrategy = Closure.DELEGATE_ONLY
     jobEngine();
@@ -156,13 +160,17 @@ public class SimpleJob implements Exportable, Buildable, Runnable {
 
   /** Execute the job and return the result. */
   public void execute(ParamFormValue params, MarkupBuilder m) {
-    def p = (this.params?.getParamFormValue())?:new ParamFormValue();
+    debug "In execute(${params.export()}, $m)"
+    def p = (this.params?.getParamFormValue())?:params;
+    debug "p=${p.export()}"
     p.setParamValues(params)
+    debug "After p.setParamValues: p=$p"
     def vals = p.getValues()?.inject([:]) {
       map, pv ->
         map[pv.key] = pv.value.value;
         map;
     }
+    debug "vals=$vals";
     execute(vals, m);
   }
  
