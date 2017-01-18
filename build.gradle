@@ -29,6 +29,9 @@ def jccGroovydocHome = 'x:/doc/groovydoc'
 
 repositories {
   // Where do we look for dependencies?
+  maven {
+    url "file:x:/source/mvn"
+  }
   mavenLocal()
   mavenCentral()
   maven {
@@ -100,7 +103,7 @@ task wrapper(type: Wrapper) {
 
 task compile
 compile.dependsOn compileGroovy, compileJava
-build.dependsOn jar, test, wrapper, doc
+build.dependsOn jar, test, doc
 
 /**********************************************************************/
 /* Deploy to Maven server                                             */
