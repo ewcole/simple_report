@@ -17,6 +17,13 @@ enum ParamType {
            }
          },
         "number"),
+  /** ID number of a person, as a String.  The client 
+   *  interface will be responsible for presentation 
+   *  and searching
+   */
+  person("PERSON",
+         {it.toString()},
+         "text"),
   // date("DATE"
   //      {dateStr ->
   //        def newDate = (dateStr instanceof java.util.Date)?dateStr:'';
