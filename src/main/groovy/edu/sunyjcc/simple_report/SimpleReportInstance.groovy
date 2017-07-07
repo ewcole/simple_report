@@ -112,6 +112,39 @@ public class SimpleReportInstance implements Exportable, Runnable {
         out.flush()
         return true;
     },
+    TEXT: {
+      Writer out, ResultSet resultSet ->
+        def rpad = {
+          String text, size ->
+            def colSize = size - text.size()
+            text + (" " * ((colSize>0)?colSize:0))
+        }
+
+        def colHeaders = resultSet.columns.list().inject([]) {
+          h, col ->
+            assert col.name
+            // assert col.displaySize
+            h << rpad(col.name, (col.displaySize?:0))
+            h
+        }
+        out.println ""
+        out.println colHeaders.join(" ")
+        out.println colHeaders.collect { "-" * it.size() }.join(" ")
+        resultSet.rows.each {
+          row ->
+            out.println resultSet.columns.columnNames.collect {
+              resultSet.columns.columns[it]
+            }.collect {
+              col ->
+                def colSize = (col.name.size() > col.displaySize)?col.name.size():col.displaySize
+                rpad(row[col.name] as String, colSize)
+            }.join(" ")
+        }
+
+        out.println "${resultSet.rows.size()} rows selected."
+        out.flush();
+        return true;
+    }
   ]
   
 
