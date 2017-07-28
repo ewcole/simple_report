@@ -1,0 +1,55 @@
+#+OPTIONS: ':nil *:t -:t ::t <:t H:3 \n:nil ^:{} arch:headline
+#+OPTIONS: author:t broken-links:nil c:nil creator:nil
+#+OPTIONS: d:(not "LOGBOOK") date:t e:t email:nil f:t inline:t num:nil
+#+OPTIONS: p:nil pri:nil prop:nil stat:t tags:t tasks:t tex:t
+#+OPTIONS: timestamp:t title:t toc:1 todo:t |:t
+#+TITLE: Presentation Outline - Drop-in Reporting with Groovy
+#+DATE: <2017-07-28 Fri>
+#+AUTHOR:
+#+EMAIL: coleew01@JITECPC21
+#+LANGUAGE: en
+#+SELECT_TAGS: export
+#+EXCLUDE_TAGS: noexport
+#+CREATOR: Emacs 24.5.1 (Org mode 9.0.5)
+#+OPTIONS: html-link-use-abs-url:nil html-postamble:nil
+#+OPTIONS: html-preamble:nil html-scripts:t html-style:t
+#+OPTIONS: html5-fancy:nil tex:t
+#+HTML_DOCTYPE: xhtml-strict
+#+HTML_CONTAINER: div
+#+DESCRIPTION:
+#+KEYWORDS:
+#+HTML_LINK_HOME:
+#+HTML_LINK_UP:
+#+HTML_MATHJAX:
+#+HTML_HEAD:
+#+HTML_HEAD_EXTRA:
+#+SUBTITLE:
+#+INFOJS_OPT:
+#+CREATOR: <a href="http://www.gnu.org/software/emacs/">Emacs</a> 24.5.1 (<a href="http://orgmode.org">Org</a> mode 9.0.5)
+#+LATEX_HEADER:
+
+* Overview
+** This is a REAL solution to a real problem. :why:
+We have over 600 Oracle Reports applications that need to be converted into a new and non-deprecated format.  These reports produce everything from CSV files to paychecks.  
+
+Oracle Reports isn't well suited to creating data files, so there was an unfilled need for some time, but Oracle has started to give hints that Reports won't be around forever.  We needed a new solution.
+
+** It started with a dream.                                            :what:
+Many of our reports are essentially a large SQL file, which we have to embed in a program (in SQL*Plus, Oracle Reports, a web application, PL/SQL web pages, or other complicated tools).  What if we could just drop that query into a directory and have our system do all the work of getting the parameters and formatting the content?  Or, if it is less simple, how about a simple DSL that will let us specify the bare minimun of what we need?
+
+I thought of storing the SQL in the database and serving them through SSB (mod_plsql), but then Groovy and Grails came into my life.
+
+** Groovy gives us the power to make this dream a reality.  :how:
+Groovy has features that make this idea practical.  Some of them are common to any programming language, and some of them are unique to Groovy.
+
+*** Common properties
+- Dynamic SQL (PL/SQL can do it, but it is brittle.)
+- Read and write from the file system
+- Read and write web protocols
+*** Less common
+- Runs on the Java Virtual Machine
+*** Unique
+- Easy-to-use interface for SQL and XML
+- Closures and functional programming 
+- Builders and DSL's
+- "Easy" web applications with Grails
