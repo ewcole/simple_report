@@ -74,6 +74,18 @@ Let's enter ~jcc_gbr_email~, the name of one of our packages, and look at the CS
 
 #+include: "sample_reports/dd_referencing_objects.csv" src csv
 *** Simple Groovy SQL Example                                        :groovy:
+Our second example shows a simple case of the Groovy-based DSL.  
+#+include: "sample_reports/report/list_user_tables.groovy" src groovy
+
+[[file:groovy_example_1_params.png]]
+
+This gives us the following result.
+
+| TABLE_NAME          | COMMENTS                                    |
+|---------------------+---------------------------------------------|
+| T_CENSUS_ROSTER     | This table has one row per course per term. |
+| T_STU_CENSUS_ROSTER | The roster of students in this course       |
+
 *** Groovy Dynamic SQL Example                                       :groovy:
 *** Groovy Closure Example                                           :groovy:
 *** Jasper Reports                                            :jasperReports:
