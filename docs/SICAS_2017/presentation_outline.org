@@ -32,7 +32,7 @@
 ** This is a REAL solution to a real problem. :why:
 We have over 600 Oracle Reports applications that need to be converted into a new and non-deprecated format.  These reports produce everything from CSV files to paychecks.  
 
-Oracle Reports isn't well suited to creating data files, so there was an unfilled need for some time, but Oracle has started to give hints that Reports won't be around forever.  We needed a new solution.
+Oracle Reports isn't well suited to creating data files, so there had been an unfilled need for some time, but Oracle has started to give hints that Reports won't be around forever.  We needed a new solution.
 
 ** It started with a dream.                                            :what:
 Many of our reports are essentially an SQL query, which we have to embed in some kind of program, which would be SQL*Plus, Oracle Reports, a web application, PL/SQL web pages, or other complicated tools).  What if we could just drop that query into a container that will do the work of getting the parameters and formatting the output?  Or, if it is more complicated, how about a simple DSL that will let us specify the bare minimum of what we need?
@@ -54,14 +54,16 @@ I  had the idea of storing the SQL in the database and serving them through SSB 
  - "Easy" web applications with Grails
 *** Implementation
 - A POGO library which defines the DSL and executes the reports
-- A Grails application that interacts with the user
-- Other front ends are possible.
-- Jasper Reports for fancy report delivery.
+- A Grails application that provides a user interface for the report library
+- Perhaps other front ends in the future
+- Jasper Reports for fancy report delivery
 * Overview
 ** General Principles                                                   :why:
-- Open source tools
-- Plain text 
--   
+*** Open source tools
+These tools require no licensing fees and are generally high quality and developer-friendly.
+*** Plain text
+
+*** 
 ** What do these reports look like?                            :example:what:
 Let's see what kind of reports are possible.
 *** SQL example :sql:
