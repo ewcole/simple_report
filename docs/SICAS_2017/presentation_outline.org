@@ -63,7 +63,7 @@ I  had the idea of storing the SQL in the database and serving them through SSB 
 These tools require no licensing fees and are generally high quality and developer-friendly.
 *** Plain text
 
-*** 
+*** Environment agnostic
 ** What do these reports look like?                            :example:what:
 Let's see what kind of reports are possible.
 *** SQL example :sql:
@@ -93,6 +93,21 @@ This gives us the following result.
 
 *** Groovy Dynamic SQL Example                                       :groovy:
 *** Groovy Closure Example                                           :groovy:
+#+include: "sample_reports/report/dev_closure_query.groovy" src groovy
+| num | square | cube |
+|-----+--------+------|
+|   1 |      1 |    1 |
+|   2 |      4 |    8 |
+|   3 |      9 |   27 |
+|   4 |     16 |   64 |
+|   5 |     25 |  125 |
+|   6 |     36 |  216 |
+|   7 |     49 |  343 |
+|   8 |     64 |  512 |
+|   9 |     81 |  729 |
+
+
+
 *** Jasper Reports                                            :jasperReports:
 One of the big attractions of Jasper reports is the fact that it is a Java-based application, which means that it is easy to integrate into our environment.
   
