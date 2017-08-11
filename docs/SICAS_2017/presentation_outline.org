@@ -2,11 +2,10 @@
 #+OPTIONS: author:t broken-links:nil c:nil creator:nil
 #+OPTIONS: d:(not "LOGBOOK") date:t e:t email:nil f:t inline:t num:nil
 #+OPTIONS: p:nil pri:nil prop:nil stat:t tags:t tasks:t tex:t
-#+OPTIONS: timestamp:t title:t toc:1 todo:t |:t
+#+OPTIONS: timestamp:t title:t toc:nil todo:t |:t
 #+TITLE: Presentation Outline - Drop-in Reporting with Groovy
-#+DATE: <2017-07-28 Fri>
-#+AUTHOR:
-#+EMAIL: coleew01@JITECPC21
+# #+DATE: <2017-07-28 Fri>
+#+AUTHOR: Ed Cole
 #+LANGUAGE: en
 #+SELECT_TAGS: export
 #+EXCLUDE_TAGS: noexport
@@ -92,6 +91,26 @@ This gives us the following result.
 | T_STU_CENSUS_ROSTER | The roster of students in this course       |
 
 *** Groovy Dynamic SQL Example                                       :groovy:
+Here is a table (~SUMMIT_GRADES~) with mid-semester grades and final grades.
+| STUDENT_ID | SEMESTER | MID_GRADE | FINAL_GRADE |
+|------------+----------+-----------+-------------|
+|         12 |   201612 | A         | A           |
+|         13 |   201612 | C         | B           |
+|         14 |   201612 | F         | A           |
+|         12 |   201705 | B         | A           |
+|         13 |   201705 | C         | A           |
+|         15 |   201712 | F         | D           |
+#+include: "sample_reports/report/dynamic_sql_query.groovy" src groovy   
+[[file:dynamic_sql_query_params.png]]
+#+begin_src sql
+select semester,
+       count(mid_grade) as mid_grade,
+       sum(decode(mid_grade, :grade, 1, 0)
+          ) F_grades
+    from summit_grades
+    group by semester
+    order by semester
+#+end_src
 *** Groovy Closure Example                                           :groovy:
 #+include: "sample_reports/report/dev_closure_query.groovy" src groovy
 | num | square | cube |
@@ -101,14 +120,28 @@ This gives us the following result.
 |   3 |      9 |   27 |
 |   4 |     16 |   64 |
 |   5 |     25 |  125 |
-|   6 |     36 |  216 |
-|   7 |     49 |  343 |
-|   8 |     64 |  512 |
-|   9 |     81 |  729 |
 
+*** Groovy Closure Example 2                                         :groovy:
+Let's look at an example that would be very hard to do in most reporting tools.
 
+~SQL> select * from summit_sql;~
+| ID | SQL_QUERY                 |
+|----+---------------------------|
+|  1 | select user from dual     |
+|  2 | select sloozle from fleem |
+This table holds two SQL select statements, one of them valid and the other probably not.
 
+#+include: "sample_reports/report/closure_query_2.groovy" src groovy
+
+| id | sql_query                 | error                                   |
+|----+---------------------------+-----------------------------------------|
+|  2 | select sloozle from fleem | ORA-00942: table or view does not exist |
+   
 *** Jasper Reports                                            :jasperReports:
 One of the big attractions of Jasper reports is the fact that it is a Java-based application, which means that it is easy to integrate into our environment.
   
 ** Implementation :how:
+
+*** Groovy Closures and Delegation
+
+*** Groovy Builders

@@ -4,7 +4,7 @@ report() {
     column(name: "num", label: "Number")
     column(name: "square", label: "Square")
     column(name: "cube")
-    (1..30).each {
+    (1..5).each {
       row(num: it, square: it*it, cube: it*it*it)
     }
   }

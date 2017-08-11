@@ -6,6 +6,12 @@ working_files.org
 *.jasper
 *.orig
 *.jasper
+*.~sql
+.~lock.*#
+
+# We might stop ignoring these later.
+*.docx
+*.odt
 
 .gradle/
 build/
