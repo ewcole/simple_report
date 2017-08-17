@@ -34,14 +34,14 @@ We have over 600 Oracle Reports applications that need to be converted into a ne
 Oracle Reports isn't well suited to creating data files, so there had been an unfilled need for some time, but Oracle has started to give hints that Reports won't be around forever.  We needed a new solution.
 
 ** It started with a dream.                                            :what:
-Many of our reports are essentially an SQL query, which we have to embed in some kind of program, which would be SQL*Plus, Oracle Reports, a web application, PL/SQL web pages, or other complicated tools).  What if we could just drop that query into a container that will do the work of getting the parameters and formatting the output?  Or, if it is more complicated, how about a simple DSL that will let us specify the bare minimum of what we need?
+Many of our reports are essentially an SQL query, which we have to embed in some kind of program, which could be SQL*Plus, Oracle Reports, a web application, PL/SQL web pages, or other complicated tools).  What if we could just drop that query into a container that will do the work of getting the parameters and formatting the output?  Or, if it is more complicated, how about a simple DSL that will let us specify the bare minimum of what we need?
 
 I  had the idea of storing the SQL in the database and serving them through SSB (mod_plsql), but then Groovy and Grails came into my life.
 ** Making it happen :how:
 *** Groovy gives us the power to make this dream a reality.
  Groovy has features that make this idea practical.  Some of them are common to any programming language, and some of them are unique to Groovy.
 
-**** Common Properties
+**** Properties that Groovy shares with many programming environments
  - Dynamic SQL (PL/SQL can do it, but it is brittle and I usually regret using it.)
  - Read and write from the file system
  - Read and write web protocols
@@ -54,7 +54,7 @@ I  had the idea of storing the SQL in the database and serving them through SSB 
 *** Implementation
 - A POGO library which defines the DSL and executes the reports
 - A Grails application that provides a user interface for the report library
-- Perhaps other front ends in the future
+- Possibly other front ends in the future
 - Jasper Reports for fancy report delivery
 * Overview
 ** General Principles                                                   :why:
@@ -64,7 +64,7 @@ These tools require no licensing fees and are generally high quality and develop
 Storing the source code for our reports in text files on the report server means that we can manipulate them with a host of standard tools.  For example, we can:
 - Protect our source with Git revision control
 - Search for table references using standard operating system commands (grep/findstr)
-- Use the editor of our choice
+- Use the editor of our choice to edit them
 *** Environment Agnostic
 The report knows nothing of the environment or front end that it will execute in.
 ** What do these reports look like?                            :example:what:
@@ -74,7 +74,7 @@ The simplest report we can define is an SQL statement.
 **** sql/dd_referencing_objects.sql
 #+include: "sample_reports/sql/dd_referencing_objects.sql" src sql
 
-Note the bind variable in the query, :object_name.  When we run the report, it displays a parameter form with that parameter.
+Note the bind variable in the query, ~:object_name~.  When we run the report, it displays a parameter form with that parameter.
 
 [[file:sql_example_params.png]]
 
@@ -130,9 +130,11 @@ Here is a table (~SUMMIT_GRADES~) with mid-semester grades and final grades.
 And we will create a dynamic SQL report that prints a summary of the grades.
 
 #+include: "sample_reports/report/dynamic_sql_query.groovy" src groovy   
-[[file:dynamic_sql_query_params.png]]
-#+begin_src sql
+# [[file:dynamic_sql_query_params.png]]
 
+When you run the report with ~:mid_or_final = 'M'~ and ~:grade = 'F'~, the closure returns the following SQL query.
+
+#+begin_src sql
 select semester,
        count(mid_grade) as mid_grade,
        sum(decode(mid_grade, :grade, 1, 0)
@@ -141,6 +143,8 @@ select semester,
     group by semester
     order by semester
 #+end_src
+
+We see the following results.
 
 | SEMESTER | MID_GRADE | F_GRADES |
 |----------+-----------+----------|
