@@ -99,8 +99,10 @@ Let's look a little more closely.
 First, we tell the builder that we are creating a report, with a title, "List User Tables."
 #+begin_src groovy
 report(title: 'List User Tables') {
+  // Parameters, data generators and other
+  //  interesting things will go here.
 }
-#+end_src
+#+End_src
 
 Next we define a parameter named "owner" with a list of values defined by an SQL query.
 
