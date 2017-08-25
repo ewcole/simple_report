@@ -8,6 +8,7 @@ working_files.org
 *.jasper
 *.~sql
 .~lock.*#
+~$*.pptx
 
 # We might stop ignoring these later.
 *.docx
