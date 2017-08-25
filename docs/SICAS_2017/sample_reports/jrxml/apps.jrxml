@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version last-->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports"
+              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+              xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd"
+              name="Apps"
+              language="groovy"
+              pageWidth="595"
+              pageHeight="842"
+              columnWidth="555"
+              leftMargin="20"
+              rightMargin="20"
+              topMargin="20"
+              bottomMargin="20"
+              uuid="c2107c36-b400-44e2-9626-918da3eacdbb">
+  <property name="com.jaspersoft.studio.data.defaultdataadapter"
+            value="JTEST"/>
+  <style name="Style1"
+         pattern=""
+         fontName="Bookman Old Style"
+         fontSize="18"
+         isBold="true"/>
+  <queryString>
+    <![CDATA[select app_title 
+	     from apps 
+	     where rownum < 10]]>
+  </queryString>
+  <field name="APP_TITLE" class="java.lang.String"/>
+  <background>
+    <band splitType="Stretch"/>
+  </background>
+  <title>
+    <band height="79"
+          splitType="Stretch">
+      <staticText>
+	<reportElement key=""
+                       x="266"
+                       y="0"
+                       width="70"
+                       height="20"
+                       uuid="066dd3a7-f7df-471b-8545-7ed32b51805f">
+	  <property name="local_mesure_unity" value="pixel"/>
+	  <property name="com.jaspersoft.studio.unit.y" value="px"/>
+	</reportElement>
+	<text><![CDATA[Apps]]></text>
+      </staticText>
+    </band>
+  </title>
+  <pageHeader>
+    <band height="35" splitType="Stretch"/>
+  </pageHeader>
+  <columnHeader>
+    <band height="30" splitType="Stretch">
+      <staticText>
+	<reportElement style="Style1" x="-20" y="0" width="560" height="30" uuid="0e884dfd-4306-4a0b-b4a6-b1a08914f116">
+	  <property name="local_mesure_unitheight" value="pixel"/>
+	  <property name="local_mesure_unity" value="pixel"/>
+	  <property name="com.jaspersoft.studio.unit.y" value="px"/>
+	</reportElement>
+	<textElement textAlignment="Center"/>
+	<text><![CDATA[APP_TITLE]]></text>
+      </staticText>
+    </band>
+  </columnHeader>
+  <detail>
+    <band height="14" splitType="Stretch">
+      <textField>
+	<reportElement stretchType="RelativeToTallestObject" x="3" y="0" width="537" height="14" uuid="deedf1ee-4b07-4088-8edd-adc0994576b4">
+	  <property name="local_mesure_unity" value="pixel"/>
+	  <property name="com.jaspersoft.studio.unit.y" value="px"/>
+	  <property name="local_mesure_unitx" value="pixel"/>
+	  <property name="com.jaspersoft.studio.unit.x" value="px"/>
+	  <property name="local_mesure_unitheight" value="pixel"/>
+	</reportElement>
+	<textFieldExpression><![CDATA[$F{APP_TITLE}]]></textFieldExpression>
+      </textField>
+    </band>
+  </detail>
+  <columnFooter>
+    <band height="45" splitType="Stretch"/>
+  </columnFooter>
+  <pageFooter>
+    <band height="54" splitType="Stretch"/>
+  </pageFooter>
+  <summary>
+    <band height="42" splitType="Stretch"/>
+  </summary>
+</jasperReport>

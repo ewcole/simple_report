@@ -3,10 +3,10 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2017-08-24 Thu 16:19 -->
+<!-- 2017-08-25 Fri 16:40 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Presentation Outline - Drop-in Reporting with Groovy</title>
+<title>Presentation - Drop-in Reporting with Groovy</title>
 <meta name="generator" content="Org mode" />
 <meta name="author" content="Ed Cole" />
 <style type="text/css">
@@ -228,14 +228,14 @@ for the JavaScript code in this tag.
 </head>
 <body>
 <div id="content">
-<h1 class="title">Presentation Outline - Drop-in Reporting with Groovy</h1>
+<h1 class="title">Presentation - Drop-in Reporting with Groovy</h1>
 
-<div id="outline-container-org26d0ba2" class="outline-2">
-<h2 id="org26d0ba2">Introduction</h2>
-<div class="outline-text-2" id="text-org26d0ba2">
-</div><div id="outline-container-org1e24e46" class="outline-3">
-<h3 id="org1e24e46">This is a REAL solution to a real problem.&#xa0;&#xa0;&#xa0;<span class="tag"><span class="why">why</span></span></h3>
-<div class="outline-text-3" id="text-org1e24e46">
+<div id="outline-container-org564eaff" class="outline-2">
+<h2 id="org564eaff">Introduction</h2>
+<div class="outline-text-2" id="text-org564eaff">
+</div><div id="outline-container-org711d009" class="outline-3">
+<h3 id="org711d009">This is a REAL solution to a real problem.&#xa0;&#xa0;&#xa0;<span class="tag"><span class="why">why</span></span></h3>
+<div class="outline-text-3" id="text-org711d009">
 <p>
 We have over 600 Oracle Reports applications that need to be converted into a new and non-deprecated format.  These reports produce everything from CSV files to paychecks.  
 </p>
@@ -246,11 +246,11 @@ Oracle Reports isn't well suited to creating data files, so there had been an un
 </div>
 </div>
 
-<div id="outline-container-org93779f0" class="outline-3">
-<h3 id="org93779f0">It started with a dream.&#xa0;&#xa0;&#xa0;<span class="tag"><span class="what">what</span></span></h3>
-<div class="outline-text-3" id="text-org93779f0">
+<div id="outline-container-org726c13b" class="outline-3">
+<h3 id="org726c13b">It started with a dream.&#xa0;&#xa0;&#xa0;<span class="tag"><span class="what">what</span></span></h3>
+<div class="outline-text-3" id="text-org726c13b">
 <p>
-Many of our reports are essentially an SQL query, which we have to embed in some kind of program, which could be SQL*Plus, Oracle Reports, a web application, PL/SQL web pages, or other complicated tools).  What if we could just drop that query into a container that will do the work of getting the parameters and formatting the output?  Or, if it is more complicated, how about a simple DSL that will let us specify the bare minimum of what we need?
+Many of our reports are essentially an SQL query, which we have to embed in some kind of program, which could be SQL*Plus, Oracle Reports, a web application, PL/SQL web pages, or other complicated tools).  What if we could just drop that query into a container that will do the work of getting the parameters and formatting the output?  Or, if the report is more complicated, how about a simple DSL that will let us specify the bare minimum of what we need?
 </p>
 
 <p>
@@ -258,18 +258,18 @@ I  had the idea of storing the SQL in the database and serving them through SSB 
 </p>
 </div>
 </div>
-<div id="outline-container-orga315539" class="outline-3">
-<h3 id="orga315539">Making it happen&#xa0;&#xa0;&#xa0;<span class="tag"><span class="how">how</span></span></h3>
-<div class="outline-text-3" id="text-orga315539">
-</div><div id="outline-container-orge05a8df" class="outline-4">
-<h4 id="orge05a8df">Groovy gives us the power to make this dream a reality.</h4>
-<div class="outline-text-4" id="text-orge05a8df">
+<div id="outline-container-orgacbd7c3" class="outline-3">
+<h3 id="orgacbd7c3">Making it happen&#xa0;&#xa0;&#xa0;<span class="tag"><span class="how">how</span></span></h3>
+<div class="outline-text-3" id="text-orgacbd7c3">
+</div><div id="outline-container-org8752d27" class="outline-4">
+<h4 id="org8752d27">Groovy gives us the power to make this dream a reality.</h4>
+<div class="outline-text-4" id="text-org8752d27">
 <p>
 Groovy has features that make this idea practical.  Some of them are common to any programming language, and some of them are unique to Groovy.
 </p>
 </div>
 
-<ul class="org-ul"><li><a id="org4d21b76"></a>Properties that Groovy shares with many programming environments<br /><div class="outline-text-5" id="text-org4d21b76">
+<ul class="org-ul"><li><a id="org81c969d"></a>Properties that Groovy shares with many programming environments<br /><div class="outline-text-5" id="text-org81c969d">
 <ul class="org-ul">
 <li>Dynamic SQL (PL/SQL can do it, but it is brittle and I usually regret using it.)</li>
 <li>Read and write from the file system</li>
@@ -277,7 +277,7 @@ Groovy has features that make this idea practical.  Some of them are common to a
 <li>Runs on the Java Virtual Machine (which makes it easy to deploy applications through Tomcat and opens the door to a huge library that is easy to access through Maven repositories)</li>
 </ul>
 </div></li>
-<li><a id="org73cfc84"></a>Uniquely Groovy<br /><div class="outline-text-5" id="text-org73cfc84">
+<li><a id="org559a32a"></a>Uniquely Groovy<br /><div class="outline-text-5" id="text-org559a32a">
 <ul class="org-ul">
 <li>Easy-to-use interface for SQL and XML</li>
 <li>Closures and functional programming</li>
@@ -286,9 +286,9 @@ Groovy has features that make this idea practical.  Some of them are common to a
 </ul>
 </div></li></ul>
 </div>
-<div id="outline-container-orgad870bd" class="outline-4">
-<h4 id="orgad870bd">Implementation</h4>
-<div class="outline-text-4" id="text-orgad870bd">
+<div id="outline-container-orgf395fcd" class="outline-4">
+<h4 id="orgf395fcd">Implementation</h4>
+<div class="outline-text-4" id="text-orgf395fcd">
 <ul class="org-ul">
 <li>A POGO library which defines the DSL and executes the reports</li>
 <li>A Grails application that provides a user interface for the report library</li>
@@ -299,23 +299,23 @@ Groovy has features that make this idea practical.  Some of them are common to a
 </div>
 </div>
 </div>
-<div id="outline-container-org36a4f56" class="outline-2">
-<h2 id="org36a4f56">Overview</h2>
-<div class="outline-text-2" id="text-org36a4f56">
-</div><div id="outline-container-org51f8835" class="outline-3">
-<h3 id="org51f8835">General Principles&#xa0;&#xa0;&#xa0;<span class="tag"><span class="why">why</span></span></h3>
-<div class="outline-text-3" id="text-org51f8835">
-</div><div id="outline-container-org7efab91" class="outline-4">
-<h4 id="org7efab91">Open Source Tools</h4>
-<div class="outline-text-4" id="text-org7efab91">
+<div id="outline-container-org40eded3" class="outline-2">
+<h2 id="org40eded3">Overview</h2>
+<div class="outline-text-2" id="text-org40eded3">
+</div><div id="outline-container-org313f3d1" class="outline-3">
+<h3 id="org313f3d1">General Principles&#xa0;&#xa0;&#xa0;<span class="tag"><span class="why">why</span></span></h3>
+<div class="outline-text-3" id="text-org313f3d1">
+</div><div id="outline-container-org11bb1f4" class="outline-4">
+<h4 id="org11bb1f4">Open Source Tools</h4>
+<div class="outline-text-4" id="text-org11bb1f4">
 <p>
 These tools require no licensing fees and are generally high quality and developer-friendly.
 </p>
 </div>
 </div>
-<div id="outline-container-org7fcf08e" class="outline-4">
-<h4 id="org7fcf08e">Plain text</h4>
-<div class="outline-text-4" id="text-org7fcf08e">
+<div id="outline-container-org62d3d52" class="outline-4">
+<h4 id="org62d3d52">Plain text</h4>
+<div class="outline-text-4" id="text-org62d3d52">
 <p>
 Storing the source code for our reports in text files on the report server means that we can manipulate them with a host of standard tools.  For example, we can:
 </p>
@@ -326,30 +326,30 @@ Storing the source code for our reports in text files on the report server means
 </ul>
 </div>
 </div>
-<div id="outline-container-org3f888b2" class="outline-4">
-<h4 id="org3f888b2">Environment Agnostic</h4>
-<div class="outline-text-4" id="text-org3f888b2">
+<div id="outline-container-org4b86cb7" class="outline-4">
+<h4 id="org4b86cb7">Environment Agnostic</h4>
+<div class="outline-text-4" id="text-org4b86cb7">
 <p>
 The report knows nothing of the environment or front end that it will execute in.
 </p>
 </div>
 </div>
 </div>
-<div id="outline-container-org3b90b81" class="outline-3">
-<h3 id="org3b90b81">What do these reports look like?&#xa0;&#xa0;&#xa0;<span class="tag"><span class="example">example</span>&#xa0;<span class="what">what</span></span></h3>
-<div class="outline-text-3" id="text-org3b90b81">
+<div id="outline-container-orgbd05de7" class="outline-3">
+<h3 id="orgbd05de7">What do these reports look like?&#xa0;&#xa0;&#xa0;<span class="tag"><span class="example">example</span>&#xa0;<span class="what">what</span></span></h3>
+<div class="outline-text-3" id="text-orgbd05de7">
 <p>
 Let's see what kind of reports are possible.
 </p>
 </div>
-<div id="outline-container-org7faec77" class="outline-4">
-<h4 id="org7faec77">SQL example&#xa0;&#xa0;&#xa0;<span class="tag"><span class="sql">sql</span></span></h4>
-<div class="outline-text-4" id="text-org7faec77">
+<div id="outline-container-org6ab8d36" class="outline-4">
+<h4 id="org6ab8d36">SQL example&#xa0;&#xa0;&#xa0;<span class="tag"><span class="sql">sql</span></span></h4>
+<div class="outline-text-4" id="text-org6ab8d36">
 <p>
 The simplest report we can define is an SQL statement.  
 </p>
 </div>
-<ul class="org-ul"><li><a id="org7120904"></a>sql/dd_referencing_objects.sql<br /><div class="outline-text-5" id="text-org7120904">
+<ul class="org-ul"><li><a id="orgacf7c9c"></a>sql/dd_referencing_objects.sql<br /><div class="outline-text-5" id="text-orgacf7c9c">
 <div class="org-src-container">
 <pre class="src src-sql"><span style="color: #ff7f24;">/* List all objects that reference this one. */</span>
 <span style="color: #00ffff;">select</span> d.referenced_owner r_owner,
@@ -385,9 +385,9 @@ JCC,JCC_GBR_EMAIL,PACKAGE,PUBLIC,JCC_GBR_EMAIL,SYNONYM
 </div>
 </div></li></ul>
 </div>
-<div id="outline-container-orgb971a35" class="outline-4">
-<h4 id="orgb971a35">Simple Groovy SQL Example&#xa0;&#xa0;&#xa0;<span class="tag"><span class="groovy">groovy</span></span></h4>
-<div class="outline-text-4" id="text-orgb971a35">
+<div id="outline-container-orgb11f527" class="outline-4">
+<h4 id="orgb11f527">Simple Groovy SQL Example&#xa0;&#xa0;&#xa0;<span class="tag"><span class="groovy">groovy</span></span></h4>
+<div class="outline-text-4" id="text-orgb11f527">
 <p>
 Our second example shows a simple case of the Groovy-based DSL.  
 </p>
@@ -471,6 +471,8 @@ First, we tell the builder that we are creating a report, with a title, "List Us
 </p>
 <div class="org-src-container">
 <pre class="src src-groovy">report(title: <span style="color: #ffa07a;">'List User Tables'</span>) {
+  <span style="color: #ff7f24;">// </span><span style="color: #ff7f24;">Parameters, data generators and other</span>
+  <span style="color: #ff7f24;">//  </span><span style="color: #ff7f24;">interesting things will go here.</span>
 }
 </pre>
 </div>
@@ -525,9 +527,9 @@ sql <span style="color: #98fb98;">query</span>: <span style="color: #ffa07a;">""
 </div>
 </div>
 
-<div id="outline-container-org9af8a49" class="outline-4">
-<h4 id="org9af8a49">Groovy Dynamic SQL Example&#xa0;&#xa0;&#xa0;<span class="tag"><span class="groovy">groovy</span></span></h4>
-<div class="outline-text-4" id="text-org9af8a49">
+<div id="outline-container-org655e77f" class="outline-4">
+<h4 id="org655e77f">Groovy Dynamic SQL Example&#xa0;&#xa0;&#xa0;<span class="tag"><span class="groovy">groovy</span></span></h4>
+<div class="outline-text-4" id="text-org655e77f">
 <p>
 Sometimes our situation is less favorable, and we feel the need to customize the SQL before we execute it.  For instance, we might want to have a different where clause when the user enters certain search criteria.
 </p>
@@ -708,9 +710,9 @@ We see the following results.
 </div>
 </div>
 
-<div id="outline-container-org1530a5f" class="outline-4">
-<h4 id="org1530a5f">Groovy Closure Example&#xa0;&#xa0;&#xa0;<span class="tag"><span class="groovy">groovy</span></span></h4>
-<div class="outline-text-4" id="text-org1530a5f">
+<div id="outline-container-org84a4f47" class="outline-4">
+<h4 id="org84a4f47">Groovy Closure Example&#xa0;&#xa0;&#xa0;<span class="tag"><span class="groovy">groovy</span></span></h4>
+<div class="outline-text-4" id="text-org84a4f47">
 <p>
 Let's look at an example that would be very hard to do in most reporting tools.
 </p>
@@ -805,9 +807,9 @@ report(title: <span style="color: #ffa07a;">"Invalid Summit Queries"</span>) {
 </div>
 </div>
 
-<div id="outline-container-orgffdae6c" class="outline-4">
-<h4 id="orgffdae6c">Jasper Reports&#xa0;&#xa0;&#xa0;<span class="tag"><span class="jasperReports">jasperReports</span></span></h4>
-<div class="outline-text-4" id="text-orgffdae6c">
+<div id="outline-container-orge96fb9e" class="outline-4">
+<h4 id="orge96fb9e">Jasper Reports&#xa0;&#xa0;&#xa0;<span class="tag"><span class="jasperReports">jasperReports</span></span></h4>
+<div class="outline-text-4" id="text-orge96fb9e">
 <p>
 One of the big attractions of Jasper reports is the fact that it is a Java-based application, which means that it is easy to integrate into our environment.
 </p>
@@ -815,15 +817,15 @@ One of the big attractions of Jasper reports is the fact that it is a Java-based
 </div>
 </div>
 
-<div id="outline-container-org1433b1e" class="outline-3">
-<h3 id="org1433b1e">Implementation&#xa0;&#xa0;&#xa0;<span class="tag"><span class="how">how</span></span></h3>
-<div class="outline-text-3" id="text-org1433b1e">
-</div><div id="outline-container-orgdae131d" class="outline-4">
-<h4 id="orgdae131d">Groovy Closures and Delegation</h4>
+<div id="outline-container-org57ff3dc" class="outline-3">
+<h3 id="org57ff3dc">Implementation&#xa0;&#xa0;&#xa0;<span class="tag"><span class="how">how</span></span></h3>
+<div class="outline-text-3" id="text-org57ff3dc">
+</div><div id="outline-container-org5f6ae51" class="outline-4">
+<h4 id="org5f6ae51">Groovy Closures and Delegation</h4>
 </div>
 
-<div id="outline-container-orgdace71d" class="outline-4">
-<h4 id="orgdace71d">Groovy Builders</h4>
+<div id="outline-container-org83693a0" class="outline-4">
+<h4 id="org83693a0">Groovy Builders</h4>
 </div>
 </div>
 </div>
