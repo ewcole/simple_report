@@ -43,18 +43,19 @@ I  had the idea of storing the SQL in the database and serving them through SSB 
  Groovy has features that make this idea practical.  Some of them are common to any programming language, and some of them are unique to Groovy.
 
 **** What is Groovy?
-Groovy is a dynamic language that is based on and fully compatible with Java.  
+The Groovy programming language is a chopped, lowered, louvered, and flame-painted Java.  
 
 **** Properties that Groovy shares with many programming environments
- - Dynamic SQL (PL/SQL can do it, but it is brittle and I usually regret using it.)
- - Read and write from the file system
- - Read and write web protocols
- - Runs on the Java Virtual Machine (which makes it easy to deploy applications through Tomcat and opens the door to a huge library that is easy to access through Maven repositories)
+- Dynamic SQL (PL/SQL can do it, but it is brittle and I usually regret using it.)
+- Read and write from the file system
+- Read and write web protocols
+- Runs on the Java Virtual Machine (which makes it easy to deploy applications through Tomcat and opens the door to a huge library that is easy to access through Maven repositories)
 **** Uniquely Groovy
- - Easy-to-use interface for SQL and XML
- - Closures and functional programming 
- - Builders and DSL's
- - "Easy" web applications with Grails
+- Easy-to-use interface for SQL and XML
+- Scripting 
+- Closures and functional programming 
+- Builders and DSL's
+- "Easy" web applications with Grails
 *** Implementation
 - A POGO library which defines the DSL and executes the reports
 - A Grails application that provides a user interface for the report library
@@ -87,18 +88,6 @@ Let's enter ~jcc_gbr_email~, the name of one of our packages, and look at the CS
 #+include: "sample_reports/dd_referencing_objects.csv" src csv
 *** Simple Groovy SQL Example                                        :groovy:
 Our second example shows a simple case of the Groovy-based DSL.  
-#+include: "sample_reports/report/list_user_tables.groovy" src groovy
-
-[[file:groovy_example_1_params.png]]
-
-This gives us the following result.
-
-| TABLE_NAME          | COMMENTS                                    |
-|---------------------+---------------------------------------------|
-| T_CENSUS_ROSTER     | This table has one row per course per term. |
-| T_STU_CENSUS_ROSTER | The roster of students in this course       |
-
-Let's look a little more closely.
 
 First, we tell the builder that we are creating a report, with a title, "List User Tables."
 #+begin_src groovy
@@ -107,6 +96,7 @@ report(title: 'List User Tables') {
   //  interesting things will go here.
 }
 #+End_src
+
 
 Next we define a parameter named "owner" with a list of values defined by an SQL query.
 
@@ -120,6 +110,20 @@ And, finally, Add a query which references these parameters.
 
 #+include: "sample_reports/report/list_user_tables.groovy" src groovy :lines "22-30"
 
+When we put this all together, we get this script.
+
+#+include: "sample_reports/report/list_user_tables.groovy" src groovy
+
+[[file:groovy_example_1_params.png]]
+
+Running the script gives us the following result.
+
+| TABLE_NAME          | COMMENTS                                    |
+|---------------------+---------------------------------------------|
+| T_CENSUS_ROSTER     | This table has one row per course per term. |
+| T_STU_CENSUS_ROSTER | The roster of students in this course       |
+
+Let's look a little more closely.
 *** Groovy Dynamic SQL Example                                       :groovy:
 Sometimes our situation is less favorable, and we feel the need to customize the SQL before we execute it.  For instance, we might want to have a different where clause when the user enters certain search criteria.
 
