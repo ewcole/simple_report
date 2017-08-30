@@ -1,11 +1,12 @@
-#+OPTIONS: ':nil *:t -:t ::t <:t H:3 \n:nil ^:{} arch:headline
-#+OPTIONS: author:t broken-links:nil c:nil creator:nil
-#+OPTIONS: d:(not "LOGBOOK") date:t e:t email:nil f:t inline:t num:nil
-#+OPTIONS: p:nil pri:nil prop:nil stat:t tags:t tasks:t tex:t
-#+OPTIONS: timestamp:t title:t toc:nil todo:t |:t
 #+TITLE: Presentation - Drop-in Reporting with Groovy
-# #+DATE: <2017-07-28 Fri>
 #+AUTHOR: Ed Cole
+
+# #+DATE: <2017-07-28 Fri>
+#+OPTIONS: ':nil *:t -:t ::t <:nil H:3 \n:nil ^:{} arch:headline
+#+OPTIONS: author:nil broken-links:nil c:nil creator:nil
+#+OPTIONS: d:(not "LOGBOOK") date:t e:t email:nil f:t inline:t num:nil
+#+OPTIONS: p:nil pri:nil prop:nil stat:t tags:nil tasks:nil tex:t
+#+OPTIONS: timestamp:t title:t toc:nil todo:t |:t
 #+LANGUAGE: en
 #+SELECT_TAGS: export
 #+EXCLUDE_TAGS: noexport
@@ -52,8 +53,8 @@ The Groovy programming language is a chopped, lowered, louvered, and flame-paint
 - Runs on the Java Virtual Machine (which makes it easy to deploy applications through Tomcat and opens the door to a huge library that is easy to access through Maven repositories)
 **** Uniquely Groovy
 - Easy-to-use interface for SQL and XML
-- Scripting 
 - Closures and functional programming 
+- Scripting 
 - Builders and DSL's
 - "Easy" web applications with Grails
 *** Implementation
@@ -72,11 +73,11 @@ Storing the source code for our reports in text files on the report server means
 - Use the editor of our choice to edit them
 *** Environment Agnostic
 The report knows nothing of the environment or front end that it will execute in.
-** What do these reports look like?                            :example:what:
+* What do these reports look like?                             :example:what:
 Let's see what kind of reports are possible.
-*** SQL example :sql:
+** SQL example                                                          :sql:
 The simplest report we can define is an SQL statement.  
-**** sql/dd_referencing_objects.sql
+*** sql/dd_referencing_objects.sql
 #+include: "sample_reports/sql/dd_referencing_objects.sql" src sql
 
 Note the bind variable in the query, ~:object_name~.  When we run the report, it displays a parameter form with that parameter.
@@ -86,7 +87,7 @@ Note the bind variable in the query, ~:object_name~.  When we run the report, it
 Let's enter ~jcc_gbr_email~, the name of one of our packages, and look at the CSV output.
 
 #+include: "sample_reports/dd_referencing_objects.csv" src csv
-*** Simple Groovy SQL Example                                        :groovy:
+** Simple Groovy SQL Example                                         :groovy:
 Our second example shows a simple case of the Groovy-based DSL.  
 
 First, we tell the builder that we are creating a report, with a title, "List User Tables."
@@ -124,7 +125,7 @@ Running the script gives us the following result.
 | T_STU_CENSUS_ROSTER | The roster of students in this course       |
 
 Let's look a little more closely.
-*** Groovy Dynamic SQL Example                                       :groovy:
+** Groovy Dynamic SQL Example                                        :groovy:
 Sometimes our situation is less favorable, and we feel the need to customize the SQL before we execute it.  For instance, we might want to have a different where clause when the user enters certain search criteria.
 
 Here is a table (~SUMMIT_GRADES~) with mid-semester grades and final grades.
@@ -173,7 +174,7 @@ We see the following results.
 # |   4 |     16 |   64 |
 # |   5 |     25 |  125 |
 
-*** Groovy Closure Example                                           :groovy:
+** Groovy Closure Example                                            :groovy:
 Let's look at an example that would be very hard to do in most reporting tools.
 
 ~SQL> select * from summit_sql;~
@@ -189,11 +190,13 @@ This table holds two SQL select statements, one of them valid and the other prob
 |----+---------------------------+-----------------------------------------|
 |  2 | select sloozle from fleem | ORA-00942: table or view does not exist |
    
-*** Jasper Reports                                            :jasperReports:
+** Jasper Reports                                             :jasperReports:
 One of the big attractions of Jasper reports is the fact that it is a Java-based application, which means that it is easy to integrate into our environment.  
   
-** Implementation :how:
+* Implementation                                                        :how:
 
-*** Groovy Closures and Delegation
+** Groovy Closures and Delegation
+#+include: "../../src/main/groovy/edu/sunyjcc/simple_report/SimpleReportBuilder.groovy" src groovy :lines "317-335"
 
-*** Groovy Builders
+** Groovy Builders
+
