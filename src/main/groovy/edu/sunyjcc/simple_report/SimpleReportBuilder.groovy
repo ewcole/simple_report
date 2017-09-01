@@ -315,7 +315,7 @@ public class SimpleReportBuilder extends BuilderSupport {
     this.reportObjectFactory = reportObjectFactory;
   }
 
-  /** Evaluate a string and return the results */
+  /** Evaluate a report builder script and return the results */
   def eval(String text) {
     def shell = new GroovyShell()
     // wrap the script in a closure before evaluating.
