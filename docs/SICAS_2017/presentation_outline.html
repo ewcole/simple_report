@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2017-09-01 Fri 18:11 -->
+<!-- 2017-09-05 Tue 09:42 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Presentation - Drop-in Reporting with Groovy</title>
@@ -229,12 +229,12 @@ for the JavaScript code in this tag.
 <div id="content">
 <h1 class="title">Presentation - Drop-in Reporting with Groovy</h1>
 
-<div id="outline-container-orgc9f2e05" class="outline-2">
-<h2 id="orgc9f2e05">Introduction</h2>
-<div class="outline-text-2" id="text-orgc9f2e05">
-</div><div id="outline-container-org9c7a21a" class="outline-3">
-<h3 id="org9c7a21a">This is a REAL solution to a real problem.</h3>
-<div class="outline-text-3" id="text-org9c7a21a">
+<div id="outline-container-orgbd2c28f" class="outline-2">
+<h2 id="orgbd2c28f">Introduction</h2>
+<div class="outline-text-2" id="text-orgbd2c28f">
+</div><div id="outline-container-org569e5c7" class="outline-3">
+<h3 id="org569e5c7">This is a REAL solution to a real problem.</h3>
+<div class="outline-text-3" id="text-org569e5c7">
 <p>
 We have over 600 Oracle Reports applications that need to be converted into a new and non-deprecated format.  These reports produce everything from CSV files to paychecks.  
 </p>
@@ -245,9 +245,9 @@ Oracle Reports isn't well suited to creating data files, so there had been an un
 </div>
 </div>
 
-<div id="outline-container-org3057c42" class="outline-3">
-<h3 id="org3057c42">It started with a dream.</h3>
-<div class="outline-text-3" id="text-org3057c42">
+<div id="outline-container-org30e6c71" class="outline-3">
+<h3 id="org30e6c71">It started with a dream.</h3>
+<div class="outline-text-3" id="text-org30e6c71">
 <p>
 Many of our reports are essentially an SQL query, which we have to embed in some kind of program, which could be SQL*Plus, Oracle Reports, a web application, PL/SQL web pages, or other complicated tools).  What if we could just drop that query into a container that will do the work of getting the parameters and formatting the output?  Or, if the report is more complicated, how about a simple DSL that will let us specify the bare minimum of what we need?
 </p>
@@ -257,24 +257,24 @@ I  had the idea of storing the SQL in the database and serving them through SSB 
 </p>
 </div>
 </div>
-<div id="outline-container-org2e7703a" class="outline-3">
-<h3 id="org2e7703a">Making it happen</h3>
-<div class="outline-text-3" id="text-org2e7703a">
-</div><div id="outline-container-org8aeef1f" class="outline-4">
-<h4 id="org8aeef1f">Groovy gives us the power to make this dream a reality.</h4>
-<div class="outline-text-4" id="text-org8aeef1f">
+<div id="outline-container-org8d3215f" class="outline-3">
+<h3 id="org8d3215f">Making it happen</h3>
+<div class="outline-text-3" id="text-org8d3215f">
+</div><div id="outline-container-org5fe6cd2" class="outline-4">
+<h4 id="org5fe6cd2">Groovy gives us the power to make this dream a reality.</h4>
+<div class="outline-text-4" id="text-org5fe6cd2">
 <p>
 Groovy has features that make this idea practical.  Some of them are common to any programming language, and some of them are unique to Groovy.
 </p>
 </div>
 
-<ul class="org-ul"><li><a id="org17a111e"></a>What is Groovy?<br /><div class="outline-text-5" id="text-org17a111e">
+<ul class="org-ul"><li><a id="org3807147"></a>What is Groovy?<br /><div class="outline-text-5" id="text-org3807147">
 <p>
 The Groovy programming language is a chopped, lowered, louvered, and flame-painted Java.  
 </p>
 </div></li>
 
-<li><a id="orgb384cfd"></a>Properties that Groovy shares with many programming environments<br /><div class="outline-text-5" id="text-orgb384cfd">
+<li><a id="org3fc0600"></a>Properties that Groovy shares with many programming environments<br /><div class="outline-text-5" id="text-org3fc0600">
 <ul class="org-ul">
 <li>Dynamic SQL (PL/SQL can do it, but it is brittle and I usually regret using it.)</li>
 <li>Read and write from the file system</li>
@@ -282,7 +282,7 @@ The Groovy programming language is a chopped, lowered, louvered, and flame-paint
 <li>Runs on the Java Virtual Machine (which makes it easy to deploy applications through Tomcat and opens the door to a huge library that is easy to access through Maven repositories)</li>
 </ul>
 </div></li>
-<li><a id="org52c2a32"></a>Uniquely Groovy<br /><div class="outline-text-5" id="text-org52c2a32">
+<li><a id="org8bc7802"></a>Uniquely Groovy<br /><div class="outline-text-5" id="text-org8bc7802">
 <ul class="org-ul">
 <li>Easy-to-use interface for SQL and XML</li>
 <li>Closures and functional programming</li>
@@ -292,40 +292,40 @@ The Groovy programming language is a chopped, lowered, louvered, and flame-paint
 </ul>
 </div></li></ul>
 </div>
-<div id="outline-container-org93d88dc" class="outline-4">
-<h4 id="org93d88dc">Jasper Reports</h4>
-<div class="outline-text-4" id="text-org93d88dc">
+<div id="outline-container-org0ac3cde" class="outline-4">
+<h4 id="org0ac3cde">Jasper Reports</h4>
+<div class="outline-text-4" id="text-org0ac3cde">
 <p>
 We chose Jasper Reports as a replacement for Oracle Reports for a number of reasons.
 </p>
 </div>
 
-<ul class="org-ul"><li><a id="org7a501c3"></a>It can do the job.<br /></li>
-<li><a id="org2c79063"></a>It is a Java-based application<br /><div class="outline-text-5" id="text-org2c79063">
+<ul class="org-ul"><li><a id="orgbbc0fc7"></a>It can do the job.<br /></li>
+<li><a id="orgee64fc9"></a>It is a Java-based application<br /><div class="outline-text-5" id="text-orgee64fc9">
 <p>
 The fact that we can integrate it into our Groovy programs means that we can deploy it within a Grails application or other structure.
 </p>
 </div></li>
-<li><a id="org2b37f08"></a>It uses XML source code<br /><div class="outline-text-5" id="text-org2b37f08">
+<li><a id="org89378b2"></a>It uses XML source code<br /><div class="outline-text-5" id="text-org89378b2">
 <p>
 The source for our reports will be easy to edit, examine, and track with version control.
 </p>
 </div></li>
-<li><a id="orgb15f197"></a>It gives our developers the freedom to create through a GUI or text tools.<br /><div class="outline-text-5" id="text-orgb15f197">
+<li><a id="org5758eba"></a>It gives our developers the freedom to create through a GUI or text tools.<br /><div class="outline-text-5" id="text-org5758eba">
 <p>
 It gives us the best of both worlds.
 </p>
 </div></li></ul>
 </div>
-<div id="outline-container-org6c4ee63" class="outline-4">
-<h4 id="org6c4ee63">Implementation</h4>
-<div class="outline-text-4" id="text-org6c4ee63">
-</div><ul class="org-ul"><li><a id="org8bdfaf6"></a>General Principles<br /><ul class="org-ul"><li><a id="org4391c37"></a>Open Source Tools<br /><div class="outline-text-6" id="text-org4391c37">
+<div id="outline-container-org06917a3" class="outline-4">
+<h4 id="org06917a3">Implementation</h4>
+<div class="outline-text-4" id="text-org06917a3">
+</div><ul class="org-ul"><li><a id="org5bd7ab2"></a>General Principles<br /><ul class="org-ul"><li><a id="orgb47b0d9"></a>Open Source Tools<br /><div class="outline-text-6" id="text-orgb47b0d9">
 <p>
 These tools require no licensing fees and are generally high quality and developer-friendly.
 </p>
 </div></li>
-<li><a id="org6287796"></a>Plain text<br /><div class="outline-text-6" id="text-org6287796">
+<li><a id="org4208791"></a>Plain text<br /><div class="outline-text-6" id="text-org4208791">
 <p>
 Storing the source code for our reports in text files on the report server means that we can manipulate them with a host of standard tools.  For example, we can:
 </p>
@@ -335,39 +335,39 @@ Storing the source code for our reports in text files on the report server means
 <li>Use the editor of our choice to edit them</li>
 </ul>
 </div></li>
-<li><a id="org4052679"></a>Environment Agnostic<br /><div class="outline-text-6" id="text-org4052679">
+<li><a id="orgd4effea"></a>Environment Agnostic<br /><div class="outline-text-6" id="text-orgd4effea">
 <p>
 The report knows nothing of the environment or front end that it will execute in.
 </p>
 </div></li></ul></li>
-<li><a id="org9fbfc71"></a>Strategy<br /><ul class="org-ul"><li><a id="org1b93111"></a>A POGO library which defines the DSL and executes the reports<br /></li>
-<li><a id="orge9b13f1"></a>A Grails application that provides a user interface for the report library<br /></li>
-<li><a id="orgc19bf6a"></a>Possibly other front ends in the future<br /></li>
-<li><a id="orgf776318"></a>Jasper Reports for fancy report delivery<br /></li></ul></li></ul>
+<li><a id="org6ba685c"></a>Strategy<br /><ul class="org-ul"><li><a id="org3f28a2f"></a>A POGO library which defines the DSL and executes the reports<br /></li>
+<li><a id="org7839df7"></a>A Grails application that provides a user interface for the report library<br /></li>
+<li><a id="org2eeb514"></a>Possibly other front ends in the future<br /></li>
+<li><a id="orgf00c5d3"></a>Jasper Reports for fancy report delivery<br /></li></ul></li></ul>
 </div>
 </div>
 </div>
-<div id="outline-container-orgea7771d" class="outline-2">
-<h2 id="orgea7771d">Overview</h2>
+<div id="outline-container-orgbf751ef" class="outline-2">
+<h2 id="orgbf751ef">Overview</h2>
 </div>
-<div id="outline-container-orge3e54e3" class="outline-2">
-<h2 id="orge3e54e3">What do these reports look like?</h2>
-<div class="outline-text-2" id="text-orge3e54e3">
+<div id="outline-container-orgffec684" class="outline-2">
+<h2 id="orgffec684">What do these reports look like?</h2>
+<div class="outline-text-2" id="text-orgffec684">
 <p>
 Let's see what kind of reports are possible.
 </p>
 </div>
 
-<div id="outline-container-orgc5dfbed" class="outline-3">
-<h3 id="orgc5dfbed">SQL example</h3>
-<div class="outline-text-3" id="text-orgc5dfbed">
+<div id="outline-container-orge660197" class="outline-3">
+<h3 id="orge660197">SQL example</h3>
+<div class="outline-text-3" id="text-orge660197">
 <p>
 The simplest report we can define is an SQL statement.  
 </p>
 </div>
-<div id="outline-container-orga4c61d4" class="outline-4">
-<h4 id="orga4c61d4">sql/dd_referencing_objects.sql</h4>
-<div class="outline-text-4" id="text-orga4c61d4">
+<div id="outline-container-org7961284" class="outline-4">
+<h4 id="org7961284">sql/dd_referencing_objects.sql</h4>
+<div class="outline-text-4" id="text-org7961284">
 <div class="org-src-container">
 <pre class="src src-sql"><span style="color: #b22222;">/* List all objects that reference this one. */</span>
 <span style="color: #a020f0;">select</span> d.referenced_owner r_owner,
@@ -404,9 +404,9 @@ JCC,JCC_GBR_EMAIL,PACKAGE,PUBLIC,JCC_GBR_EMAIL,SYNONYM
 </div>
 </div>
 </div>
-<div id="outline-container-org9003b63" class="outline-3">
-<h3 id="org9003b63">Simple Groovy SQL Example</h3>
-<div class="outline-text-3" id="text-org9003b63">
+<div id="outline-container-orgee2c27f" class="outline-3">
+<h3 id="orgee2c27f">Simple Groovy SQL Example</h3>
+<div class="outline-text-3" id="text-orgee2c27f">
 <p>
 Our second example shows a simple case of the Groovy-based DSL.  
 </p>
@@ -551,9 +551,9 @@ Let's look a little more closely.
 </p>
 </div>
 </div>
-<div id="outline-container-org5c650e2" class="outline-3">
-<h3 id="org5c650e2">Groovy Dynamic SQL Example</h3>
-<div class="outline-text-3" id="text-org5c650e2">
+<div id="outline-container-org2c71d1d" class="outline-3">
+<h3 id="org2c71d1d">Groovy Dynamic SQL Example</h3>
+<div class="outline-text-3" id="text-org2c71d1d">
 <p>
 Sometimes our situation is less favorable, and we feel the need to customize the SQL before we execute it.  For instance, we might want to have a different where clause when the user enters certain search criteria.
 </p>
@@ -734,9 +734,9 @@ We see the following results.
 </div>
 </div>
 
-<div id="outline-container-org6d9ebc6" class="outline-3">
-<h3 id="org6d9ebc6">Groovy Closure Example</h3>
-<div class="outline-text-3" id="text-org6d9ebc6">
+<div id="outline-container-org356e9a4" class="outline-3">
+<h3 id="org356e9a4">Groovy Closure Example</h3>
+<div class="outline-text-3" id="text-org356e9a4">
 <p>
 Let's look at an example that would be very hard to do in most reporting tools.
 </p>
@@ -832,12 +832,12 @@ report(title: <span style="color: #8b2252;">"Invalid Summit Queries"</span>) {
 </div>
 </div>
 
-<div id="outline-container-orgc309dcd" class="outline-2">
-<h2 id="orgc309dcd">Implementation</h2>
-<div class="outline-text-2" id="text-orgc309dcd">
-</div><div id="outline-container-orgff7e662" class="outline-3">
-<h3 id="orgff7e662">Groovy Closures and Delegation</h3>
-<div class="outline-text-3" id="text-orgff7e662">
+<div id="outline-container-org1f0760f" class="outline-2">
+<h2 id="org1f0760f">Implementation</h2>
+<div class="outline-text-2" id="text-org1f0760f">
+</div><div id="outline-container-orge46138e" class="outline-3">
+<h3 id="orge46138e">Groovy Closures and Delegation</h3>
+<div class="outline-text-3" id="text-orge46138e">
 <div class="org-src-container">
 <pre class="src src-groovy"><span style="color: #b22222;">/** </span><span style="color: #b22222;">Evaluate a report builder script and return the results */</span>
 <span style="color: #a020f0;">def</span> <span style="color: #0000ff;">eval</span>(<span style="color: #228b22;">String</span> <span style="color: #a0522d;">text</span>) {
@@ -861,8 +861,8 @@ report(title: <span style="color: #8b2252;">"Invalid Summit Queries"</span>) {
 </div>
 </div>
 
-<div id="outline-container-orge4573eb" class="outline-3">
-<h3 id="orge4573eb">Groovy Builders</h3>
+<div id="outline-container-orgf6aa15e" class="outline-3">
+<h3 id="orgf6aa15e">Groovy Builders</h3>
 </div>
 </div>
 </div>
