@@ -138,7 +138,7 @@ Running the script gives us the following result.
 | T_CENSUS_ROSTER     | This table has one row per course per term. |
 | T_STU_CENSUS_ROSTER | The roster of students in this course       |
 
-Let's look a little more closely.
+
 ** Groovy Dynamic SQL Example                                        :groovy:
 Sometimes our situation is less favorable, and we feel the need to customize the SQL before we execute it.  For instance, we might want to have a different where clause when the user enters certain search criteria.
 
