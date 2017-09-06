@@ -3,11 +3,11 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2017-09-06 Wed 13:05 -->
-<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
+<!-- 2017-09-06 Wed 13:38 -->
+<meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta  name="viewport" content="width=device-width, initial-scale=1" />
 <title>Presentation - Drop-in Reporting with Groovy</title>
-<meta name="generator" content="Org mode" />
+<meta  name="generator" content="Org-mode" />
 <style type="text/css">
  <!--/*--><![CDATA[/*><!--*/
   .title  { text-align: center;
@@ -52,97 +52,13 @@
     border: 1px solid black;
   }
   pre.src:hover:before { display: inline;}
-  /* Languages per Org manual */
-  pre.src-asymptote:before { content: 'Asymptote'; }
-  pre.src-awk:before { content: 'Awk'; }
-  pre.src-C:before { content: 'C'; }
-  /* pre.src-C++ doesn't work in CSS */
-  pre.src-clojure:before { content: 'Clojure'; }
-  pre.src-css:before { content: 'CSS'; }
-  pre.src-D:before { content: 'D'; }
-  pre.src-ditaa:before { content: 'ditaa'; }
-  pre.src-dot:before { content: 'Graphviz'; }
-  pre.src-calc:before { content: 'Emacs Calc'; }
+  pre.src-sh:before    { content: 'sh'; }
+  pre.src-bash:before  { content: 'sh'; }
   pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
-  pre.src-fortran:before { content: 'Fortran'; }
-  pre.src-gnuplot:before { content: 'gnuplot'; }
-  pre.src-haskell:before { content: 'Haskell'; }
-  pre.src-java:before { content: 'Java'; }
-  pre.src-js:before { content: 'Javascript'; }
-  pre.src-latex:before { content: 'LaTeX'; }
-  pre.src-ledger:before { content: 'Ledger'; }
-  pre.src-lisp:before { content: 'Lisp'; }
-  pre.src-lilypond:before { content: 'Lilypond'; }
-  pre.src-lua:before { content: 'Lua'; }
-  pre.src-matlab:before { content: 'MATLAB'; }
-  pre.src-mscgen:before { content: 'Mscgen'; }
-  pre.src-ocaml:before { content: 'Objective Caml'; }
-  pre.src-octave:before { content: 'Octave'; }
-  pre.src-org:before { content: 'Org mode'; }
-  pre.src-oz:before { content: 'OZ'; }
-  pre.src-plantuml:before { content: 'Plantuml'; }
-  pre.src-processing:before { content: 'Processing.js'; }
-  pre.src-python:before { content: 'Python'; }
-  pre.src-R:before { content: 'R'; }
-  pre.src-ruby:before { content: 'Ruby'; }
-  pre.src-sass:before { content: 'Sass'; }
-  pre.src-scheme:before { content: 'Scheme'; }
-  pre.src-screen:before { content: 'Gnu Screen'; }
-  pre.src-sed:before { content: 'Sed'; }
-  pre.src-sh:before { content: 'shell'; }
-  pre.src-sql:before { content: 'SQL'; }
-  pre.src-sqlite:before { content: 'SQLite'; }
-  /* additional languages in org.el's org-babel-load-languages alist */
-  pre.src-forth:before { content: 'Forth'; }
-  pre.src-io:before { content: 'IO'; }
-  pre.src-J:before { content: 'J'; }
-  pre.src-makefile:before { content: 'Makefile'; }
-  pre.src-maxima:before { content: 'Maxima'; }
-  pre.src-perl:before { content: 'Perl'; }
-  pre.src-picolisp:before { content: 'Pico Lisp'; }
-  pre.src-scala:before { content: 'Scala'; }
-  pre.src-shell:before { content: 'Shell Script'; }
-  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
-  /* additional language identifiers per "defun org-babel-execute"
-       in ob-*.el */
-  pre.src-cpp:before  { content: 'C++'; }
-  pre.src-abc:before  { content: 'ABC'; }
-  pre.src-coq:before  { content: 'Coq'; }
-  pre.src-groovy:before  { content: 'Groovy'; }
-  /* additional language identifiers from org-babel-shell-names in
-     ob-shell.el: ob-shell is the only babel language using a lambda to put
-     the execution function name together. */
-  pre.src-bash:before  { content: 'bash'; }
-  pre.src-csh:before  { content: 'csh'; }
-  pre.src-ash:before  { content: 'ash'; }
-  pre.src-dash:before  { content: 'dash'; }
-  pre.src-ksh:before  { content: 'ksh'; }
-  pre.src-mksh:before  { content: 'mksh'; }
-  pre.src-posh:before  { content: 'posh'; }
-  /* Additional Emacs modes also supported by the LaTeX listings package */
-  pre.src-ada:before { content: 'Ada'; }
-  pre.src-asm:before { content: 'Assembler'; }
-  pre.src-caml:before { content: 'Caml'; }
-  pre.src-delphi:before { content: 'Delphi'; }
-  pre.src-html:before { content: 'HTML'; }
-  pre.src-idl:before { content: 'IDL'; }
-  pre.src-mercury:before { content: 'Mercury'; }
-  pre.src-metapost:before { content: 'MetaPost'; }
-  pre.src-modula-2:before { content: 'Modula-2'; }
-  pre.src-pascal:before { content: 'Pascal'; }
-  pre.src-ps:before { content: 'PostScript'; }
-  pre.src-prolog:before { content: 'Prolog'; }
-  pre.src-simula:before { content: 'Simula'; }
-  pre.src-tcl:before { content: 'tcl'; }
-  pre.src-tex:before { content: 'TeX'; }
-  pre.src-plain-tex:before { content: 'Plain TeX'; }
-  pre.src-verilog:before { content: 'Verilog'; }
-  pre.src-vhdl:before { content: 'VHDL'; }
-  pre.src-xml:before { content: 'XML'; }
-  pre.src-nxml:before { content: 'XML'; }
-  /* add a generic configuration mode; LaTeX export needs an additional
-     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
-  pre.src-conf:before { content: 'Configuration File'; }
+  pre.src-R:before     { content: 'R'; }
+  pre.src-perl:before  { content: 'Perl'; }
+  pre.src-java:before  { content: 'Java'; }
+  pre.src-sql:before   { content: 'SQL'; }
 
   table { border-collapse:collapse; }
   caption.t-above { caption-side: top; }
@@ -175,7 +91,6 @@
     { font-size: 10px; font-weight: bold; white-space: nowrap; }
   .org-info-js_search-highlight
     { background-color: #ffff00; color: #000000; font-weight: bold; }
-  .org-svg { width: 90%; }
   /*]]>*/-->
 </style>
 <script type="text/javascript">
@@ -229,12 +144,12 @@ for the JavaScript code in this tag.
 <div id="content">
 <h1 class="title">Presentation - Drop-in Reporting with Groovy</h1>
 
-<div id="outline-container-org8eb7e5f" class="outline-2">
-<h2 id="org8eb7e5f">Introduction</h2>
-<div class="outline-text-2" id="text-org8eb7e5f">
-</div><div id="outline-container-orgcde5d6f" class="outline-3">
-<h3 id="orgcde5d6f">This is a REAL solution to a real problem.</h3>
-<div class="outline-text-3" id="text-orgcde5d6f">
+<div id="outline-container-orgheadline23" class="outline-2">
+<h2 id="orgheadline23">Introduction</h2>
+<div class="outline-text-2" id="text-orgheadline23">
+</div><div id="outline-container-orgheadline1" class="outline-3">
+<h3 id="orgheadline1">This is a REAL solution to a real problem.</h3>
+<div class="outline-text-3" id="text-orgheadline1">
 <p>
 We have over 600 Oracle Reports applications that need to be converted into a new and non-deprecated format.  These reports produce everything from CSV files to paychecks.  
 </p>
@@ -245,9 +160,9 @@ Oracle Reports isn't well suited to creating data files, so there had been an un
 </div>
 </div>
 
-<div id="outline-container-orge966061" class="outline-3">
-<h3 id="orge966061">It started with a dream.</h3>
-<div class="outline-text-3" id="text-orge966061">
+<div id="outline-container-orgheadline2" class="outline-3">
+<h3 id="orgheadline2">It started with a dream.</h3>
+<div class="outline-text-3" id="text-orgheadline2">
 <p>
 Many of our reports are essentially an SQL query, which we have to embed in some kind of program, which could be SQL*Plus, Oracle Reports, a web application, PL/SQL web pages, or other complicated tools).  What if we could just drop that query into a container that will do the work of getting the parameters and formatting the output?  Or, if the report is more complicated, how about a simple DSL that will let us specify the bare minimum of what we need?
 </p>
@@ -257,24 +172,24 @@ I  had the idea of storing the SQL in the database and serving them through SSB 
 </p>
 </div>
 </div>
-<div id="outline-container-orge036674" class="outline-3">
-<h3 id="orge036674">Making it happen</h3>
-<div class="outline-text-3" id="text-orge036674">
-</div><div id="outline-container-org02b4a3b" class="outline-4">
-<h4 id="org02b4a3b">Groovy gives us the power to make this dream a reality.</h4>
-<div class="outline-text-4" id="text-org02b4a3b">
+<div id="outline-container-orgheadline22" class="outline-3">
+<h3 id="orgheadline22">Making it happen</h3>
+<div class="outline-text-3" id="text-orgheadline22">
+</div><div id="outline-container-orgheadline3" class="outline-4">
+<h4 id="orgheadline3">Groovy gives us the power to make this dream a reality.</h4>
+<div class="outline-text-4" id="text-orgheadline3">
 <p>
 Groovy has features that make this idea practical.  Some of them are common to any programming language, and some of them are unique to Groovy.
 </p>
 </div>
 
-<ul class="org-ul"><li><a id="org9cc4d79"></a>What is Groovy?<br /><div class="outline-text-5" id="text-org9cc4d79">
+<ul class="org-ul"><li><a id="orgheadline4"></a>What is Groovy?<br  /><div class="outline-text-5" id="text-orgheadline4">
 <p>
 The Groovy programming language is a chopped, lowered, louvered, and flame-painted Java.  
 </p>
 </div></li>
 
-<li><a id="org9ef0c16"></a>Properties that Groovy shares with many programming environments<br /><div class="outline-text-5" id="text-org9ef0c16">
+<li><a id="orgheadline5"></a>Properties that Groovy shares with many programming environments<br  /><div class="outline-text-5" id="text-orgheadline5">
 <ul class="org-ul">
 <li>Dynamic SQL (PL/SQL can do it, but it is brittle and I usually regret using it.)</li>
 <li>Read and write from the file system</li>
@@ -282,7 +197,7 @@ The Groovy programming language is a chopped, lowered, louvered, and flame-paint
 <li>Runs on the Java Virtual Machine (which makes it easy to deploy applications through Tomcat and opens the door to a huge library that is easy to access through Maven repositories)</li>
 </ul>
 </div></li>
-<li><a id="org7e303bd"></a>Uniquely Groovy<br /><div class="outline-text-5" id="text-org7e303bd">
+<li><a id="orgheadline6"></a>Uniquely Groovy<br  /><div class="outline-text-5" id="text-orgheadline6">
 <ul class="org-ul">
 <li>Easy-to-use interface for SQL and XML</li>
 <li>Closures and functional programming</li>
@@ -292,40 +207,40 @@ The Groovy programming language is a chopped, lowered, louvered, and flame-paint
 </ul>
 </div></li></ul>
 </div>
-<div id="outline-container-org1102680" class="outline-4">
-<h4 id="org1102680">Jasper Reports</h4>
-<div class="outline-text-4" id="text-org1102680">
+<div id="outline-container-orgheadline7" class="outline-4">
+<h4 id="orgheadline7">Jasper Reports</h4>
+<div class="outline-text-4" id="text-orgheadline7">
 <p>
 We chose Jasper Reports as a replacement for Oracle Reports for a number of reasons.
 </p>
 </div>
 
-<ul class="org-ul"><li><a id="org3612695"></a>It can do the job.<br /></li>
-<li><a id="org4ee17f1"></a>It is a Java-based application<br /><div class="outline-text-5" id="text-org4ee17f1">
+<ul class="org-ul"><li><a id="orgheadline8"></a>It can do the job.<br  /></li>
+<li><a id="orgheadline9"></a>It is a Java-based application<br  /><div class="outline-text-5" id="text-orgheadline9">
 <p>
 The fact that we can integrate it into our Groovy programs means that we can deploy it within a Grails application or other structure.
 </p>
 </div></li>
-<li><a id="org5af23d0"></a>It uses XML source code<br /><div class="outline-text-5" id="text-org5af23d0">
+<li><a id="orgheadline10"></a>It uses XML source code<br  /><div class="outline-text-5" id="text-orgheadline10">
 <p>
 The source for our reports will be easy to edit, examine, and track with version control.
 </p>
 </div></li>
-<li><a id="org84f1381"></a>It gives our developers the freedom to create through a GUI or text tools.<br /><div class="outline-text-5" id="text-org84f1381">
+<li><a id="orgheadline11"></a>It gives our developers the freedom to create through a GUI or text tools.<br  /><div class="outline-text-5" id="text-orgheadline11">
 <p>
 It gives us the best of both worlds.
 </p>
 </div></li></ul>
 </div>
-<div id="outline-container-org76fcbb5" class="outline-4">
-<h4 id="org76fcbb5">Implementation</h4>
-<div class="outline-text-4" id="text-org76fcbb5">
-</div><ul class="org-ul"><li><a id="org376ac18"></a>General Principles<br /><ul class="org-ul"><li><a id="org6f82a19"></a>Open Source Tools<br /><div class="outline-text-6" id="text-org6f82a19">
+<div id="outline-container-orgheadline21" class="outline-4">
+<h4 id="orgheadline21">Implementation</h4>
+<div class="outline-text-4" id="text-orgheadline21">
+</div><ul class="org-ul"><li><a id="orgheadline15"></a>General Principles<br  /><ul class="org-ul"><li><a id="orgheadline12"></a>Open Source Tools<br  /><div class="outline-text-6" id="text-orgheadline12">
 <p>
 These tools require no licensing fees and are generally high quality and developer-friendly.
 </p>
 </div></li>
-<li><a id="org22af38a"></a>Plain text<br /><div class="outline-text-6" id="text-org22af38a">
+<li><a id="orgheadline13"></a>Plain text<br  /><div class="outline-text-6" id="text-orgheadline13">
 <p>
 Storing the source code for our reports in text files on the report server means that we can manipulate them with a host of standard tools.  For example, we can:
 </p>
@@ -335,49 +250,50 @@ Storing the source code for our reports in text files on the report server means
 <li>Use the editor of our choice to edit them</li>
 </ul>
 </div></li>
-<li><a id="org24b7173"></a>Environment Agnostic<br /><div class="outline-text-6" id="text-org24b7173">
+<li><a id="orgheadline14"></a>Environment Agnostic<br  /><div class="outline-text-6" id="text-orgheadline14">
 <p>
 The report knows nothing of the environment or front end that it will execute in.
 </p>
 </div></li></ul></li>
-<li><a id="org251f068"></a>Strategy<br /><ul class="org-ul"><li><a id="org6f713dc"></a>A POGO library which defines the DSL and executes the reports<br /></li>
-<li><a id="org6b0a689"></a>A Grails application that provides a user interface for the report library<br /></li>
-<li><a id="org8468baf"></a>Possibly other front ends in the future<br /></li>
-<li><a id="org031afb9"></a>Jasper Reports for fancy report delivery<br /></li></ul></li></ul>
+<li><a id="orgheadline20"></a>Strategy<br  /><ul class="org-ul"><li><a id="orgheadline16"></a>A POGO library which defines the DSL and executes the reports<br  /></li>
+<li><a id="orgheadline17"></a>A Grails application that provides a user interface for the report library<br  /></li>
+<li><a id="orgheadline18"></a>Possibly other front ends in the future<br  /></li>
+<li><a id="orgheadline19"></a>Jasper Reports for fancy report delivery<br  /></li></ul></li></ul>
 </div>
 </div>
 </div>
-<div id="outline-container-orga7acf3f" class="outline-2">
-<h2 id="orga7acf3f">Overview</h2>
+<div id="outline-container-orgheadline24" class="outline-2">
+<h2 id="orgheadline24">Overview</h2>
 </div>
-<div id="outline-container-orgad437ae" class="outline-2">
-<h2 id="orgad437ae">What do these reports look like?</h2>
-<div class="outline-text-2" id="text-orgad437ae">
+<div id="outline-container-orgheadline25" class="outline-2">
+<h2 id="orgheadline25">What do these reports look like?</h2>
+<div class="outline-text-2" id="text-orgheadline25">
 <p>
 Let's see what kind of reports are possible.
 </p>
 </div>
 
-<div id="outline-container-orgada1cef" class="outline-3">
-<h3 id="orgada1cef">SQL example</h3>
-<div class="outline-text-3" id="text-orgada1cef">
+<div id="outline-container-orgheadline26" class="outline-3">
+<h3 id="orgheadline26">SQL example</h3>
+<div class="outline-text-3" id="text-orgheadline26">
 <p>
 The simplest report we can define is an SQL statement.  
 </p>
 </div>
-<div id="outline-container-org6894243" class="outline-4">
-<h4 id="org6894243">sql/dd_referencing_objects.sql</h4>
-<div class="outline-text-4" id="text-org6894243">
+<div id="outline-container-orgheadline27" class="outline-4">
+<h4 id="orgheadline27">sql/dd_referencing_objects.sql</h4>
+<div class="outline-text-4" id="text-orgheadline27">
 <div class="org-src-container">
-<pre class="src src-sql"><span style="color: #00ff00;">/* List all objects that reference this one. */</span>
-<span style="color: #00ffff;">select</span> d.referenced_owner r_owner,
+
+<pre class="src src-sql">/* List all objects that reference this one. */
+select d.referenced_owner r_owner,
        d.referenced_name  r_name,
        d.referenced_type  r_type,
-       d.owner, d.<span style="color: #00ffff;">name</span>, d.<span style="color: #00ffff;">type</span>
-    <span style="color: #00ffff;">from</span> all_dependencies d
-    <span style="color: #00ffff;">where</span> d.referenced_name <span style="color: #00ffff;">like</span> <span style="color: #b0c4de;">upper</span>(:object_name)
-    <span style="color: #00ffff;">order</span> <span style="color: #00ffff;">by</span> referenced_owner, referenced_name,
-             referenced_type, <span style="color: #00ffff;">name</span>, <span style="color: #00ffff;">type</span>
+       d.owner, d.name, d.type
+    from all_dependencies d
+    where d.referenced_name like upper(:object_name)
+    order by referenced_owner, referenced_name,
+             referenced_type, name, type
 </pre>
 </div>
 
@@ -396,6 +312,7 @@ Let's enter <code>jcc_gbr_email</code>, the name of one of our packages, and loo
 </p>
 
 <div class="org-src-container">
+
 <pre class="src src-csv">R_OWNER,R_NAME,R_TYPE,OWNER,NAME,TYPE
 JCC,JCC_GBR_EMAIL,PACKAGE,JCC,JCC_GBR_EMAIL,PACKAGE BODY
 JCC,JCC_GBR_EMAIL,PACKAGE,PUBLIC,JCC_GBR_EMAIL,SYNONYM
@@ -404,9 +321,9 @@ JCC,JCC_GBR_EMAIL,PACKAGE,PUBLIC,JCC_GBR_EMAIL,SYNONYM
 </div>
 </div>
 </div>
-<div id="outline-container-orgb900d43" class="outline-3">
-<h3 id="orgb900d43">Simple Groovy SQL Example</h3>
-<div class="outline-text-3" id="text-orgb900d43">
+<div id="outline-container-orgheadline28" class="outline-3">
+<h3 id="orgheadline28">Simple Groovy SQL Example</h3>
+<div class="outline-text-3" id="text-orgheadline28">
 <p>
 Our second example shows a simple case of the Groovy-based DSL.  
 </p>
@@ -415,9 +332,10 @@ Our second example shows a simple case of the Groovy-based DSL.
 First, we tell the builder that we are creating a report, with a title, "List User Tables."
 </p>
 <div class="org-src-container">
-<pre class="src src-groovy">report(title: <span style="color: #ffa07a;">'List User Tables'</span>) {
-  <span style="color: #00ff00;">// </span><span style="color: #00ff00;">Parameters, data generators and other</span>
-  <span style="color: #00ff00;">//  </span><span style="color: #00ff00;">interesting things will go here.</span>
+
+<pre class="src src-groovy">report(title: 'List User Tables') {
+  // Parameters, data generators and other
+  //  interesting things will go here.
 }
 </pre>
 </div>
@@ -428,16 +346,17 @@ Next we define a parameter named "owner" with a list of values defined by an SQL
 </p>
 
 <div class="org-src-container">
-<pre class="src src-groovy"><span style="color: #00ff00;">// </span><span style="color: #00ff00;">Create a parameter for the owner of the table</span>
-param(name: <span style="color: #ffa07a;">'owner'</span>, label: <span style="color: #ffa07a;">'Owner'</span>) {
 
-  <span style="color: #00ff00;">// </span><span style="color: #00ff00;">Add a list of values that excludes Oracle schemas and</span>
-  <span style="color: #00ff00;">//     </span><span style="color: #00ff00;">schemas that don't own any tables</span>
-  list_of_values <span style="color: #98fb98;">query</span>: <span style="color: #ffa07a;">"""select username </span>
-<span style="color: #ffa07a;">                               from all_users </span>
-<span style="color: #ffa07a;">                               where oracle_maintained = 'N'</span>
-<span style="color: #ffa07a;">                           intersect</span>
-<span style="color: #ffa07a;">                           select owner from all_tables"""</span>
+<pre class="src src-groovy">// Create a parameter for the owner of the table
+param(name: 'owner', label: 'Owner') {
+
+  // Add a list of values that excludes Oracle schemas and
+  //     schemas that don't own any tables
+  list_of_values query: """select username 
+                               from all_users 
+                               where oracle_maintained = 'N'
+                           intersect
+                           select owner from all_tables"""
 }
 </pre>
 </div>
@@ -447,11 +366,12 @@ Then we add a second parameter.
 </p>
 
 <div class="org-src-container">
-<pre class="src src-groovy"><span style="color: #00ff00;">// </span><span style="color: #00ff00;">A second parameter for the table name.  Make it default to '%'</span>
-param(name: <span style="color: #ffa07a;">'table_name'</span>,
-      label: <span style="color: #ffa07a;">'Table Name'</span>,
-      description: <span style="color: #ffa07a;">'List tables matching this value, with Oracle wildcards.'</span>,
-      <span style="color: #ffa07a;">'default'</span>: <span style="color: #ffa07a;">'%'</span>)
+
+<pre class="src src-groovy">// A second parameter for the table name.  Make it default to '%'
+param(name: 'table_name',
+      label: 'Table Name',
+      description: 'List tables matching this value, with Oracle wildcards.',
+      'default': '%')
 </pre>
 </div>
 
@@ -460,14 +380,15 @@ And, finally, Add a query which references these parameters.
 </p>
 
 <div class="org-src-container">
-<pre class="src src-groovy"><span style="color: #00ff00;">// </span><span style="color: #00ff00;">Get the data from an SQL query.  This references the parameters with</span>
-<span style="color: #00ff00;">//    </span><span style="color: #00ff00;">a colon.</span>
-sql <span style="color: #98fb98;">query</span>: <span style="color: #ffa07a;">"""select table_name, comments</span>
-<span style="color: #ffa07a;">                  from all_tab_comments</span>
-<span style="color: #ffa07a;">                  where owner = :owner </span>
-<span style="color: #ffa07a;">                    and table_name like upper(nvl(:table_name,'%'))</span>
-<span style="color: #ffa07a;">                    and comments is not null</span>
-<span style="color: #ffa07a;">              order by table_name"""</span>
+
+<pre class="src src-groovy">// Get the data from an SQL query.  This references the parameters with
+//    a colon.
+sql query: """select table_name, comments
+                  from all_tab_comments
+                  where owner = :owner 
+                    and table_name like upper(nvl(:table_name,'%'))
+                    and comments is not null
+              order by table_name"""
 </pre>
 </div>
 
@@ -476,35 +397,36 @@ When we put this all together, we get this script.
 </p>
 
 <div class="org-src-container">
-<pre class="src src-groovy"><span style="color: #00ff00;">/** </span><span style="color: #00ff00;">A report that lists the tables belonging to a particular schema */</span>
-report(title: <span style="color: #ffa07a;">'List User Tables'</span>) {
 
-  <span style="color: #00ff00;">// </span><span style="color: #00ff00;">Create a parameter for the owner of the table</span>
-  param(name: <span style="color: #ffa07a;">'owner'</span>, label: <span style="color: #ffa07a;">'Owner'</span>) {
+<pre class="src src-groovy">/** A report that lists the tables belonging to a particular schema */
+report(title: 'List User Tables') {
 
-    <span style="color: #00ff00;">// </span><span style="color: #00ff00;">Add a list of values that excludes Oracle schemas and</span>
-    <span style="color: #00ff00;">//     </span><span style="color: #00ff00;">schemas that don't own any tables</span>
-    list_of_values <span style="color: #98fb98;">query</span>: <span style="color: #ffa07a;">"""select username </span>
-<span style="color: #ffa07a;">                                 from all_users </span>
-<span style="color: #ffa07a;">                                 where oracle_maintained = 'N'</span>
-<span style="color: #ffa07a;">                             intersect</span>
-<span style="color: #ffa07a;">                             select owner from all_tables"""</span>
+  // Create a parameter for the owner of the table
+  param(name: 'owner', label: 'Owner') {
+
+    // Add a list of values that excludes Oracle schemas and
+    //     schemas that don't own any tables
+    list_of_values query: """select username 
+                                 from all_users 
+                                 where oracle_maintained = 'N'
+                             intersect
+                             select owner from all_tables"""
   }
 
-  <span style="color: #00ff00;">// </span><span style="color: #00ff00;">A second parameter for the table name.  Make it default to '%'</span>
-  param(name: <span style="color: #ffa07a;">'table_name'</span>,
-        label: <span style="color: #ffa07a;">'Table Name'</span>,
-        description: <span style="color: #ffa07a;">'List tables matching this value, with Oracle wildcards.'</span>,
-        <span style="color: #ffa07a;">'default'</span>: <span style="color: #ffa07a;">'%'</span>)
+  // A second parameter for the table name.  Make it default to '%'
+  param(name: 'table_name',
+        label: 'Table Name',
+        description: 'List tables matching this value, with Oracle wildcards.',
+        'default': '%')
 
-  <span style="color: #00ff00;">// </span><span style="color: #00ff00;">Get the data from an SQL query.  This references the parameters with</span>
-  <span style="color: #00ff00;">//    </span><span style="color: #00ff00;">a colon.</span>
-  sql query: <span style="color: #ffa07a;">"""select table_name, comments</span>
-<span style="color: #ffa07a;">                    from all_tab_comments</span>
-<span style="color: #ffa07a;">                    where owner = :owner </span>
-<span style="color: #ffa07a;">                      and table_name like upper(nvl(:table_name,'%'))</span>
-<span style="color: #ffa07a;">                      and comments is not null</span>
-<span style="color: #ffa07a;">                order by table_name"""</span>
+  // Get the data from an SQL query.  This references the parameters with
+  //    a colon.
+  sql query: """select table_name, comments
+                    from all_tab_comments
+                    where owner = :owner 
+                      and table_name like upper(nvl(:table_name,'%'))
+                      and comments is not null
+                order by table_name"""
 }
 </pre>
 </div>
@@ -549,9 +471,9 @@ Running the script gives us the following result.
 </div>
 
 
-<div id="outline-container-org3bd93f2" class="outline-3">
-<h3 id="org3bd93f2">Groovy Dynamic SQL Example</h3>
-<div class="outline-text-3" id="text-org3bd93f2">
+<div id="outline-container-orgheadline29" class="outline-3">
+<h3 id="orgheadline29">Groovy Dynamic SQL Example</h3>
+<div class="outline-text-3" id="text-orgheadline29">
 <p>
 Sometimes our situation is less favorable, and we feel the need to customize the SQL before we execute it.  For instance, we might want to have a different where clause when the user enters certain search criteria.
 </p>
@@ -629,62 +551,64 @@ And we will create a dynamic SQL report that prints a summary of the grades.
 </p>
 
 <div class="org-src-container">
-<pre class="src src-groovy">report(title: <span style="color: #ffa07a;">"Grade Totals"</span>) {
-  param(name: <span style="color: #ffa07a;">'mid_or_final'</span>,
-        label: <span style="color: #ffa07a;">"Show Midterm or Final Grade?"</span>,
-        <span style="color: #ffa07a;">'default'</span>: <span style="color: #ffa07a;">'F'</span>) {
-    list_of_values <span style="color: #98fb98;">values</span>: [[<span style="color: #ffa07a;">'F'</span>, <span style="color: #ffa07a;">'Final'</span>],
-                            [<span style="color: #ffa07a;">'M'</span>, <span style="color: #ffa07a;">'Midterm'</span>]]
+
+<pre class="src src-groovy">report(title: "Grade Totals") {
+  param(name: 'mid_or_final',
+        label: "Show Midterm or Final Grade?",
+        'default': 'F') {
+    list_of_values values: [['F', 'Final'],
+                            ['M', 'Midterm']]
   }
 
-  param(name: <span style="color: #ffa07a;">'grade'</span>,
-        label: <span style="color: #ffa07a;">'What grade do we report on?'</span>,
-        <span style="color: #ffa07a;">'default'</span>: <span style="color: #ffa07a;">'F'</span>) {
-    list_of_values <span style="color: #98fb98;">values</span>: (<span style="color: #ffa07a;">'A'</span>..<span style="color: #ffa07a;">'F'</span>).collect{[it, it]}
+  param(name: 'grade',
+        label: 'What grade do we report on?',
+        'default': 'F') {
+    list_of_values values: ('A'..'F').collect{[it, it]}
   }
 
-  <span style="color: #00ff00;">// </span><span style="color: #00ff00;">The data source for this report is a dynamic SQL query.</span>
-  <span style="color: #00ff00;">//     </span><span style="color: #00ff00;">The dynamic_sql method takes a closure as an argument.</span>
-  <span style="color: #00ff00;">//     </span><span style="color: #00ff00;">This one will use the value of the mid_or_final parameter</span>
-  <span style="color: #00ff00;">//     </span><span style="color: #00ff00;">to choose which grade column to report on, and it will</span>
-  <span style="color: #00ff00;">//     </span><span style="color: #00ff00;">also use the grade parameter to set one of the column names.</span>
-  dynamic_sql <span style="color: #98fb98;">sql_closure</span>: {
+  // The data source for this report is a dynamic SQL query.
+  //     The dynamic_sql method takes a closure as an argument.
+  //     This one will use the value of the mid_or_final parameter
+  //     to choose which grade column to report on, and it will
+  //     also use the grade parameter to set one of the column names.
+  dynamic_sql sql_closure: {
     params -&gt;
 
-      <span style="color: #00ff00;">// </span><span style="color: #00ff00;">Get the parameters from the closure arguments.</span>
+      // Get the parameters from the closure arguments.
       String mid_or_final = params.mid_or_final;
-      <span style="color: #98fb98;">String</span> <span style="color: #eedd82;">grade</span> = (<span style="color: #ffa07a;">'A'</span>..<span style="color: #ffa07a;">'F'</span>).contains(params.grade)?params.grade:<span style="color: #ffa07a;">'F'</span>;
+      String grade = ('A'..'F').contains(params.grade)?params.grade:'F';
 
-      <span style="color: #00ff00;">// </span><span style="color: #00ff00;">Set the grade column </span>
-      <span style="color: #98fb98;">String</span> <span style="color: #eedd82;">grade_column</span> = (mid_or_final == <span style="color: #ffa07a;">'M'</span>)?<span style="color: #ffa07a;">'mid_grade'</span>:<span style="color: #ffa07a;">'final_grade'</span>
+      // Set the grade column 
+      String grade_column = (mid_or_final == 'M')?'mid_grade':'final_grade'
 
-      <span style="color: #00ff00;">// </span><span style="color: #00ff00;">Return an SQL query.</span>
-      <span style="color: #ffa07a;">"""</span>
-<span style="color: #ffa07a;">       select semester,</span>
-<span style="color: #ffa07a;">              count(${grade_column}) as ${grade_column},</span>
-<span style="color: #ffa07a;">              sum(decode(${grade_column}, :grade, 1, 0)</span>
-<span style="color: #ffa07a;">                 ) ${grade}_grades</span>
-<span style="color: #ffa07a;">           from summit_grades</span>
-<span style="color: #ffa07a;">           group by semester</span>
-<span style="color: #ffa07a;">           order by semester</span>
-<span style="color: #ffa07a;">      """</span>
+      // Return an SQL query.
+      """
+       select semester,
+              count(${grade_column}) as ${grade_column},
+              sum(decode(${grade_column}, :grade, 1, 0)
+                 ) ${grade}_grades
+           from summit_grades
+           group by semester
+           order by semester
+      """
   }
 }
 </pre>
 </div>
 
 <p>
-When you run the report with <code>:mid_or_final = 'M'</code> and <code>:grade = 'F'</code>, the closure returns the following SQL query.
+When you run the report with ~:mid_or_final = 'M'~ and ~:grade = 'F'~, the closure returns the following SQL query.
 </p>
 
 <div class="org-src-container">
-<pre class="src src-sql"><span style="color: #00ffff;">select</span> semester,
-       <span style="color: #b0c4de;">count</span>(mid_grade) <span style="color: #00ffff;">as</span> mid_grade,
-       <span style="color: #b0c4de;">sum</span>(decode(mid_grade, :grade, 1, 0)
+
+<pre class="src src-sql">select semester,
+       count(mid_grade) as mid_grade,
+       sum(decode(mid_grade, :grade, 1, 0)
           ) F_grades
-    <span style="color: #00ffff;">from</span> summit_grades
-    <span style="color: #00ffff;">group</span> <span style="color: #00ffff;">by</span> semester
-    <span style="color: #00ffff;">order</span> <span style="color: #00ffff;">by</span> semester
+    from summit_grades
+    group by semester
+    order by semester
 </pre>
 </div>
 
@@ -732,9 +656,10 @@ We see the following results.
 </div>
 </div>
 
-<div id="outline-container-org54e71d1" class="outline-3">
-<h3 id="org54e71d1">Groovy Closure Example</h3>
-<div class="outline-text-3" id="text-org54e71d1">
+
+<div id="outline-container-orgheadline30" class="outline-3">
+<h3 id="orgheadline30">Groovy Closure Example</h3>
+<div class="outline-text-3" id="text-orgheadline30">
 <p>
 Let's look at an example that would be very hard to do in most reporting tools.
 </p>
@@ -773,36 +698,37 @@ This table holds two SQL select statements, one of them valid and the other prob
 </p>
 
 <div class="org-src-container">
-<pre class="src src-groovy"><span style="color: #00ff00;">/** </span><span style="color: #00ff00;">A second closure query example */</span>
-report(title: <span style="color: #ffa07a;">"Invalid Summit Queries"</span>) {
 
-  <span style="color: #00ff00;">// </span><span style="color: #00ff00;">Specify a closure to return the report data.</span>
-  data_generator <span style="color: #98fb98;">closure</span>: {
-    <span style="color: #00ff00;">// </span><span style="color: #00ff00;">We have to define the columns explicitly </span>
-    column(name: <span style="color: #ffa07a;">'id'</span>, label: <span style="color: #ffa07a;">"ID"</span>);
-    column(name: <span style="color: #ffa07a;">'sql_query'</span>, label: <span style="color: #ffa07a;">"SQL Query"</span>);
-    column(name: <span style="color: #ffa07a;">'error'</span>, label: <span style="color: #ffa07a;">"Error"</span>);
+<pre class="src src-groovy">/** A second closure query example */
+report(title: "Invalid Summit Queries") {
 
-    <span style="color: #00ff00;">// </span><span style="color: #00ff00;">"sql" is a pre-defined groovy.sql.SQL object</span>
-    <span style="color: #00ffff;">def</span> <span style="color: #eedd82;">queries</span> = sql.rows(<span style="color: #ffa07a;">"select * from summit_sql order by id"</span>);
-    <span style="color: #00ff00;">// </span><span style="color: #00ff00;">Loop through all the rows in the table and test each query</span>
+  // Specify a closure to return the report data.
+  data_generator closure: {
+    // We have to define the columns explicitly 
+    column(name: 'id', label: "ID");
+    column(name: 'sql_query', label: "SQL Query");
+    column(name: 'error', label: "Error");
+
+    // "sql" is a pre-defined groovy.sql.SQL object
+    def queries = sql.rows("select * from summit_sql order by id");
+    // Loop through all the rows in the table and test each query
     queries.each {
       q -&gt;
         query_row = [id: q.id,
                      sql_query: q.sql_query,
-                     error: <span style="color: #ffa07a;">''</span>];
-        <span style="color: #00ff00;">// </span><span style="color: #00ff00;">Test the query from the table by invoking explain_plan.  If</span>
-        <span style="color: #00ff00;">//     </span><span style="color: #00ff00;">the query fails to compile, it will throw a SQLException.</span>
-        <span style="color: #00ffff;">try</span> {
-          <span style="color: #00ff00;">// </span><span style="color: #00ff00;">Beware of Groovy's GString </span>
-          <span style="color: #98fb98;">String</span> <span style="color: #eedd82;">explainQuery</span> = <span style="color: #ffa07a;">"explain plan for ${q.sql_query}"</span>
+                     error: ''];
+        // Test the query from the table by invoking explain_plan.  If
+        //     the query fails to compile, it will throw a SQLException.
+        try {
+          // Beware of Groovy's GString 
+          String explainQuery = "explain plan for ${q.sql_query}"
           sql.execute(explainQuery);
-        } <span style="color: #00ffff;">catch</span> (<span style="color: #7fffd4;">java</span>.<span style="color: #7fffd4;">sql</span>.<span style="color: #98fb98;">SQLException</span> <span style="color: #eedd82;">e</span>) {
+        } catch (java.sql.SQLException e) {
           query_row.error = e.getMessage();
         }
-        <span style="color: #00ffff;">if</span> (query_row.error?.size()) {
-          <span style="color: #00ff00;">// </span><span style="color: #00ff00;">"row" is a predefined method that add a row</span>
-          <span style="color: #00ff00;">//     </span><span style="color: #00ff00;">to the result set.</span>
+        if (query_row.error?.size()) {
+          // "row" is a predefined method that add a row
+          //     to the result set.
           row(query_row);
         }
     }
@@ -840,44 +766,45 @@ report(title: <span style="color: #ffa07a;">"Invalid Summit Queries"</span>) {
 </div>
 </div>
 
-<div id="outline-container-org80c9a67" class="outline-2">
-<h2 id="org80c9a67">Implementation</h2>
-<div class="outline-text-2" id="text-org80c9a67">
-</div><div id="outline-container-org35f1a91" class="outline-3">
-<h3 id="org35f1a91">Groovy Closures and Delegation</h3>
-<div class="outline-text-3" id="text-org35f1a91">
-</div><div id="outline-container-orgb9b5daa" class="outline-4">
-<h4 id="orgb9b5daa">Closures are functions that can be referenced like other variables.</h4>
+<div id="outline-container-orgheadline45" class="outline-2">
+<h2 id="orgheadline45">Implementation</h2>
+<div class="outline-text-2" id="text-orgheadline45">
+</div><div id="outline-container-orgheadline33" class="outline-3">
+<h3 id="orgheadline33">Groovy Closures and Delegation</h3>
+<div class="outline-text-3" id="text-orgheadline33">
+</div><div id="outline-container-orgheadline31" class="outline-4">
+<h4 id="orgheadline31">Closures are functions that can be referenced like other variables.</h4>
 </div>
-<div id="outline-container-orgd3ebf96" class="outline-4">
-<h4 id="orgd3ebf96">The delegate provides methods and properties that the closure references but does not include.</h4>
+<div id="outline-container-orgheadline32" class="outline-4">
+<h4 id="orgheadline32">The delegate provides methods and properties that the closure references but does not include.</h4>
 </div>
 </div>
-<div id="outline-container-orgcf6ee22" class="outline-3">
-<h3 id="orgcf6ee22">Groovy Builders</h3>
-<div class="outline-text-3" id="text-orgcf6ee22">
-</div><div id="outline-container-org3541bf1" class="outline-4">
-<h4 id="org3541bf1">Instance of groovy.util.BuilderSupport</h4>
+<div id="outline-container-orgheadline37" class="outline-3">
+<h3 id="orgheadline37">Groovy Builders</h3>
+<div class="outline-text-3" id="text-orgheadline37">
+</div><div id="outline-container-orgheadline34" class="outline-4">
+<h4 id="orgheadline34">Instance of groovy.util.BuilderSupport</h4>
 </div>
-<div id="outline-container-orgeeca6bc" class="outline-4">
-<h4 id="orgeeca6bc">Keep track of the tree structure that is implicit within Groovy source code</h4>
-<div class="outline-text-4" id="text-orgeeca6bc">
+<div id="outline-container-orgheadline35" class="outline-4">
+<h4 id="orgheadline35">Keep track of the tree structure that is implicit within Groovy source code</h4>
+<div class="outline-text-4" id="text-orgheadline35">
 <div class="org-src-container">
-<pre class="src src-groovy">report(title: <span style="color: #ffa07a;">"Sample report"</span>) {
-   <span style="color: #00ff00;">// </span><span style="color: #00ff00;">When this closure executes, the parent node will be the object created</span>
-   <span style="color: #00ff00;">// </span><span style="color: #00ff00;">by the report method.</span>
-   param(name: <span style="color: #ffa07a;">"sample_parameter"</span>) {
-       <span style="color: #00ff00;">// </span><span style="color: #00ff00;">When this closure is executed, the parent node will be the parameter</span>
-       <span style="color: #00ff00;">// </span><span style="color: #00ff00;">created by the param method.</span>
+
+<pre class="src src-groovy">report(title: "Sample report") {
+   // When this closure executes, the parent node will be the object created
+   // by the report method.
+   param(name: "sample_parameter") {
+       // When this closure is executed, the parent node will be the parameter
+       // created by the param method.
    }
 }
 </pre>
 </div>
 </div>
 </div>
-<div id="outline-container-org59501d2" class="outline-4">
-<h4 id="org59501d2">Require you to implement three methods</h4>
-<div class="outline-text-4" id="text-org59501d2">
+<div id="outline-container-orgheadline36" class="outline-4">
+<h4 id="orgheadline36">Require you to implement three methods</h4>
+<div class="outline-text-4" id="text-orgheadline36">
 <ul class="org-ul">
 <li>createNode</li>
 <li>addParent</li>
@@ -886,82 +813,84 @@ report(title: <span style="color: #ffa07a;">"Invalid Summit Queries"</span>) {
 </div>
 </div>
 </div>
-<div id="outline-container-org465efd8" class="outline-3">
-<h3 id="org465efd8">Jasper Reports</h3>
-<div class="outline-text-3" id="text-org465efd8">
-</div><div id="outline-container-org1399b59" class="outline-4">
-<h4 id="org1399b59">Source code is <code>.jrxml</code> which is an XML schema.</h4>
-<div class="outline-text-4" id="text-org1399b59">
-</div><ul class="org-ul"><li><a id="org6edfb9b"></a>parameters<br /></li>
-<li><a id="org7aa2f9d"></a>subreports<br /></li>
-<li><a id="orgcf623d0"></a>images<br /></li></ul>
+<div id="outline-container-orgheadline44" class="outline-3">
+<h3 id="orgheadline44">Jasper Reports</h3>
+<div class="outline-text-3" id="text-orgheadline44">
+</div><div id="outline-container-orgheadline41" class="outline-4">
+<h4 id="orgheadline41">Source code is <code>.jrxml</code> which is an XML schema.</h4>
+<div class="outline-text-4" id="text-orgheadline41">
+</div><ul class="org-ul"><li><a id="orgheadline38"></a>parameters<br  /></li>
+<li><a id="orgheadline39"></a>subreports<br  /></li>
+<li><a id="orgheadline40"></a>images<br  /></li></ul>
 </div>
-<div id="outline-container-org7f3cc9d" class="outline-4">
-<h4 id="org7f3cc9d">Look for a parameter form script</h4>
+<div id="outline-container-orgheadline42" class="outline-4">
+<h4 id="orgheadline42">Look for a parameter form script</h4>
 </div>
-<div id="outline-container-org2538789" class="outline-4">
-<h4 id="org2538789">Must compile the reports before running them</h4>
+<div id="outline-container-orgheadline43" class="outline-4">
+<h4 id="orgheadline43">Must compile the reports before running them</h4>
 </div>
 </div>
 </div>
-<div id="outline-container-orgb63f3b3" class="outline-2">
-<h2 id="orgb63f3b3">SimpleReportBuilder</h2>
-<div class="outline-text-2" id="text-orgb63f3b3">
+<div id="outline-container-orgheadline46" class="outline-2">
+<h2 id="orgheadline46">SimpleReportBuilder</h2>
+<div class="outline-text-2" id="text-orgheadline46">
 <p>
 This is the class that builds all of the objects in the system.
 </p>
 </div>
-<div id="outline-container-org1fe02e4" class="outline-3">
-<h3 id="org1fe02e4"><code>eval</code> function</h3>
-<div class="outline-text-3" id="text-org1fe02e4">
+<div id="outline-container-orgheadline47" class="outline-3">
+<h3 id="orgheadline47"><code>eval</code> function</h3>
+<div class="outline-text-3" id="text-orgheadline47">
 <p>
 Executes a build script and returns the object that was created.
 </p>
 <div class="org-src-container">
-<pre class="src src-groovy"><span style="color: #00ff00;">/** </span><span style="color: #00ff00;">Evaluate a report builder script and return the results */</span>
-<span style="color: #00ffff;">def</span> <span style="color: #87cefa;">eval</span>(<span style="color: #98fb98;">String</span> <span style="color: #eedd82;">text</span>) {
-  <span style="color: #00ffff;">def</span> <span style="color: #eedd82;">shell</span> = <span style="color: #00ffff;">new</span> <span style="color: #98fb98;">GroovyShell</span>()
-  <span style="color: #00ff00;">// </span><span style="color: #00ff00;">wrap the script in a closure before evaluating.</span>
-  <span style="color: #00ffff;">try</span> {
-    <span style="color: #00ff00;">// </span><span style="color: #00ff00;">Wrap the text in a closure so that it doesn't execute</span>
-    <span style="color: #00ff00;">//   </span><span style="color: #00ff00;">immediately.  This gives us the chance to change</span>
-    <span style="color: #00ff00;">//   </span><span style="color: #00ff00;">its delegate.</span>
-    <span style="color: #98fb98;">Closure</span> <span style="color: #eedd82;">c</span> = shell.evaluate(<span style="color: #ffa07a;">"{-&gt;$text}"</span>)
-    c.setDelegate(<span style="color: #00ffff;">this</span>)
-    <span style="color: #00ff00;">// </span><span style="color: #00ff00;">Execute the build script and add the</span>
-    <span style="color: #00ff00;">// </span><span style="color: #00ff00;">source code to the object created.</span>
-    <span style="color: #00ffff;">def</span> b = c()
-    <span style="color: #00ffff;">if</span> (b <span style="color: #00ffff;">instanceof</span> Buildable) {
+
+<pre class="src src-groovy">/** Evaluate a report builder script and return the results */
+def eval(String text) {
+  def shell = new GroovyShell()
+  // wrap the script in a closure before evaluating.
+  try {
+    // Wrap the text in a closure so that it doesn't execute
+    //   immediately.  This gives us the chance to change
+    //   its delegate.
+    Closure c = shell.evaluate("{-&gt;$text}")
+    c.setDelegate(this)
+    // Execute the build script and add the
+    // source code to the object created.
+    def b = c()
+    if (b instanceof Buildable) {
       b.source = text
     }
-    <span style="color: #00ffff;">return</span> b;
-  } <span style="color: #00ffff;">catch</span> (<span style="color: #98fb98;">BuildException</span> <span style="color: #eedd82;">e</span>) {
+    return b;
+  } catch (BuildException e) {
     e.source = text;
-    <span style="color: #00ffff;">throw</span> e
+    throw e
   }
 }
 </pre>
 </div>
 </div>
 </div>
-<div id="outline-container-orgcfdc95b" class="outline-3">
-<h3 id="orgcfdc95b">createNode</h3>
-<div class="outline-text-3" id="text-orgcfdc95b">
+<div id="outline-container-orgheadline48" class="outline-3">
+<h3 id="orgheadline48">createNode</h3>
+<div class="outline-text-3" id="text-orgheadline48">
 <p>
 The logic of node creation is handled by an associative array of closures.
 </p>
 <div class="org-src-container">
-<pre class="src src-groovy"><span style="color: #98fb98;">Object</span> <span style="color: #87cefa;">createNode</span>(<span style="color: #98fb98;">Object</span> <span style="color: #eedd82;">name</span>, <span style="color: #98fb98;">Map</span> <span style="color: #eedd82;">attributes</span>, <span style="color: #98fb98;">Object</span> <span style="color: #eedd82;">value</span>) {
-  debug <span style="color: #ffa07a;">"createNode($name)"</span>
-  <span style="color: #00ffff;">if</span> (!nodeFactory[name]) {
-    <span style="color: #00ffff;">throw</span> <span style="color: #00ffff;">new</span> <span style="color: #98fb98;">BuildException</span>(<span style="color: #ffa07a;">"'$name' is not a valid build method.  Valid values are ["</span>
-                             + nodeFactory.keySet().join(<span style="color: #ffa07a;">', '</span>) + <span style="color: #ffa07a;">"]"</span>);
+
+<pre class="src src-groovy">Object createNode(Object name, Map attributes, Object value) {
+  debug "createNode($name)"
+  if (!nodeFactory[name]) {
+    throw new BuildException("'$name' is not a valid build method.  Valid values are ["
+                             + nodeFactory.keySet().join(', ') + "]");
   }
-  <span style="color: #98fb98;">assert</span> <span style="color: #eedd82;">name</span> <span style="color: #00ffff;">in</span> nodeFactory.keySet()
-  debug <span style="color: #ffa07a;">"After assert; call nodeFactory[$name]($name, $attributes, $value)}"</span>
-  <span style="color: #00ffff;">def</span> n = nodeFactory[name].create(name, attributes, value)
-  debug <span style="color: #ffa07a;">"createNode =&gt; $n"</span>
-  <span style="color: #00ffff;">return</span> n
+  assert name in nodeFactory.keySet()
+  debug "After assert; call nodeFactory[$name]($name, $attributes, $value)}"
+  def n = nodeFactory[name].create(name, attributes, value)
+  debug "createNode =&gt; $n"
+  return n
 }
 </pre>
 </div>
@@ -969,16 +898,17 @@ The logic of node creation is handled by an associative array of closures.
 The closures look like this.
 </p>
 <div class="org-src-container">
-<pre class="src src-groovy"><span style="color: #00ffff;">private</span> <span style="color: #98fb98;">nodeFactory</span> = [
+
+<pre class="src src-groovy">private nodeFactory = [
   report: [
     create: {
-      <span style="color: #98fb98;">String</span> <span style="color: #eedd82;">name</span>, <span style="color: #eedd82;">Map</span> attributes, <span style="color: #00ffff;">def</span> <span style="color: #eedd82;">value</span> -&gt;
-        <span style="color: #00ffff;">def</span> report = <span style="color: #00ffff;">new</span> <span style="color: #98fb98;">SimpleReport</span>(attributes)
+      String name, Map attributes, def value -&gt;
+        def report = new SimpleReport(attributes)
         assert report
-        <span style="color: #00ffff;">if</span> (value) {
+        if (value) {
           report.description = value
         }
-        <span style="color: #00ffff;">return</span> report
+        return report
     },
     implClass: SimpleReport,
   ],
@@ -986,30 +916,26 @@ The closures look like this.
 </div>
 </div>
 </div>
-<div id="outline-container-org8c476f3" class="outline-3">
-<h3 id="org8c476f3">setParent</h3>
-<div class="outline-text-3" id="text-org8c476f3">
+<div id="outline-container-orgheadline49" class="outline-3">
+<h3 id="orgheadline49">setParent</h3>
+<div class="outline-text-3" id="text-orgheadline49">
 <p>
 In this case, I have a two-dimensional array with keys of the parent class and child class.
 </p>
 <div class="org-src-container">
-<pre class="src src-groovy"><span style="color: #98fb98;">void</span> <span style="color: #87cefa;">setParent</span>(<span style="color: #98fb98;">Object</span> <span style="color: #eedd82;">parent</span>, <span style="color: #98fb98;">Object</span> <span style="color: #eedd82;">child</span>) {
-  debug <span style="color: #ffa07a;">"in setParent(${parent.getClass()}, ${child.getClass()})"</span>
-  debug <span style="color: #ffa07a;">"parent=$parent"</span>
-  <span style="color: #00ff00;">//</span><span style="color: #00ff00;">debug "parent.addChild = ${parent?.addChild}"</span>
-  <span style="color: #00ff00;">//</span><span style="color: #00ff00;">debug "parent.addChild.keySet()=${parent.addChild?.keySet()}"</span>
-  <span style="color: #00ff00;">//</span><span style="color: #00ff00;">assert  parent.addChild.keySet().contains(child.name)</span>
-  <span style="color: #00ffff;">def</span> parentClass = parent.getClass()
-  <span style="color: #00ffff;">def</span> farm = addChildFarm[parent.getClass()]
-  debug <span style="color: #ffa07a;">"farm=$farm"</span>
-  <span style="color: #00ffff;">if</span> (! farm[child.getClass()]) {
-    <span style="color: #00ffff;">def</span> <span style="color: #eedd82;">parentMethod</span> = classMethodNames[parentClass]
-    <span style="color: #00ffff;">def</span> childMethod = classMethodNames[child.getClass()]
-    <span style="color: #00ffff;">throw</span> <span style="color: #00ffff;">new</span> <span style="color: #98fb98;">BuildException</span>(<span style="color: #ffa07a;">"You cannot embed a $childMethod within a $parentMethod. "</span>
-             + <span style="color: #ffa07a;">"Valid options are: [${farm.keySet().collect { classMethodNames[it]}.join(',')}]"</span>)
+
+<pre class="src src-groovy">  //assert  parent.addChild.keySet().contains(child.name)
+  def parentClass = parent.getClass()
+  def farm = addChildFarm[parent.getClass()]
+  debug "farm=$farm"
+  if (! farm[child.getClass()]) {
+    def parentMethod = classMethodNames[parentClass]
+    def childMethod = classMethodNames[child.getClass()]
+    throw new BuildException("You cannot embed a $childMethod within a $parentMethod. "
+             + "Valid options are: [${farm.keySet().collect { classMethodNames[it]}.join(',')}]")
   }
-  <span style="color: #00ffff;">def</span> <span style="color: #eedd82;">z</span> = farm[child.getClass()](parent, child)
-  debug <span style="color: #ffa07a;">"z=$z"</span>
+  def z = farm[child.getClass()](parent, child)
+  debug "z=$z"
   z
 }
 </pre>
@@ -1018,14 +944,15 @@ In this case, I have a two-dimensional array with keys of the parent class and c
 Note that the keys in this case are surrounded by parentheses.  This prevents them from being interpreted as strings.
 </p>
 <div class="org-src-container">
-<pre class="src src-groovy"><span style="color: #00ff00;">/** </span><span style="color: #00ff00;">Each entry in this table is a closure that attaches the child to the </span>
-<span style="color: #00ff00;"> *  parent.  The keys for the map are a subset of the cross-product of the </span>
-<span style="color: #00ff00;"> *  classes that can go into a SimpleReport.</span>
-<span style="color: #00ff00;"> *</span>
-<span style="color: #00ff00;"> *  Note that the keys of the map are actual Java classes, not their names.</span>
-<span style="color: #00ff00;"> *  It is very important that they be wrapped in parentheses.</span>
-<span style="color: #00ff00;"> */</span>
-<span style="color: #00ffff;">def</span> <span style="color: #eedd82;">addChildFarm</span> = [
+
+<pre class="src src-groovy">/** Each entry in this table is a closure that attaches the child to the 
+ *  parent.  The keys for the map are a subset of the cross-product of the 
+ *  classes that can go into a SimpleReport.
+ *
+ *  Note that the keys of the map are actual Java classes, not their names.
+ *  It is very important that they be wrapped in parentheses.
+ */
+def addChildFarm = [
   (SimpleReport): [
     (Param): {
       parent, child -&gt;
