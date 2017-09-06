@@ -213,10 +213,27 @@ This table holds two SQL select statements, one of them valid and the other prob
 ** Groovy Builders
 *** Instance of groovy.util.BuilderSupport
 *** Keep track of the tree structure that is implicit within Groovy source code
+#+begin_src groovy
+report(title: "Sample report") {
+   // When this closure executes, the parent node will be the object created
+   // by the report method.
+   param(name: "sample_parameter") {
+       // When this closure is executed, the parent node will be the parameter
+       // created by the param method.
+   }
+}
+#+end_src
 *** Require you to implement three methods
 - createNode
 - addParent
-- exitNode
+- nodeCompleted
+** Jasper Reports
+*** Source code is ~.jrxml~ which is an XML schema.
+**** parameters
+**** subreports
+**** images
+*** Look for a parameter form script 
+*** Must compile the reports before running them
 * SimpleReportBuilder
 This is the class that builds all of the objects in the system.
 ** ~eval~ function
@@ -230,4 +247,3 @@ The logic of node creation is handled by an associative array of closures.
 In this case, I have a two-dimensional array with keys of the parent class and child class.
 #+include: "../../src/main/groovy/edu/sunyjcc/simple_report/SimpleReportBuilder.groovy" src groovy :lines "175-210"
 #+include: "../../src/main/groovy/edu/sunyjcc/simple_report/SimpleReportBuilder.groovy" src groovy :lines "288-302"
-* Jasper Reports
