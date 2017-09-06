@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2017-09-06 Wed 11:22 -->
+<!-- 2017-09-06 Wed 13:05 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Presentation - Drop-in Reporting with Groovy</title>
@@ -229,12 +229,12 @@ for the JavaScript code in this tag.
 <div id="content">
 <h1 class="title">Presentation - Drop-in Reporting with Groovy</h1>
 
-<div id="outline-container-org03a0eb6" class="outline-2">
-<h2 id="org03a0eb6">Introduction</h2>
-<div class="outline-text-2" id="text-org03a0eb6">
-</div><div id="outline-container-orgef5bf80" class="outline-3">
-<h3 id="orgef5bf80">This is a REAL solution to a real problem.</h3>
-<div class="outline-text-3" id="text-orgef5bf80">
+<div id="outline-container-org8eb7e5f" class="outline-2">
+<h2 id="org8eb7e5f">Introduction</h2>
+<div class="outline-text-2" id="text-org8eb7e5f">
+</div><div id="outline-container-orgcde5d6f" class="outline-3">
+<h3 id="orgcde5d6f">This is a REAL solution to a real problem.</h3>
+<div class="outline-text-3" id="text-orgcde5d6f">
 <p>
 We have over 600 Oracle Reports applications that need to be converted into a new and non-deprecated format.  These reports produce everything from CSV files to paychecks.  
 </p>
@@ -245,9 +245,9 @@ Oracle Reports isn't well suited to creating data files, so there had been an un
 </div>
 </div>
 
-<div id="outline-container-orge1e80a1" class="outline-3">
-<h3 id="orge1e80a1">It started with a dream.</h3>
-<div class="outline-text-3" id="text-orge1e80a1">
+<div id="outline-container-orge966061" class="outline-3">
+<h3 id="orge966061">It started with a dream.</h3>
+<div class="outline-text-3" id="text-orge966061">
 <p>
 Many of our reports are essentially an SQL query, which we have to embed in some kind of program, which could be SQL*Plus, Oracle Reports, a web application, PL/SQL web pages, or other complicated tools).  What if we could just drop that query into a container that will do the work of getting the parameters and formatting the output?  Or, if the report is more complicated, how about a simple DSL that will let us specify the bare minimum of what we need?
 </p>
@@ -257,24 +257,24 @@ I  had the idea of storing the SQL in the database and serving them through SSB 
 </p>
 </div>
 </div>
-<div id="outline-container-org39264e4" class="outline-3">
-<h3 id="org39264e4">Making it happen</h3>
-<div class="outline-text-3" id="text-org39264e4">
-</div><div id="outline-container-orgc9c7694" class="outline-4">
-<h4 id="orgc9c7694">Groovy gives us the power to make this dream a reality.</h4>
-<div class="outline-text-4" id="text-orgc9c7694">
+<div id="outline-container-orge036674" class="outline-3">
+<h3 id="orge036674">Making it happen</h3>
+<div class="outline-text-3" id="text-orge036674">
+</div><div id="outline-container-org02b4a3b" class="outline-4">
+<h4 id="org02b4a3b">Groovy gives us the power to make this dream a reality.</h4>
+<div class="outline-text-4" id="text-org02b4a3b">
 <p>
 Groovy has features that make this idea practical.  Some of them are common to any programming language, and some of them are unique to Groovy.
 </p>
 </div>
 
-<ul class="org-ul"><li><a id="org1831a57"></a>What is Groovy?<br /><div class="outline-text-5" id="text-org1831a57">
+<ul class="org-ul"><li><a id="org9cc4d79"></a>What is Groovy?<br /><div class="outline-text-5" id="text-org9cc4d79">
 <p>
 The Groovy programming language is a chopped, lowered, louvered, and flame-painted Java.  
 </p>
 </div></li>
 
-<li><a id="org6f470b3"></a>Properties that Groovy shares with many programming environments<br /><div class="outline-text-5" id="text-org6f470b3">
+<li><a id="org9ef0c16"></a>Properties that Groovy shares with many programming environments<br /><div class="outline-text-5" id="text-org9ef0c16">
 <ul class="org-ul">
 <li>Dynamic SQL (PL/SQL can do it, but it is brittle and I usually regret using it.)</li>
 <li>Read and write from the file system</li>
@@ -282,7 +282,7 @@ The Groovy programming language is a chopped, lowered, louvered, and flame-paint
 <li>Runs on the Java Virtual Machine (which makes it easy to deploy applications through Tomcat and opens the door to a huge library that is easy to access through Maven repositories)</li>
 </ul>
 </div></li>
-<li><a id="orgc91cd87"></a>Uniquely Groovy<br /><div class="outline-text-5" id="text-orgc91cd87">
+<li><a id="org7e303bd"></a>Uniquely Groovy<br /><div class="outline-text-5" id="text-org7e303bd">
 <ul class="org-ul">
 <li>Easy-to-use interface for SQL and XML</li>
 <li>Closures and functional programming</li>
@@ -292,40 +292,40 @@ The Groovy programming language is a chopped, lowered, louvered, and flame-paint
 </ul>
 </div></li></ul>
 </div>
-<div id="outline-container-org76ffc58" class="outline-4">
-<h4 id="org76ffc58">Jasper Reports</h4>
-<div class="outline-text-4" id="text-org76ffc58">
+<div id="outline-container-org1102680" class="outline-4">
+<h4 id="org1102680">Jasper Reports</h4>
+<div class="outline-text-4" id="text-org1102680">
 <p>
 We chose Jasper Reports as a replacement for Oracle Reports for a number of reasons.
 </p>
 </div>
 
-<ul class="org-ul"><li><a id="orgc008dd2"></a>It can do the job.<br /></li>
-<li><a id="orgaebbc44"></a>It is a Java-based application<br /><div class="outline-text-5" id="text-orgaebbc44">
+<ul class="org-ul"><li><a id="org3612695"></a>It can do the job.<br /></li>
+<li><a id="org4ee17f1"></a>It is a Java-based application<br /><div class="outline-text-5" id="text-org4ee17f1">
 <p>
 The fact that we can integrate it into our Groovy programs means that we can deploy it within a Grails application or other structure.
 </p>
 </div></li>
-<li><a id="org5b0f40f"></a>It uses XML source code<br /><div class="outline-text-5" id="text-org5b0f40f">
+<li><a id="org5af23d0"></a>It uses XML source code<br /><div class="outline-text-5" id="text-org5af23d0">
 <p>
 The source for our reports will be easy to edit, examine, and track with version control.
 </p>
 </div></li>
-<li><a id="org3aec507"></a>It gives our developers the freedom to create through a GUI or text tools.<br /><div class="outline-text-5" id="text-org3aec507">
+<li><a id="org84f1381"></a>It gives our developers the freedom to create through a GUI or text tools.<br /><div class="outline-text-5" id="text-org84f1381">
 <p>
 It gives us the best of both worlds.
 </p>
 </div></li></ul>
 </div>
-<div id="outline-container-orgdc14cad" class="outline-4">
-<h4 id="orgdc14cad">Implementation</h4>
-<div class="outline-text-4" id="text-orgdc14cad">
-</div><ul class="org-ul"><li><a id="org19ea759"></a>General Principles<br /><ul class="org-ul"><li><a id="org8ef1b73"></a>Open Source Tools<br /><div class="outline-text-6" id="text-org8ef1b73">
+<div id="outline-container-org76fcbb5" class="outline-4">
+<h4 id="org76fcbb5">Implementation</h4>
+<div class="outline-text-4" id="text-org76fcbb5">
+</div><ul class="org-ul"><li><a id="org376ac18"></a>General Principles<br /><ul class="org-ul"><li><a id="org6f82a19"></a>Open Source Tools<br /><div class="outline-text-6" id="text-org6f82a19">
 <p>
 These tools require no licensing fees and are generally high quality and developer-friendly.
 </p>
 </div></li>
-<li><a id="orgafce883"></a>Plain text<br /><div class="outline-text-6" id="text-orgafce883">
+<li><a id="org22af38a"></a>Plain text<br /><div class="outline-text-6" id="text-org22af38a">
 <p>
 Storing the source code for our reports in text files on the report server means that we can manipulate them with a host of standard tools.  For example, we can:
 </p>
@@ -335,39 +335,39 @@ Storing the source code for our reports in text files on the report server means
 <li>Use the editor of our choice to edit them</li>
 </ul>
 </div></li>
-<li><a id="org8de66df"></a>Environment Agnostic<br /><div class="outline-text-6" id="text-org8de66df">
+<li><a id="org24b7173"></a>Environment Agnostic<br /><div class="outline-text-6" id="text-org24b7173">
 <p>
 The report knows nothing of the environment or front end that it will execute in.
 </p>
 </div></li></ul></li>
-<li><a id="org837502d"></a>Strategy<br /><ul class="org-ul"><li><a id="org4b17341"></a>A POGO library which defines the DSL and executes the reports<br /></li>
-<li><a id="org9a679e1"></a>A Grails application that provides a user interface for the report library<br /></li>
-<li><a id="org669b896"></a>Possibly other front ends in the future<br /></li>
-<li><a id="org499e5e0"></a>Jasper Reports for fancy report delivery<br /></li></ul></li></ul>
+<li><a id="org251f068"></a>Strategy<br /><ul class="org-ul"><li><a id="org6f713dc"></a>A POGO library which defines the DSL and executes the reports<br /></li>
+<li><a id="org6b0a689"></a>A Grails application that provides a user interface for the report library<br /></li>
+<li><a id="org8468baf"></a>Possibly other front ends in the future<br /></li>
+<li><a id="org031afb9"></a>Jasper Reports for fancy report delivery<br /></li></ul></li></ul>
 </div>
 </div>
 </div>
-<div id="outline-container-org0a07e85" class="outline-2">
-<h2 id="org0a07e85">Overview</h2>
+<div id="outline-container-orga7acf3f" class="outline-2">
+<h2 id="orga7acf3f">Overview</h2>
 </div>
-<div id="outline-container-org44e4904" class="outline-2">
-<h2 id="org44e4904">What do these reports look like?</h2>
-<div class="outline-text-2" id="text-org44e4904">
+<div id="outline-container-orgad437ae" class="outline-2">
+<h2 id="orgad437ae">What do these reports look like?</h2>
+<div class="outline-text-2" id="text-orgad437ae">
 <p>
 Let's see what kind of reports are possible.
 </p>
 </div>
 
-<div id="outline-container-orgfad9016" class="outline-3">
-<h3 id="orgfad9016">SQL example</h3>
-<div class="outline-text-3" id="text-orgfad9016">
+<div id="outline-container-orgada1cef" class="outline-3">
+<h3 id="orgada1cef">SQL example</h3>
+<div class="outline-text-3" id="text-orgada1cef">
 <p>
 The simplest report we can define is an SQL statement.  
 </p>
 </div>
-<div id="outline-container-orgabd5cf3" class="outline-4">
-<h4 id="orgabd5cf3">sql/dd_referencing_objects.sql</h4>
-<div class="outline-text-4" id="text-orgabd5cf3">
+<div id="outline-container-org6894243" class="outline-4">
+<h4 id="org6894243">sql/dd_referencing_objects.sql</h4>
+<div class="outline-text-4" id="text-org6894243">
 <div class="org-src-container">
 <pre class="src src-sql"><span style="color: #00ff00;">/* List all objects that reference this one. */</span>
 <span style="color: #00ffff;">select</span> d.referenced_owner r_owner,
@@ -404,9 +404,9 @@ JCC,JCC_GBR_EMAIL,PACKAGE,PUBLIC,JCC_GBR_EMAIL,SYNONYM
 </div>
 </div>
 </div>
-<div id="outline-container-org9a86461" class="outline-3">
-<h3 id="org9a86461">Simple Groovy SQL Example</h3>
-<div class="outline-text-3" id="text-org9a86461">
+<div id="outline-container-orgb900d43" class="outline-3">
+<h3 id="orgb900d43">Simple Groovy SQL Example</h3>
+<div class="outline-text-3" id="text-orgb900d43">
 <p>
 Our second example shows a simple case of the Groovy-based DSL.  
 </p>
@@ -549,9 +549,9 @@ Running the script gives us the following result.
 </div>
 
 
-<div id="outline-container-org5fba861" class="outline-3">
-<h3 id="org5fba861">Groovy Dynamic SQL Example</h3>
-<div class="outline-text-3" id="text-org5fba861">
+<div id="outline-container-org3bd93f2" class="outline-3">
+<h3 id="org3bd93f2">Groovy Dynamic SQL Example</h3>
+<div class="outline-text-3" id="text-org3bd93f2">
 <p>
 Sometimes our situation is less favorable, and we feel the need to customize the SQL before we execute it.  For instance, we might want to have a different where clause when the user enters certain search criteria.
 </p>
@@ -732,9 +732,9 @@ We see the following results.
 </div>
 </div>
 
-<div id="outline-container-org9cf655a" class="outline-3">
-<h3 id="org9cf655a">Groovy Closure Example</h3>
-<div class="outline-text-3" id="text-org9cf655a">
+<div id="outline-container-org54e71d1" class="outline-3">
+<h3 id="org54e71d1">Groovy Closure Example</h3>
+<div class="outline-text-3" id="text-org54e71d1">
 <p>
 Let's look at an example that would be very hard to do in most reporting tools.
 </p>
@@ -840,28 +840,28 @@ report(title: <span style="color: #ffa07a;">"Invalid Summit Queries"</span>) {
 </div>
 </div>
 
-<div id="outline-container-org505e7df" class="outline-2">
-<h2 id="org505e7df">Implementation</h2>
-<div class="outline-text-2" id="text-org505e7df">
-</div><div id="outline-container-orgd9a531a" class="outline-3">
-<h3 id="orgd9a531a">Groovy Closures and Delegation</h3>
-<div class="outline-text-3" id="text-orgd9a531a">
-</div><div id="outline-container-org3a2bd5d" class="outline-4">
-<h4 id="org3a2bd5d">Closures are functions that can be referenced like other variables.</h4>
+<div id="outline-container-org80c9a67" class="outline-2">
+<h2 id="org80c9a67">Implementation</h2>
+<div class="outline-text-2" id="text-org80c9a67">
+</div><div id="outline-container-org35f1a91" class="outline-3">
+<h3 id="org35f1a91">Groovy Closures and Delegation</h3>
+<div class="outline-text-3" id="text-org35f1a91">
+</div><div id="outline-container-orgb9b5daa" class="outline-4">
+<h4 id="orgb9b5daa">Closures are functions that can be referenced like other variables.</h4>
 </div>
-<div id="outline-container-orgec19090" class="outline-4">
-<h4 id="orgec19090">The delegate provides methods and properties that the closure references but does not include.</h4>
+<div id="outline-container-orgd3ebf96" class="outline-4">
+<h4 id="orgd3ebf96">The delegate provides methods and properties that the closure references but does not include.</h4>
 </div>
 </div>
-<div id="outline-container-orgc2e84e1" class="outline-3">
-<h3 id="orgc2e84e1">Groovy Builders</h3>
-<div class="outline-text-3" id="text-orgc2e84e1">
-</div><div id="outline-container-org23ea090" class="outline-4">
-<h4 id="org23ea090">Instance of groovy.util.BuilderSupport</h4>
+<div id="outline-container-orgcf6ee22" class="outline-3">
+<h3 id="orgcf6ee22">Groovy Builders</h3>
+<div class="outline-text-3" id="text-orgcf6ee22">
+</div><div id="outline-container-org3541bf1" class="outline-4">
+<h4 id="org3541bf1">Instance of groovy.util.BuilderSupport</h4>
 </div>
-<div id="outline-container-orgd6ed6af" class="outline-4">
-<h4 id="orgd6ed6af">Keep track of the tree structure that is implicit within Groovy source code</h4>
-<div class="outline-text-4" id="text-orgd6ed6af">
+<div id="outline-container-orgeeca6bc" class="outline-4">
+<h4 id="orgeeca6bc">Keep track of the tree structure that is implicit within Groovy source code</h4>
+<div class="outline-text-4" id="text-orgeeca6bc">
 <div class="org-src-container">
 <pre class="src src-groovy">report(title: <span style="color: #ffa07a;">"Sample report"</span>) {
    <span style="color: #00ff00;">// </span><span style="color: #00ff00;">When this closure executes, the parent node will be the object created</span>
@@ -875,9 +875,9 @@ report(title: <span style="color: #ffa07a;">"Invalid Summit Queries"</span>) {
 </div>
 </div>
 </div>
-<div id="outline-container-orgba51be5" class="outline-4">
-<h4 id="orgba51be5">Require you to implement three methods</h4>
-<div class="outline-text-4" id="text-orgba51be5">
+<div id="outline-container-org59501d2" class="outline-4">
+<h4 id="org59501d2">Require you to implement three methods</h4>
+<div class="outline-text-4" id="text-org59501d2">
 <ul class="org-ul">
 <li>createNode</li>
 <li>addParent</li>
@@ -886,34 +886,34 @@ report(title: <span style="color: #ffa07a;">"Invalid Summit Queries"</span>) {
 </div>
 </div>
 </div>
-<div id="outline-container-orga9858a3" class="outline-3">
-<h3 id="orga9858a3">Jasper Reports</h3>
-<div class="outline-text-3" id="text-orga9858a3">
-</div><div id="outline-container-orgcc1245a" class="outline-4">
-<h4 id="orgcc1245a">Source code is <code>.jrxml</code> which is an XML schema.</h4>
-<div class="outline-text-4" id="text-orgcc1245a">
-</div><ul class="org-ul"><li><a id="orgf806e7d"></a>parameters<br /></li>
-<li><a id="orgd3884e5"></a>subreports<br /></li>
-<li><a id="org231236c"></a>images<br /></li></ul>
+<div id="outline-container-org465efd8" class="outline-3">
+<h3 id="org465efd8">Jasper Reports</h3>
+<div class="outline-text-3" id="text-org465efd8">
+</div><div id="outline-container-org1399b59" class="outline-4">
+<h4 id="org1399b59">Source code is <code>.jrxml</code> which is an XML schema.</h4>
+<div class="outline-text-4" id="text-org1399b59">
+</div><ul class="org-ul"><li><a id="org6edfb9b"></a>parameters<br /></li>
+<li><a id="org7aa2f9d"></a>subreports<br /></li>
+<li><a id="orgcf623d0"></a>images<br /></li></ul>
 </div>
-<div id="outline-container-orgc446113" class="outline-4">
-<h4 id="orgc446113">Look for a parameter form script</h4>
+<div id="outline-container-org7f3cc9d" class="outline-4">
+<h4 id="org7f3cc9d">Look for a parameter form script</h4>
 </div>
-<div id="outline-container-org1dbd6d8" class="outline-4">
-<h4 id="org1dbd6d8">Must compile the reports before running them</h4>
+<div id="outline-container-org2538789" class="outline-4">
+<h4 id="org2538789">Must compile the reports before running them</h4>
 </div>
 </div>
 </div>
-<div id="outline-container-org4bf0220" class="outline-2">
-<h2 id="org4bf0220">SimpleReportBuilder</h2>
-<div class="outline-text-2" id="text-org4bf0220">
+<div id="outline-container-orgb63f3b3" class="outline-2">
+<h2 id="orgb63f3b3">SimpleReportBuilder</h2>
+<div class="outline-text-2" id="text-orgb63f3b3">
 <p>
 This is the class that builds all of the objects in the system.
 </p>
 </div>
-<div id="outline-container-orgc8a5a4e" class="outline-3">
-<h3 id="orgc8a5a4e"><code>eval</code> function</h3>
-<div class="outline-text-3" id="text-orgc8a5a4e">
+<div id="outline-container-org1fe02e4" class="outline-3">
+<h3 id="org1fe02e4"><code>eval</code> function</h3>
+<div class="outline-text-3" id="text-org1fe02e4">
 <p>
 Executes a build script and returns the object that was created.
 </p>
@@ -944,11 +944,29 @@ Executes a build script and returns the object that was created.
 </div>
 </div>
 </div>
-<div id="outline-container-org732c314" class="outline-3">
-<h3 id="org732c314">createNode</h3>
-<div class="outline-text-3" id="text-org732c314">
+<div id="outline-container-orgcfdc95b" class="outline-3">
+<h3 id="orgcfdc95b">createNode</h3>
+<div class="outline-text-3" id="text-orgcfdc95b">
 <p>
 The logic of node creation is handled by an associative array of closures.
+</p>
+<div class="org-src-container">
+<pre class="src src-groovy"><span style="color: #98fb98;">Object</span> <span style="color: #87cefa;">createNode</span>(<span style="color: #98fb98;">Object</span> <span style="color: #eedd82;">name</span>, <span style="color: #98fb98;">Map</span> <span style="color: #eedd82;">attributes</span>, <span style="color: #98fb98;">Object</span> <span style="color: #eedd82;">value</span>) {
+  debug <span style="color: #ffa07a;">"createNode($name)"</span>
+  <span style="color: #00ffff;">if</span> (!nodeFactory[name]) {
+    <span style="color: #00ffff;">throw</span> <span style="color: #00ffff;">new</span> <span style="color: #98fb98;">BuildException</span>(<span style="color: #ffa07a;">"'$name' is not a valid build method.  Valid values are ["</span>
+                             + nodeFactory.keySet().join(<span style="color: #ffa07a;">', '</span>) + <span style="color: #ffa07a;">"]"</span>);
+  }
+  <span style="color: #98fb98;">assert</span> <span style="color: #eedd82;">name</span> <span style="color: #00ffff;">in</span> nodeFactory.keySet()
+  debug <span style="color: #ffa07a;">"After assert; call nodeFactory[$name]($name, $attributes, $value)}"</span>
+  <span style="color: #00ffff;">def</span> n = nodeFactory[name].create(name, attributes, value)
+  debug <span style="color: #ffa07a;">"createNode =&gt; $n"</span>
+  <span style="color: #00ffff;">return</span> n
+}
+</pre>
+</div>
+<p>
+The closures look like this.
 </p>
 <div class="org-src-container">
 <pre class="src src-groovy"><span style="color: #00ffff;">private</span> <span style="color: #98fb98;">nodeFactory</span> = [
@@ -966,28 +984,38 @@ The logic of node creation is handled by an associative array of closures.
   ],
 </pre>
 </div>
+</div>
+</div>
+<div id="outline-container-org8c476f3" class="outline-3">
+<h3 id="org8c476f3">setParent</h3>
+<div class="outline-text-3" id="text-org8c476f3">
+<p>
+In this case, I have a two-dimensional array with keys of the parent class and child class.
+</p>
 <div class="org-src-container">
-<pre class="src src-groovy"><span style="color: #98fb98;">Object</span> <span style="color: #87cefa;">createNode</span>(<span style="color: #98fb98;">Object</span> <span style="color: #eedd82;">name</span>, <span style="color: #98fb98;">Map</span> <span style="color: #eedd82;">attributes</span>, <span style="color: #98fb98;">Object</span> <span style="color: #eedd82;">value</span>) {
-  debug <span style="color: #ffa07a;">"createNode($name)"</span>
-  <span style="color: #00ffff;">if</span> (!nodeFactory[name]) {
-    <span style="color: #00ffff;">throw</span> <span style="color: #00ffff;">new</span> <span style="color: #98fb98;">BuildException</span>(<span style="color: #ffa07a;">"'$name' is not a valid build method.  Valid values are ["</span>
-                             + nodeFactory.keySet().join(<span style="color: #ffa07a;">', '</span>) + <span style="color: #ffa07a;">"]"</span>);
+<pre class="src src-groovy"><span style="color: #98fb98;">void</span> <span style="color: #87cefa;">setParent</span>(<span style="color: #98fb98;">Object</span> <span style="color: #eedd82;">parent</span>, <span style="color: #98fb98;">Object</span> <span style="color: #eedd82;">child</span>) {
+  debug <span style="color: #ffa07a;">"in setParent(${parent.getClass()}, ${child.getClass()})"</span>
+  debug <span style="color: #ffa07a;">"parent=$parent"</span>
+  <span style="color: #00ff00;">//</span><span style="color: #00ff00;">debug "parent.addChild = ${parent?.addChild}"</span>
+  <span style="color: #00ff00;">//</span><span style="color: #00ff00;">debug "parent.addChild.keySet()=${parent.addChild?.keySet()}"</span>
+  <span style="color: #00ff00;">//</span><span style="color: #00ff00;">assert  parent.addChild.keySet().contains(child.name)</span>
+  <span style="color: #00ffff;">def</span> parentClass = parent.getClass()
+  <span style="color: #00ffff;">def</span> farm = addChildFarm[parent.getClass()]
+  debug <span style="color: #ffa07a;">"farm=$farm"</span>
+  <span style="color: #00ffff;">if</span> (! farm[child.getClass()]) {
+    <span style="color: #00ffff;">def</span> <span style="color: #eedd82;">parentMethod</span> = classMethodNames[parentClass]
+    <span style="color: #00ffff;">def</span> childMethod = classMethodNames[child.getClass()]
+    <span style="color: #00ffff;">throw</span> <span style="color: #00ffff;">new</span> <span style="color: #98fb98;">BuildException</span>(<span style="color: #ffa07a;">"You cannot embed a $childMethod within a $parentMethod. "</span>
+             + <span style="color: #ffa07a;">"Valid options are: [${farm.keySet().collect { classMethodNames[it]}.join(',')}]"</span>)
   }
-  <span style="color: #98fb98;">assert</span> <span style="color: #eedd82;">name</span> <span style="color: #00ffff;">in</span> nodeFactory.keySet()
-  debug <span style="color: #ffa07a;">"After assert; call nodeFactory[$name]($name, $attributes, $value)}"</span>
-  <span style="color: #00ffff;">def</span> n = nodeFactory[name].create(name, attributes, value)
-  debug <span style="color: #ffa07a;">"createNode =&gt; $n"</span>
-  <span style="color: #00ffff;">return</span> n
+  <span style="color: #00ffff;">def</span> <span style="color: #eedd82;">z</span> = farm[child.getClass()](parent, child)
+  debug <span style="color: #ffa07a;">"z=$z"</span>
+  z
 }
 </pre>
 </div>
-</div>
-</div>
-<div id="outline-container-orge6a7643" class="outline-3">
-<h3 id="orge6a7643">setParent</h3>
-<div class="outline-text-3" id="text-orge6a7643">
 <p>
-In this case, I have a two-dimensional array with keys of the parent class and child class.
+Note that the keys in this case are surrounded by parentheses.  This prevents them from being interpreted as strings.
 </p>
 <div class="org-src-container">
 <pre class="src src-groovy"><span style="color: #00ff00;">/** </span><span style="color: #00ff00;">Each entry in this table is a closure that attaches the child to the </span>
@@ -1025,23 +1053,6 @@ In this case, I have a two-dimensional array with keys of the parent class and c
         parent.queryEngine = child
     },
   ],
-</pre>
-</div>
-<div class="org-src-container">
-<pre class="src src-groovy">  <span style="color: #00ff00;">//</span><span style="color: #00ff00;">assert  parent.addChild.keySet().contains(child.name)</span>
-  <span style="color: #00ffff;">def</span> <span style="color: #eedd82;">parentClass</span> = parent.getClass()
-  <span style="color: #00ffff;">def</span> farm = addChildFarm[parent.getClass()]
-  debug <span style="color: #ffa07a;">"farm=$farm"</span>
-  <span style="color: #00ffff;">if</span> (! farm[child.getClass()]) {
-    <span style="color: #00ffff;">def</span> <span style="color: #eedd82;">parentMethod</span> = classMethodNames[parentClass]
-    <span style="color: #00ffff;">def</span> childMethod = classMethodNames[child.getClass()]
-    <span style="color: #00ffff;">throw</span> <span style="color: #00ffff;">new</span> <span style="color: #98fb98;">BuildException</span>(<span style="color: #ffa07a;">"You cannot embed a $childMethod within a $parentMethod. "</span>
-             + <span style="color: #ffa07a;">"Valid options are: [${farm.keySet().collect { classMethodNames[it]}.join(',')}]"</span>)
-  }
-  <span style="color: #00ffff;">def</span> <span style="color: #eedd82;">z</span> = farm[child.getClass()](parent, child)
-  debug <span style="color: #ffa07a;">"z=$z"</span>
-  z
-}
 </pre>
 </div>
 </div>
