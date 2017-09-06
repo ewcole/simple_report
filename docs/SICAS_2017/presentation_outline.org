@@ -203,11 +203,31 @@ This table holds two SQL select statements, one of them valid and the other prob
 | id | sql_query                 | error                                   |
 |----+---------------------------+-----------------------------------------|
 |  2 | select sloozle from fleem | ORA-00942: table or view does not exist |
-  
+
 * Implementation                                                        :how:
 
 ** Groovy Closures and Delegation
-#+include: "../../src/main/groovy/edu/sunyjcc/simple_report/SimpleReportBuilder.groovy" src groovy :lines "317-335"
 
+*** Closures are functions that can be referenced like other variables.
+*** The delegate provides methods and properties that the closure references but does not include.
 ** Groovy Builders
-
+*** Instance of groovy.util.BuilderSupport
+*** Keep track of the tree structure that is implicit within Groovy source code
+*** Require you to implement three methods
+- createNode
+- addParent
+- exitNode
+* SimpleReportBuilder
+This is the class that builds all of the objects in the system.
+** ~eval~ function
+Executes a build script and returns the object that was created.
+#+include: "../../src/main/groovy/edu/sunyjcc/simple_report/SimpleReportBuilder.groovy" src groovy :lines "317-340"
+** createNode
+The logic of node creation is handled by an associative array of closures.
+#+include: "../../src/main/groovy/edu/sunyjcc/simple_report/SimpleReportBuilder.groovy" src groovy :lines "22-36"
+#+include: "../../src/main/groovy/edu/sunyjcc/simple_report/SimpleReportBuilder.groovy" src groovy :lines "256-268"
+** setParent
+In this case, I have a two-dimensional array with keys of the parent class and child class.
+#+include: "../../src/main/groovy/edu/sunyjcc/simple_report/SimpleReportBuilder.groovy" src groovy :lines "175-210"
+#+include: "../../src/main/groovy/edu/sunyjcc/simple_report/SimpleReportBuilder.groovy" src groovy :lines "288-302"
+* Jasper Reports

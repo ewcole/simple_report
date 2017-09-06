@@ -320,8 +320,13 @@ public class SimpleReportBuilder extends BuilderSupport {
     def shell = new GroovyShell()
     // wrap the script in a closure before evaluating.
     try {
+      // Wrap the text in a closure so that it doesn't execute
+      //   immediately.  This gives us the chance to change
+      //   its delegate.
       Closure c = shell.evaluate("{->$text}")
       c.setDelegate(this)
+      // Execute the build script and add the
+      // source code to the object created.
       def b = c()
       if (b instanceof Buildable) {
         b.source = text
