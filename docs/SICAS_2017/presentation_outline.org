@@ -22,7 +22,7 @@
 #+HTML_LINK_UP:
 #+HTML_MATHJAX:
 #+HTML_HEAD:
-#+HTML_HEAD_EXTRA:
+#+HTML_HEAD_EXTRA:<style type="text/css">.src{background-color: black;color:white;}</style>
 #+SUBTITLE:
 #+INFOJS_OPT:
 #+CREATOR: <a href="http://www.gnu.org/software/emacs/">Emacs</a> 24.5.1 (<a href="http://orgmode.org">Org</a> mode 9.0.5)
@@ -38,6 +38,10 @@ Oracle Reports isn't well suited to creating data files, so there had been an un
 Many of our reports are essentially an SQL query, which we have to embed in some kind of program, which could be SQL*Plus, Oracle Reports, a web application, PL/SQL web pages, or other complicated tools).  What if we could just drop that query into a container that will do the work of getting the parameters and formatting the output?  Or, if the report is more complicated, how about a simple DSL that will let us specify the bare minimum of what we need?
 
 I  had the idea of storing the SQL in the database and serving them through SSB (mod_plsql), but then Groovy and Grails came into my life.
+
+** Simple Example
+*report/summit_grade_list.groovy*
+#+include: "sample_reports/report/summit_grade_list.groovy" src groovy
 ** Making it happen                                                     :how:
 *** Groovy gives us the power to make this dream a reality.
 
@@ -90,11 +94,12 @@ It gives us the best of both worlds.
 Let's see what kind of reports are possible.
    
 ** SQL example                                                          :sql:
-The simplest report we can define is an SQL statement.  
-*** sql/dd_referencing_objects.sql
-#+include: "sample_reports/sql/dd_referencing_objects.sql" src sql
+The simplest report we can define is an SQL statement.  This one will list the tables that are available in Oracle's data dictionary.
+  
+*** sql/summit_dict_tables.sql
+#+include: "sample_reports/sql/summit_dict_tables.sql" src sql
 
-Note the bind variable in the query, ~:object_name~.  When we run the report, it displays a parameter form with that parameter.
+Note the bind variable in the query, ~:table_name~.  When we run the report, it displays a parameter form with that parameter.
 
 [[file:sql_example_params.png]]
 
