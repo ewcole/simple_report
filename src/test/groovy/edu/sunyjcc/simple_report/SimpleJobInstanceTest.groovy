@@ -140,8 +140,25 @@ public class SimpleJobInstanceTest extends GroovyTestCase {
     println "pv.export=${pv.export()}"
     SimpleJobInstance i = new SimpleJobInstance(j)
     def sw = new StringWriter()
-    i.run(OutputFormat.html, pv, sw);
+    i.run(OutputFormat.html, pv, sw);0
     println "sw=$sw"
     assert origString == "Always say, \"to whom.\""
-  }
+    }
+
+    void testRunsOnlyOnce() {
+        banner "testRunsOnlyOnce"
+        def cnt = 0;
+        def b = new SimpleReportBuilder();
+        SimpleJob j = b.job {
+            param(name: 'bob', default: 'x');
+            jobEngine closure: {
+                cnt++;
+            }
+        }
+        assert j;
+        def s = new StringWriter();
+        j.run(OutputFormat.html, j.params.paramFormValue, s);
+        assert cnt == 1
+        println "cnt=$cnt;"
+    }
 }
