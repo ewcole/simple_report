@@ -1,6 +1,7 @@
-def version = "2.7.0"
+def version = "2.7.1"
 
-/* 2.7.0: Add isStandalone property to OutputFormat
+/* 2.7.1: Turn off text output for reports
+ * 2.7.0: Add isStandalone property to OutputFormat
  * 2.5.1: Add dependency to jasperreport-fonts
  * 2.5.0: Create PERSON parameter type
  * 2.3.0: Run simple jobs through the framework

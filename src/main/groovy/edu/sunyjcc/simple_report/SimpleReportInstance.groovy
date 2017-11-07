@@ -112,42 +112,43 @@ public class SimpleReportInstance implements Exportable, Runnable {
         out.flush()
         return true;
     },
-    TEXT: {
-      Writer out, ResultSet resultSet ->
-        //println "running TEXT"
-        def rpad = {
-          String text, Long size ->
-            Long textSize = text?.size();
-            Long padding = (size?:0) - textSize// (size?:0) - text?.size()
-            text + (" " * ((padding>0)?padding:0))
-        }
-        def colHeaders = resultSet.columns.list().inject([]) {
-          h, col ->
-            assert col.name
-            // assert col.displaySize
-            h << rpad(col.name, (col.displaySize?:0))
-            h
-        }
-        //println('After colHeaders');
-        out.println ""
-        out.println colHeaders.join(" ")
-        out.println colHeaders.collect { "-" * it?.size() }.join(" ")
-        resultSet.rows.each {
-          row ->
-            def lineText =  resultSet.columns.columnNames.collect {
-              resultSet.columns.columns[it]
-            }.collect {
-              col ->
-                Long colSize = (col.name.size() > (col.displaySize?:0))?col.name.size():col.displaySize
-                rpad(row[col.name] as String, colSize)
-            }.join(" ")
-            out.println lineText;
-            //println lineText;
-        }
-        out.println "${resultSet.rows.size()} rows selected."
-        out.flush();
-        return true;
-    }
+    // Turn off text output for now.  It was only put in production by accident.
+    // TEXT: {
+    //   Writer out, ResultSet resultSet ->
+    //     //println "running TEXT"
+    //     def rpad = {
+    //       String text, Long size ->
+    //         Long textSize = text?.size();
+    //         Long padding = (size?:0) - textSize// (size?:0) - text?.size()
+    //         text + (" " * ((padding>0)?padding:0))
+    //     }
+    //     def colHeaders = resultSet.columns.list().inject([]) {
+    //       h, col ->
+    //         assert col.name
+    //         // assert col.displaySize
+    //         h << rpad(col.name, (col.displaySize?:0))
+    //         h
+    //     }
+    //     //println('After colHeaders');
+    //     out.println ""
+    //     out.println colHeaders.join(" ")
+    //     out.println colHeaders.collect { "-" * it?.size() }.join(" ")
+    //     resultSet.rows.each {
+    //       row ->
+    //         def lineText =  resultSet.columns.columnNames.collect {
+    //           resultSet.columns.columns[it]
+    //         }.collect {
+    //           col ->
+    //             Long colSize = (col.name.size() > (col.displaySize?:0))?col.name.size():col.displaySize
+    //             rpad(row[col.name] as String, colSize)
+    //         }.join(" ")
+    //         out.println lineText;
+    //         //println lineText;
+    //     }
+    //     out.println "${resultSet.rows.size()} rows selected."
+    //     out.flush();
+    //     return true;
+    // }
   ]
   
 
