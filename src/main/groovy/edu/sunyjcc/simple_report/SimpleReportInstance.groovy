@@ -20,11 +20,11 @@ public class SimpleReportInstance implements Exportable, Runnable {
   }
 
   String csvEscape(String v) {
-    if (v =~ /,/) {
+    //    if (v =~ /,/) {
       '"' + v.replaceAll('"', '""') + '"'
-    } else {
-      v
-    }
+    // } else {
+    //   v
+    // }
   }
 
   /** Create a new SimpleReportInstance for the report object.

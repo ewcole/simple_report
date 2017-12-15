@@ -64,11 +64,11 @@ public class SimpleReportCsvOutputTest extends GroovyTestCase {
     assert r.run(OutputFormat.csv, pf, s)
     println "$s"
     assert s.toString().size()
-    def sampleSrc = """Name,Description
-                       param,A single parameter
-                       param_form,A parameter form
-                       report,A groovy-based report
-                       jrxml,A Jasper Report""".readLines().collect{
+    def sampleSrc = '''"Name","Description"
+                       "param","A single parameter"
+                       "param_form","A parameter form"
+                       "report","A groovy-based report"
+                       "jrxml","A Jasper Report"'''.readLines().collect{
       it.replaceAll(/^\s+/,'')
     }
     assert s.toString().readLines() == sampleSrc
@@ -80,6 +80,32 @@ public class SimpleReportCsvOutputTest extends GroovyTestCase {
         [b: 2, c: 3, d: 4],
       ]).readLines();
     assert output.size();
-    assert output == ["a,b,c,d", "1,2,3,", ",2,3,4"]
+    assert output == ['"a","b","c","d"',
+                      '"1","2","3",""',
+                      '"","2","3","4"']
+  }
+
+  void testEmbeddedQuote() {
+    def output = getReportFromListOfHashes([
+        [a: "1", b: 'ab\"c', c: "3"]
+      ]).readLines();
+    assert output.size();
+    assert output == ['"a","b","c"', '"1","ab""c","3"']
+  }
+
+  void testEmbeddedComma() {
+    def output = getReportFromListOfHashes([
+        [a: "1", b: 'ab,c', c: "3"]
+      ]).readLines();
+    assert output.size();
+    assert output == ['"a","b","c"', '"1","ab,c","3"']
+  }
+  void testEmbeddedNewLine() {
+    def output = getReportFromListOfHashes([
+        [a: "1", b: '''abc
+         d''', c: "3"]
+      ]).readLines();
+    assert output.size();
+    assert output == ['"a","b","c"', '"1","abc', '         d","3"']
   }
 }
