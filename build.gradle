@@ -105,10 +105,6 @@ doc.dependsOn groovydoc, javadoc
 // Make it so that it will automatically generate the documentation and jar 
 // file when you execute the build target.
 
-task wrapper(type: Wrapper) {
-  gradleVersion = '2.3'
-}
-
 task compile
 compile.dependsOn compileGroovy, compileJava
 build.dependsOn jar, test, doc
