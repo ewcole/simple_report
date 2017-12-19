@@ -1,6 +1,7 @@
-def version = "2.7.2"
+def version = "2.8.0"
 
-/* 2.7.2: Fix CSV output when there are quotes or new lines in data
+/* 2.8.0: Implement prototypical inheritance for parameters.
+ * 2.7.2: Fix CSV output when there are quotes or new lines in data
  * 2.7.1: Turn off text output for reports
  * 2.7.0: Add isStandalone property to OutputFormat
  * 2.5.1: Add dependency to jasperreport-fonts

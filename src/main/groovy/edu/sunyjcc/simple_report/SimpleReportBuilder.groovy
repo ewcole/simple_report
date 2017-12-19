@@ -70,13 +70,23 @@ public class SimpleReportBuilder extends BuilderSupport {
           debug ("in nodeFactory.param($name, $attributes, $value)") 
           assert name == 'param'
           assert attributes.name
-          String paramTypeStr = (attributes.type?:'string').toLowerCase();
-          ParamType paramType = ParamType[paramTypeStr];
+          ParamType paramType;
+          if (attributes.type instanceof ParamType) {
+              paramType = attributes.type;
+          } else {
+              String paramTypeStr = (attributes.type?:'string').toLowerCase();
+              paramType = ParamType[paramTypeStr];
+          }
+          Param superParam = null;
+          if (attributes.copyFrom?.size()) {
+            superParam = reportObjectFactory.getParam(attributes.copyFrom);
+          }
           def param = new Param(attributes.name,
                                 paramType,
                                 attributes.description?:attributes.name,
                                 attributes.label?:attributes.name,
-                                attributes.default?:null)
+                                attributes.default,
+                                superParam)
           /* if (attributes.default) {
              param.default = attributes.default
              }*/

@@ -3,6 +3,41 @@ package edu.sunyjcc.simple_report
 
 /** Test the Param class. */
 public class ParamTest extends GroovyTestCase {
+  
+  void printBanner(String s) {
+    println ""
+    println ""
+    println ("*" * 79)
+    println "******** $s ********************"
+    println ("*" * 79)
+  }
+
+  /** Get the source directory for the parameter forms, reports, etc. */
+  File getSourceDir() {
+    //println 'Before Getting Source Dir'
+    File f = new File('src/samples/dir1');
+    println "Source dir = $f"
+    assert f
+    assert f.exists()
+    return f
+  }
+
+  /** Get a FileSourceFactory with the source directory as its root. */
+  FileSourceFactory getFileSourceFactory() {
+    def d = getSourceDir();
+    assert d;
+    def fsf = new FileSourceFactory(d)
+    assert fsf
+    return fsf
+  }
+
+  ReportObjectFactory getReportObjectFactory() {
+    def fsf = getFileSourceFactory();
+    def rof = new ReportObjectFactory(fsf);
+    assert rof;
+    assert rof.cache
+    rof;
+  }
 
   void testParamCreate() {
     println "******** testParamCreate ********************"
@@ -140,6 +175,23 @@ public class ParamTest extends GroovyTestCase {
     assert p.export() == pe
   }
 
-  
-  
+  void testCreateParamWithCopyFrom() {
+    println "********** testCreateParamWithCopyFrom **********"
+    def a = new SimpleReportBuilder(reportObjectFactory)
+    def p1 = a.param(name: 'scoobydoo', default: 'scared')
+    def p1e = p1.export();
+    println "p1=$p1e"
+    def p2 = a.param(name: 'scoobydoo', copyFrom: 'scoobydoo');
+    def p2e = p2.export();
+    println "p2 = $p2e";
+    assert p1e == p2e;
+    def p3 = a.param(name: 'shaggy', copyFrom: 'scoobydoo',
+                     type: ParamType.number, label: 'Shaggy', default: 42)
+    p2e.name = 'shaggy';
+    p2e.type = 'NUMBER';
+    p2e.label = 'Shaggy';
+    p2e.description = 'shaggy';
+    p2e.default = 42;
+    assert p3.export() == p2e;
+  }
 }
