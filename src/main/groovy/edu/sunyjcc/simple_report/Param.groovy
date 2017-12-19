@@ -28,43 +28,63 @@ public class Param implements Exportable, Buildable {
 
   /** The parameter name */
   String name;
-
+  /** Get the name */
+  String getName() {
+    name?:(superParam?.name);
+  }
+  
   /** If this is non-null, inherit unspecified properties from this paramter;
    *  Also, call the super-param's validators before our own validation.
    */
   Param superParam;
 
+  
   /** The type of the parameter */
-  ParamType type = ParamType.string;
+  ParamType type; //  = ParamType.string;
+  ParamType getType() {
+    (type?:superParam?.type)?:ParamType.string;
+  }
   
   /** A one-line description of the parameter */
   String description;
+  String getDescription() {
+    description?:(superParam?.description);
+  }
   
   /** A label to be displayed when prompting for the parameter*/
   String label;
+  String getLabel() {
+    label?:(superParam?.label);
+  }
 
   /** A default value for the parameter */
   Object defaultValue;
+  Object getDefaultValue() {
+    defaultValue?:(superParam?.defaultValue);
+  }
 
   /** A list of values. */
   ListOfValues listOfValues;
+  ListOfValues getListOfValues() {
+    listOfValues?:(superParam?.listOfValues);
+  }
 
   /** Perform whatever initialization is needed for this parameter. */
   Param init(HashMap args) {
-    listOfValues?.init(args)
+    getListOfValues()?.init(args)
     return this
   }
   
   /** Return the values as a HashMap. */
   def export() {
-    [name:         this.name,
-     type:         this.type?.desc,
-     description:  this.description,
-     label:        this.label,
-     'default':    this.defaultValue
+    [name:         this.getName(),
+     type:         this.getType()?.desc,
+     description:  this.getDescription(),
+     label:        this.getLabel(),
+     'default':    this.getDefaultValue()
     ] + (
-      (this.listOfValues)?[
-        listOfValues: this.listOfValues.export()
+      (this.getListOfValues())?[
+        listOfValues: this.getListOfValues().export()
       ] : [:]
     )
   }
@@ -88,6 +108,10 @@ public class Param implements Exportable, Buildable {
   public Param() {
   }
 
+  public Param(Param p) {
+    setSuperParam(p);
+  }
+  
   boolean validate(def value) {
     return true
     // return type.convert(value);

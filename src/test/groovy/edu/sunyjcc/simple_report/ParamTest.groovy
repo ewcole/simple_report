@@ -106,5 +106,40 @@ public class ParamTest extends GroovyTestCase {
     assert p.export() == pe
   }
 
+  
+  void testHashConstructor() {
+    println "********** testHashConstructor **********"
+    Param p = new Param(name: 'a', label: 'parameter a');
+    def pe = p.export();
+    assert pe == [name: 'a',
+                  type: 'STRING',
+                  description: null,
+                  label: 'parameter a',
+                  "default":null]
+  }
+  
+  void testCreateFromOtherParam() {
+    println "******** testCreateFromOtherParam ********************"
+    def a = new SimpleReportBuilder()
+    def sp = a.param(name: 'scoobydoo', type: 'NUMBER', 'default': 42)
+    def spe = sp.export()
+    Param p = new Param(sp);
+    def pe = p.export();
+    println pe
+    assert pe == [name:        "scoobydoo", 
+                  type:        "NUMBER", 
+                  description: "scoobydoo", 
+                  default:     42,
+                  label:       "scoobydoo"]
+    assert p.export() == [name:        "scoobydoo", 
+                          type:        "NUMBER", 
+                          description: "scoobydoo", 
+                          'default':     42,
+                          label:       "scoobydoo"]
+    p = a.param(name: 'scoobydoo', type: 'NUMBER', 'default': "42")
+    assert p.export() == pe
+  }
 
+  
+  
 }
