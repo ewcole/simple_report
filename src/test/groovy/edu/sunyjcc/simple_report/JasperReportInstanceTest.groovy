@@ -74,7 +74,7 @@ public class JasperReportInstanceTest extends GroovyTestCase {
     assert pe.pidm == [name: "pidm", 
                        type: "NUMBER", 
                        description: "pidm", 
-                       label: "pidm", 
+                       label: "Pidm", 
                        "default": null, 
                        value: null];
     println pe.keySet().getClass()

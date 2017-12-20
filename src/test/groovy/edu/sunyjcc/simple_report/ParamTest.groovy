@@ -49,12 +49,12 @@ public class ParamTest extends GroovyTestCase {
                   type:        "STRING", 
                   description: "scoobydoo", 
                   default:     "scared",
-                  label:       "scoobydoo"]
+                  label:       "Scoobydoo"]
     assert p.export() == [name:        "scoobydoo", 
                           type:        "STRING", 
                           description: "scoobydoo", 
                           'default':     "scared",
-                          label:       "scoobydoo"]
+                          label:       "Scoobydoo"]
   }
 
   void testCreateParamForm() {
@@ -66,7 +66,7 @@ public class ParamTest extends GroovyTestCase {
       term_code: [name:        'term_code', 
                   type:        'STRING', 
                   description: 'term_code', 
-                  label:       'term_code', 
+                  label:       'Term Code', 
                   "default":   '201312']
     ]
     println params.export()
@@ -81,7 +81,7 @@ public class ParamTest extends GroovyTestCase {
       term_code: [name:        'term_code', 
                   type:        'STRING', 
                   description: 'term_code', 
-                  label:       'term_code', 
+                  label:       'Term Code', 
                   "default":   '201312']
     ]
     println params.export()
@@ -92,7 +92,7 @@ public class ParamTest extends GroovyTestCase {
       term_code: [name:        'term_code', 
                   type:        'STRING', 
                   description: 'term_code', 
-                  label:       'term_code', 
+                  label:       'Term Code', 
                   "default":   '201312']
     ]
   }
@@ -107,12 +107,12 @@ public class ParamTest extends GroovyTestCase {
       subject: [name:        'subject', 
                 type:        'STRING', 
                 description: 'subject', 
-                label:       'subject', 
+                label:       'Subject', 
                 "default":   'ART'],
       term_code: [name:        'term_code', 
                   type:        'STRING', 
                   description: 'term_code', 
-                  label:       'term_code', 
+                  label:       'Term Code', 
                   "default":   '201312']
     ]
     println params.export()
@@ -131,12 +131,12 @@ public class ParamTest extends GroovyTestCase {
                   type:        "NUMBER", 
                   description: "scoobydoo", 
                   default:     42,
-                  label:       "scoobydoo"]
+                  label:       "Scoobydoo"]
     assert p.export() == [name:        "scoobydoo", 
                           type:        "NUMBER", 
                           description: "scoobydoo", 
                           'default':     42,
-                          label:       "scoobydoo"]
+                          label:       "Scoobydoo"]
     p = a.param(name: 'scoobydoo', type: 'NUMBER', 'default': "42")
     assert p.export() == pe
   }
@@ -165,12 +165,12 @@ public class ParamTest extends GroovyTestCase {
                   type:        "NUMBER", 
                   description: "scoobydoo", 
                   default:     42,
-                  label:       "scoobydoo"]
+                  label:       "Scoobydoo"]
     assert p.export() == [name:        "scoobydoo", 
                           type:        "NUMBER", 
                           description: "scoobydoo", 
                           'default':     42,
-                          label:       "scoobydoo"]
+                          label:       "Scoobydoo"]
     p = a.param(name: 'scoobydoo', type: 'NUMBER', 'default': "42")
     assert p.export() == pe
   }
@@ -202,7 +202,7 @@ public class ParamTest extends GroovyTestCase {
     println "****************************************"
     println "Test labels"
     def p5 = a.param(name: 'scooby_doo', copyFrom: 'scoobydoo');
-    assert p5.label == 'scooby_doo'
+    assert p5.label == 'Scooby Doo'
     def p6 = a.param(name: 'scooby_doo', copyFrom: 'scoobydoo', label: "P6");
     assert p6.label == 'P6'
     def p7 = a.param(name: 'shaggy', copyFrom: 'shaggy');

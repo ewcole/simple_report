@@ -55,12 +55,12 @@ public class ParamFormTest extends GroovyTestCase {
     assert f.export()  == [subject: [name:        "subject", 
                                      type:        "STRING", 
                                      description: "subject", 
-                                     label:       "subject", 
+                                     label:       "Subject", 
                                      default:     "ART"], 
                            term_code:[name:        "term_code", 
                                       type:        "STRING", 
                                       description: "term_code", 
-                                      label:       "term_code", 
+                                      label:       "Term Code", 
                                       default:     "201312"]]
   }
 

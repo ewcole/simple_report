@@ -57,7 +57,7 @@ public class Param implements Exportable, Buildable {
 
   /** Return a plausible default label for the parameter */
   private static String defaultLabel(Param p) {
-    return p.name;
+    return p.name?.split(/_/).collect {it.capitalize()}.join(' ');
   }
   
   /** A label to be displayed when prompting for the parameter*/

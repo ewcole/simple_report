@@ -18,7 +18,7 @@ public class ParamValueTest extends GroovyTestCase {
                   type:        "STRING", 
                   description: "scoobydoo", 
                   default:     "scared",
-                  label:       "scoobydoo"]
+                  label:       "Scoobydoo"]
     def pv = new ParamValue(p, 'hungry');
     println "pv.currentValue == ${pv.currentValue}"
     assert pv.currentValue == 'hungry'
@@ -26,7 +26,7 @@ public class ParamValueTest extends GroovyTestCase {
                            type:        "STRING", 
                            description: "scoobydoo", 
                            'default':   "scared",
-                           label:       "scoobydoo",
+                           label:       "Scoobydoo",
                            value:       "hungry"]
   }
 
@@ -39,7 +39,7 @@ public class ParamValueTest extends GroovyTestCase {
                   type:        "STRING", 
                   description: "scoobydoo", 
                   default:     "scared",
-                  label:       "scoobydoo"]
+                  label:       "Scoobydoo"]
     def pv = new ParamValue(p);
     pv.currentValue = 'hungry'
     println "pv.currentValue == ${pv.currentValue}"
@@ -48,14 +48,14 @@ public class ParamValueTest extends GroovyTestCase {
                            type:        "STRING", 
                            description: "scoobydoo", 
                            'default':   "scared",
-                           label:       "scoobydoo",
+                           label:       "Scoobydoo",
                            value:       "hungry"]
     pv.value = 'spooked';
     assert pv.export() == [name:        "scoobydoo", 
                            type:        "STRING", 
                            description: "scoobydoo", 
                            'default':   "scared",
-                           label:       "scoobydoo",
+                           label:       "Scoobydoo",
                            value:       "spooked"]
   }
 
@@ -72,14 +72,14 @@ public class ParamValueTest extends GroovyTestCase {
     assert pve.name        == "scoobydoo";
     assert pve.type        == "NUMBER";
     assert pve.description == "scoobydoo";
-    assert pve.label       == "scoobydoo";
+    assert pve.label       == "Scoobydoo";
     assert pve."default"   == 12;
     println "value class = ${pv.currentValue.getClass()}"
     assert pve.value       == 42;
     assert pv.export() == [name:        "scoobydoo", 
                            type:        "NUMBER", 
                            description: "scoobydoo", 
-                           label:       "scoobydoo",
+                           label:       "Scoobydoo",
                            'default':   12,
                            value:       42]
     // Try assigning a string to the value.

@@ -129,7 +129,7 @@ public class ReportObjectFactoryTest extends GroovyTestCase {
     assert obj.export() == [name:        "scoobydoo", 
                             type:        "STRING", 
                             description: "scoobydoo", 
-                            label:       "scoobydoo", 
+                            label:       "Scoobydoo", 
                             default:     "scared"]
   }
   
@@ -140,7 +140,7 @@ public class ReportObjectFactoryTest extends GroovyTestCase {
     assert obj.export() == [name:        "scoobydoo", 
                             type:        "STRING", 
                             description: "scoobydoo", 
-                            label:       "scoobydoo", 
+                            label:       "Scoobydoo", 
                             default:     "scared"]
   }
  
@@ -151,7 +151,7 @@ public class ReportObjectFactoryTest extends GroovyTestCase {
     assert obj.export() == [name:        "scoobydoo", 
                             type:        "STRING", 
                             description: "scoobydoo", 
-                            label:       "scoobydoo", 
+                            label:       "Scoobydoo", 
                             default:     "scared"]
 
   }
@@ -165,12 +165,12 @@ public class ReportObjectFactoryTest extends GroovyTestCase {
     assert obj.export() == [subject: [name:        "subject", 
                                       type:        "STRING", 
                                       description: "subject", 
-                                      label:       "subject", 
+                                      label:       "Subject", 
                                       default:     "ART"], 
                             term_code:[name:        "term_code", 
                                        type:        "STRING", 
                                        description: "term_code", 
-                                       label:       "term_code", 
+                                       label:       "Term Code", 
                                        default:     "201312"]]
   
   }
@@ -184,12 +184,12 @@ public class ReportObjectFactoryTest extends GroovyTestCase {
     assert obj.export() == [subject: [name:        "subject", 
                                       type:        "STRING", 
                                       description: "subject", 
-                                      label:       "subject", 
+                                      label:       "Subject", 
                                       default:     "ART"], 
                             term_code:[name:        "term_code", 
                                        type:        "STRING", 
                                        description: "term_code", 
-                                       label:       "term_code", 
+                                       label:       "Term Code", 
                                        default:     "201312"]]
   }  
 
@@ -200,12 +200,12 @@ public class ReportObjectFactoryTest extends GroovyTestCase {
     assert obj.export() == [subject: [name:        "subject", 
                                       type:        "STRING", 
                                       description: "subject", 
-                                      label:       "subject", 
+                                      label:       "Subject", 
                                       default:     "ART"], 
                             term_code:[name:        "term_code", 
                                        type:        "STRING", 
                                        description: "term_code", 
-                                       label:       "term_code", 
+                                       label:       "Term Code", 
                                        default:     "201312"]]
   }
 
@@ -272,7 +272,7 @@ public class ReportObjectFactoryTest extends GroovyTestCase {
     assert pp.year == [name:        'year',
                        type:        'STRING',
                        description: 'year',
-                       label:       'year',
+                       label:       'Year',
                        "default":   null]
     assert s instanceof SimpleReport
   }

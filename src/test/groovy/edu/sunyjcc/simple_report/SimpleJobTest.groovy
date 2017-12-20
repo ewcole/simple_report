@@ -117,7 +117,7 @@ public class SimpleJobTest extends GroovyTestCase {
                           params: [a: [name:        "a",
                                        type:        "STRING",
                                        description: "a",
-                                       label:       "a",
+                                       label:       "A",
                                        "default":   null]]];
     def sw = new StringWriter();
     def m = new MarkupBuilder(sw);
