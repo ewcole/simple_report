@@ -54,11 +54,34 @@ public class Param implements Exportable, Buildable {
   String getDescription() {
     description?:(superParam?.description);
   }
+
+  /** Return a plausible default label for the parameter */
+  private static String defaultLabel(Param p) {
+    return p.name;
+  }
   
   /** A label to be displayed when prompting for the parameter*/
-  String label;
+  private String label;
   String getLabel() {
-    label?:(superParam?.label);
+    // The logic has been complicated by inheritance.  We return the label if
+    //  there is one
+    if (this.label?.size()) {
+      // 1. The label is explicitly defined, so return it.
+      return this.label
+    } else if (superParam?.label?.size()) {
+      // 2. There is a label in the super parameter.  Check it out.
+      def superLabel = superParam.label;
+      if (superLabel == defaultLabel(superParam)) {
+        // 2a. Don't return the superParameter's default label, create our own. 
+        return defaultLabel(this);
+      } else {
+        // 2b. The super label is explicitly defined, so return it.
+        return superLabel;
+      }
+    } else {
+      // 3. Create a default label.
+      return defaultLabel(this);
+    }
   }
 
   /** A default value for the parameter */

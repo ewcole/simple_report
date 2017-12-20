@@ -101,7 +101,8 @@ public class FileSourceFactoryTest extends GroovyTestCase {
   void testList() {
     def fsf = getFileSourceFactory()
     assert fsf.list() == [
-      [type: 'param', name: 'scoobydoo'], 
+      [type: 'param', name: 'scoobydoo'],
+      [type: 'param', name: 'shaggy'],
       [type: 'param_form', name: 'SubjectAndTerm'], 
       [type: 'report', name: 'simple_report_types'],
       [type: 'sql', name: 'tables'],

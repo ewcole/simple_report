@@ -193,5 +193,44 @@ public class ParamTest extends GroovyTestCase {
     p2e.description = 'shaggy';
     p2e.default = 42;
     assert p3.export() == p2e;
+    def p4 = a.param(name: 'shaggy1', copyFrom: 'shaggy');
+    def p4e = p4.export();
+    assert p4e.label == "Shaggy's State";
+    assert p4.getLabel() == p4.label
+    assert p4.label == "Shaggy's State"
+    println "p4 = $p4e";
+    println "****************************************"
+    println "Test labels"
+    def p5 = a.param(name: 'scooby_doo', copyFrom: 'scoobydoo');
+    assert p5.label == 'scooby_doo'
+    def p6 = a.param(name: 'scooby_doo', copyFrom: 'scoobydoo', label: "P6");
+    assert p6.label == 'P6'
+    def p7 = a.param(name: 'shaggy', copyFrom: 'shaggy');
+    assert p7.label == "Shaggy's State"
+    def p8 = a.param(name: 'shaggy', copyFrom: 'shaggy', label: "P8");
+    assert p8.label == "P8"
+
+  }
+
+  void testCopyFromMissingParameter() {
+    printBanner "testCopyFromMissingParameter"
+    println "Create a parameter with a copyFrom that points "
+    println "    to a non-existent param."
+    def factory = reportObjectFactory
+    def a = new SimpleReportBuilder(factory)
+    def p1;
+    try {
+      p1 = factory.getParam('non_existent_param');
+    } catch (BuildException e) {
+      // Everything's fine.
+    }
+    assert p1 == null;
+    def p2 = null;
+    try {
+      p2 = a.param(name: 'zorg', copyFrom: 'non_existent_param');
+    } catch(BuildException e) {
+      println "Could not create without parameter"
+    }
+    assert !p2
   }
 }

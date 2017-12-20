@@ -75,6 +75,7 @@ public class SourceFactoryTest extends GroovyTestCase {
     def l = sf.list()
     println l
     assert l == [[type: 'param', name:'scoobydoo'], 
+                 [type: 'param', name:'shaggy'], 
                  [type: 'param_form', name: 'SubjectAndTerm'], 
                  [type: 'report', name: 'simple_report_types'],
                  [type: 'sql', name: 'tables'],

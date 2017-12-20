@@ -84,7 +84,7 @@ public class SimpleReportBuilder extends BuilderSupport {
           def param = new Param(attributes.name,
                                 paramType,
                                 attributes.description?:attributes.name,
-                                attributes.label?:attributes.name,
+                                attributes.label,
                                 attributes.default,
                                 superParam)
           /* if (attributes.default) {
