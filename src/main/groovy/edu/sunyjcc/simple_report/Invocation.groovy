@@ -1,8 +1,5 @@
 package edu.sunyjcc.simple_report
 
-/** Import this so that we can call this easily in web applications */
-import javax.servlet.ServletResponse;
-
 /** This class is responsible for managing the state of a report request.  It
  *  validates the parameter form and executes the target application.
  */
@@ -102,53 +99,13 @@ public class Invocation implements Exportable, Runnable {
    *  @param out An output stream that will hold the results of your run.
    */
   @Override
-  boolean run(OutputFormat outputFormat, 
-              ParamFormValue paramFormValue, 
-              Writer out) {
+  boolean run(OutputFormat outputFormat, ParamFormValue paramFormValue, Writer out) {
     target.run(outputFormat, paramFormValue, out)
   }
 
-  /** Run the runnable object, writing its output data to the stream you 
-   *  provide.
-   *  @param out An output stream that will hold the results of your run.
-   */
   boolean run(OutputFormat outputFormat, Writer out) {
+    println "In Invocation.run($outputFormat)"
     target.run(outputFormat, params, out)
-  }
-
-  /** Run the runnable object, writing its output data to the stream you 
-   *  provide.
-   *  @param out An output stream that will hold the results of your run.
-   */
-  boolean run(OutputFormat outputFormat, OutputStream out) {
-    target.run(outputFormat, params, out)
-  }
-
-  /** Run the runnable object, writing its output data to the stream you 
-   *  provide.
-   *  @param out An output stream that will hold the results of your run.
-   */
-  boolean run(OutputFormat outputFormat, ServletResponse response) {
-    if (outputFormat.isBinary) {
-      // Get an outputStream
-        def b = new ByteArrayOutputStream()
-        target.run(outputFormat, params, b)
-        // We've made it this far; now set the mime type.
-        response.getOutputStream() << b.toByteArray()
-    } else {
-      target.run(outputFormat, params, response.getWriter())
-    }
-  }
-
-  /** Run the runnable object, writing its output data to the stream you 
-   *  provide.
-   *  @param out An output stream that will hold the results of your run.
-   */
-  @Override
-  boolean run(OutputFormat outputFormat, ParamFormValue paramFormValue, OutputStream out) {
-    // println "In Invocation.run($outputFormat)"
-    // def writer = new BufferedWriter(new OutputStreamWriter(out));
-    target.run(outputFormat, paramFormValue, out)
   }
 
   /** Is this object valid and ready to run? */

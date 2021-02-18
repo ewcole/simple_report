@@ -9,15 +9,13 @@ public class ReportObjectFactory {
   /** The place we will get the source code for the objects we create */
   SourceFactory sourceFactory;
 
+  /** This turns the source code into report objects*/
+  SimpleReportBuilder builder = new SimpleReportBuilder();
+
   /** This will hold all of the report objects and provide functions to 
    *  get new ones.
    */
   def cache;
-
-  /** Return a simple report builder */
-  public SimpleReportBuilder getBuilder() {
-    new SimpleReportBuilder(this)
-  }
 
   /** 
    *  Filter out non-standard type names
@@ -33,7 +31,7 @@ public class ReportObjectFactory {
    */
   LinkedHashMap createCache(SourceFactory sf) { 
     assert sf
-    def objTypes = "param param_form jrxml report sql job".split(/ +/);
+    def objTypes = "param param_form jrxml report".split(/ +/);
     objTypes.inject([:]) {
       map, objType ->
         Closure getSrc = {
@@ -42,49 +40,10 @@ public class ReportObjectFactory {
         }
         Closure getObject = {
           name ->
-            /** This turns the source code into report objects*/
-            SimpleReportBuilder builder = new SimpleReportBuilder(this);
             builder.eval(getSrc(name))
         }
         if (objType == 'jrxml') {
-          // Just return the raw source code
-          getObject = { 
-            name -> 
-              def jasperSrc = getSrc(name)
-              new JasperReportInstance(jasperSrc, this);
-          }
-        }
-        if (objType == 'sql') {
-          getObject = {
-            name ->
-              def queryText = getSrc(name)
-              assert queryText?.size()
-              // Extract the parameter names from this query
-              def psql = SqlQueryEngine.parseSql(queryText)
-              /** This turns the source code into report objects*/
-              def builder = new SimpleReportBuilder(this);
-              ParamForm superParamForm;
-              try {
-                superParamForm = this.getParamForm(name);
-                println "superParamForm = $superParamForm"
-              } catch (BuildException e) {
-                // Cannot create the parameter form
-                superParamForm = new ParamForm();
-                println "param form $name not found."
-              }
-              SimpleReport r = builder.report(name: name) {
-                sql(query: queryText)
-              }
-              psql.paramRefs?.each {
-                paramName ->
-                  if (!(superParamForm.params.containsKey(paramName))) {
-                    superParamForm.addParam(builder.param(name: paramName));
-                  }
-              }
-              r.params = superParamForm;
-              assert r.getClass() == SimpleReport
-              return r
-          }
+          getObject = { name -> getSrc(name)}
         }
         map[objType] = [
           // Get the object's source code.
@@ -152,22 +111,8 @@ public class ReportObjectFactory {
   /** Get a Jasper Report object 
    *  @param name The name of the Jasper Report, without extension
    */
-  public JasperReportInstance getJasperReport(String name) {
-    return getReportObject('jrxml', name)
-  }
-
-  /** Get a SQL query object 
-   *  @param name The name of the Sql Query, without extension
-   */
-  public SimpleReport getSql(String name) {
-    getReportObject('sql', name)
-  }
-
-  /** Get a SimpleJob object
-   *  @param name The name of the Job, without extension
-   */
-  public SimpleReport getJob(String name) {
-    getReportObject('job', name)
+  public String getJrxml(String name) {
+    return getReportObject('param_form', name)
   }
 
   /** Get the appropriate invocation object for this type and object name */
@@ -179,14 +124,12 @@ public class ReportObjectFactory {
 
   /** Evaluate a string as a report object builder script. */
   public eval(String s) {
-    /** This turns the source code into report objects*/
-    SimpleReportBuilder builder = new SimpleReportBuilder(this);
     builder.eval(s)
   }
 
   /** Evaluate the closure into a report object */
   public build(Closure c) {
-    c.delegate = new SimpleReportBuilder(this);
+    c.delegate = builder
     c()
   }
 

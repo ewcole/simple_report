@@ -67,16 +67,6 @@ public class FileSourceFactoryTest extends GroovyTestCase {
     assert pfText == paramFormFile.text
   }
 
-  /** Test FileSourceFactory.getJob() */
-  void testGetJobSource() {
-    def fsf = getFileSourceFactory();
-    String pfName = "sample_job"
-    def jobFile = new File(getSourceDir(), "job/${pfName}.groovy")
-    assert jobFile.exists()
-    def pfText = fsf.getJobSource(pfName)
-    assert pfText == jobFile.text
-  }
-
   /** Test FileSourceFactory.getJrxml() */
   void testGetJrxmlSource() {
     def fsf = getFileSourceFactory()
@@ -84,32 +74,6 @@ public class FileSourceFactoryTest extends GroovyTestCase {
     assert jrxmlDir.exists()
     def jrxmlSource = new File(jrxmlDir, "apps.jrxml")
     def factorySource = fsf.getJrxmlSource("apps");
-    assert "${jrxmlSource.canonicalFile}" == factorySource
-  }
-
-  /** Test FileSourceFactory.getJrxml() */
-  void testGetJrxmlSource2() {
-    def fsf = getFileSourceFactory()
-    def jrxmlDir = getSourceSubDir('jrxml')
-    assert jrxmlDir.exists()
-    def jrxmlSource = new File(jrxmlDir, "apps.jrxml")
-    def factorySource = fsf.getSourceText("jrxml", "apps");
-    assert "${jrxmlSource.canonicalFile}" == factorySource
-    assert factorySource == fsf.getSource("jrxml", "apps");
-  }
-
-  void testList() {
-    def fsf = getFileSourceFactory()
-    assert fsf.list() == [
-      [type: 'param', name: 'scoobydoo'],
-      [type: 'param', name: 'shaggy'],
-      [type: 'param_form', name: 'SubjectAndTerm'], 
-      [type: 'report', name: 'simple_report_types'],
-      [type: 'sql', name: 'tables'],
-      [type: 'sql', name: 'terms'],
-      [type: 'job', name: 'hello_world'],
-      [type: 'job', name: 'sample_job'],
-      [type: 'jrxml', name: 'apps'],
-    ]
+    assert jrxmlSource.text == factorySource
   }
 }

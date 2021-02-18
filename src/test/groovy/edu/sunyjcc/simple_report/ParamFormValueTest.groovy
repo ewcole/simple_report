@@ -53,12 +53,12 @@ public class ParamFormValueTest extends GroovyTestCase {
     assert f.export()  == [subject: [name:        "subject", 
                                      type:        "STRING", 
                                      description: "subject", 
-                                     label:       "Subject", 
+                                     label:       "subject", 
                                      default:     "ART"], 
                            term_code:[name:        "term_code", 
                                       type:        "STRING", 
                                       description: "term_code", 
-                                      label:       "Term Code", 
+                                      label:       "term_code", 
                                       default:     "201312"]]
   }
 
@@ -70,12 +70,12 @@ public class ParamFormValueTest extends GroovyTestCase {
     assert pf.export() == [subject: [name:        "subject", 
                                     type:        "STRING", 
                                     description: "subject", 
-                                    label:       "Subject", 
+                                    label:       "subject", 
                                     default:     "ART"], 
                           term_code:[name:        "term_code", 
                                      type:        "STRING", 
                                      description: "term_code", 
-                                     label:       "Term Code", 
+                                     label:       "term_code", 
                                      default:     "201312"]]
     def v = new ParamFormValue(pf)
     assert v
@@ -90,14 +90,14 @@ public class ParamFormValueTest extends GroovyTestCase {
     assert v.export() == [subject: [name:        "subject", 
                                     type:        "STRING", 
                                     description: "subject", 
-                                    label:       "Subject", 
+                                    label:       "subject", 
                                     "default":     "ART",
                                     value:         "ART"
                                    ], 
                           term_code:[name:        "term_code", 
                                      type:        "STRING", 
                                      description: "term_code", 
-                                     label:       "Term Code", 
+                                     label:       "term_code", 
                                      "default":     "201312",
                                      value:         "201312"]]
   }
@@ -118,12 +118,12 @@ public class ParamFormValueTest extends GroovyTestCase {
     assert pf.export() == [subject: [name:        "subject", 
                                     type:        "STRING", 
                                     description: "subject", 
-                                    label:       "Subject", 
+                                    label:       "subject", 
                                     default:     "ART"], 
                           term_code:[name:        "term_code", 
                                      type:        "STRING", 
                                      description: "term_code", 
-                                     label:       "Term Code", 
+                                     label:       "term_code", 
                                      default:     "201312"]]
     def v = new ParamFormValue(pf)
     assert v
@@ -132,7 +132,7 @@ public class ParamFormValueTest extends GroovyTestCase {
     assert tc.export() == [name:        "term_code", 
                            type:        "STRING", 
                            description: "term_code", 
-                           label:       "Term Code", 
+                           label:       "term_code", 
                            "default":     "201312",
                            value:         "201312"]
   }
@@ -148,7 +148,7 @@ public class ParamFormValueTest extends GroovyTestCase {
     assert v.getValue('term_code').export() == [name:        "term_code", 
                                                 type:        "STRING", 
                                                 description: "term_code", 
-                                                label:       "Term Code", 
+                                                label:       "term_code", 
                                                 "default":     "201312",
                                                 value:         "201512"]
  }
@@ -198,25 +198,25 @@ public class ParamFormValueTest extends GroovyTestCase {
     assert o.subject == [name:        'subject', 
                          type:        'STRING', 
                          description: 'subject', 
-                         label:       'Subject', 
+                         label:       'subject', 
                          'default':   'ART', 
                          value:       'ART']
     assert o.term_code == [name:        'term_code', 
                            type:        'STRING', 
                            description: 'term_code', 
-                           label:       'Term Code', 
+                           label:       'term_code', 
                            'default':   '201312', 
                            value:       '201312']
     assert o == [subject: ['default':   'ART', 
                            description: 'subject', 
                            name:        'subject', 
                            type:        'STRING', 
-                           label:       'Subject', 
+                           label:       'subject', 
                            value:       'ART'],
                  term_code: [name:        'term_code', 
                              type:        'STRING', 
                              description: 'term_code', 
-                             label:       'Term Code', 
+                             label:       'term_code', 
                              'default':   '201312', 
                              value:       '201312']]
   }
@@ -242,14 +242,14 @@ public class ParamFormValueTest extends GroovyTestCase {
     assert o.subject == [name:        'subject', 
                          type:        'STRING', 
                          description: 'subject', 
-                         label:       'Subject', 
+                         label:       'subject', 
                          'default':   'ART', 
                          value:       'BIO']
     assert o.term_code == ['default':   '201312', 
                            description: 'term_code', 
                            name:        'term_code', 
                            type:        'STRING', 
-                           label:       'Term Code', 
+                           label:       'term_code', 
                            value:       '199712']
   }
 
@@ -298,12 +298,12 @@ public class ParamFormValueTest extends GroovyTestCase {
     assert pf.export() == [subject: [name:        "subject", 
                                     type:        "STRING", 
                                     description: "subject", 
-                                    label:       "Subject", 
+                                    label:       "subject", 
                                     default:     "ART"], 
                           term_code:[name:        "term_code", 
                                      type:        "STRING", 
                                      description: "term_code", 
-                                     label:       "Term Code", 
+                                     label:       "term_code", 
                                      default:     "201312"]]
     def v = new ParamFormValue(pf)
     assert v
@@ -318,14 +318,14 @@ public class ParamFormValueTest extends GroovyTestCase {
     assert v.export() == [subject: [name:        "subject", 
                                     type:        "STRING", 
                                     description: "subject", 
-                                    label:       "Subject", 
+                                    label:       "subject", 
                                     "default":     "ART",
                                     value:         "ART"
                                    ], 
                           term_code:[name:        "term_code", 
                                      type:        "STRING", 
                                      description: "term_code", 
-                                     label:       "Term Code", 
+                                     label:       "term_code", 
                                      "default":     "201312",
                                      value:         "201312"]]
     def j = v.toJson()

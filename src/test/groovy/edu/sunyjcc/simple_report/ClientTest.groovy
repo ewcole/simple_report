@@ -53,13 +53,13 @@ public class ClientTest extends GroovyTestCase {
     assert c.showParam(i, 'subject') == [name:        'subject', 
                                          type:        'STRING', 
                                          description: 'subject', 
-                                         label:       'Subject', 
+                                         label:       'subject', 
                                          'default':   'ART', 
                                          value:       'ART']
     assert c.showParam(i, 'term_code') == [name:        'term_code', 
                                            type:        'STRING', 
                                            description: 'term_code', 
-                                           label:       'Term Code', 
+                                           label:       'term_code', 
                                            'default':   '201312', 
                                            value:       '201312']
   }
@@ -71,13 +71,13 @@ public class ClientTest extends GroovyTestCase {
     assert c.showParamForm(i) == [subject: [name:        'subject', 
                                             type:        'STRING', 
                                             description: 'subject', 
-                                            label:       'Subject', 
+                                            label:       'subject', 
                                             'default':   'ART', 
                                             value:       'ART'],
                                   term_code: [name:        'term_code', 
                                               type:        'STRING', 
                                               description: 'term_code', 
-                                              label:       'Term Code', 
+                                              label:       'term_code', 
                                               'default':   '201312', 
                                               value:       '201312']]
   }

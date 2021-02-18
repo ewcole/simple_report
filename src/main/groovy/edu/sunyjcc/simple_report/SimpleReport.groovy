@@ -38,11 +38,6 @@ public class SimpleReport implements Exportable, Buildable, Runnable {
    */
   private ParamForm params
 
-
-  public setParams(ParamForm params) {
-    this.params = params;
-  }
-
   /** The columns that this report will produce */
   private ColumnList columns
 
@@ -128,11 +123,8 @@ public class SimpleReport implements Exportable, Buildable, Runnable {
  
   /** Execute the report and return the result. */
   public ResultSet execute(HashMap params) {
-    if (!this.params) {
-      this.params = new ParamForm()
-    }
-    def p = this.params.getParamFormValue().setParamValues(params)
-    queryEngine.execute(p)
+    this.params.setParamValues(params)
+    queryEngine.execute(this.params)
   }
  
   // Methods we need to implement for the Runnable interface
@@ -159,19 +151,6 @@ public class SimpleReport implements Exportable, Buildable, Runnable {
    */
   boolean run(OutputFormat outputFormat, ParamFormValue paramFormValue, 
               Writer out) {
-    new SimpleReportInstance(this).run(outputFormat, paramFormValue, out)
-  }
-
-  /** Run the runnable object, writing its output data to the stream you 
-   *  provide.
-   *  @param outputFormat This tells us what kind of output you want to create,
-   *                      For example, you might want HTML or CSV.
-   *  @param paramFormValue An object that gives us the parameters to be used 
-   *                        when creating the output for the report.
-   *  @param out       An output stream that will hold the results of your run.
-   */
-  boolean run(OutputFormat outputFormat, ParamFormValue paramFormValue, 
-              OutputStream out) {
     new SimpleReportInstance(this).run(outputFormat, paramFormValue, out)
   }
 

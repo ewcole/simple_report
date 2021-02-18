@@ -76,16 +76,6 @@ public class ParamFormValue implements Exportable, Runnable {
     values[s].setValue(v);
   }
 
-  /** Set the value of a parameters
-   *  @param s The name of the parameter from the ParamForm object.
-   */
-  public ParamValue setValue(String s, Object v) {
-    assert values;
-    assert values[s];
-    assert values[s] instanceof ParamValue
-    values[s].setValue(v);
-  }
-
   /** Initialize all contained objects with the given arguments
    * 
    *  @param args Data used for initialization.  This might contain a 
@@ -136,7 +126,7 @@ public class ParamFormValue implements Exportable, Runnable {
     values.inject([:]) {
       pMap, param ->
         println "param.key=${param.key}, param.value=${param.value}"
-        pMap[param.key] = param.value.value
+        pMap[param.key] = "${param.value.value}" as String
         return pMap;
     }
   }
@@ -260,20 +250,11 @@ public class ParamFormValue implements Exportable, Runnable {
    *  @param out An output stream that will hold the results of your run.
    *  @return Returns true if successful, false otherwise.
    */
-  @Override
-  boolean run(OutputFormat outputFormat, ParamFormValue paramFormValue, OutputStream out) {
-    run(outputFormat, paramFormValue, new BufferedWriter(new OutputStreamWriter(out)));
-  }
-  /** Run the runnable object, writing its output data to the stream you 
-   *  provide.
-   *  @param out An output stream that will hold the results of your run.
-   *  @return Returns true if successful, false otherwise.
-   */
   boolean run(OutputFormat outputFormat, Writer out) {
-    println "in ParamFormValue.run(${outputFormat.code}, out)"
-    if (runFunctions.containsKey(outputFormat.code)) {
+    println "in ParamFormValue.run($outputFormat, out)"
+    if (runFunctions.containsKey(outputFormat.desc)) {
       println "....ready to run"
-      return runFunctions[outputFormat.code](out);
+      return runFunctions[outputFormat.desc](out);
     } else {
       return false
     }

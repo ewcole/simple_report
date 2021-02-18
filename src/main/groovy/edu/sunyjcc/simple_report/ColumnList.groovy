@@ -1,68 +1,11 @@
 package edu.sunyjcc.simple_report
 
 /** This class describes the output columns for a report. */
-public class ColumnList implements Exportable {
-
-  ArrayList columnNames = []
-  HashMap   columns     = [:]
-
-  /** Return an array list with all of the columns in order. */
-  def list() {
-    columnNames.collect {columns[it]}
-  }
-
-  /** Override the '<<' operator; add to the end of the column list,
-   *  unless it already exists.  If it exists, then do nothing. 
-   */
-  ColumnList leftShift(Column c) {
-    add(c)
-    return this
-  }
-
-  /** Override the '<<' operator; add to the end of the column list,
-   *  unless it already exists.  If it exists, then do nothing. 
-   */
-  ColumnList leftShift(String s) {
-    add(s)
-    return this
-  }
-
-  /** Override the '<<' operator; add to the end of the column list,
-   *  unless it already exists.  If it exists, then do nothing. 
-   */
-  ColumnList leftShift(ArrayList a) {
-    a.each { add(it) }
-    return this
-  }
-
-  /** Iterate through each column and execute the closure */
-  ArrayList each(Closure c) {
-    list().each(c)
-  }
-
-  Long size() {
-    return columns?.size()
-  }
-
-  /** Add */
-  Column add(Column c) {
-    assert c?.name?.size()
-    String columnName = c.name.toLowerCase()
-    Column c2 = columns[columnName];
-    if (!columnNames.contains(columnName)) {
-      columnNames << columnName
-      columns[columnName] = c
-    }
-  }
-
-  Column add(String name) {
-    this.add(new Column(name: name));
-  }
-  
+public class ColumnList extends ArrayList<Column> implements Exportable {
 
   /** Return a list of exported values for all columns */
   def export() {
-    this.columns.collect{it.value.export()}
+    this.collect{it.export()}
   }
 
   /** Build a ColumnList from an ArrayList 
@@ -77,11 +20,4 @@ public class ColumnList implements Exportable {
       }
     }
   }
-
-  /** Build a ColumnList from another ColumnList */
-  /* public ColumnList(ColumnList c) {
-    c.each {
-      columns.add(it)
-    }
-    }*/
 }

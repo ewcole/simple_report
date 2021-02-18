@@ -64,40 +64,17 @@ public class ListOfValues implements Buildable {
   public ListOfValues(HashMap attributes) {
     init(attributes)
     if (attributes.values) {
-      def vals = attributes.values.collect {
-        val ->
-            [value: val[0], desc: val[1]]
-      }
-      valueClosure = {-> vals}
+      valueClosure = {->attributes.values}
       exportClosure = {->
         [type: 'value_list',
          values: valueClosure()]
       }
     } else if (attributes.query) {
-      // Get the list of values from the SQL query.
       queryStr = attributes.query
-      def colNames = []
-      // Method to capture query columns from query metadata
-      def captureColNames = {
-        meta ->
-          colNames = []
-          def cc = meta.columnCount
-          println "cc = $cc"
-          colNames << meta.getColumnLabel(1) as String
-          // If there's only one column, duplicate the value. 
-          // Otherwise return the first and the second columns.
-          if (cc >=2) {
-            colNames << meta.getColumnLabel(2) as String
-          } else {
-            colNames << meta.getColumnLabel(1) as String
-          }
-      }
       valueClosure = {
-        sql.rows(queryStr, captureColNames).collect {
+        sql.rows(queryStr).collect {
           row ->
-            def c1 = row[colNames[0]] as String
-            def c2 = row[colNames[1]] as String
-            [value: c1, desc: c2]
+            row
         }
       }
       exportClosure = { ->

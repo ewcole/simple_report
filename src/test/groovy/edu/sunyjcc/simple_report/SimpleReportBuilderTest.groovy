@@ -68,7 +68,7 @@ public class SimpleReportBuilderTest extends GroovyTestCase {
     assert q == [name:        "scoobydoo", 
                  type:        "STRING", 
                  description: "scoobydoo", 
-                 label:       "Scoobydoo",
+                 label:       "scoobydoo",
                  'default':   "scared",
                  // value:       'hungry'
                 ]
@@ -90,7 +90,7 @@ public class SimpleReportBuilderTest extends GroovyTestCase {
     assert pe == [scoobydoo: [name:        "scoobydoo", 
                               type:        "STRING", 
                               description: "scoobydoo", 
-                              label:       "Scoobydoo",
+                              label:       "scoobydoo",
                               'default':   "scared",
                               // value:       null
                              ], 

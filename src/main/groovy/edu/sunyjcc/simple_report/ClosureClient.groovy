@@ -6,7 +6,6 @@ public class ClosureClient extends Client {
 
   /** A closure that shows one parameter */
   Closure showParamClosure;
-
   /** A closure that shows a parameter form */
   Closure showParamFormClosure;
 

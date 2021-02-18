@@ -2,59 +2,39 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#orgheadline3">Pre-production</a>
+<li><a href="#sec-1">Pre-production</a>
 <ul>
-<li><a href="#orgheadline1"><span class="todo nilDONE">DONE</span> Make it compatible with Grails</a></li>
-<li><a href="#orgheadline2"><span class="todo nilDONE">DONE</span> Resource Loader</a></li>
+<li><a href="#sec-1-1"><span class="todo DONE">DONE</span> Make it compatible with Grails</a></li>
+<li><a href="#sec-1-2"><span class="todo DONE">DONE</span> Resource Loader</a></li>
 </ul>
 </li>
-<li><a href="#orgheadline18">Version 0.1.0</a>
+<li><a href="#sec-2">Version 0.1.0</a>
 <ul>
-<li><a href="#orgheadline16">Parameters</a>
+<li><a href="#sec-2-1">Parameters</a>
 <ul>
-<li><a href="#orgheadline6"><span class="todo nilDONE">DONE</span> Source Factory</a></li>
-<li><a href="#orgheadline11"><span class="todo nilDONE">DONE</span> Report Object Factory</a></li>
-<li><a href="#orgheadline14"><span class="todo nilDONE">DONE</span> Create report object values</a></li>
-<li><a href="#orgheadline15"><span class="done nilCANCELED">CANCELED</span> Client</a></li>
-</ul>
-</li>
-<li><a href="#orgheadline17"><span class="done nilCANCELED">CANCELED</span> Create parameter list from JRXML</a></li>
-</ul>
-</li>
-<li><a href="#orgheadline25">Pre-Production</a>
-<ul>
-<li><a href="#orgheadline20">Version 0.2.0</a>
-<ul>
-<li><a href="#orgheadline19"><span class="todo nilDONE">DONE</span> Auto documentation</a></li>
-</ul>
-</li>
-<li><a href="#orgheadline22">Version 0.3.0</a>
-<ul>
-<li><a href="#orgheadline21"><span class="todo nilDONE">DONE</span> Integrate with menu system</a></li>
-</ul>
-</li>
-<li><a href="#orgheadline24">Version 0.4.0</a>
-<ul>
-<li><a href="#orgheadline23"><span class="todo nilTODO">TODO</span> Lists of Values</a></li>
+<li><a href="#sec-2-1-1"><span class="todo DONE">DONE</span> Source Factory</a></li>
+<li><a href="#sec-2-1-2"><span class="todo DONE">DONE</span> Report Object Factory</a></li>
+<li><a href="#sec-2-1-3"><span class="todo DONE">DONE</span> Create report object values</a></li>
+<li><a href="#sec-2-1-4"><span class="done CANCELED">CANCELED</span> Client</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a href="#orgheadline29">Version 1</a>
+<li><a href="#sec-3">Version 0.2.0</a>
 <ul>
-<li><a href="#orgheadline26">Version 1.2.1</a></li>
-<li><a href="#orgheadline28">Version 1.3.0</a>
-<ul>
-<li><a href="#orgheadline27"><span class="todo nilTODO">TODO</span> Run Jasper Reports</a></li>
+<li><a href="#sec-3-1"><span class="todo DONE">DONE</span> Auto documentation</a></li>
 </ul>
 </li>
+<li><a href="#sec-4">Version 0.3.0</a>
+<ul>
+<li><a href="#sec-4-1"><span class="todo TODO">TODO</span> Inheritance</a></li>
 </ul>
 </li>
-<li><a href="#orgheadline33">Future Versions</a>
+<li><a href="#sec-5">Version 0.4.0</a>
 <ul>
-<li><a href="#orgheadline30"><span class="todo nilTODO">TODO</span> Inheritance</a></li>
-<li><a href="#orgheadline31"><span class="todo nilTODO">TODO</span> Validation</a></li>
-<li><a href="#orgheadline32"><span class="todo nilTODO">TODO</span> Run Jobs</a></li>
+<li><a href="#sec-5-1"><span class="todo TODO">TODO</span> Integrate with menu system</a></li>
+<li><a href="#sec-5-2"><span class="todo TODO">TODO</span> Lists of Values</a></li>
+<li><a href="#sec-5-3"><span class="todo TODO">TODO</span> Validation</a></li>
 </ul>
 </li>
 </ul>
@@ -63,24 +43,24 @@
 
 This is now an official MIS project; it will be used as a generator for CSV files, as well as a parameter form generator for Jasper Reports.
 
-# Pre-production<a id="orgheadline3"></a>
+# Pre-production
 
-## DONE Make it compatible with Grails<a id="orgheadline1"></a>
+## DONE Make it compatible with Grails
 
 Make sure it will run with a Grails front end or plugin.  That might involve making the move to Grails 2
 
-## DONE Resource Loader<a id="orgheadline2"></a>
+## DONE Resource Loader
 
 The resource loader will plug into the SimpleReportBuilder and load objects by name as they are requested.
 
-# Version 0.1.0<a id="orgheadline18"></a>
+# Version 0.1.0
 
   Version 0.1.0 must have the basic parameter functionality fully functional.  We will initially target command line scripts and Grails.
 We will not attempt to allow validation, inheritance, or chains of source factories yet.
 
-## Parameters<a id="orgheadline16"></a>
+## Parameters
 
-### DONE Source Factory<a id="orgheadline6"></a>
+### DONE Source Factory
 
 Created a SourceFactory class to simplify implementation of different kinds of SourceFactory.
 
@@ -92,7 +72,7 @@ Created a SourceFactory class to simplify implementation of different kinds of S
     
     This will be the default type of SourceFactory.
 
-### DONE Report Object Factory<a id="orgheadline11"></a>
+### DONE Report Object Factory
 
 -   DONE Get the source code from a factory
 
@@ -102,9 +82,15 @@ Created a SourceFactory class to simplify implementation of different kinds of S
 
     Creating the objects will be an expensive process, so let's save the results of our queries.
 
+-   CANCELED Create parameter list from JRXML
+
+    **Defer this to a later version.**
+    
+    Pull out all /jasperReport/parameter elements from the jrxml and create parameters of the appropriate type for them.  Look for an existing parameter of the same name and use that if it is compatible.
+
 -   DONE Create invocation for objects
 
-### DONE Create report object values<a id="orgheadline14"></a>
+### DONE Create report object values
 
 These are not cached.  This will be done in the individual object types.
 
@@ -112,46 +98,24 @@ These are not cached.  This will be done in the individual object types.
 
 -   DONE ParamFormValue
 
-### CANCELED Client<a id="orgheadline15"></a>
+### CANCELED Client
 
 Defer this to a later version.
 
 We need a class that handles interaction with client environments.  Duties include displaying a parameter form, validating data.  In the future, it might also take on the responsibility of executing queries and displaying the results.
 
-## CANCELED Create parameter list from JRXML<a id="orgheadline17"></a>
+# Version 0.2.0
 
-**Defer this to a later version.**
+## DONE Auto documentation
 
-Pull out all /jasperReport/parameter elements from the jrxml and create parameters of the appropriate type for them.  Look for an existing parameter of the same name and use that if it is compatible.
+# Version 0.3.0
 
-# Pre-Production<a id="orgheadline25"></a>
+## TODO Inheritance
 
-## Version 0.2.0<a id="orgheadline20"></a>
+# Version 0.4.0
 
-### DONE Auto documentation<a id="orgheadline19"></a>
+## TODO Integrate with menu system
 
-## Version 0.3.0<a id="orgheadline22"></a>
+## TODO Lists of Values
 
-### DONE Integrate with menu system<a id="orgheadline21"></a>
-
-## Version 0.4.0<a id="orgheadline24"></a>
-
-### TODO Lists of Values<a id="orgheadline23"></a>
-
-# Version 1<a id="orgheadline29"></a>
-
-## Version 1.2.1<a id="orgheadline26"></a>
-
-## Version 1.3.0<a id="orgheadline28"></a>
-
-### TODO Run Jasper Reports<a id="orgheadline27"></a>
-
-Run Jasper reports; take parameter form from parameter form defs.
-
-# Future Versions<a id="orgheadline33"></a>
-
-## TODO Inheritance<a id="orgheadline30"></a>
-
-## TODO Validation<a id="orgheadline31"></a>
-
-## TODO Run Jobs<a id="orgheadline32"></a>
+## TODO Validation

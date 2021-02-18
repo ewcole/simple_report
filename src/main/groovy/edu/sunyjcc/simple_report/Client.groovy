@@ -1,9 +1,8 @@
 package edu.sunyjcc.simple_report
 
 /** Client objects will provide the interface between a runtime environment
- *  And the ReportObjectFactory.  They are responsible for presenting the 
- *  parameter forms, running report objects, and delivering the output to the 
- *  user.
+ *  And the ReportObjectFactory.  It is responsible for presenting the parameter
+ *  forms, running report objects, and delivering the output to the user.
  */
 public abstract class Client {
   /** The source for all objects we will use. */
