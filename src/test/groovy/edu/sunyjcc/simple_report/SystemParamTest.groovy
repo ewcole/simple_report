@@ -129,6 +129,23 @@ public class SystemParamTest extends GroovyTestCase {
                            value:  2]
   }
 
+    void testListOfValues() {
+    println "********** testGetParam **********"
+    // Test the value closure
+    def p = new SystemParam(name:        'b',
+                        label:       'param b',
+                        description: 'Parameter with value closure',
+                        valueClosure: {-> 1 + 1});
+    println "param b = ${p.export()}"
+    assert p.export() == [name: 'b',
+                          type: 'SYSTEM',
+                          description: 'Parameter with value closure',
+                          label: 'param b',
+                          value:  2]
+    def lov = p.getListOfValues();
+    assert lov == null;
+  }
+
   void testToJson() {
     println "********** testToJson **********"
     def p = new SystemParam(name:        'b',

@@ -1,6 +1,7 @@
-def version = "3.3.0"
+def version = "3.3.2"
 
-/* 3.3.0: Deploy minor changes with report server
+/* 3.3.2: Correct handling of system parameters in Jasper Reports
+ * 3.3.0: Deploy minor changes with report server
  * 3.2.0: Create a ClientEnv class that can provide variables from the client
  * 2.8.3: Fix syntax error in enums
  * 2.8.2: Use inherited parameter definitions in pure SQL queries

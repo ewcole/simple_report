@@ -8,7 +8,8 @@ import groovy.json.*
 public class SystemParam implements Exportable {
 
   ClientEnv clientEnv
-
+  /** A dummy  so that we can match the Param type*/
+  String source = "";
   String name;
   String label;
   String description;
@@ -16,11 +17,22 @@ public class SystemParam implements Exportable {
   Closure valueClosure;
 
   /** Perform whatever initialization is needed for this parameter. */
-  Param init(HashMap args) {
+  SystemParam init(HashMap args) {
     getListOfValues()?.init(args)
     return this
   }
 
+  /* Don't provide a list of values. */
+  ListOfValues getListOfValues() {
+    null;
+  }
+  
+  /** Don't allow super parameters */
+  Param getSuperParam() {
+    return null;
+  }
+
+  
   /** Return the values as a HashMap. */
   def export() {
     [name:         this.getName(),
