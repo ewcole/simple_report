@@ -91,6 +91,7 @@ public class SqlQueryEngine extends QueryEngine implements Buildable {
   /** Get the column information from the query execution. */
   Closure getColumnMetadata = {
     java.sql.ResultSetMetaData meta ->
+      columns = columns?:(new ColumnList(cols))
       def cols = meta.collect {
         new Column(name:            it.columnName,
                    label:           it.columnLabel,
@@ -99,8 +100,8 @@ public class SqlQueryEngine extends QueryEngine implements Buildable {
                    precision:       it.precision,
                    scale:           it.scale)
       }
+      columns << cols
       println "cols.class = ${cols.getClass()}"
-      columns = new ColumnList(cols)
   }
 
   /** Execute without passing parameters. The query will fail if there are any bind variables in it.

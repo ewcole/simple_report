@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
 <title>Simple Report Roadmap</title>
-<!-- 2014-11-06 Thu 09:41 -->
+<!-- 2015-12-03 Thu 09:12 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="generator" content="Org-mode" />
 <meta  name="author" content="Ed Cole" />
@@ -142,22 +142,50 @@ for the JavaScript code in this tag.
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#sec-1">1. Pre-production</a>
+<li><a href="#sec-1">Pre-production</a>
 <ul>
-<li><a href="#sec-1-1">1.1. <span class="todo TODO">TODO</span> Make it compatible with Grails</a></li>
-<li><a href="#sec-1-2">1.2. <span class="todo TODO">TODO</span> Resource Loader</a></li>
+<li><a href="#sec-1-1"><span class="todo DONE">DONE</span> Make it compatible with Grails</a></li>
+<li><a href="#sec-1-2"><span class="todo DONE">DONE</span> Resource Loader</a></li>
 </ul>
 </li>
-<li><a href="#sec-2">2. Version 1.0</a>
+<li><a href="#sec-2">Version 0.1.0</a>
 <ul>
-<li><a href="#sec-2-1">2.1. Parameters</a>
+<li><a href="#sec-2-1">Parameters</a>
 <ul>
-<li><a href="#sec-2-1-1">2.1.1. <span class="todo DONE">DONE</span> Source Factory</a></li>
-<li><a href="#sec-2-1-2">2.1.2. <span class="todo TODO">TODO</span> Report Object Factory</a></li>
-<li><a href="#sec-2-1-3">2.1.3. <span class="todo TODO">TODO</span> Create report object values</a></li>
-<li><a href="#sec-2-1-4">2.1.4. <span class="todo TODO">TODO</span> ClientInteraction</a></li>
+<li><a href="#sec-2-1-1"><span class="todo DONE">DONE</span> Source Factory</a></li>
+<li><a href="#sec-2-1-2"><span class="todo DONE">DONE</span> Report Object Factory</a></li>
+<li><a href="#sec-2-1-3"><span class="todo DONE">DONE</span> Create report object values</a></li>
+<li><a href="#sec-2-1-4"><span class="done CANCELED">CANCELED</span> Client</a></li>
 </ul>
 </li>
+<li><a href="#sec-2-2"><span class="done CANCELED">CANCELED</span> Create parameter list from JRXML</a></li>
+</ul>
+</li>
+<li><a href="#sec-3">Version 0.2.0</a>
+<ul>
+<li><a href="#sec-3-1"><span class="todo DONE">DONE</span> Auto documentation</a></li>
+</ul>
+</li>
+<li><a href="#sec-4">Version 0.3.0</a>
+<ul>
+<li><a href="#sec-4-1"><span class="todo DONE">DONE</span> Integrate with menu system</a></li>
+</ul>
+</li>
+<li><a href="#sec-5">Version 0.4.0</a>
+<ul>
+<li><a href="#sec-5-1"><span class="todo TODO">TODO</span> Lists of Values</a></li>
+</ul>
+</li>
+<li><a href="#sec-6">Version 1.2.1</a></li>
+<li><a href="#sec-7">Version 1.3.0</a>
+<ul>
+<li><a href="#sec-7-1"><span class="todo TODO">TODO</span> Run Jasper Reports</a></li>
+</ul>
+</li>
+<li><a href="#sec-8">Future Versions</a>
+<ul>
+<li><a href="#sec-8-1"><span class="todo TODO">TODO</span> Inheritance</a></li>
+<li><a href="#sec-8-2"><span class="todo TODO">TODO</span> Validation</a></li>
 </ul>
 </li>
 </ul>
@@ -168,10 +196,10 @@ This is now an official MIS project; it will be used as a generator for CSV file
 </p>
 
 <div id="outline-container-sec-1" class="outline-2">
-<h2 id="sec-1"><span class="section-number-2">1</span> Pre-production</h2>
+<h2 id="sec-1">Pre-production</h2>
 <div class="outline-text-2" id="text-1">
 </div><div id="outline-container-sec-1-1" class="outline-3">
-<h3 id="sec-1-1"><span class="section-number-3">1.1</span> <span class="todo TODO">TODO</span> Make it compatible with Grails</h3>
+<h3 id="sec-1-1"><span class="todo DONE">DONE</span> Make it compatible with Grails</h3>
 <div class="outline-text-3" id="text-1-1">
 <p>
 Make sure it will run with a Grails front end or plugin.  That might involve making the move to Grails 2
@@ -179,7 +207,7 @@ Make sure it will run with a Grails front end or plugin.  That might involve mak
 </div>
 </div>
 <div id="outline-container-sec-1-2" class="outline-3">
-<h3 id="sec-1-2"><span class="section-number-3">1.2</span> <span class="todo TODO">TODO</span> Resource Loader</h3>
+<h3 id="sec-1-2"><span class="todo DONE">DONE</span> Resource Loader</h3>
 <div class="outline-text-3" id="text-1-2">
 <p>
 The resource loader will plug into the SimpleReportBuilder and load objects by name as they are requested.
@@ -188,25 +216,25 @@ The resource loader will plug into the SimpleReportBuilder and load objects by n
 </div>
 </div>
 <div id="outline-container-sec-2" class="outline-2">
-<h2 id="sec-2"><span class="section-number-2">2</span> Version 1.0</h2>
+<h2 id="sec-2">Version 0.1.0</h2>
 <div class="outline-text-2" id="text-2">
 <p>
-  Version 1.0 must have the basic parameter functionality fully functional.  We will initially target command line scripts and Grails.
+  Version 0.1.0 must have the basic parameter functionality fully functional.  We will initially target command line scripts and Grails.
 We will not attempt to allow validation, inheritance, or chains of source factories yet.
 </p>
 </div>
 <div id="outline-container-sec-2-1" class="outline-3">
-<h3 id="sec-2-1"><span class="section-number-3">2.1</span> Parameters</h3>
+<h3 id="sec-2-1">Parameters</h3>
 <div class="outline-text-3" id="text-2-1">
 </div><div id="outline-container-sec-2-1-1" class="outline-4">
-<h4 id="sec-2-1-1"><span class="section-number-4">2.1.1</span> <span class="todo DONE">DONE</span> Source Factory</h4>
+<h4 id="sec-2-1-1"><span class="todo DONE">DONE</span> Source Factory</h4>
 <div class="outline-text-4" id="text-2-1-1">
 <p>
 Created a SourceFactory class to simplify implementation of different kinds of SourceFactory.
 </p>
 </div>
-<ol class="org-ol"><li><span class="todo DONE">DONE</span> FileSourceFactory<br  /></li>
-<li><span class="todo TODO">TODO</span> SourcePathSourceFactory<br  /><div class="outline-text-5" id="text-2-1-1-2">
+<ul class="org-ul"><li><a id="sec-2-1-1-1" name="sec-2-1-1-1"></a><span class="todo DONE">DONE</span> FileSourceFactory<br  /></li>
+<li><a id="sec-2-1-1-2" name="sec-2-1-1-2"></a><span class="todo TODO">TODO</span> SourcePathSourceFactory<br  /><div class="outline-text-5" id="text-2-1-1-2">
 <p>
 This should accept a string representing a path representing different source sources and convert them into a chain of SourceFactories.  The first factory in the list that can provide an object of the requested type is the winner.  
 </p>
@@ -215,54 +243,105 @@ This should accept a string representing a path representing different source so
 This will be the default type of SourceFactory.
 </p>
 </div>
-</li></ol>
+</li></ul>
 </div>
 <div id="outline-container-sec-2-1-2" class="outline-4">
-<h4 id="sec-2-1-2"><span class="section-number-4">2.1.2</span> <span class="todo TODO">TODO</span> Report Object Factory</h4>
+<h4 id="sec-2-1-2"><span class="todo DONE">DONE</span> Report Object Factory</h4>
 <div class="outline-text-4" id="text-2-1-2">
-</div><ol class="org-ol"><li><span class="todo DONE">DONE</span> Get the source code from a factory<br  /></li>
-<li><span class="todo DONE">DONE</span> Convert the source code into report objects.<br  /></li>
-<li><span class="todo DONE">DONE</span> Cache report object definitions<br  /><div class="outline-text-5" id="text-2-1-2-3">
+</div><ul class="org-ul"><li><a id="sec-2-1-2-1" name="sec-2-1-2-1"></a><span class="todo DONE">DONE</span> Get the source code from a factory<br  /></li>
+<li><a id="sec-2-1-2-2" name="sec-2-1-2-2"></a><span class="todo DONE">DONE</span> Convert the source code into report objects.<br  /></li>
+<li><a id="sec-2-1-2-3" name="sec-2-1-2-3"></a><span class="todo DONE">DONE</span> Cache report object definitions<br  /><div class="outline-text-5" id="text-2-1-2-3">
 <p>
 Creating the objects will be an expensive process, so let's save the results of our queries.
 </p>
 </div>
 </li>
-<li><span class="todo TODO">TODO</span> Create parameter list from JRXML<br  /><div class="outline-text-5" id="text-2-1-2-4">
-<p>
-Pull out all /jasperReport/parameter elements from the jrxml and create parameters of the appropriate type for them.  Look for an existing parameter of the same name and use that if it is compatible.
-</p>
-</div>
-</li></ol>
+<li><a id="sec-2-1-2-4" name="sec-2-1-2-4"></a><span class="todo DONE">DONE</span> Create invocation for objects<br  /></li></ul>
 </div>
 <div id="outline-container-sec-2-1-3" class="outline-4">
-<h4 id="sec-2-1-3"><span class="section-number-4">2.1.3</span> <span class="todo TODO">TODO</span> Create report object values</h4>
+<h4 id="sec-2-1-3"><span class="todo DONE">DONE</span> Create report object values</h4>
 <div class="outline-text-4" id="text-2-1-3">
 <p>
 These are not cached.  This will be done in the individual object types.
 </p>
 </div>
-<ol class="org-ol"><li><span class="todo DONE">DONE</span> ParamValue<br  /></li>
-<li><span class="todo TODO">TODO</span> ParamFormValue<br  /></li></ol>
+<ul class="org-ul"><li><a id="sec-2-1-3-1" name="sec-2-1-3-1"></a><span class="todo DONE">DONE</span> ParamValue<br  /></li>
+<li><a id="sec-2-1-3-2" name="sec-2-1-3-2"></a><span class="todo DONE">DONE</span> ParamFormValue<br  /><div class="outline-text-5" id="text-2-1-3-2">
+</div>
+</li></ul>
 </div>
 <div id="outline-container-sec-2-1-4" class="outline-4">
-<h4 id="sec-2-1-4"><span class="section-number-4">2.1.4</span> <span class="todo TODO">TODO</span> ClientInteraction</h4>
+<h4 id="sec-2-1-4"><span class="done CANCELED">CANCELED</span> Client</h4>
 <div class="outline-text-4" id="text-2-1-4">
+<p>
+Defer this to a later version.
+</p>
+
 <p>
 We need a class that handles interaction with client environments.  Duties include displaying a parameter form, validating data.  In the future, it might also take on the responsibility of executing queries and displaying the results.
 </p>
 </div>
-<ol class="org-ol"><li><span class="todo TODO">TODO</span> CliBuilderClientInteraction<br  /></li>
-<li><span class="todo TODO">TODO</span> GrailsClientInteraction<br  /></li></ol>
+</div>
+</div>
+<div id="outline-container-sec-2-2" class="outline-3">
+<h3 id="sec-2-2"><span class="done CANCELED">CANCELED</span> Create parameter list from JRXML</h3>
+<div class="outline-text-3" id="text-2-2">
+<p>
+<b>Defer this to a later version.</b>
+</p>
+
+<p>
+Pull out all /jasperReport/parameter elements from the jrxml and create parameters of the appropriate type for them.  Look for an existing parameter of the same name and use that if it is compatible.
+</p>
 </div>
 </div>
 </div>
+<div id="outline-container-sec-3" class="outline-2">
+<h2 id="sec-3">Version 0.2.0</h2>
+<div class="outline-text-2" id="text-3">
+</div><div id="outline-container-sec-3-1" class="outline-3">
+<h3 id="sec-3-1"><span class="todo DONE">DONE</span> Auto documentation</h3>
 </div>
-<div id="postamble" class="status">
-<p class="author">Author: Ed Cole</p>
-<p class="date">Created: 2014-11-06 Thu 09:41</p>
-<p class="creator">Emacs 24.2.1 (Org mode 8.2.6)</p>
-<p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
+</div>
+<div id="outline-container-sec-4" class="outline-2">
+<h2 id="sec-4">Version 0.3.0</h2>
+<div class="outline-text-2" id="text-4">
+</div><div id="outline-container-sec-4-1" class="outline-3">
+<h3 id="sec-4-1"><span class="todo DONE">DONE</span> Integrate with menu system</h3>
+</div>
+</div>
+<div id="outline-container-sec-5" class="outline-2">
+<h2 id="sec-5">Version 0.4.0</h2>
+<div class="outline-text-2" id="text-5">
+</div><div id="outline-container-sec-5-1" class="outline-3">
+<h3 id="sec-5-1"><span class="todo TODO">TODO</span> Lists of Values</h3>
+</div>
+</div>
+<div id="outline-container-sec-6" class="outline-2">
+<h2 id="sec-6">Version 1.2.1</h2>
+</div>
+<div id="outline-container-sec-7" class="outline-2">
+<h2 id="sec-7">Version 1.3.0</h2>
+<div class="outline-text-2" id="text-7">
+</div><div id="outline-container-sec-7-1" class="outline-3">
+<h3 id="sec-7-1"><span class="todo TODO">TODO</span> Run Jasper Reports</h3>
+<div class="outline-text-3" id="text-7-1">
+<p>
+Run Jasper reports; take parameter form from parameter form defs.
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-sec-8" class="outline-2">
+<h2 id="sec-8">Future Versions</h2>
+<div class="outline-text-2" id="text-8">
+</div><div id="outline-container-sec-8-1" class="outline-3">
+<h3 id="sec-8-1"><span class="todo TODO">TODO</span> Inheritance</h3>
+</div>
+<div id="outline-container-sec-8-2" class="outline-3">
+<h3 id="sec-8-2"><span class="todo TODO">TODO</span> Validation</h3>
+</div>
+</div>
 </div>
 </body>
 </html>

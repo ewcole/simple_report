@@ -8,4 +8,12 @@ public class ResultSet {
     [columns: columns.export(),
      rows:    rows]
   }
+
+  /** Zero-argument constructor will create one with empty colums
+   *  and rows.
+   */
+  public ResultSet() {
+    columns = new ColumnList()
+    rows    = []
+  }
 }

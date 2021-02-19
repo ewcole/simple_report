@@ -55,4 +55,27 @@ public class SimpleReportInstanceTest extends GroovyTestCase {
     assert s.toString().size()
   }
 
+  // Turn off text output for now.
+  // void testRunAsText() {
+  //   printBanner "testRunAsTEXT"
+  //   def r = getReport(report1Name)
+  //   assert r
+  //   println "Report ${r.name}" 
+  //   def pf = r.getParamFormValue()
+  //   def s = new StringWriter()
+  //   assert r.run(OutputFormat.text, pf, s)
+  //   println "$s"
+  //   assert s.toString().size()
+  //   def l2 = ["",
+  //             "Name Description",
+  //             "---- -----------",
+  //             "param A single parameter",
+  //             "param_form A parameter form",
+  //             "report A groovy-based report",
+  //             "jrxml A Jasper Report",
+  //             "4 rows selected."]
+  //   def lines = s.toString().readLines()
+  //   assert lines == l2;
+  // }
+
 }

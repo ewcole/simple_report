@@ -129,7 +129,7 @@ public class ReportObjectFactoryTest extends GroovyTestCase {
     assert obj.export() == [name:        "scoobydoo", 
                             type:        "STRING", 
                             description: "scoobydoo", 
-                            label:       "scoobydoo", 
+                            label:       "Scoobydoo", 
                             default:     "scared"]
   }
   
@@ -140,7 +140,7 @@ public class ReportObjectFactoryTest extends GroovyTestCase {
     assert obj.export() == [name:        "scoobydoo", 
                             type:        "STRING", 
                             description: "scoobydoo", 
-                            label:       "scoobydoo", 
+                            label:       "Scoobydoo", 
                             default:     "scared"]
   }
  
@@ -151,7 +151,7 @@ public class ReportObjectFactoryTest extends GroovyTestCase {
     assert obj.export() == [name:        "scoobydoo", 
                             type:        "STRING", 
                             description: "scoobydoo", 
-                            label:       "scoobydoo", 
+                            label:       "Scoobydoo", 
                             default:     "scared"]
 
   }
@@ -165,12 +165,12 @@ public class ReportObjectFactoryTest extends GroovyTestCase {
     assert obj.export() == [subject: [name:        "subject", 
                                       type:        "STRING", 
                                       description: "subject", 
-                                      label:       "subject", 
+                                      label:       "Subject", 
                                       default:     "ART"], 
                             term_code:[name:        "term_code", 
                                        type:        "STRING", 
                                        description: "term_code", 
-                                       label:       "term_code", 
+                                       label:       "Term Code", 
                                        default:     "201312"]]
   
   }
@@ -184,12 +184,12 @@ public class ReportObjectFactoryTest extends GroovyTestCase {
     assert obj.export() == [subject: [name:        "subject", 
                                       type:        "STRING", 
                                       description: "subject", 
-                                      label:       "subject", 
+                                      label:       "Subject", 
                                       default:     "ART"], 
                             term_code:[name:        "term_code", 
                                        type:        "STRING", 
                                        description: "term_code", 
-                                       label:       "term_code", 
+                                       label:       "Term Code", 
                                        default:     "201312"]]
   }  
 
@@ -200,13 +200,28 @@ public class ReportObjectFactoryTest extends GroovyTestCase {
     assert obj.export() == [subject: [name:        "subject", 
                                       type:        "STRING", 
                                       description: "subject", 
-                                      label:       "subject", 
+                                      label:       "Subject", 
                                       default:     "ART"], 
                             term_code:[name:        "term_code", 
                                        type:        "STRING", 
                                        description: "term_code", 
-                                       label:       "term_code", 
+                                       label:       "Term Code", 
                                        default:     "201312"]]
+  }
+
+  void testGetReportObject_job() {
+    printBanner("testGetReportObject_job")
+    def factory = getReportObjectFactory()
+    def obj = factory.getReportObject("job", 
+                                      "sample_job");
+    println "obj=${obj?.export()}"
+    assert obj instanceof SimpleJob
+    assert obj.export() == [name:        'sample_job',
+                            type:        'SimpleJob',
+                            title:       '',
+                            version:     '',
+                            description: null,
+                            params:      null]
   }
 
   /** See if the create function works for parameter forms. */
@@ -215,7 +230,7 @@ public class ReportObjectFactoryTest extends GroovyTestCase {
     def obj = createFromCache("jrxml", "apps")
     println "obj=${obj}"
     def fsfSrc = getFileSourceFactory().getSource("jrxml", "apps")
-    assert obj == fsfSrc
+    assert obj.source == fsfSrc
   }
 
   void testGetReport () {
@@ -232,4 +247,33 @@ public class ReportObjectFactoryTest extends GroovyTestCase {
   void testGetJrxml() {
     printBanner("testGetJrxml")
   } 
+
+  void testGetSqlObject() {
+    printBanner("testGetSqlObject");
+    def factory = getReportObjectFactory()
+    def s = factory.getSql("tables")
+    assert s
+    println "s.export() = ${s.export()}"
+    assert s instanceof SimpleReport
+  }
+
+  void testGetSqlObjectWithParams() {
+    printBanner("testGetSqlObjectWithParams");
+    def factory = getReportObjectFactory()
+    def s = factory.getSql("terms")
+    assert s
+    println "s.export() == ${s.export()}"
+    def se = s.export()  
+    assert se
+    def pp = se.params;
+    println "pp=$pp"
+    assert pp
+    assert pp.size() == 1
+    assert pp.year == [name:        'year',
+                       type:        'STRING',
+                       description: 'year',
+                       label:       'Year',
+                       "default":   null]
+    assert s instanceof SimpleReport
+  }
 }

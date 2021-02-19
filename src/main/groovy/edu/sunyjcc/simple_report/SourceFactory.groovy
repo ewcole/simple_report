@@ -1,6 +1,6 @@
 package edu.sunyjcc.simple_report
 
-/** Objects that implement this interface will have methods that return the 
+/** Objects that extend this class will have methods that return the 
  *  source code for various objects defined in the simple_reports library.
  *  SourceFactory objects are not responsible for caching; that will be done 
  *  elsewhere.
@@ -33,6 +33,9 @@ public abstract class SourceFactory {
    */
   abstract String getSourceText(String objType, String objName);
 
+  /** Return a file name pointing to the JRXML source code  */
+  abstract String getJasperSourceText(String objType, String objName)
+
   /** Get the source for a parameter object 
    *  @param name The name of the parameter you want to fetch
    */
@@ -51,7 +54,21 @@ public abstract class SourceFactory {
    *  @param name The name of the Jasper Report you want to fetch
    */
   public String getJrxmlSource(String name) {
-    def pf = getSourceText("jrxml", "${name}.jrxml")
+    def pf = getJasperSourceText("jrxml", name)
+  }
+
+  /** Get a .sql file. 
+   *  @param name The name of the Jasper Report you want to fetch
+   */
+  public String getSqlSource(String name) {
+    def pf = getSourceText("sql", "${name}.sql")
+  }
+  
+  /** Get a .groovy file, defining a job. 
+   *  @param name The name of the Jasper Report you want to fetch
+   */
+  public String getJobSource(String name) {
+    def pf = getSourceText("job", "${name}.groovy")
   }
   
   /** Get a .groovy file, defining a Simple Report. 
@@ -66,7 +83,7 @@ public abstract class SourceFactory {
    */
   public String getSource(String type, String name) {
     def nType = normalizeTypeName(type)
-    def ext = (nType == 'jrxml')?'jrxml':'groovy';
+    def ext = (nType == 'jrxml'||nType == 'sql')?nType:'groovy';
     def qName = "${name}.${ext}"
     getSourceText(nType, qName)
   }

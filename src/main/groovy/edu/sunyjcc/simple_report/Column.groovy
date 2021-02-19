@@ -29,4 +29,9 @@ public class Column implements Exportable {
      scale:       this.scale,
      comments: this.comments,]
   }
+
+  // public Column(String s) {
+  //   this.name = s;
+  //   this.label = s.toUpperCase().replaceAll(/_/,' ');
+  // }
 }

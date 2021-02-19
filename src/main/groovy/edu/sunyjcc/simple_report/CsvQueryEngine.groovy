@@ -92,7 +92,9 @@ public class CsvQueryEngine extends QueryEngine implements Buildable {
   ResultSet execute(HashMap params) {
     def data = parseCsv()
     def r = new ResultSet()
-    r.columns = data.columns.collect{new Column([name: it, label: it])}
+    r.columns = new ColumnList(
+      data.columns.collect{new Column([name: it, label: it])}
+    );
     r.rows = data.rows
     return r;
   }

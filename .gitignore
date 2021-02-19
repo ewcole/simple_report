@@ -3,6 +3,17 @@
 *junk*
 *.log
 working_files.org
+*.jasper
+*.orig
+*.jasper
+*.~sql
+.~lock.*#
+~$*.pptx
+.\#*
+
+# We might stop ignoring these later.
+*.docx
+*.odt
 
 .gradle/
 build/
@@ -11,3 +22,4 @@ docs/ReportingProposal.odt
 lib/ojdbc6.jar
 README.html
 docs/*.html
+docs/SICAS_2017/9-8-17 Cole_Drop-In Reporting with Groovy.pptx

@@ -74,7 +74,7 @@ public class CsvQueryEngineTest extends GroovyTestCase {
     println r.export()
     assert r.rows.size() == 2
     assert r.columns.size() == 3;
-    assert r.columns.collect{it.name} == "a b c".split(' ')
+    assert r.columns.list().collect{it.name} == "a b c".split(' ')
     println "columns=$r.columns"
     r.rows.eachWithIndex {rw, i -> println "row[$i] = ${rw}"}
     assert r.rows[0] == [a: "1", b: "2", c: "3"]
