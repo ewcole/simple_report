@@ -1,6 +1,13 @@
-def version = "2.8.0"
+def version = "3.3.3"
 
-/* 2.8.0: Implement prototypical inheritance for parameters.
+/* 3.3.3: Add documentation for Simple Jobs
+ * 3.3.2: Correct handling of system parameters in Jasper Reports
+ * 3.3.0: Deploy minor changes with report server
+ * 3.2.0: Create a ClientEnv class that can provide variables from the client
+ * 2.8.3: Fix syntax error in enums
+ * 2.8.2: Use inherited parameter definitions in pure SQL queries
+ * 2.8.1: Fix inheritance for parameter labels
+ * 2.8.0: Implement prototypical inheritance for parameters.
  * 2.7.2: Fix CSV output when there are quotes or new lines in data
  * 2.7.1: Turn off text output for reports
  * 2.7.0: Add isStandalone property to OutputFormat

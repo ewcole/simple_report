@@ -5,6 +5,9 @@ import groovy.sql.Sql
 /** A list of values to be used in a parameter definition */
 public class ListOfValues implements Buildable {
 
+  /** The factory that created this object */
+  ReportObjectFactory reportObjectFactory;
+  
   String getBuildDocHtml() {
     "This creates an SQL query to be used in a report."
   }

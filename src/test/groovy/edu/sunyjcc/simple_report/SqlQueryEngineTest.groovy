@@ -72,4 +72,8 @@ public class SqlQueryEngineTest extends GroovyTestCase {
     println ("*"*70)
     println ()
   }
+
+  void testQueryWithSystemParameters() {
+    println "**** testQueryWithSystemParameters ********************"
+  }
 }

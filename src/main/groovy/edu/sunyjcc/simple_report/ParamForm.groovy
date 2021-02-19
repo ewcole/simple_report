@@ -7,6 +7,30 @@ import java.util.*
  */
 public class ParamForm implements Buildable, Exportable, Runnable {
 
+  /** The factory that created this object */
+  ReportObjectFactory reportObjectFactory;
+
+  public void setReportObjectFactory(ReportObjectFactory reportObjectFactory) {
+    this.reportObjectFactory = reportObjectFactory;
+    // Copy system parameters into this form as standard parameters.
+    refreshSystemParams();
+  }
+
+  /** Copy system parameters into this parameter form. */
+  public ParamForm refreshSystemParams() {
+    def sp = this.reportObjectFactory?.clientEnv?.systemParams;
+    if (sp) {
+      sp.keySet().each {
+        sysParamName ->
+        def p = this.getParam(sysParamName);
+        if (!p) {
+          this.addParam(sp.params[sysParamName].getParam());
+        }
+      }
+    }
+    return this;
+  }
+  
   String getBuildDocHtml() {
     ("This creates a parameter form.  Prototypical inheritance is available "
      + "by using the copyFrom option.") 
@@ -27,6 +51,12 @@ public class ParamForm implements Buildable, Exportable, Runnable {
   private HashMap<String,Param> params = [:];
   private boolean isValid;
 
+  public Param getParam(String paramName) {
+    if (params.containsKey(paramName)) {
+      params[paramName];
+    }
+  }
+  
   public ParamForm addParam(Param param) {
     println ("in addParam(${param})");
     if (this.params.containsKey(param.name)) { 
@@ -103,6 +133,14 @@ public class ParamForm implements Buildable, Exportable, Runnable {
   // Constructors                                                     //
   //////////////////////////////////////////////////////////////////////
   public ParamForm() {
+  }
+
+  public ParamForm(ReportObjectFactory reportObjectFactory) {
+    this.setReportObjectFactory(reportObjectFactory);
+  }
+
+  public ParamForm(SimpleReport simpleReport) {
+    this.setReportObjectFactory(simpleReport.reportObjectFactory);
   }
 
   /** Build a new parameter form based on another parameter form 

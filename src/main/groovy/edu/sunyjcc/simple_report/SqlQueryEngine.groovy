@@ -7,6 +7,9 @@ import groovy.sql.Sql
  */
 public class SqlQueryEngine extends QueryEngine implements Buildable {
 
+  /** The factory that created this object */
+  ReportObjectFactory reportObjectFactory;
+  
   String getBuildDocHtml() {
     "This creates an SQL query to be used in a report."
   }
@@ -120,8 +123,10 @@ public class SqlQueryEngine extends QueryEngine implements Buildable {
   ResultSet execute(ParamFormValue params) {
     def paramVals = params?.getValues()?.inject([:]) {
       map, pv ->
+      if (paramRefs.contains(pv.key)) {
         map[pv.key] = pv.value.value
-        map
+      }
+      map
     }
     return execute(paramVals?:[:])
   }

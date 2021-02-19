@@ -5,6 +5,9 @@ package edu.sunyjcc.simple_report
  */
 public class CsvQueryEngine extends QueryEngine implements Buildable {
 
+  /** The factory that created this object */
+  ReportObjectFactory reportObjectFactory;
+  
   String getBuildDocHtml() {
     ("This creates a source of data that takes its values from a CSV file " +
      " or a string in the CSV format.")

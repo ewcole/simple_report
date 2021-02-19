@@ -21,16 +21,24 @@ public class JasperReportInstanceTest extends GroovyTestCase {
     getReportObjectFactory().getJasperReport('apps');
   };
 
+  /** Get a ClientEnv with a system parameter */
+  ClientEnv getClientEnv() {
+    def ce = new ClientEnv();
+    ce.systemParams.a = "a"
+    ce.systemParams.b = {-> 2 + 2}
+    return ce;
+  }
+
   /** Get a FileSourceFactory with the source directory as its root. */
   FileSourceFactory getFileSourceFactory(String root = 'dir1') {
     def fsf = new FileSourceFactory(getSourceDir(root))
     assert fsf
     return fsf
   }
-
+  
   ReportObjectFactory getReportObjectFactory(String root = 'dir1') {
     def fsf = getFileSourceFactory(root);
-    def rof = new ReportObjectFactory(fsf);
+    def rof = new ReportObjectFactory(fsf, getClientEnv());
     assert rof;
     assert rof.cache
     rof;
@@ -60,7 +68,27 @@ public class JasperReportInstanceTest extends GroovyTestCase {
     banner "testParameterForm";
     JasperReportInstance r = getReportObjectFactory().getJasperReport('apps')
     ParamFormValue p = r.params
-    assert p && p.export() == [:]
+    def pe = p.export();
+    assert p;
+    assert pe.a == [name: 'a',
+                    type: 'SYSTEM',
+                    description: 'a',
+                    label: 'a',
+                    'default': 'a',
+                    value: 'a'
+    ];
+    assert pe.b.name ==  'b';
+    assert pe.b.type ==  'SYSTEM';
+    assert pe.b.description ==  'b';
+    assert pe.b.label ==  'b';
+    assert pe.b.default == {-> 2 + 2}();
+    assert pe.b.value == {-> 2 + 2}();
+    assert pe.b == [name: 'b',
+                    type: 'SYSTEM',
+                    description: 'b',
+                    label: 'b',
+                    'default':{-> 2 + 2}(),
+                    value:{-> 2 + 2}()];
   }
 
   void testParameterForm2() {
@@ -78,17 +106,19 @@ public class JasperReportInstanceTest extends GroovyTestCase {
                        "default": null, 
                        value: null];
     println pe.keySet().getClass()
- pe.keySet() == ['param_choice', 'pidm', 'popsel_app', 
-                           'popsel_selection', 
-                           'popsel_creator', 
-                           'popsel_user'] as Set
+    pe.keySet() == ['param_choice', 'pidm', 'popsel_app', 
+                    'popsel_selection', 
+                    'popsel_creator', 
+                    'popsel_user'] as Set
   }
 
   void testRunJasperReport() {
     banner "testRunJasperReport";
     JasperReportInstance r = getAppsRpt();
-    // The next statment will have to change 
-    //assert r.run() == "source=${r.source}"
+    // The next statment will have to change
+    def o = new StringWriter()
+    //r.run(OutputFormat.pdf, r.getParamFormValue(), new new PrintWriter(o));
+    //assert o.toString() == "";
   }
 
   void testOutputFormats() {
@@ -116,6 +146,17 @@ public class JasperReportInstanceTest extends GroovyTestCase {
   void testRun() {
     banner "testRun";
     JasperReportInstance r = getAppsRpt();
+    def o = new FileOutputStream('build/apps.pdf')
+    r.run(OutputFormat.pdf, r.paramFormValue, o);
+    o.flush()
+    o.close()
+    // No database connection is here, so there's no output.
+    assert new File('build/apps.pdf').text.size() == 0;
+  }
+
+  void testRun2() {
+    banner "testRun";
+    JasperReportInstance r = getReportObjectFactory().getJasperReport('crse_sect_attributes');;
     def o = new FileOutputStream('build/apps.pdf')
     r.run(OutputFormat.pdf, r.paramFormValue, o);
     o.flush()

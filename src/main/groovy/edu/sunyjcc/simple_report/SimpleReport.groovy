@@ -5,6 +5,19 @@ package edu.sunyjcc.simple_report;
  */
 public class SimpleReport implements Exportable, Buildable, Runnable {
 
+  /** The factory that created this object */
+  ReportObjectFactory reportObjectFactory;
+
+  public void setReportObjectFactory(ReportObjectFactory factory) {
+    this.reportObjectFactory = factory;
+    // if (!this.params) {
+    //   this.params = new ParamForm();
+    // }
+    if (this.params) {
+      this.params.reportObjectFactory = factory;
+    }
+  }
+  
   String getBuildDocHtml() {
     ("This creates a report that can produce a data file in several "
      + "formats, including CSV.")
@@ -41,6 +54,9 @@ public class SimpleReport implements Exportable, Buildable, Runnable {
 
   public setParams(ParamForm params) {
     this.params = params;
+    if (!this.params.reportObjectFactory) {
+      this.params.reportObjectFactory = this.reportObjectFactory;
+    }
   }
 
   /** The columns that this report will produce */
@@ -121,7 +137,11 @@ public class SimpleReport implements Exportable, Buildable, Runnable {
  
   /** Execute the report and return the result. */
   public ResultSet execute(ParamFormValue params) {
-    def p = (this.params?.getParamFormValue())?:new ParamFormValue();
+    if (!this.params) {
+      this.params = new ParamForm(this);
+    }
+    ParamFormValue p = (this.params.getParamFormValue())?:new ParamFormValue(this.params);
+    p.paramForm = this.params;
     p.setParamValues(params)
     queryEngine.execute(p)
   }
@@ -131,6 +151,7 @@ public class SimpleReport implements Exportable, Buildable, Runnable {
     if (!this.params) {
       this.params = new ParamForm()
     }
+    this.params.reportObjectFactory = this.reportObjectFactory;
     def p = this.params.getParamFormValue().setParamValues(params)
     queryEngine.execute(p)
   }
@@ -140,7 +161,10 @@ public class SimpleReport implements Exportable, Buildable, Runnable {
   /** Get a param form value for the object.*/
   @Override
   ParamFormValue getParamFormValue() {
-    new ParamFormValue((this.params)?:(new ParamForm()))
+    def pf = (this.params)?:(new ParamForm());
+    pf.reportObjectFactory = this.reportObjectFactory;
+    def pfv = new ParamFormValue(pf)
+    return pfv
   }
 
   /** Get a list of the supported output types */
@@ -159,6 +183,7 @@ public class SimpleReport implements Exportable, Buildable, Runnable {
    */
   boolean run(OutputFormat outputFormat, ParamFormValue paramFormValue, 
               Writer out) {
+    assert paramFormValue.clientEnv
     new SimpleReportInstance(this).run(outputFormat, paramFormValue, out)
   }
 

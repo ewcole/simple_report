@@ -3,9 +3,11 @@ package edu.sunyjcc.simple_report
 import java.text.DecimalFormat
 
 enum ParamType {
+
   string("STRING", 
          {it.toString()},
          "text"),
+
   number("NUMBER",
          {numStr ->
            if (numStr instanceof String) {
@@ -31,6 +33,13 @@ enum ParamType {
   //     ),
   // integer("INTEGER"),
 
+  /** This is a system parameter that should not be displayed
+   *  in a parameter form.
+   */
+  system("SYSTEM", 
+         {it.toString()},
+         "hidden"); 
+  
   ParamType(String desc, Closure parse, String htmlInputType) {
     this.desc = desc
     this.parse = parse

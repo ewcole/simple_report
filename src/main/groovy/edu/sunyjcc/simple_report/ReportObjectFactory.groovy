@@ -7,8 +7,18 @@ package edu.sunyjcc.simple_report
  */
 public class ReportObjectFactory {
   /** The place we will get the source code for the objects we create */
-  SourceFactory sourceFactory;
+    SourceFactory sourceFactory;
 
+  /** A source for system parameters */
+    ClientEnv clientEnv = new ClientEnv();
+
+  /** Get the client environment; initialize if necessary. */
+  ClientEnv getClientEnv() {
+    if (!this.clientEnv) {
+      this.clientEnv = new ClientEnv();
+    }
+    return this.clientEnv;
+  }
   /** This will hold all of the report objects and provide functions to 
    *  get new ones.
    */
@@ -72,13 +82,21 @@ public class ReportObjectFactory {
                 superParamForm = new ParamForm();
                 println "param form $name not found."
               }
+              superParamForm.reportObjectFactory = this;
               SimpleReport r = builder.report(name: name) {
                 sql(query: queryText)
               }
               psql.paramRefs?.each {
                 paramName ->
-                  if (!(superParamForm.params.containsKey(paramName))) {
-                    superParamForm.addParam(builder.param(name: paramName));
+                if (!(superParamForm.params.containsKey(paramName))) {
+                    Param superParam = null;
+                    try {
+                        superParam = this.getParam(paramName);
+                        superParamForm.addParam(new Param(superParam));
+                    } catch (BuildException e) {
+                        // There is no pre-defined param,
+                        superParamForm.addParam(builder.param(name: paramName));
+                    }
                   }
               }
               r.params = superParamForm;
@@ -198,6 +216,12 @@ public class ReportObjectFactory {
     assert this.cache
   }
 
+  public ReportObjectFactory(SourceFactory sourceFactory,
+                             ClientEnv     clientEnv) {
+    this.setSourceFactory(sourceFactory)
+    assert this.cache
+    this.clientEnv = clientEnv;
+  }
   /** Public constructor with generic object argument */
   // public ReportObjectFactory(Object o) {
   //   println "Object o = $o"

@@ -77,11 +77,14 @@ public class SourceFactoryTest extends GroovyTestCase {
     assert l == [[type: 'param', name:'scoobydoo'], 
                  [type: 'param', name:'shaggy'], 
                  [type: 'param_form', name: 'SubjectAndTerm'], 
-                 [type: 'report', name: 'simple_report_types'],
+                 [type: 'report', name: 'simple_report_types'], 
+                 [type: 'report', name: 'system_parameters'], 
+                 [type: 'sql', name: 'parameters'],
                  [type: 'sql', name: 'tables'],
                  [type: 'sql', name: 'terms'],
                  [type: 'job', name: 'hello_world'],
                  [type: 'job', name: 'sample_job'],
-                 [type: 'jrxml', name: 'apps'],]
+                 [type: 'jrxml', name: 'apps'],
+                 [type: 'jrxml', name: 'crse_sect_attributes']]
   }
 }

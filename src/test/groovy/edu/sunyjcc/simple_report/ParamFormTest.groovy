@@ -122,5 +122,43 @@ public class ParamFormTest extends GroovyTestCase {
     }
   }
 
+  void testRefreshSystemParams() {
+    printBanner "testRefreshSystemParams"
+    def f = getReportObjectFactory()
+    assert f?.clientEnv?.systemParams
+    assert f.clientEnv;
+    assert f.clientEnv.systemParams
+    f.clientEnv.systemParams.dalek_phrase = "Exterminate!"
+    assert f.clientEnv.systemParams.params.dalek_phrase instanceof SystemParam
+    assert f.clientEnv.systemParams.keySet() == ['dalek_phrase']
+    def pf = f.build {
+      params(copyFrom: "SubjectAndTerm")
+    }
+    assert pf.reportObjectFactory == f
+    pf.refreshSystemParams()
+    def pfe = pf.export()
+    assert pfe.keySet().collect{it} == 'dalek_phrase term_code subject'.split(/ /);
+    assert pf.export() == [dalek_phrase:[name:        'dalek_phrase',
+                                         type:        'SYSTEM',
+                                         description: 'dalek_phrase',
+                                         label:       'dalek_phrase',
+                                         'default':   'Exterminate!'],
+                           term_code:[name:           'term_code',
+                                      type:           'STRING',
+                                      description:    'term_code',
+                                      label:          'Term Code',
+                                      'default':        '201312',],
+                           subject:[name:             'subject',
+                                    type:             'STRING',
+                                    description:      'subject',
+                                    label:            'Subject',
+                                    'default':          'ART'],
+    ]
+    pf.refreshSystemParams()
+    // assert pf.matchesSystemParam('dalek_phrase');
+    // assert pf.matchesSystemParam('DALEK_PHRASE');
+    // assert ! pf.matchesSystemParam('spoon_river');
+  }
+
 }
 

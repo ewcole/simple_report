@@ -20,9 +20,17 @@ public class InvocationTest extends GroovyTestCase {
     return fsf
   }
 
+  ClientEnv getClientEnv() {
+    def clientEnv = new ClientEnv()
+    assert clientEnv instanceof ClientEnv
+    clientEnv.systemParams.captain = "Kirk";
+    return clientEnv
+  }
+  
   ReportObjectFactory getReportObjectFactory() {
     def fsf = getFileSourceFactory();
-    def rof = new ReportObjectFactory(fsf);
+    def sp = getClientEnv();
+    def rof = new ReportObjectFactory(fsf, sp);
     assert rof;
     assert rof.cache
     rof;
@@ -121,5 +129,15 @@ public class InvocationTest extends GroovyTestCase {
     def j = new JsonSlurper().parseText(s.toString())
     assert j.term_code.value == '199712'
     assert j.subject.value == 'BIO'
+  }
+
+  void testSystemParams() {
+    printBanner "testSystemParams"
+    def rf = getReportObjectFactory();
+    assert rf
+    def i = rf.getInvocation('paramForm', 'SubjectAndTerm')
+    assert i instanceof Invocation
+    def sp = i.systemParams;
+    assert sp.captain == "Kirk";
   }
 }
