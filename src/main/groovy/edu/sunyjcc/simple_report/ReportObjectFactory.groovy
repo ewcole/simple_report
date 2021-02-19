@@ -77,8 +77,15 @@ public class ReportObjectFactory {
               }
               psql.paramRefs?.each {
                 paramName ->
-                  if (!(superParamForm.params.containsKey(paramName))) {
-                    superParamForm.addParam(builder.param(name: paramName));
+                if (!(superParamForm.params.containsKey(paramName))) {
+                    Param superParam = null;
+                    try {
+                        superParam = this.getParam(paramName);
+                        superParamForm.addParam(new Param(superParam));
+                    } catch (BuildException e) {
+                        // There is no pre-defined param,
+                        superParamForm.addParam(builder.param(name: paramName));
+                    }
                   }
               }
               r.params = superParamForm;
