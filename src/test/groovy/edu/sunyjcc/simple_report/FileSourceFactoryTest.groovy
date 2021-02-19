@@ -112,6 +112,7 @@ public class FileSourceFactoryTest extends GroovyTestCase {
       [type: 'job', name: 'hello_world'],
       [type: 'job', name: 'sample_job'],
       [type: 'jrxml', name: 'apps'],
+      [type: 'jrxml', name: 'crse_sect_attributes'],
     ]
-  }
-}
+  }}
+

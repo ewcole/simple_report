@@ -75,6 +75,7 @@ public class JasperReportInstance implements Runnable, Exportable {
         .replaceAll(/\.jrxml/, '');
     File sourceFile = new File(jrxmlDir,  "${reportFileName}.jrxml");
     File outputFile = new File(jasperDir, "${reportFileName}.jasper");
+    // println("sourceFile = ${sourceFile.canonicalFile}");
     // Now, check to see if we need to compile this file.
     if (! outputFile.exists() 
         || outputFile.lastModified() < sourceFile.lastModified()) {
@@ -168,7 +169,7 @@ public class JasperReportInstance implements Runnable, Exportable {
     println "superParamForm = ${superParamForm?.export()}"
     ParamForm paramForm = new ParamForm(superParamForm);
     paramForm.reportObjectFactory = factory;
-    def sysParams = factory.clientEnv.systemParams.list().collect {it.name};
+    //def sysParams = factory.clientEnv.systemParams.list().collect {it.name};
     parsedSource.parameter.each {
       prm ->
       def paramClass = "${prm.@class}"
