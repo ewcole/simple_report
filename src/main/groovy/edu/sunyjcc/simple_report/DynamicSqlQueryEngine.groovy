@@ -7,6 +7,9 @@ import groovy.sql.Sql
  */
 public class DynamicSqlQueryEngine extends QueryEngine implements Buildable {
 
+  /** The factory that created this object */
+  ReportObjectFactory reportObjectFactory;
+  
   String getBuildDocHtml() {
     """This creates a dynamic SQL query to be used in a report.  
        The build parameter is a closure that returns a 

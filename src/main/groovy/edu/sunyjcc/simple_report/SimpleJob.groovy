@@ -12,6 +12,9 @@ public class SimpleJob implements Exportable, Buildable, Runnable {
     println text;
   }
 
+  /** The factory that created this object */
+  ReportObjectFactory reportObjectFactory;
+  
   String getBuildDocHtml() {
     ("This creates a job that can change data in the database.  "
      + "")
@@ -49,11 +52,13 @@ public class SimpleJob implements Exportable, Buildable, Runnable {
   /** Replace the parameter form for this job */
   public setParams(ParamForm params) {
     this.params = params;
+    this.params.reportObjectFactory = this.reportObjectFactory;
   }
 
   public ParamForm getParams() {
     if (!params) {
       params = new ParamForm()
+      params.reportObjectFactory = this.reportObjectFactory
     }
     params;
   }
@@ -105,6 +110,7 @@ public class SimpleJob implements Exportable, Buildable, Runnable {
   public void addParam(Param p) {
     if (!params) {
       this.params = new ParamForm()
+      this.params.reportObjectFactory = this.reportObjectFactory
     }
     params.params[p.name] = p
   }
@@ -161,7 +167,8 @@ public class SimpleJob implements Exportable, Buildable, Runnable {
   /** Execute the job and return the result. */
   public void execute(ParamFormValue params, MarkupBuilder m) {
     debug "In execute(${params.export()}, $m)"
-    def p = (this.params?.getParamFormValue())?:params;
+    def p = (this.getParams()?.getParamFormValue())?:params;
+    p.paramForm = this.getParams()
     debug "p=${p.export()}"
     p.setParamValues(params)
     debug "After p.setParamValues: p=$p"
@@ -184,7 +191,9 @@ public class SimpleJob implements Exportable, Buildable, Runnable {
   /** Get a param form value for the object.*/
   @Override
   ParamFormValue getParamFormValue() {
-    new ParamFormValue((this.params)?:(new ParamForm()))
+    def pfv = new ParamFormValue((this.params)?:(new ParamForm()))
+    pfv.paramForm.reportObjectFactory = this.reportObjectFactory//.clientEnv;
+    return pfv
   }
 
   /** Get a list of the supported output types */

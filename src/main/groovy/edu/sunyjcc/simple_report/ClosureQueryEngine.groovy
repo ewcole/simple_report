@@ -13,6 +13,9 @@ public class ClosureQueryEngine extends QueryEngine implements Buildable, Export
 
   String queryEngineType = "closure"
 
+  /** The factory that created this object */
+  ReportObjectFactory reportObjectFactory;
+  
   /** Produce documentation on how to build and use this class. */
   String getBuildDocHtml() {
     def s = new StringWriter()

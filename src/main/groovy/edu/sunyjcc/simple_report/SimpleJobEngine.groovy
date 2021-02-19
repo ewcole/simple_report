@@ -5,6 +5,9 @@ package edu.sunyjcc.simple_report
  */
 public class SimpleJobEngine implements Buildable {
 
+  /** The factory that created this object */
+  ReportObjectFactory reportObjectFactory;
+  
   /** Provide a description for this object. */
   String getBuildDocHtml() {
     ("This creates an engine that can perform actions with side effects.")

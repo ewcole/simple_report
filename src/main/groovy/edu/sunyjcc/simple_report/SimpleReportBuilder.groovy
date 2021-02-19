@@ -273,6 +273,12 @@ public class SimpleReportBuilder extends BuilderSupport {
     debug "After assert; call nodeFactory[$name]($name, $attributes, $value)}"
     def n = nodeFactory[name].create(name, attributes, value)
     debug "createNode => $n"
+    assert n instanceof Buildable;
+    if (n.properties.keySet().contains("reportObjectFactory")) {
+      debug "  n.getClass() == ${n.getClass()}"
+      n.reportObjectFactory = this.reportObjectFactory;
+    }
+    assert n instanceof Buildable;
     return n
   }
 
@@ -340,6 +346,7 @@ public class SimpleReportBuilder extends BuilderSupport {
       def b = c()
       if (b instanceof Buildable) {
         b.source = text
+        b.reportObjectFactory = this.reportObjectFactory
       }
       return b;
     } catch (BuildException e) {

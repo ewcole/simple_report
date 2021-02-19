@@ -29,6 +29,10 @@ public class Invocation implements Exportable, Runnable {
     params.setParamValues(pvals)
   }
 
+  SystemParams getSystemParams() {
+    this.factory.clientEnv.systemParams
+  }
+  
   /** The current state of the Invocation parameters */
   private boolean isValid = false;
 

@@ -4,6 +4,9 @@ package edu.sunyjcc.simple_report;
  */
 public class Param implements Exportable, Buildable {
 
+  /** The factory that created this object */
+  ReportObjectFactory reportObjectFactory;
+  
   String getBuildDocHtml() {
     "This creates a single parameter that will appear on a parameter form."
   }

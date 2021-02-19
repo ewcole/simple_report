@@ -15,7 +15,7 @@ enum OutputFormat {
     xlsx("XLSX", "Microsoft Excel", true, true, "application/vnd.ms-excel"),
     pptx("PPTX", "Microsoft Powerpoint", true, true, "application/vnd.ms-powerpoint"),
     // Not supported by Jasper Reports.
-    json("JSON", "JSON Data", false, true, "application/json"),
+    json("JSON", "JSON Data", false, true, "application/json");
 
     OutputFormat(String code, String desc, 
                  boolean isBinary,

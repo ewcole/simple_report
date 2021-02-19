@@ -163,9 +163,12 @@ public class JasperReportInstance implements Runnable, Exportable {
     } catch (BuildException e) {
       // Cannot create the parameter form
       superParamForm = new ParamForm();
+      superParamForm.reportObjectFactory = factory;
     }
     println "superParamForm = ${superParamForm?.export()}"
     ParamForm paramForm = new ParamForm(superParamForm);
+    paramForm.reportObjectFactory = factory;
+    def sysParams = factory.clientEnv.systemParams.list().collect {it.name};
     parsedSource.parameter.each {
       prm ->
       def paramClass = "${prm.@class}"

@@ -1,6 +1,8 @@
-def version = "2.8.2"
+def version = "3.2.0"
 
-/* 2.8.2: Use inherited parameter definitions in pure SQL queries
+/* 3.2.0: Create a ClientEnv class that can provide variables from the client
+ * 2.8.3: Fix syntax error in enums
+ * 2.8.2: Use inherited parameter definitions in pure SQL queries
  * 2.8.1: Fix inheritance for parameter labels
  * 2.8.0: Implement prototypical inheritance for parameters.
  * 2.7.2: Fix CSV output when there are quotes or new lines in data

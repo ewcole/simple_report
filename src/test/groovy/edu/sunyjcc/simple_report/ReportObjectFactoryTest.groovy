@@ -221,7 +221,7 @@ public class ReportObjectFactoryTest extends GroovyTestCase {
                             title:       '',
                             version:     '',
                             description: null,
-                            params:      null]
+                            params:      [:]]
   }
 
   /** See if the create function works for parameter forms. */
@@ -275,5 +275,15 @@ public class ReportObjectFactoryTest extends GroovyTestCase {
                        label:       'Year',
                        "default":   null]
     assert s instanceof SimpleReport
+  }
+
+  void testSystemParamsConstructor() {
+    printBanner("testSystemParamsConstructor");
+    def fsf = getFileSourceFactory();
+    def spf = new ClientEnv();
+    spf.systemParams.myCaptain = "Spock";
+    assert spf.systemParams.myCaptain == "Spock";
+    def rf = new ReportObjectFactory(fsf, spf);
+    assert rf.clientEnv.systemParams.myCaptain == "Spock";
   }
 }

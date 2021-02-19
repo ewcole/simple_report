@@ -15,4 +15,8 @@ public interface Buildable {
    *  the SimpleReportBuilder if a
    */
   String source;
+
+  /** Objects will remember the factory that was used to create them. */
+  ReportObjectFactory getReportObjectFactory();
+  void setReportObjectFactory(ReportObjectFactory reportObjectFactory);
 }

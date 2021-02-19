@@ -7,13 +7,32 @@ import groovy.xml.*
 public class ParamFormValue implements Exportable, Runnable {
   /** The form that tells us what parameters are required. */
   ParamForm paramForm;
-  HashMap<String, ParamValue> values
+  HashMap<String, ParamValue> privateValues
 
   public HashMap<String, ParamValue> getValues() {
-    if (!values) {
-      values = [:]
+    if (!privateValues) {
+      privateValues = [:]
     }
-    return values
+    def sp = this.systemParams?.list().collect {
+      key, value ->
+      [name: key, value: value]
+    }
+    if (sp) {
+      return sp.inject(privateValues) {
+        valmap, sysParam ->
+        valmap[sysParam.name] = sysParam.value;
+        return valmap;
+      }
+    } else {
+      return privateValues
+    }
+  }
+
+  public HashMap<String, ParamValue> getNonSystemValues() {
+    if (!privateValues) {
+      privateValues = [:]
+    }
+    return privateValues
   }
 
   public void setValues() {
@@ -27,7 +46,7 @@ public class ParamFormValue implements Exportable, Runnable {
   ParamFormValue setParamForm(ParamForm paramForm) {
     //println "in setParamForm(${paramForm.export()})"
     this.paramForm = paramForm?:new ParamForm();
-    this.values = this.paramForm.params.inject([:]) {
+    def reportValues = this.paramForm.params.inject([:]) {
       vals, paramFormEntry ->
         // paramForm.params is a HashMap
         String paramName = paramFormEntry.key;
@@ -37,9 +56,19 @@ public class ParamFormValue implements Exportable, Runnable {
         vals[paramName] = pv;
         return vals
     }?:[:]
-    // println "this.values=${this.values}"
-    // println "this.values keys =${this.values.keySet()}"
-    assert this.values != null
+    def ce = getClientEnv();
+    def systemParams = ce?.systemParams?.list().collect {
+      [name: it.key, value: it.value.getParamValue()]
+    }?:[]
+    println "systemParams=${systemParams}"
+    this.privateValues = systemParams.inject(reportValues) {
+      rv, syprm ->
+      rv[syprm.name] = syprm.value;
+      return rv;
+    };
+    println "this.privateValues=${this.privateValues}"
+    println "this.privateValues keys =${this.privateValues.keySet()}"
+    assert this.privateValues != null
     return this
   }
 
@@ -48,42 +77,56 @@ public class ParamFormValue implements Exportable, Runnable {
    *  @param s The name of a parameter from the paramForm object.
    */
   public ParamValue getValue(String s) {
-    assert this.values
-    def v = this.values[s]
+    assert this.privateValues
+    def v = this.privateValues[s]
     assert v instanceof ParamValue
     return v
+  }
+
+  public ClientEnv getClientEnv() {
+    this.paramForm?.reportObjectFactory?.clientEnv
+  }
+  
+  public SystemParams getSystemParams() {
+    SystemParams spf = (clientEnv?.systemParams)?:new SystemParams()
+    // assert spf instanceof SystemParams
+    // spf.systemParams;
+  }
+
+  public void setSystemParams() {
+    // do nothing - parameters are read-only.
   }
 
   /** Set the value of a parameters
    *  @param s The name of the parameter from the ParamForm object.
    */
   public ParamValue setValue(String s, ParamValue v) {
-    assert values;
-    assert values[s];
-    assert values[s] instanceof ParamValue
+    assert privateValues;
+    assert privateValues[s];
+    assert privateValues[s] instanceof ParamValue
     assert v.value
-    values[s].setValue(v.value);
-    assert values[s].value == v.value
+    privateValues[s].setValue(v.value);
+    assert privateValues[s].value == v.value
   }
 
   /** Set the value of a parameters
    *  @param s The name of the parameter from the ParamForm object.
    */
   public ParamValue setValue(String s, String v) {
-    assert values;
-    assert values[s];
-    assert values[s] instanceof ParamValue
-    values[s].setValue(v);
+    assert privateValues;
+    assert privateValues[s];
+    assert privateValues[s] instanceof ParamValue
+    privateValues[s].setValue(v);
   }
 
   /** Set the value of a parameters
    *  @param s The name of the parameter from the ParamForm object.
    */
   public ParamValue setValue(String s, Object v) {
-    assert values;
-    assert values[s];
-    assert values[s] instanceof ParamValue
-    values[s].setValue(v);
+    assert privateValues;
+    assert privateValues[s];
+    assert privateValues[s] instanceof ParamValue
+    privateValues[s].setValue(v);
   }
 
   /** Initialize all contained objects with the given arguments
@@ -93,7 +136,7 @@ public class ParamFormValue implements Exportable, Runnable {
    */
   public ParamFormValue init(HashMap args) {
     paramForm.init(args);
-    values.each {
+    privateValues.each {
       key, val ->
         val.init(args);
     }
@@ -105,10 +148,15 @@ public class ParamFormValue implements Exportable, Runnable {
     setParamForm(paramForm)
   }
 
+  /** Construct this from a SimpleReport object */
+  public ParamFormValue(SimpleReport simpleReport) {
+    setParamForm(simpleReport.params)
+  }
+
   @Override
   public def export() {
     def pf = paramForm.export();
-    values.each {
+    privateValues.each {
       paramName, paramValue ->
         if (pf[paramName]) {
           pf[paramName] = paramValue.export()
@@ -123,22 +171,28 @@ public class ParamFormValue implements Exportable, Runnable {
     def s = new StringWriter()
     s.println "{"
     s.println (t.keySet().collect {
-                 "\"$it\": ${values[it].toJson()}"
+                 "\"$it\": ${privateValues[it].toJson()}"
                }.join(",\r\n"))
     s.println "}"
     return s.toString()
   }
 
   /** Return a HashMap with the keys being the names of the parameters
-   *  and the values their current value.
+   *  and the privateValues their current value.
    */
   public HashMap getValueMap() {
-    values.inject([:]) {
+    def vm = privateValues.inject([:]) {
       pMap, param ->
         println "param.key=${param.key}, param.value=${param.value}"
         pMap[param.key] = param.value.value
         return pMap;
     }
+    // Now add the system parameters to the value map
+    this.systemParams.list().each {
+      key, param ->
+      vm["${key}"] = param.value;
+    }
+    return vm
   }
   
   /** Copy the values  from the HashMap object given to us.  
@@ -150,11 +204,11 @@ public class ParamFormValue implements Exportable, Runnable {
     v.each {
       String paramName, paramValue ->
         println "....paramName = $paramName; paramValue=$paramValue"
-        if (values[paramName]) {
-          assert this.values[paramName] instanceof ParamValue
-          values[paramName].setValue(paramValue)
-          assert values[paramName].value == paramValue
-          println "values[$paramName] == ${values[paramName].export()}"
+        if (privateValues[paramName]) {
+          assert this.privateValues[paramName] instanceof ParamValue
+          privateValues[paramName].setValue(paramValue)
+          assert privateValues[paramName].value == paramValue
+          println "privateValues[$paramName] == ${privateValues[paramName].export()}"
         }
     }
     return this
@@ -168,8 +222,8 @@ public class ParamFormValue implements Exportable, Runnable {
     println "in setParamValues(ParamFormValue $v)"
     v.values.each {
       paramName, paramValue ->
-        if (values[paramName]) {
-          values[paramName].setValue(paramValue);
+        if (privateValues[paramName]) {
+          privateValues[paramName].setValue(paramValue);
         }
     }
     return this
@@ -217,11 +271,11 @@ public class ParamFormValue implements Exportable, Runnable {
             th("Value");
           }
           tbody {
-            this.values.each {
+            this.valueMap.each {
               key, value ->
                 tr {
                   td(class: "parameterName", key);
-                  td(class: "parameterValue", "${value.value.value}");
+                  td(class: "parameterValue", "${value.value}");
                 }
             }
           }
